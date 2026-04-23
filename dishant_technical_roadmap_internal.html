@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corporate AI Agent — Internal Technical Roadmap | ScaleYukti</title>
+<style>
+  :root {
+    --orange: #F37021;
+    --green: #1D8A17;
+    --navy: #1B2A38;
+    --slate: #4A5568;
+    --light: #F8FAFC;
+    --white: #FFFFFF;
+    --card-bg: #243447;
+    --border: #2d3f52;
+    --red: #E53E3E;
+    --yellow: #D69E2E;
+    --code-bg: #0f1c27;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--navy); color: var(--light); line-height: 1.6; }
+
+  .topbar { background: linear-gradient(90deg, #0f1c27, #1B2A38); border-bottom: 2px solid #1D8A17; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .topbar-brand { font-size: 1.2rem; font-weight: 800; color: #4ade80; }
+  .topbar-meta { font-size: 0.78rem; color: var(--slate); text-align: right; }
+  .topbar-meta span { color: var(--light); }
+
+  /* NAV */
+  .sidenav { display: none; }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, #0b151e 0%, #1B2A38 70%); padding: 3.5rem 2rem 2.5rem; text-align: center; border-bottom: 1px solid var(--border); }
+  .hero-badge { display: inline-block; background: rgba(29,138,23,0.15); border: 1px solid var(--green); color: #4ade80; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 1rem; border-radius: 999px; margin-bottom: 1.5rem; }
+  .hero h1 { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 900; line-height: 1.2; margin-bottom: 1rem; }
+  .hero h1 span { color: #4ade80; }
+  .hero-sub { color: var(--slate); font-size: 0.92rem; max-width: 700px; margin: 0 auto 2rem; }
+  .hero-pills { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
+  .pill { background: var(--card-bg); border: 1px solid var(--border); padding: 0.35rem 0.85rem; border-radius: 999px; font-size: 0.75rem; color: var(--light); }
+  .pill.green { border-color: var(--green); color: #4ade80; }
+  .pill.orange { border-color: var(--orange); color: var(--orange); }
+  .pill.red { border-color: var(--red); color: #fc8181; }
+
+  /* SECTION */
+  .section { max-width: 980px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+  .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #4ade80; margin-bottom: 0.4rem; }
+  .section-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.4rem; }
+  .section-desc { color: var(--slate); font-size: 0.88rem; margin-bottom: 1.75rem; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* CARDS */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.1rem; margin-bottom: 2rem; }
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 1.35rem; }
+  .card.warn { border-color: rgba(229,62,62,0.5); }
+  .card.ok { border-color: rgba(29,138,23,0.5); }
+  .card.orange { border-color: rgba(243,112,33,0.5); }
+  .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+  .card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .card p { color: var(--slate); font-size: 0.82rem; line-height: 1.5; }
+  .card ul { color: var(--slate); font-size: 0.82rem; padding-left: 1.1rem; margin-top: 0.4rem; }
+  .card ul li { margin-bottom: 0.25rem; }
+
+  /* CALLOUT */
+  .callout { border-radius: 8px; padding: 0.9rem 1.1rem; margin: 1.25rem 0; display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.83rem; }
+  .callout.red { background: rgba(229,62,62,0.1); border-left: 3px solid var(--red); }
+  .callout.orange { background: rgba(243,112,33,0.1); border-left: 3px solid var(--orange); }
+  .callout.green { background: rgba(29,138,23,0.1); border-left: 3px solid var(--green); }
+  .callout.yellow { background: rgba(214,158,46,0.1); border-left: 3px solid var(--yellow); }
+  .callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+  .callout p { color: var(--light); line-height: 1.55; }
+  .callout strong { color: var(--orange); }
+  .callout.red strong { color: #fc8181; }
+  .callout.green strong { color: #4ade80; }
+  .callout.yellow strong { color: #fbd38d; }
+
+  /* CODE BLOCK */
+  .code-block { background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin: 1.1rem 0; overflow-x: auto; }
+  .code-block pre { font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.8rem; color: #a8d5a2; white-space: pre; line-height: 1.6; }
+  .code-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--slate); margin-bottom: 0.5rem; }
+
+  /* TABLE */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.82rem; }
+  .data-table th { background: rgba(29,138,23,0.12); color: #4ade80; text-align: left; padding: 0.65rem 0.9rem; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--border); }
+  .data-table td { padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--border); color: var(--light); vertical-align: top; font-size: 0.82rem; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table code { background: var(--code-bg); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.78rem; color: #a8d5a2; font-family: monospace; }
+  .tag { display: inline-block; padding: 0.18rem 0.55rem; border-radius: 4px; font-size: 0.68rem; font-weight: 700; }
+  .tag.must { background: rgba(229,62,62,0.2); color: #fc8181; }
+  .tag.warn { background: rgba(214,158,46,0.2); color: #fbd38d; }
+  .tag.ok { background: rgba(29,138,23,0.2); color: #4ade80; }
+  .tag.info { background: rgba(243,112,33,0.2); color: #fba96d; }
+
+  /* RISK TABLE */
+  .risk-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem 1.25rem; margin-bottom: 0.85rem; }
+  .risk-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+  .risk-badge { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; }
+  .risk-badge.high { background: rgba(229,62,62,0.25); color: #fc8181; }
+  .risk-badge.med { background: rgba(214,158,46,0.25); color: #fbd38d; }
+  .risk-badge.low { background: rgba(29,138,23,0.25); color: #4ade80; }
+  .risk-title { font-size: 0.92rem; font-weight: 700; }
+  .risk-body { color: var(--slate); font-size: 0.82rem; }
+  .risk-mitigation { color: #4ade80; font-size: 0.82rem; margin-top: 0.35rem; }
+
+  /* ARCH DIAGRAM */
+  .arch { background: var(--code-bg); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; }
+  .arch-title { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .arch-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem; }
+  .arch-node { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.85rem; text-align: center; }
+  .arch-node.primary { border-color: var(--orange); }
+  .arch-node.accent { border-color: var(--green); }
+  .arch-node.danger { border-color: rgba(229,62,62,0.5); }
+  .arch-node .node-icon { font-size: 1.4rem; margin-bottom: 0.3rem; }
+  .arch-node .node-label { font-size: 0.72rem; font-weight: 700; }
+  .arch-node .node-sub { font-size: 0.65rem; color: var(--slate); margin-top: 0.2rem; }
+
+  /* PHASE BANNER */
+  .phase-banner { border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; display: flex; gap: 1.25rem; align-items: flex-start; }
+  .phase-banner.p1 { background: rgba(243,112,33,0.08); border: 1px solid rgba(243,112,33,0.3); }
+  .phase-banner.p2 { background: rgba(29,138,23,0.08); border: 1px solid rgba(29,138,23,0.3); }
+  .phase-num { font-size: 2rem; font-weight: 900; line-height: 1; }
+  .phase-banner.p1 .phase-num { color: var(--orange); }
+  .phase-banner.p2 .phase-num { color: #4ade80; }
+  .phase-info h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.2rem; }
+  .phase-info p { color: var(--slate); font-size: 0.82rem; }
+
+  /* TASK LIST */
+  .task-list { list-style: none; }
+  .task-list li { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.7rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+  .task-list li:last-child { border-bottom: none; }
+  .task-num { background: rgba(243,112,33,0.15); color: var(--orange); font-size: 0.7rem; font-weight: 800; border-radius: 4px; padding: 0.1rem 0.45rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .task-num.g { background: rgba(29,138,23,0.15); color: #4ade80; }
+  .task-body strong { font-weight: 700; display: block; margin-bottom: 0.1rem; }
+  .task-body span { color: var(--slate); font-size: 0.8rem; }
+
+  footer { background: #0f1c27; border-top: 1px solid var(--border); padding: 1.5rem; text-align: center; font-size: 0.78rem; color: var(--slate); }
+  footer strong { color: #4ade80; }
+
+  @media (max-width: 600px) {
+    .topbar { flex-direction: column; gap: 0.4rem; text-align: center; }
+    .arch-flow { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">⚡ ScaleYukti — Internal Technical Docs</div>
+  <div class="topbar-meta">
+    Dishant Corporate AI Agent — Dev Roadmap<br>
+    <span>Generated: April 24, 2026</span> · Internal Only · Confidential
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">🔒 Internal Technical Roadmap</div>
+  <h1>Dishant Corporate AI Agent<br><span>Full Stack Technical Blueprint</span></h1>
+  <p class="hero-sub">CTO-level technical breakdown: Genspark API research findings, architecture decisions, risks, dev tasks, and implementation plan for Phase 1 and Phase 2.</p>
+  <div class="hero-pills">
+    <span class="pill green">Phase 1 — Build Ready</span>
+    <span class="pill orange">Phase 2 — Proposal Stage</span>
+    <span class="pill red">Genspark API — Critical Risk</span>
+    <span class="pill">WhatsApp Cloud API v19+</span>
+    <span class="pill">RAG / Vector Search</span>
+    <span class="pill">n8n Orchestration</span>
+  </div>
+</div>
+
+<!-- GENSPARK DEEP DIVE -->
+<div class="section">
+  <div class="section-label">CTO Research Report — April 2026</div>
+  <div class="section-title">Genspark AI — API Reality Check</div>
+  <p class="section-desc">Full web research on Genspark's actual API capabilities as of April 2026. No sugar-coating. Every team member must read this before starting development.</p>
+
+  <div class="callout red">
+    <div class="callout-icon">🚨</div>
+    <p><strong>Critical Finding:</strong> Genspark does NOT offer a public developer API. There is no API key you can just sign up for on their website. Their platform API is enterprise-only — requires direct sales engagement. This is the #1 risk for Phase 1 and must be resolved in Week 1 before a single line of production code is written.</p>
+  </div>
+
+  <div class="cards-grid" style="margin-top:1.5rem;">
+    <div class="card warn">
+      <div class="card-icon">❌</div>
+      <h4>No Public API Signup</h4>
+      <p>As of April 2026, genspark.ai has no self-serve API key portal. API access is available only to Enterprise plan users who contact their sales team directly.</p>
+    </div>
+    <div class="card warn">
+      <div class="card-icon">🍪</div>
+      <h4>genspark2api — NOT Production Safe</h4>
+      <p>The open-source wrapper (github.com/deanxv/genspark2api) uses browser session cookies extracted via DevTools. It's reverse-engineered, violates ToS, breaks on ReCaptchaV3, and has no SLA. <strong>Do not use in production.</strong></p>
+    </div>
+    <div class="card ok">
+      <div class="card-icon">✅</div>
+      <h4>Official Enterprise API</h4>
+      <p>Genspark's enterprise API is OpenAI-compatible (same interface, different base URL + API key). If Dishant has Enterprise/Pro plan, request API credentials from Genspark account team at genspark.ai/business.</p>
+    </div>
+    <div class="card orange">
+      <div class="card-icon">🔄</div>
+      <h4>Fallback: OpenAI API Direct</h4>
+      <p>Genspark runs GPT-4.1 and GPT-5-mini under the hood (official OpenAI partnership). If Genspark API isn't available, use OpenAI API directly — same model quality, official API, no risk.</p>
+    </div>
+  </div>
+
+  <!-- GENSPARK API SPEC -->
+  <div style="margin-top:2rem;">
+    <div class="section-label">API Specification (Enterprise)</div>
+    <div class="section-title" style="font-size:1.2rem;">Genspark Enterprise API — Full Reference</div>
+    <p class="section-desc">Based on confirmed API structure from Genspark's enterprise offering. OpenAI-compatible interface.</p>
+
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th><th>Options / Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>model</code></td><td>string</td><td><span class="tag must">Required</span></td><td>AI model to use</td><td>See model list below</td></tr>
+          <tr><td><code>messages</code></td><td>array</td><td><span class="tag must">Required</span></td><td>Conversation history as array of role/content objects</td><td>Roles: <code>system</code>, <code>user</code>, <code>assistant</code></td></tr>
+          <tr><td><code>temperature</code></td><td>float</td><td><span class="tag warn">Optional</span></td><td>Randomness — 0=deterministic, 1=creative</td><td>Range: 0.0–2.0. Default: 1.0. <strong>Use 0.3–0.5 for support bots</strong></td></tr>
+          <tr><td><code>max_tokens</code></td><td>int</td><td><span class="tag warn">Optional</span></td><td>Max tokens in the response</td><td>Default varies by model. Set 512–1024 for WhatsApp (keep replies concise)</td></tr>
+          <tr><td><code>stream</code></td><td>bool</td><td><span class="tag warn">Optional</span></td><td>Stream tokens as they're generated (SSE)</td><td>Default: false. <strong>Set false for WhatsApp</strong> — need full response before replying</td></tr>
+          <tr><td><code>top_p</code></td><td>float</td><td><span class="tag warn">Optional</span></td><td>Nucleus sampling probability</td><td>Range: 0–1. Default: 1. Tune together with temperature (not both)</td></tr>
+          <tr><td><code>frequency_penalty</code></td><td>float</td><td><span class="tag warn">Optional</span></td><td>Reduce repetition of same phrases</td><td>Range: -2.0–2.0. Recommended: 0.3 for conversational bots</td></tr>
+          <tr><td><code>presence_penalty</code></td><td>float</td><td><span class="tag warn">Optional</span></td><td>Encourage new topics</td><td>Range: -2.0–2.0. Default: 0</td></tr>
+          <tr><td><code>system</code></td><td>string</td><td><span class="tag warn">Optional</span></td><td>System prompt (also passable as first message with role=system)</td><td>Set here for corporate persona, Employeewise context, tone rules</td></tr>
+          <tr><td><code>user</code></td><td>string</td><td><span class="tag warn">Optional</span></td><td>End-user identifier for usage tracking</td><td>Pass WhatsApp phone number hash for per-user analytics</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:1.5rem;">
+      <div class="section-label">Supported Models</div>
+      <table class="data-table">
+        <thead><tr><th>Model ID</th><th>Provider</th><th>Best For</th><th>Context Window</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><code>gpt-4.1</code></td><td>OpenAI</td><td>General Q&A, HR queries, email drafting</td><td>1M tokens</td><td><span class="tag ok">Recommended for Phase 1</span></td></tr>
+          <tr><td><code>gpt-4.1-search</code></td><td>OpenAI + Web</td><td>Questions needing current info</td><td>1M tokens</td><td>Appending <code>-search</code> enables web access</td></tr>
+          <tr><td><code>gpt-5-minimal</code></td><td>OpenAI</td><td>Fast, cost-effective responses</td><td>—</td><td>Good for simple FAQ handling</td></tr>
+          <tr><td><code>claude-3-7-sonnet</code></td><td>Anthropic</td><td>Long documents, nuanced reasoning</td><td>200K tokens</td><td>Strong for Employeewise doc Q&A</td></tr>
+          <tr><td><code>claude-opus-4</code></td><td>Anthropic</td><td>Complex reasoning, analysis</td><td>200K tokens</td><td>Higher cost — use selectively</td></tr>
+          <tr><td><code>gemini-2.5-pro</code></td><td>Google</td><td>Multimodal (if images needed)</td><td>1M tokens</td><td>If employee sends screenshots</td></tr>
+          <tr><td><code>o4-mini-high</code></td><td>OpenAI</td><td>Structured reasoning tasks</td><td>—</td><td>Good for policy interpretation</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AUTHENTICATION -->
+    <div style="margin-top:1.5rem;">
+      <div class="section-label">Authentication</div>
+      <div class="code-label">Request Header</div>
+      <div class="code-block"><pre>Authorization: Bearer {GENSPARK_API_KEY}
+Content-Type: application/json</pre></div>
+
+      <div class="code-label">Full cURL Example — Chat Completions</div>
+      <div class="code-block"><pre>curl -X POST https://api.genspark.ai/v1/chat/completions \
+  -H "Authorization: Bearer $GENSPARK_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4.1",
+    "temperature": 0.4,
+    "max_tokens": 800,
+    "stream": false,
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a corporate assistant for Dishant organization. You help employees with HR queries, Employeewise software guidance, email drafting, and productivity tasks. Be concise, professional, and accurate. If you don'\''t know something, say so clearly."
+      },
+      {
+        "role": "user",
+        "content": "How do I apply for casual leave in Employeewise?"
+      }
+    ]
+  }'</pre></div>
+
+      <div class="code-label">Python SDK Example</div>
+      <div class="code-block"><pre>from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ["GENSPARK_API_KEY"],
+    base_url="https://api.genspark.ai/v1"  # Genspark's OpenAI-compatible base
+)
+
+response = client.chat.completions.create(
+    model="gpt-4.1",
+    temperature=0.4,
+    max_tokens=800,
+    messages=[
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": user_message}
+    ]
+)
+
+reply = response.choices[0].message.content</pre></div>
+
+      <div class="callout yellow">
+        <div class="callout-icon">⚠️</div>
+        <p><strong>Note on base_url:</strong> The base URL <code>https://api.genspark.ai/v1</code> is the expected enterprise endpoint. Confirm exact URL with Genspark account team when receiving API credentials. If using OpenAI direct fallback, remove the <code>base_url</code> parameter entirely — defaults to <code>https://api.openai.com/v1</code>.</p>
+      </div>
+    </div>
+
+    <!-- RATE LIMITS -->
+    <div style="margin-top:1.5rem;">
+      <div class="section-label">Rate Limits & Quotas</div>
+      <table class="data-table">
+        <thead><tr><th>Limit Type</th><th>Value</th><th>Action on Breach</th></tr></thead>
+        <tbody>
+          <tr><td>Requests per minute (RPM)</td><td>60 RPM (enterprise tier — confirm)</td><td>429 Too Many Requests — implement exponential backoff</td></tr>
+          <tr><td>Tokens per minute (TPM)</td><td>Varies by model — confirm with Genspark</td><td>429 — queue and retry with backoff</td></tr>
+          <tr><td>Max input context</td><td>1M tokens (gpt-4.1)</td><td>Truncate conversation history on overflow</td></tr>
+          <tr><td>Max output tokens</td><td>Set via max_tokens param</td><td>Response cut off — always set explicit limit</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- WHATSAPP API -->
+<div class="section">
+  <div class="section-label">WhatsApp Business Cloud API v19+</div>
+  <div class="section-title">WhatsApp Integration — Technical Spec</div>
+  <p class="section-desc">Meta's WhatsApp Business Cloud API (not on-premise BSP). Full reference for what Dishant must provide and what we build.</p>
+
+  <div class="cards-grid">
+    <div class="card orange">
+      <div class="card-icon">🔑</div>
+      <h4>Required Credentials from Dishant</h4>
+      <ul>
+        <li><code>WHATSAPP_PHONE_NUMBER_ID</code> — from Meta Developer Dashboard</li>
+        <li><code>WHATSAPP_BUSINESS_ACCOUNT_ID</code> — WABA ID</li>
+        <li><code>META_SYSTEM_USER_TOKEN</code> — permanent token (not user token)</li>
+        <li><code>WEBHOOK_VERIFY_TOKEN</code> — we define this (random string)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📡</div>
+      <h4>Webhook Architecture</h4>
+      <ul>
+        <li>Meta POSTs inbound messages to our webhook URL</li>
+        <li>We respond with HTTP 200 immediately (within 3s)</li>
+        <li>Process async — reply via separate POST to Meta API</li>
+        <li>Webhook must be HTTPS with valid SSL cert</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📤</div>
+      <h4>Sending Messages</h4>
+      <ul>
+        <li>POST to: <code>/v19.0/{phone_number_id}/messages</code></li>
+        <li>Base URL: <code>https://graph.facebook.com</code></li>
+        <li>Auth: Bearer system user token</li>
+        <li>Max message length: 4096 chars (split longer responses)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-label">Inbound Webhook Payload (from Meta)</div>
+  <div class="code-block"><pre>{
+  "object": "whatsapp_business_account",
+  "entry": [{
+    "id": "WHATSAPP_BUSINESS_ACCOUNT_ID",
+    "changes": [{
+      "value": {
+        "messaging_product": "whatsapp",
+        "metadata": { "phone_number_id": "PHONE_NUMBER_ID" },
+        "contacts": [{ "profile": { "name": "Employee Name" }, "wa_id": "91XXXXXXXXXX" }],
+        "messages": [{
+          "from": "91XXXXXXXXXX",
+          "id": "wamid.XXXXX",
+          "timestamp": "1714000000",
+          "type": "text",
+          "text": { "body": "How do I apply for leave?" }
+        }]
+      },
+      "field": "messages"
+    }]
+  }]
+}</pre></div>
+
+  <div class="code-label">Sending Reply Back via Meta API</div>
+  <div class="code-block"><pre>POST https://graph.facebook.com/v19.0/{PHONE_NUMBER_ID}/messages
+Authorization: Bearer {META_SYSTEM_USER_TOKEN}
+Content-Type: application/json
+
+{
+  "messaging_product": "whatsapp",
+  "recipient_type": "individual",
+  "to": "91XXXXXXXXXX",
+  "type": "text",
+  "text": {
+    "preview_url": false,
+    "body": "To apply for leave in Employeewise:\n1. Go to Leave Management\n2. Click 'Apply Leave'\n3. Select leave type and dates\n4. Submit for manager approval"
+  }
+}</pre></div>
+
+  <div class="callout yellow">
+    <div class="callout-icon">⚠️</div>
+    <p><strong>24-Hour Window Rule:</strong> WhatsApp only allows free-form text replies within 24 hours of the customer's last message. Outside this window, you must use pre-approved Message Templates. Design all flows to reply within the session window. Critical for support use cases.</p>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- ARCHITECTURE -->
+<div class="section">
+  <div class="section-label">System Architecture</div>
+  <div class="section-title">Phase 1 — Full Stack Architecture</div>
+  <p class="section-desc">Technology decisions, component breakdown, and data flow. All decisions are final unless flagged as ADR.</p>
+
+  <div class="arch">
+    <div class="arch-title">Component Map — Phase 1</div>
+    <div class="arch-flow">
+      <div class="arch-node primary">
+        <div class="node-icon">👤</div>
+        <div class="node-label">Employee</div>
+        <div class="node-sub">WhatsApp User</div>
+      </div>
+      <div class="arch-node">
+        <div class="node-icon">📱</div>
+        <div class="node-label">Meta Cloud API</div>
+        <div class="node-sub">WhatsApp Business v19</div>
+      </div>
+      <div class="arch-node primary">
+        <div class="node-icon">⚙️</div>
+        <div class="node-label">n8n Orchestrator</div>
+        <div class="node-sub">Self-hosted / VPS</div>
+      </div>
+      <div class="arch-node">
+        <div class="node-icon">🔍</div>
+        <div class="node-label">RAG Engine</div>
+        <div class="node-sub">Qdrant Vector DB</div>
+      </div>
+      <div class="arch-node accent">
+        <div class="node-icon">🤖</div>
+        <div class="node-label">Genspark AI</div>
+        <div class="node-sub">GPT-4.1 / Fallback: OpenAI</div>
+      </div>
+      <div class="arch-node">
+        <div class="node-icon">📂</div>
+        <div class="node-label">Employeewise KB</div>
+        <div class="node-sub">Vectorized docs</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top:2rem;">Stack Decisions</div>
+  <table class="data-table">
+    <thead><tr><th>Layer</th><th>Technology</th><th>Reason</th><th>Alternative Considered</th></tr></thead>
+    <tbody>
+      <tr><td>Orchestration</td><td>n8n (self-hosted)</td><td>Already in Dishant's stack. Native WhatsApp + AI nodes. Fastest path to production.</td><td>Custom FastAPI — overkill for Phase 1 timeline</td></tr>
+      <tr><td>AI Backend</td><td>Genspark API (GPT-4.1)</td><td>Client requirement. OpenAI fallback if API unavailable.</td><td>Anthropic Claude — valid alternative, similar cost</td></tr>
+      <tr><td>Vector DB</td><td>Qdrant</td><td>Open source, self-hosted, fast semantic search, native n8n integration</td><td>Pinecone (cloud cost), ChromaDB (less production-ready)</td></tr>
+      <tr><td>Document Processing</td><td>Unstructured.io + LangChain</td><td>Handles PDFs, DOCX, HTML. Chunking + embedding pipeline.</td><td>Manual processing — not scalable</td></tr>
+      <tr><td>Embeddings</td><td>OpenAI text-embedding-3-small</td><td>Best quality/cost ratio. 1536 dimensions. Native n8n support.</td><td>Local embeddings — slower, less accurate</td></tr>
+      <tr><td>Hosting</td><td>VPS (existing Dishant infra)</td><td>Already running Docker + Traefik + n8n. No new infra cost.</td><td>Cloud managed — higher cost, slower setup</td></tr>
+      <tr><td>SSL / Webhook</td><td>Traefik SSL (Let's Encrypt)</td><td>Already configured. Meta requires HTTPS webhook.</td><td>Cloudflare Tunnel — backup option</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ENV VARS -->
+  <div style="margin-top:1.5rem;">
+    <div class="section-label">Environment Variables — Full List</div>
+    <div class="code-block"><pre># Genspark / OpenAI
+GENSPARK_API_KEY=sk-...                    # From Genspark Enterprise
+GENSPARK_BASE_URL=https://api.genspark.ai/v1
+GENSPARK_MODEL=gpt-4.1
+GENSPARK_TEMPERATURE=0.4
+GENSPARK_MAX_TOKENS=800
+
+# WhatsApp Business API
+WHATSAPP_PHONE_NUMBER_ID=1234567890
+WHATSAPP_BUSINESS_ACCOUNT_ID=0987654321
+META_SYSTEM_USER_TOKEN=EAAxxxx...          # Permanent token — never expires
+WEBHOOK_VERIFY_TOKEN=dishant_verify_2026   # Random string — we define
+
+# Qdrant Vector DB
+QDRANT_HOST=localhost
+QDRANT_PORT=6333
+QDRANT_COLLECTION=employeewise_kb
+
+# OpenAI Embeddings (for Qdrant)
+OPENAI_API_KEY=sk-...                      # For text-embedding-3-small
+OPENAI_EMBEDDING_MODEL=text-embedding-3-small
+
+# n8n
+N8N_HOST=0.0.0.0
+N8N_PORT=5678
+N8N_BASIC_AUTH_USER=admin
+N8N_BASIC_AUTH_PASSWORD=***
+
+# App
+NODE_ENV=production
+LOG_LEVEL=info</pre></div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- EMPLOYEEWISE RAG -->
+<div class="section">
+  <div class="section-label">Knowledge Base Pipeline</div>
+  <div class="section-title">Employeewise RAG — Implementation</div>
+  <p class="section-desc">Retrieval-Augmented Generation pipeline for Employeewise documentation. This is what makes the bot answer product questions accurately.</p>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">📥</div>
+      <h4>Step 1 — Ingest</h4>
+      <p>Load all Employeewise docs (PDF, DOCX, HTML) using Unstructured.io. Clean, normalize, and chunk into 500-token segments with 50-token overlap.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧮</div>
+      <h4>Step 2 — Embed</h4>
+      <p>Each chunk is converted to a 1536-dim vector using <code>text-embedding-3-small</code>. Stored in Qdrant with metadata: source doc, page, section title.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h4>Step 3 — Retrieve</h4>
+      <p>On user query, embed the query, find top-5 most similar chunks from Qdrant (cosine similarity). Return context to AI model.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <h4>Step 4 — Generate</h4>
+      <p>Genspark AI receives user question + retrieved context. Generates grounded answer. Cannot hallucinate beyond what docs contain.</p>
+    </div>
+  </div>
+
+  <div class="code-label">System Prompt Template (with RAG context injection)</div>
+  <div class="code-block"><pre>You are a corporate AI assistant for Dishant's organization.
+You help employees with:
+- Employeewise software guidance (step-by-step instructions)
+- HR queries (leave, attendance, payroll)
+- Email drafting and professional writing
+- Event ideas and brainstorming
+- General productivity support
+
+RULES:
+- Always be concise — this is WhatsApp, not email. Keep replies under 300 words.
+- For Employeewise questions, ONLY answer from the context provided below.
+- If context does not contain the answer, say: "I don't have that information.
+  Please contact HR at [contact]."
+- Format lists with numbers (1. 2. 3.) or bullets — WhatsApp renders them correctly.
+- Never guess policy details. If unsure, escalate to HR.
+
+EMPLOYEEWISE DOCUMENTATION CONTEXT:
+{retrieved_context}
+
+---
+Today's date: {date}
+Employee: {employee_name} ({employee_phone})</pre></div>
+
+  <div class="callout green">
+    <div class="callout-icon">✅</div>
+    <p><strong>RAG vs Fine-tuning:</strong> We use RAG (not fine-tuning) because Employeewise docs will change over time. RAG lets us update the knowledge base without retraining. Faster, cheaper, more maintainable. Correct approach here.</p>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- RISKS -->
+<div class="section">
+  <div class="section-label">Risk Register — CTO Assessment</div>
+  <div class="section-title">Risks, Cracks & Consequences</div>
+  <p class="section-desc">Every risk identified. Severity rated. Mitigation plan defined. Team must know all of these before starting.</p>
+
+  <div class="risk-item">
+    <div class="risk-header">
+      <span class="risk-badge high">HIGH</span>
+      <span class="risk-title">Genspark Enterprise API Not Available</span>
+    </div>
+    <div class="risk-body">Genspark has no public API. If Dishant's account is not Enterprise tier or they can't get API credentials from Genspark, we're blocked immediately. This is the single biggest risk to Phase 1.</div>
+    <div class="risk-mitigation">✅ Mitigation: Confirm API access in Week 1. If unavailable, switch to OpenAI API directly (GPT-4.1). Same model, full official API, zero delay. Client must be briefed on this possibility upfront.</div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-header">
+      <span class="risk-badge high">HIGH</span>
+      <span class="risk-title">Meta Permanent Token Not Set Up Correctly</span>
+    </div>
+    <div class="risk-body">If Dishant uses a user access token instead of a system user token, it will expire in 60 days and break the integration silently. Has caused major production outages in similar projects.</div>
+    <div class="risk-mitigation">✅ Mitigation: Walk Dishant through Meta Business Manager → System Users → Create System User → Generate Token with whatsapp_business_messaging permission. Verify token type before deployment.</div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-header">
+      <span class="risk-badge high">HIGH</span>
+      <span class="risk-title">WhatsApp 24-Hour Messaging Window</span>
+    </div>
+    <div class="risk-body">Bot can only send free-form text if employee messaged within the last 24 hours. Outside this window, only approved templates work. If bot tries to initiate conversation or reply after 24h, API returns 131047 error.</div>
+    <div class="risk-mitigation">✅ Mitigation: This is a reactive bot (responds to employee messages). Design all flows as response-only. Never initiate outbound. If needed in future, create Meta-approved templates.</div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-header">
+      <span class="risk-badge med">MEDIUM</span>
+      <span class="risk-title">Employeewise Docs Out of Date / Incomplete</span>
+    </div>
+    <div class="risk-body">If Dishant provides incomplete docs, the bot will confidently say "I don't have that info" for basic questions. This erodes trust fast.</div>
+    <div class="risk-mitigation">✅ Mitigation: Before ingestion, audit docs for coverage gaps. Run 20 sample questions against the KB. Identify gaps and ask Dishant to fill them before launch. Set explicit knowledge boundaries in system prompt.</div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-header">
+      <span class="risk-badge med">MEDIUM</span>
+      <span class="risk-title">AI Hallucination on Policy Details</span>
+    </div>
+    <div class="risk-body">Without strict RAG grounding, the model may invent policy details (e.g., leave entitlements). Wrong HR information is a legal/compliance risk.</div>
+    <div class="risk-mitigation">✅ Mitigation: System prompt explicitly forbids answering outside retrieved context. Add fallback: "For policy confirmation, contact HR at [contact]." All policy answers include source reference.</div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-header">
+      <span class="risk-badge med">MEDIUM</span>
+      <span class="risk-title">VPS Downtime = Bot Downtime</span>
+    </div>
+    <div class="risk-body">n8n is self-hosted on Dishant's VPS. If VPS goes down, the bot goes down. Meta will retry webhooks 3 times; after that, messages are dropped.</div>
+    <div class="risk-mitigation">✅ Mitigation: Set up UptimeRobot monitoring. Enable n8n process restart via PM2 or Docker restart policy. Document escalation process for Dishant's IT team.</div>
+  </div>
+
+  <div class="risk-item">
+    <div class="risk-header">
+      <span class="risk-badge low">LOW</span>
+      <span class="risk-title">WhatsApp API Rate Limits</span>
+    </div>
+    <div class="risk-body">WhatsApp Business API has per-number rate limits. For internal corporate use (&lt;1000 employees), this is not a real concern. Becomes relevant if bot is used for mass outreach.</div>
+    <div class="risk-mitigation">✅ Mitigation: This is internal-only, reactive bot. Rate limits not a concern for Phase 1 scope. Monitor if usage spikes unexpectedly.</div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- DEV TASKS -->
+<div class="section">
+  <div class="section-label">Development Backlog — Phase 1</div>
+  <div class="section-title">Sprint Tasks for Internal Team</div>
+  <p class="section-desc">Ordered task list. Complete in sequence — each depends on the previous.</p>
+
+  <div class="phase-banner p1">
+    <div class="phase-num">01</div>
+    <div class="phase-info"><h3>Phase 1 — 4 Weeks</h3><p>WhatsApp AI Agent + Employeewise Knowledge Base</p></div>
+  </div>
+
+  <ul class="task-list">
+    <li>
+      <span class="task-num">W1.1</span>
+      <div class="task-body">
+        <strong>Verify Genspark API Access</strong>
+        <span>Call Genspark API with Dishant's credentials. Confirm base URL, API key, and model access. If unavailable → activate OpenAI fallback. DO NOT proceed without this confirmed.</span>
+      </div>
+    </li>
+    <li>
+      <span class="task-num">W1.2</span>
+      <div class="task-body">
+        <strong>Meta Developer App Setup</strong>
+        <span>Create Meta App → WhatsApp product → configure WABA → generate system user token → test send/receive in Meta's sandbox.</span>
+      </div>
+    </li>
+    <li>
+      <span class="task-num">W1.3</span>
+      <div class="task-body">
+        <strong>n8n Webhook Endpoint</strong>
+        <span>Create n8n workflow: Webhook node (GET for verification, POST for messages) → parse payload → extract message body + sender phone → route to AI pipeline.</span>
+      </div>
+    </li>
+    <li>
+      <span class="task-num">W1.4</span>
+      <div class="task-body">
+        <strong>Basic Echo Test</strong>
+        <span>End-to-end test: Employee sends "hello" → webhook receives → n8n processes → replies "Hello from bot" via Meta API. Confirm full loop working before adding AI.</span>
+      </div>
+    </li>
+    <li>
+      <span class="task-num">W2.1</span>
+      <div class="task-body">
+        <strong>Employeewise Doc Ingestion Pipeline</strong>
+        <span>Collect all docs from Dishant. Process with Unstructured.io. Chunk at 500 tokens / 50 overlap. Embed with text-embedding-3-small. Store in Qdrant collection "employeewise_kb".</span>
+      </div>
+    </li>
+    <li>
+      <span class="task-num">W2.2</span>
+      <div class="task-body">
+        <strong>RAG Retrieval Test</strong>
+        <span>Run 30 sample employee questions through Qdrant. Evaluate top-5 chunk relevance. Tune chunk size if needed. Target: >85% relevant retrieval on sample set.</span>
+      </div>
+    </li>
+    <li>
+      <span class="task-num">W3.1</span>
+      <div class="task-body">
+        <strong>AI Integration in n8n Workflow</strong>
+        <span>Connect: Inbound message → Qdrant query → inject context → Genspark API call → extract reply → send via Meta API. Full pipeline in n8n with error handling at each step.</span>
+      </div>
+    </li>
+    <li>
+      <span class="task-num">W3.2</span>
+      <div class="task-body">
+        <strong>System Prompt Engineering</strong>
+        <span>Finalize system prompt for Dishant's tone, escalation rules, and Employeewise constraints. Test against 50 real employee question scenarios. Iterate until quality is production-grade.</span>
+      </div>
+    </li>
+    <li>
+      <span class="task-num">W3.3</span>
+      <div class="task-body">
+        <strong>Error Handling & Fallbacks</strong>
+        <span>Handle: Genspark API timeout → retry 2x → fallback message. Qdrant unavailable → use pure AI without context. Meta API error → log + alert. 3s max response time SLA.</span>
+      </div>
+    </li>
+    <li>
+      <span class="task-num">W4.1</span>
+      <div class="task-body">
+        <strong>Pilot Launch (5–10 Users)</strong>
+        <span>Select 5–10 internal test users. Run for 5 business days. Collect feedback. Log all queries + AI responses for quality review. Fix issues before full rollout.</span>
+      </div>
+    </li>
+    <li>
+      <span class="task-num">W4.2</span>
+      <div class="task-body">
+        <strong>Monitoring & Alerting Setup</strong>
+        <span>UptimeRobot for webhook endpoint. n8n error notifications to Slack/email. Daily query volume dashboard. Token usage tracking (cost monitoring).</span>
+      </div>
+    </li>
+    <li>
+      <span class="task-num">W5.1</span>
+      <div class="task-body">
+        <strong>Production Rollout</strong>
+        <span>Open to all employees. Communicate via internal channels. Provide "how to use" guide. Monitor for first 48 hours closely.</span>
+      </div>
+    </li>
+  </ul>
+
+  <div style="margin-top:2.5rem;">
+    <div class="phase-banner p2">
+      <div class="phase-num">02</div>
+      <div class="phase-info"><h3>Phase 2 — Proposed (Post Phase 1)</h3><p>Persistent Memory & Context Recall — Research Required Before Scoping</p></div>
+    </div>
+
+    <ul class="task-list">
+      <li>
+        <span class="task-num g">P2.1</span>
+        <div class="task-body">
+          <strong>Memory Architecture Research</strong>
+          <span>Evaluate: Redis conversation history vs PostgreSQL long-term memory vs Mem0 (memory-as-a-service). Decision based on volume and query patterns from Phase 1 data.</span>
+        </div>
+      </li>
+      <li>
+        <span class="task-num g">P2.2</span>
+        <div class="task-body">
+          <strong>Per-User Conversation Store</strong>
+          <span>Store last N messages per phone number in Redis (short-term, 7-day TTL). Summarise older conversations into PostgreSQL long-term memory table.</span>
+        </div>
+      </li>
+      <li>
+        <span class="task-num g">P2.3</span>
+        <div class="task-body">
+          <strong>Memory Injection in Context Window</strong>
+          <span>On each message: retrieve user's memory summary + last 5 messages → inject into system prompt alongside RAG context. Model now has full user history awareness.</span>
+        </div>
+      </li>
+      <li>
+        <span class="task-num g">P2.4</span>
+        <div class="task-body">
+          <strong>Privacy & Data Governance</strong>
+          <span>Define retention policy (30/60/90 days). User opt-out mechanism ("forget my data"). DPDP Act 2023 compliance review for Indian context. Document data handling in ToS.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- EXTERNAL DOCS -->
+<div class="section">
+  <div class="section-label">Reference Links</div>
+  <div class="section-title">Official Documentation</div>
+  <p class="section-desc">All official docs to reference during development. Verified live as of April 2026.</p>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">📘</div>
+      <h4>WhatsApp Business Cloud API</h4>
+      <p>developers.facebook.com/docs/whatsapp/cloud-api — Full webhook setup, message sending, media, templates, error codes.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <h4>Genspark for Business</h4>
+      <p>genspark.ai/business — Enterprise plan info. Contact sales for API credentials and base URL. Request API documentation on sign-up.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h4>OpenAI API (Fallback)</h4>
+      <p>platform.openai.com/docs/api-reference — Chat Completions, Models, Rate Limits. Use if Genspark API unavailable.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h4>Qdrant Documentation</h4>
+      <p>qdrant.tech/documentation — Vector DB setup, collection creation, upsert, search API. Docker image: qdrant/qdrant.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔄</div>
+      <h4>n8n WhatsApp Integration</h4>
+      <p>n8n.io/integrations/whatsapp-business-cloud — Native WhatsApp node. Webhook trigger + send message nodes.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <h4>Unstructured.io (Doc Processing)</h4>
+      <p>docs.unstructured.io — PDF/DOCX/HTML extraction and chunking for RAG pipelines.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:0.4rem;"><strong>⚡ ScaleYukti</strong> — Internal Technical Document — Do Not Share Externally</div>
+  <div>Ahmedabad, Gujarat, India · scaleyukti.ai · Generated: April 24, 2026</div>
+  <div style="margin-top:0.4rem; font-size:0.72rem;">All Genspark API details based on web research as of April 2026. Confirm exact base URL and parameters with Genspark account team.</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corporate AI Agent — Client Roadmap | ScaleYukti × Dishant</title>
+<style>
+  :root {
+    --orange: #F37021;
+    --green: #1D8A17;
+    --navy: #1B2A38;
+    --slate: #4A5568;
+    --light: #F8FAFC;
+    --white: #FFFFFF;
+    --card-bg: #243447;
+    --border: #2d3f52;
+    --red: #E53E3E;
+    --yellow: #D69E2E;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--navy); color: var(--light); line-height: 1.6; }
+
+  /* TOP BAR */
+  .topbar { background: linear-gradient(90deg, #0f1c27, #1B2A38); border-bottom: 2px solid var(--orange); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .topbar-brand { font-size: 1.2rem; font-weight: 800; color: var(--orange); }
+  .topbar-meta { font-size: 0.78rem; color: var(--slate); text-align: right; }
+  .topbar-meta span { color: var(--light); }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, #0f1c27 0%, #1B2A38 60%, #1a3040 100%); padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1px solid var(--border); }
+  .hero-badge { display: inline-block; background: rgba(243,112,33,0.15); border: 1px solid var(--orange); color: var(--orange); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 1rem; border-radius: 999px; margin-bottom: 1.5rem; }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; line-height: 1.2; margin-bottom: 1rem; }
+  .hero h1 span { color: var(--orange); }
+  .hero-sub { color: var(--slate); font-size: 1rem; max-width: 640px; margin: 0 auto 2rem; }
+  .hero-pills { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+  .pill { background: var(--card-bg); border: 1px solid var(--border); padding: 0.4rem 1rem; border-radius: 999px; font-size: 0.8rem; color: var(--light); }
+  .pill.orange { border-color: var(--orange); color: var(--orange); }
+  .pill.green { border-color: var(--green); color: #4ade80; }
+
+  /* SECTION */
+  .section { max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem; }
+  .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.5rem; }
+  .section-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .section-desc { color: var(--slate); font-size: 0.92rem; max-width: 680px; margin-bottom: 2rem; }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* PHASE BANNER */
+  .phase-banner { border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2rem; display: flex; align-items: flex-start; gap: 1.5rem; }
+  .phase-banner.phase1 { background: linear-gradient(135deg, rgba(243,112,33,0.12), rgba(243,112,33,0.04)); border: 1px solid rgba(243,112,33,0.35); }
+  .phase-banner.phase2 { background: linear-gradient(135deg, rgba(29,138,23,0.12), rgba(29,138,23,0.04)); border: 1px solid rgba(29,138,23,0.35); }
+  .phase-num { font-size: 2.5rem; font-weight: 900; line-height: 1; }
+  .phase-banner.phase1 .phase-num { color: var(--orange); }
+  .phase-banner.phase2 .phase-num { color: #4ade80; }
+  .phase-info h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.25rem; }
+  .phase-info p { color: var(--slate); font-size: 0.88rem; }
+
+  /* FEATURE CARDS */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+  .card-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+  .card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .card p { color: var(--slate); font-size: 0.85rem; line-height: 1.55; }
+  .card.highlight { border-color: var(--orange); }
+  .card.highlight2 { border-color: var(--green); }
+
+  /* FLOW */
+  .flow { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin: 1.5rem 0; }
+  .flow-step { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1.1rem; font-size: 0.82rem; font-weight: 600; text-align: center; min-width: 130px; }
+  .flow-arrow { color: var(--orange); font-size: 1.2rem; padding: 0 0.5rem; font-weight: 700; }
+
+  /* CREDENTIAL TABLE */
+  .cred-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+  .cred-table th { background: rgba(243,112,33,0.12); color: var(--orange); text-align: left; padding: 0.75rem 1rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--border); }
+  .cred-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); color: var(--light); vertical-align: top; }
+  .cred-table tr:last-child td { border-bottom: none; }
+  .tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700; }
+  .tag.must { background: rgba(229,62,62,0.2); color: #fc8181; border: 1px solid rgba(229,62,62,0.4); }
+  .tag.optional { background: rgba(214,158,46,0.2); color: #fbd38d; border: 1px solid rgba(214,158,46,0.4); }
+  .tag.provided { background: rgba(29,138,23,0.2); color: #4ade80; border: 1px solid rgba(29,138,23,0.4); }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 0.4rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+  .tl-item { position: relative; margin-bottom: 1.75rem; }
+  .tl-dot { position: absolute; left: -1.65rem; top: 0.25rem; width: 12px; height: 12px; border-radius: 50%; background: var(--orange); border: 2px solid var(--navy); }
+  .tl-dot.green { background: #4ade80; }
+  .tl-week { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); font-weight: 700; margin-bottom: 0.25rem; }
+  .tl-week.green { color: #4ade80; }
+  .tl-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .tl-desc { color: var(--slate); font-size: 0.83rem; }
+
+  /* CALLOUT */
+  .callout { border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.85rem; }
+  .callout.info { background: rgba(243,112,33,0.1); border-left: 3px solid var(--orange); }
+  .callout.warn { background: rgba(214,158,46,0.1); border-left: 3px solid #D69E2E; }
+  .callout.success { background: rgba(29,138,23,0.1); border-left: 3px solid var(--green); }
+  .callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .callout p { color: var(--light); line-height: 1.5; }
+  .callout strong { color: var(--orange); }
+  .callout.warn strong { color: #fbd38d; }
+  .callout.success strong { color: #4ade80; }
+
+  /* FOOTER */
+  footer { background: #0f1c27; border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--slate); }
+  footer strong { color: var(--orange); }
+
+  @media (max-width: 600px) {
+    .flow { flex-direction: column; align-items: flex-start; }
+    .flow-arrow { transform: rotate(90deg); }
+    .topbar { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-brand">⚡ ScaleYukti × Dishant</div>
+  <div class="topbar-meta">
+    Corporate AI Agent — Client Roadmap<br>
+    <span>Generated: April 24, 2026</span> · Confidential
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Project Roadmap — Client Brief</div>
+  <h1>Corporate AI Agent<br><span>Phase 1 & Phase 2 Plan</span></h1>
+  <p class="hero-sub">An AI-powered WhatsApp agent for Dishant's team — powered by Genspark AI, integrated with WhatsApp Business API, and trained on Employeewise documentation.</p>
+  <div class="hero-pills">
+    <span class="pill orange">Phase 1 — Active</span>
+    <span class="pill green">Phase 2 — Proposed</span>
+    <span class="pill">WhatsApp Business API</span>
+    <span class="pill">Genspark AI</span>
+    <span class="pill">Employeewise RAG</span>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="section">
+  <div class="section-label">Project Overview</div>
+  <div class="section-title">What We're Building</div>
+  <p class="section-desc">A corporate AI assistant that lives inside WhatsApp — helping Dishant's employees get instant answers, draft emails, brainstorm ideas, and navigate Employeewise — all without leaving their phone.</p>
+
+  <div class="cards-grid">
+    <div class="card highlight">
+      <div class="card-icon">💬</div>
+      <h4>WhatsApp-Native Experience</h4>
+      <p>Employees interact via WhatsApp — no new app to install, no training needed. Works on any device, any time.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <h4>Genspark AI Brain</h4>
+      <p>The agent uses Genspark's advanced AI (running on GPT-4.1 / Claude models) to understand context and generate intelligent responses.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <h4>Employeewise Knowledge Base</h4>
+      <p>We inject your Employeewise software docs into the AI so it can answer "how do I submit a leave?" or "where is the expense module?" with precision.</p>
+    </div>
+    <div class="card highlight2">
+      <div class="card-icon">✍️</div>
+      <h4>Productivity Assistant</h4>
+      <p>Write emails, draft event ideas, summarise meetings, generate reports — the bot handles routine cognitive tasks instantly.</p>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- PHASE 1 -->
+<div class="section">
+  <div class="section-label">Phase 1 — In Scope</div>
+  <div class="section-title">What Gets Built First</div>
+  <p class="section-desc">Phase 1 is the complete, production-ready foundation. Everything below will be live and tested before we move to Phase 2.</p>
+
+  <div class="phase-banner phase1">
+    <div class="phase-num">01</div>
+    <div class="phase-info">
+      <h3>Genspark AI × WhatsApp Integration</h3>
+      <p>Connect the Genspark AI model to your WhatsApp Business number. Every message employees send is processed by the AI and replied to in real time, within WhatsApp.</p>
+    </div>
+  </div>
+
+  <!-- FLOW -->
+  <p style="font-size:0.8rem; color:var(--slate); margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.08em;">How a message flows</p>
+  <div class="flow">
+    <div class="flow-step">👤 Employee sends<br>WhatsApp message</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">📡 Meta WhatsApp<br>Business API</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">⚙️ ScaleYukti<br>Middleware</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">🤖 Genspark AI<br>+ Employeewise KB</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">💬 Instant reply<br>in WhatsApp</div>
+  </div>
+
+  <div class="callout info" style="margin-top:2rem;">
+    <div class="callout-icon">⚡</div>
+    <p><strong>Understanding Genspark's API</strong> — Genspark's official developer API requires an Enterprise plan (direct sales agreement). ScaleYukti will clarify this with Dishant's Genspark account team before Phase 1 development. If a dedicated API key is not available, we have a fallback plan using OpenAI's GPT-4.1 API directly (same underlying model Genspark uses), ensuring zero disruption to the timeline.</p>
+  </div>
+
+  <div style="margin-top:2rem;">
+    <div class="phase-banner phase1">
+      <div class="phase-num">01<span style="font-size:1.2rem;">b</span></div>
+      <div class="phase-info">
+        <h3>Employeewise Knowledge Injection</h3>
+        <p>We load and index your Employeewise software documentation into a private knowledge base. The AI agent references this when employees ask product-related questions — giving step-by-step, accurate answers.</p>
+      </div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">📂</div>
+        <h4>Document Ingestion</h4>
+        <p>PDFs, Word docs, and web pages from Employeewise are processed and vectorised into a searchable knowledge store.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <h4>Smart Retrieval (RAG)</h4>
+        <p>When an employee asks a question, the AI searches the knowledge base first, then uses Genspark to generate a clear, contextual answer.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔄</div>
+        <h4>Updateable</h4>
+        <p>When Employeewise releases updates, we re-ingest the docs. The bot's knowledge stays current without rebuilding anything.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- CREDENTIALS NEEDED -->
+<div class="section">
+  <div class="section-label">What We Need From Dishant</div>
+  <div class="section-title">Credentials & Access Checklist</div>
+  <p class="section-desc">To build Phase 1, we need the following from Dishant's side. ScaleYukti will handle all technical setup once these are provided.</p>
+
+  <table class="cred-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>What It Is</th>
+        <th>Priority</th>
+        <th>Who Provides It</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>WhatsApp Business Account (WABA)</strong></td>
+        <td>A verified WhatsApp Business account connected to Meta Business Manager</td>
+        <td><span class="tag must">Must Have</span></td>
+        <td>Dishant — via Meta Business Manager</td>
+      </tr>
+      <tr>
+        <td><strong>WhatsApp Phone Number ID</strong></td>
+        <td>The specific phone number registered under the WABA to send/receive messages</td>
+        <td><span class="tag must">Must Have</span></td>
+        <td>From Meta Developer Dashboard</td>
+      </tr>
+      <tr>
+        <td><strong>Meta System User Access Token</strong></td>
+        <td>Permanent API token that gives ScaleYukti permission to send messages on behalf of your number</td>
+        <td><span class="tag must">Must Have</span></td>
+        <td>Dishant — Meta Business Manager → System Users</td>
+      </tr>
+      <tr>
+        <td><strong>Genspark Enterprise API Key</strong></td>
+        <td>API credential from Genspark's enterprise plan to call their AI models</td>
+        <td><span class="tag must">Must Have</span></td>
+        <td>Dishant — from Genspark account team</td>
+      </tr>
+      <tr>
+        <td><strong>Employeewise Documentation</strong></td>
+        <td>All user manuals, help docs, and guides for Employeewise software</td>
+        <td><span class="tag must">Must Have</span></td>
+        <td>Dishant — exported PDFs or web links</td>
+      </tr>
+      <tr>
+        <td><strong>Webhook Hosting Server / Domain</strong></td>
+        <td>A server where we deploy the middleware (ScaleYukti can arrange this if needed)</td>
+        <td><span class="tag optional">Discuss</span></td>
+        <td>ScaleYukti can provide</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn">
+    <div class="callout-icon">⚠️</div>
+    <p><strong>Important:</strong> The Meta System User Token must be a permanent token (not a temporary user token). Temporary tokens expire in 60 days and will break the integration. ScaleYukti will guide Dishant through this setup step-by-step.</p>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- PHASE 2 -->
+<div class="section">
+  <div class="section-label">Phase 2 — Proposed</div>
+  <div class="section-title">Persistent Memory & Context Recall</div>
+  <p class="section-desc">Phase 2 is a proposed enhancement — no development started yet. We begin this only after Phase 1 is live and stable.</p>
+
+  <div class="phase-banner phase2">
+    <div class="phase-num">02</div>
+    <div class="phase-info">
+      <h3>AI Memory — The Agent That Remembers</h3>
+      <p>The Phase 2 agent will remember each employee's past interactions, preferences, and history. This unlocks the true potential of the AI — personalised, context-aware responses that get smarter over time.</p>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card highlight2">
+      <div class="card-icon">🧠</div>
+      <h4>Persistent User Memory</h4>
+      <p>The agent remembers who each employee is, their role, past requests, and preferences — like a personal assistant that never forgets.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📖</div>
+      <h4>Contextual Recall</h4>
+      <p>"What did I ask you last week about the leave policy?" — the agent can pull up past conversations and build on them seamlessly.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📈</div>
+      <h4>Personalised Responses</h4>
+      <p>Over time the agent understands each user's communication style and tailors responses accordingly — more accurate, more efficient.</p>
+    </div>
+  </div>
+
+  <div class="callout success">
+    <div class="callout-icon">✅</div>
+    <p><strong>Why This Matters:</strong> Without memory, every conversation starts from zero. With memory, the AI becomes genuinely useful — more like a smart colleague than a chatbot. This is the feature that turns the tool from "useful" to "indispensable."</p>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- TIMELINE -->
+<div class="section">
+  <div class="section-label">Delivery Timeline</div>
+  <div class="section-title">What Happens When</div>
+  <p class="section-desc">Estimates from credential handover date. Phase 1 is a 4–5 week build.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-week">Week 1</div>
+      <div class="tl-title">Credential Setup & API Verification</div>
+      <div class="tl-desc">Confirm all credentials received. Verify Genspark API access. Set up Meta App & webhook. Test end-to-end message flow on staging.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-week">Week 2</div>
+      <div class="tl-title">Employeewise Knowledge Base Build</div>
+      <div class="tl-desc">Ingest all documentation. Build vector search. Test accuracy of knowledge retrieval against sample employee questions.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-week">Week 3</div>
+      <div class="tl-title">AI Agent Integration & Tuning</div>
+      <div class="tl-desc">Connect Genspark AI to WhatsApp pipeline. Fine-tune system prompts for Dishant's use cases. Productivity features (email drafting, idea generation).</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-week">Week 4</div>
+      <div class="tl-title">Testing, QA & Pilot Launch</div>
+      <div class="tl-desc">Internal testing with 5–10 users. Edge case handling. Load testing. Final fixes before full rollout.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-week">Week 5</div>
+      <div class="tl-title">Full Rollout + Handover</div>
+      <div class="tl-desc">Deploy to production. Onboard full team. Monitoring dashboards live. 2-week post-launch support included.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot green"></div>
+      <div class="tl-week green">Post Phase 1</div>
+      <div class="tl-title">Phase 2 Kickoff Discussion</div>
+      <div class="tl-desc">After Phase 1 is stable, we review requirements and scope Phase 2 memory features together.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="margin-bottom:0.5rem;">
+    <strong>⚡ ScaleYukti</strong> — AI Automation Agency, Ahmedabad, Gujarat, India
+  </div>
+  <div>scaleyukti.ai · @scaleyukti · Prepared for Dishant · <strong>Confidential</strong></div>
+  <div style="margin-top:0.5rem; font-size:0.75rem;">Generated: April 24, 2026 · Phase 1 Active, Phase 2 Proposed</div>
+</footer>
+
+</body>
+</html>

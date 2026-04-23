@@ -6,39 +6,117 @@
 <title>ScaleYukti — Documents</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #1B2A38; color: #F8FAFC; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-  .container { text-align: center; padding: 2rem; }
-  .logo { font-size: 2.5rem; font-weight: 800; color: #F37021; margin-bottom: 0.5rem; }
-  .tagline { color: #4A5568; margin-bottom: 3rem; font-size: 1rem; }
-  .cards { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
-  .card { background: #243447; border: 1px solid #2d3f52; border-radius: 12px; padding: 2rem; width: 260px; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s; }
-  .card:hover { transform: translateY(-4px); border-color: #F37021; }
-  .card-icon { font-size: 2rem; margin-bottom: 1rem; }
-  .card-title { font-weight: 700; font-size: 1.1rem; color: #F8FAFC; margin-bottom: 0.5rem; }
-  .card-desc { font-size: 0.85rem; color: #4A5568; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #1B2A38; color: #F8FAFC; min-height: 100vh; }
+  .topbar { background: #0f1c27; border-bottom: 2px solid #F37021; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .topbar-brand { font-size: 1.1rem; font-weight: 800; color: #F37021; }
+  .topbar-meta { font-size: 0.75rem; color: #4A5568; }
+  .hero { text-align: center; padding: 3rem 1.5rem 2rem; }
+  .logo { font-size: 2.2rem; font-weight: 900; color: #F37021; margin-bottom: 0.25rem; }
+  .tagline { color: #4A5568; font-size: 0.9rem; margin-bottom: 2.5rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 3rem; }
+  .card { background: #243447; border: 1px solid #2d3f52; border-radius: 12px; padding: 1.5rem; text-decoration: none; color: inherit; transition: transform 0.18s, border-color 0.18s; display: flex; flex-direction: column; gap: 0.5rem; }
+  .card:hover { transform: translateY(-3px); border-color: #F37021; }
+  .card.green:hover { border-color: #1D8A17; }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+  .card-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .card-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.2rem 0.55rem; border-radius: 4px; flex-shrink: 0; }
+  .card-badge.orange { background: rgba(243,112,33,0.15); color: #F37021; border: 1px solid rgba(243,112,33,0.3); }
+  .card-badge.green { background: rgba(29,138,23,0.15); color: #4ade80; border: 1px solid rgba(29,138,23,0.3); }
+  .card-badge.blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+  .card-badge.purple { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+  .card h3 { font-size: 1rem; font-weight: 700; }
+  .card-desc { color: #4A5568; font-size: 0.8rem; line-height: 1.5; flex: 1; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #2d3f52; }
+  .card-date { font-size: 0.7rem; color: #4A5568; }
+  .card-arrow { color: #F37021; font-size: 0.85rem; font-weight: 700; }
+  .card.green .card-arrow { color: #4ade80; }
+  footer { text-align: center; padding: 1.5rem; font-size: 0.75rem; color: #4A5568; border-top: 1px solid #2d3f52; }
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="logo">⚡ ScaleYukti</div>
-  <div class="tagline">AI Automation Agency</div>
-  <div class="cards">
-    <a class="card" href="scaleyukti_production_strategy.html">
-      <div class="card-icon">🚀</div>
-      <div class="card-title">Production Strategy</div>
-      <div class="card-desc">ScaleYukti production rollout & growth strategy</div>
-    </a>
-    <a class="card" href="scaleyukti_series_a_pitch.html">
-      <div class="card-icon">💼</div>
-      <div class="card-title">Series A Pitch</div>
-      <div class="card-desc">Investor pitch deck — Series A fundraise</div>
-    </a>
-    <a class="card" href="social-nvidia-ising-quantum-ai-models-april-2026-2026-04-21.html">
-      <div class="card-icon">🧠</div>
-      <div class="card-title">NVIDIA Quantum AI Models</div>
-      <div class="card-desc">Social post — Ising quantum AI models, April 2026</div>
-    </a>
-  </div>
+
+<div class="topbar">
+  <div class="topbar-brand">⚡ ScaleYukti</div>
+  <div class="topbar-meta">AI Automation Agency · Ahmedabad, India</div>
 </div>
+
+<div class="hero">
+  <div class="logo">⚡ ScaleYukti</div>
+  <div class="tagline">Documents & Reports Library</div>
+</div>
+
+<div class="grid">
+
+  <a class="card" href="dishant_client_roadmap_phase1_phase2.html">
+    <div class="card-top">
+      <div class="card-icon">🗺️</div>
+      <span class="card-badge orange">Client Doc</span>
+    </div>
+    <h3>Dishant — Client Roadmap (Phase 1 & 2)</h3>
+    <p class="card-desc">Business-level product roadmap for Dishant's corporate AI agent. Covers Phase 1 (WhatsApp + Genspark + Employeewise) and proposed Phase 2 (persistent memory). Shareable with client.</p>
+    <div class="card-footer">
+      <span class="card-date">📅 Generated: Apr 24, 2026</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <a class="card green" href="dishant_technical_roadmap_internal.html">
+    <div class="card-top">
+      <div class="card-icon">⚙️</div>
+      <span class="card-badge green">Internal · Technical</span>
+    </div>
+    <h3>Dishant — Technical Roadmap (Dev Team)</h3>
+    <p class="card-desc">Full-stack CTO-level technical blueprint: Genspark API deep-dive, WhatsApp Cloud API spec, RAG architecture, risk register, dev task backlog, all env vars, JSON payloads, and code samples. Internal only.</p>
+    <div class="card-footer">
+      <span class="card-date">📅 Generated: Apr 24, 2026</span>
+      <span class="card-arrow" style="color:#4ade80;">→</span>
+    </div>
+  </a>
+
+  <a class="card" href="scaleyukti_production_strategy.html">
+    <div class="card-top">
+      <div class="card-icon">🚀</div>
+      <span class="card-badge blue">Strategy</span>
+    </div>
+    <h3>ScaleYukti Production Strategy</h3>
+    <p class="card-desc">ScaleYukti's production rollout and growth strategy document. Covers go-to-market, operational scaling, and service delivery framework.</p>
+    <div class="card-footer">
+      <span class="card-date">📅 Generated: Apr 23, 2026</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <a class="card" href="scaleyukti_series_a_pitch.html">
+    <div class="card-top">
+      <div class="card-icon">💼</div>
+      <span class="card-badge purple">Investor Deck</span>
+    </div>
+    <h3>Series A Pitch Deck</h3>
+    <p class="card-desc">Investor pitch deck for ScaleYukti's Series A fundraise. Unit economics, product vision, market opportunity, and traction highlights.</p>
+    <div class="card-footer">
+      <span class="card-date">📅 Generated: Apr 23, 2026</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <a class="card" href="social-nvidia-ising-quantum-ai-models-april-2026-2026-04-21.html">
+    <div class="card-top">
+      <div class="card-icon">🧠</div>
+      <span class="card-badge orange">Social Content</span>
+    </div>
+    <h3>NVIDIA Ising Quantum AI Models — April 2026</h3>
+    <p class="card-desc">Social media content piece covering NVIDIA's Ising quantum AI model developments. Research-backed breakdown for ScaleYukti's audience.</p>
+    <div class="card-footer">
+      <span class="card-date">📅 Generated: Apr 21, 2026</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+</div>
+
+<footer>
+  ⚡ ScaleYukti AI Automation Agency · scaleyukti.ai · Ahmedabad, Gujarat, India
+</footer>
+
 </body>
 </html>
