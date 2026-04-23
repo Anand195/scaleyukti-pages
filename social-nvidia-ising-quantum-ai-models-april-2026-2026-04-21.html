@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="scaleyukti">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScaleYukti Social Studio — NVIDIA Ising Quantum AI (April 2026)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@400;500;600&family=Caveat:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#0f1117;color:#e2e8f0;min-height:100vh}
+
+/* ===== THEME CSS VARIABLES ===== */
+[data-theme="scaleyukti"]{
+  --primary:#F37021;--accent:#1D8A17;--dark:#1B2A38;--card-bg:#FFFFFF;--slide-bg:#F8FAFC;
+  --card-border:3px solid #F37021;--card-shadow:8px 8px 0px #C25A15;--card-radius:20px;
+  --headline:#1B2A38;--body-color:#4A5568;--cta-bg:#F37021;--cta-text:#FFFFFF;
+  --font-headline:'Fredoka One',cursive;--font-body:'DM Sans',sans-serif;
+  --badge-bg:#1B2A38;--badge-text:#FFFFFF;--tab-active:#F37021;--progress-bg:#F37021;
+}
+[data-theme="webwave"]{
+  --primary:#6B21E8;--accent:#7C3AED;--dark:#3B1A6E;--card-bg:#EDE0FF;--slide-bg:#C9A8F0;
+  --card-border:3px solid #6B21E8;--card-shadow:10px 10px 0px #7C3AED;--card-radius:24px;
+  --headline:#6B21E8;--body-color:#3B1A6E;--cta-bg:#6B21E8;--cta-text:#FFFFFF;
+  --font-headline:'Fredoka One',cursive;--font-body:'DM Sans',sans-serif;
+  --badge-bg:#3B1A6E;--badge-text:#FFFFFF;--tab-active:#6B21E8;--progress-bg:#6B21E8;
+}
+[data-theme="whiteboard"]{
+  --primary:#1B2A38;--accent:#F37021;--dark:#1B2A38;--card-bg:#FFFFFF;--slide-bg:#FFFFFF;
+  --card-border:3px solid #1B2A38;--card-shadow:4px 4px 0px rgba(27,42,56,0.3);--card-radius:4px;
+  --headline:#1B2A38;--body-color:#1B2A38;--cta-bg:#1B2A38;--cta-text:#FFFFFF;
+  --font-headline:'Caveat',cursive;--font-body:'Caveat',cursive;
+  --badge-bg:#1B2A38;--badge-text:#FFFFFF;--tab-active:#1B2A38;--progress-bg:#F37021;
+}
+[data-theme="claude-theme"]{
+  --primary:#C96843;--accent:#8B5E3C;--dark:#3D2314;--card-bg:#FAF3EC;--slide-bg:#FAF3EC;
+  --card-border:2px solid #C96843;--card-shadow:6px 6px 0px rgba(201,104,67,0.3);--card-radius:16px;
+  --headline:#3D2314;--body-color:#6B4226;--cta-bg:#C96843;--cta-text:#FFFFFF;
+  --font-headline:'Fredoka One',cursive;--font-body:'DM Sans',sans-serif;
+  --badge-bg:#3D2314;--badge-text:#FFFFFF;--tab-active:#C96843;--progress-bg:#C96843;
+}
+[data-theme="gemini-theme"]{
+  --primary:#1A73E8;--accent:#7C4DFF;--dark:#202124;--card-bg:#FFFFFF;--slide-bg:#F8F9FA;
+  --card-border:2px solid #1A73E8;--card-shadow:0px 4px 20px rgba(26,115,232,0.15);--card-radius:24px;
+  --headline:#202124;--body-color:#5F6368;--cta-bg:linear-gradient(135deg,#1A73E8,#7C4DFF);--cta-text:#FFFFFF;
+  --font-headline:'DM Sans',sans-serif;--font-body:'DM Sans',sans-serif;
+  --badge-bg:#1A73E8;--badge-text:#FFFFFF;--tab-active:#1A73E8;--progress-bg:#1A73E8;
+}
+[data-theme="universal-ai"]{
+  --primary:#C9A96E;--accent:#8B7355;--dark:#3D3020;--card-bg:#FFFDF7;--slide-bg:#FBF7F0;
+  --card-border:2px solid #C9A96E;--card-shadow:6px 6px 0px rgba(201,169,110,0.35);--card-radius:18px;
+  --headline:#3D3020;--body-color:#6B5B3E;--cta-bg:#C9A96E;--cta-text:#FFFFFF;
+  --font-headline:'Fredoka One',cursive;--font-body:'DM Sans',sans-serif;
+  --badge-bg:#3D3020;--badge-text:#FFFFFF;--tab-active:#C9A96E;--progress-bg:#C9A96E;
+}
+[data-theme="alliance"]{
+  --primary:#D97B2A;--accent:#2E7B75;--dark:#1A1A1A;--card-bg:#F5ECD7;--slide-bg:#4AA8A0;
+  --card-border:3px solid #1A1A1A;--card-shadow:10px 10px 0px #2E7B75;--card-radius:20px;
+  --headline:#D97B2A;--body-color:#2A2A2A;--cta-bg:#1A1A1A;--cta-text:#FFFFFF;
+  --font-headline:'Fredoka One',cursive;--font-body:'DM Sans',sans-serif;
+  --badge-bg:#1A1A1A;--badge-text:#FFFFFF;--tab-active:#D97B2A;--progress-bg:#D97B2A;
+}
+
+/* ===== LAYOUT ===== */
+.studio-header{background:#1a1f2e;border-bottom:1px solid #2d3748;padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.studio-logo{font-family:'Fredoka One',cursive;font-size:22px;color:var(--primary);white-space:nowrap}
+.studio-topic{flex:1;font-size:13px;color:#94a3b8;min-width:200px}
+.theme-pills{display:flex;gap:6px;flex-wrap:wrap}
+.theme-pill{padding:5px 12px;border-radius:20px;border:1px solid #3d4a5c;background:transparent;color:#94a3b8;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.theme-pill:hover,.theme-pill.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-download-all{padding:7px 14px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;white-space:nowrap}
+.btn-download-all:hover{opacity:.85}
+
+/* ===== TAB NAV ===== */
+.tab-nav{background:#151a28;border-bottom:1px solid #2d3748;display:flex;padding:0 24px;overflow-x:auto}
+.tab-btn{padding:14px 20px;background:transparent;border:none;color:#64748b;font-size:13px;font-weight:500;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:6px;font-family:'DM Sans',sans-serif;transition:all .2s}
+.tab-btn.active{color:var(--tab-active);border-bottom-color:var(--tab-active)}
+.tab-btn:hover:not(.active){color:#94a3b8}
+.tab-dot{width:8px;height:8px;border-radius:50%}
+
+/* ===== MAIN CONTENT ===== */
+.main-content{display:none;padding:24px;gap:24px;max-width:1400px;margin:0 auto}
+.main-content.active{display:grid;grid-template-columns:1fr 1fr}
+@media(max-width:900px){.main-content.active{grid-template-columns:1fr}}
+
+/* ===== CONTENT PANEL ===== */
+.content-panel{background:#1a1f2e;border-radius:16px;padding:24px;border:1px solid #2d3748}
+.ab-toggle{display:flex;gap:8px;margin-bottom:20px}
+.ab-btn{padding:8px 18px;border-radius:8px;border:2px solid #3d4a5c;background:transparent;color:#94a3b8;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;transition:all .2s}
+.ab-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.var-section{display:none}
+.var-section.active{display:block}
+.hook-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:10px;font-weight:600;background:var(--primary);color:#fff;margin-bottom:12px;letter-spacing:.5px}
+.caption-box{background:#0f1117;border-radius:12px;padding:16px;font-size:13px;line-height:1.7;color:#cbd5e1;white-space:pre-wrap;max-height:300px;overflow-y:auto;margin-bottom:12px}
+.hashtag-box{font-size:11px;color:#64748b;line-height:1.8}
+.btn-copy{padding:7px 14px;background:#2d3748;color:#94a3b8;border:none;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:10px}
+.btn-copy:hover{background:#3d4a5c;color:#e2e8f0}
+.section-label{font-size:11px;color:#64748b;font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+
+/* ===== VISUAL PANEL ===== */
+.visual-panel{background:#1a1f2e;border-radius:16px;padding:24px;border:1px solid #2d3748;display:flex;flex-direction:column;align-items:center;gap:16px}
+.visual-ab-toggle{display:flex;gap:8px;width:100%}
+.visual-var{display:none}
+.visual-var.active{display:block;width:100%}
+.btn-dl{padding:8px 16px;background:#2d3748;color:#94a3b8;border:none;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;text-align:center;margin-top:10px}
+.btn-dl:hover{background:var(--primary);color:#fff}
+
+/* ===== CAROUSEL ===== */
+.carousel-wrap{width:420px;max-width:100%}
+.carousel-frame{width:420px;height:525px;position:relative;overflow:hidden;border-radius:var(--card-radius);background:var(--slide-bg);box-shadow:0 8px 40px rgba(0,0,0,.4);max-width:100%}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:none;flex-direction:column;padding:32px}
+.slide.active{display:flex}
+.slide-cover{background:var(--primary);color:var(--cta-text);align-items:center;justify-content:center;text-align:center;padding:40px}
+.slide-cover .slide-num{font-size:12px;opacity:.7;margin-bottom:16px;font-family:var(--font-body)}
+.slide-cover h1{font-family:var(--font-headline);font-size:34px;line-height:1.15;margin-bottom:16px}
+.slide-cover p{font-family:var(--font-body);font-size:14px;opacity:.85;line-height:1.5}
+.slide-cover .badge{background:rgba(255,255,255,.2);border-radius:20px;padding:4px 12px;font-size:11px;margin-bottom:20px;display:inline-block}
+.slide-content{background:var(--slide-bg)}
+.slide-card{background:var(--card-bg);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--card-radius);padding:24px;flex:1;display:flex;flex-direction:column;gap:10px}
+.slide-icon{font-size:32px;margin-bottom:4px}
+.slide-headline{font-family:var(--font-headline);font-size:22px;color:var(--headline);line-height:1.2}
+.slide-body{font-family:var(--font-body);font-size:13px;color:var(--body-color);line-height:1.6;flex:1}
+.slide-stat{background:var(--primary);color:#fff;border-radius:10px;padding:8px 14px;font-family:var(--font-headline);font-size:18px;display:inline-block;margin-top:4px}
+.slide-cta{background:var(--cta-bg);color:var(--cta-text);align-items:center;justify-content:center;text-align:center;padding:40px}
+.slide-cta h2{font-family:var(--font-headline);font-size:28px;margin-bottom:12px;line-height:1.2}
+.slide-cta p{font-family:var(--font-body);font-size:14px;opacity:.9;margin-bottom:16px}
+.slide-cta .handle{font-family:var(--font-headline);font-size:20px;opacity:.9}
+.slide-branding{position:absolute;top:16px;right:16px;background:var(--badge-bg);color:var(--badge-text);padding:4px 10px;border-radius:8px;font-size:10px;font-weight:600}
+.progress-bar{position:absolute;bottom:0;left:0;width:100%;height:4px;background:rgba(0,0,0,.1)}
+.progress-fill{height:100%;background:var(--progress-bg);transition:width .3s}
+.carousel-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:12px}
+.carousel-nav button{width:36px;height:36px;border-radius:50%;border:2px solid #3d4a5c;background:transparent;color:#94a3b8;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.carousel-nav button:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.slide-counter{font-size:13px;color:#94a3b8}
+
+/* ===== LINKEDIN CARD ===== */
+.lk-card{background:var(--card-bg);border-radius:16px;padding:20px;max-width:580px;border:var(--card-border);box-shadow:var(--card-shadow)}
+.lk-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.lk-avatar{width:48px;height:48px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:18px;color:#fff;flex-shrink:0}
+.lk-info .lk-name{font-family:var(--font-headline);font-size:15px;color:var(--headline);font-weight:700}
+.lk-info .lk-tag{font-size:12px;color:var(--body-color)}
+.lk-body{font-family:var(--font-body);font-size:13px;color:var(--body-color);line-height:1.7;white-space:pre-line;max-height:280px;overflow-y:auto}
+.lk-footer{margin-top:16px;padding-top:12px;border-top:1px solid rgba(0,0,0,.08);display:flex;gap:16px}
+.lk-action{font-size:12px;color:var(--body-color);cursor:pointer;display:flex;align-items:center;gap:4px}
+
+/* ===== TWITTER ===== */
+.tw-wrap{background:#14171A;border-radius:16px;padding:20px;max-width:540px;border:1px solid #2F3336}
+.tweet-card{background:#1E2732;border-radius:12px;padding:16px;margin-bottom:12px;position:relative;border:1px solid #2F3336}
+.tweet-card::before{content:'';position:absolute;left:22px;bottom:-13px;width:2px;height:14px;background:#3E4C5E}
+.tweet-card:last-child::before{display:none}
+.tweet-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.tweet-avatar{width:38px;height:38px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:14px;color:#fff;flex-shrink:0}
+.tweet-name{font-weight:700;font-size:13px;color:#E7E9EA}
+.tweet-handle{font-size:12px;color:#71767B}
+.tweet-text{font-size:14px;color:#E7E9EA;line-height:1.6;white-space:pre-line}
+.tweet-footer{margin-top:12px;display:flex;gap:20px}
+.tweet-action{font-size:12px;color:#71767B;cursor:pointer}
+.tweet-action:hover{color:var(--primary)}
+
+/* ===== YOUTUBE ===== */
+.yt-wrap{max-width:580px}
+.yt-thumbnails{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.yt-thumb{border-radius:12px;overflow:hidden;position:relative;aspect-ratio:16/9;background:var(--dark)}
+.yt-thumb-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;font-family:'Fredoka One',cursive;font-size:24px;color:#fff;line-height:1.1;text-shadow:2px 2px 0 rgba(0,0,0,.5)}
+.yt-thumb-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.8));padding:8px}
+.yt-duration{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.8);color:#fff;font-size:10px;padding:2px 6px;border-radius:4px}
+.yt-card{background:var(--card-bg);border-radius:12px;padding:16px;border:var(--card-border);box-shadow:var(--card-shadow)}
+.yt-title{font-family:var(--font-headline);font-size:16px;color:var(--headline);margin-bottom:8px}
+.yt-channel{font-size:12px;color:var(--body-color);margin-bottom:12px}
+.yt-desc{font-family:var(--font-body);font-size:12px;color:var(--body-color);line-height:1.6;max-height:160px;overflow-y:auto;margin-bottom:12px}
+.yt-tags{display:flex;flex-wrap:wrap;gap:6px}
+.yt-tag{background:rgba(243,112,33,.1);color:var(--primary);border-radius:12px;padding:3px 10px;font-size:10px;font-weight:500}
+.variant-label{font-size:10px;color:#64748b;text-transform:uppercase;font-weight:700;letter-spacing:.5px;margin-bottom:6px}
+
+/* ===== FACEBOOK ===== */
+.fb-card{background:var(--card-bg);border-radius:16px;max-width:520px;overflow:hidden;border:var(--card-border);box-shadow:var(--card-shadow)}
+.fb-header{padding:14px 16px;display:flex;align-items:center;gap:10px}
+.fb-avatar{width:42px;height:42px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:16px;color:#fff;flex-shrink:0}
+.fb-name{font-family:var(--font-headline);font-size:14px;color:var(--headline);font-weight:700}
+.fb-meta{font-size:11px;color:var(--body-color)}
+.fb-image{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,var(--dark),var(--primary));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Fredoka One',cursive;font-size:20px;text-align:center;padding:20px}
+.fb-body{padding:14px 16px;font-family:var(--font-body);font-size:13px;color:var(--body-color);line-height:1.7;white-space:pre-line;max-height:240px;overflow-y:auto}
+.fb-footer{padding:10px 16px;border-top:1px solid rgba(0,0,0,.08);display:flex;gap:20px}
+.fb-action{font-size:12px;color:var(--body-color);cursor:pointer;display:flex;align-items:center;gap:4px}
+
+/* ===== EXPORT PANEL ===== */
+.export-panel{width:100%;margin-top:8px}
+.export-toggle{font-size:11px;color:#64748b;cursor:pointer;padding:6px 0;display:block;text-decoration:underline}
+.export-cmds{display:none;background:#0f1117;border-radius:8px;padding:12px;margin-top:6px;font-family:monospace;font-size:11px;color:#7dd3fc;line-height:2}
+.export-cmds.show{display:block}
+</style>
+</head>
+<body data-theme="scaleyukti">
+
+<!-- ===== HEADER ===== -->
+<div class="studio-header">
+  <div class="studio-logo">⚡ ScaleYukti</div>
+  <div class="studio-topic">Social Studio — NVIDIA Ising: World's First Open AI Models for Quantum Computing</div>
+  <div class="theme-pills">
+    <button class="theme-pill active" onclick="setTheme('scaleyukti',this)">🟠 ScaleYukti</button>
+    <button class="theme-pill" onclick="setTheme('webwave',this)">🟣 Webwave</button>
+    <button class="theme-pill" onclick="setTheme('whiteboard',this)">⬜ Whiteboard</button>
+    <button class="theme-pill" onclick="setTheme('claude-theme',this)">🟤 Claude</button>
+    <button class="theme-pill" onclick="setTheme('gemini-theme',this)">🔵 Gemini</button>
+    <button class="theme-pill" onclick="setTheme('universal-ai',this)">🟡 Universal AI</button>
+    <button class="theme-pill" onclick="setTheme('alliance',this)">🟢 Alliance</button>
+  </div>
+  <button class="btn-download-all" onclick="downloadPage()">⬇ Download All</button>
+</div>
+
+<!-- ===== TAB NAV ===== -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('ig',this)"><span class="tab-dot" style="background:#E1306C"></span>Instagram</button>
+  <button class="tab-btn" onclick="showTab('lk',this)"><span class="tab-dot" style="background:#0077B5"></span>LinkedIn</button>
+  <button class="tab-btn" onclick="showTab('tw',this)"><span class="tab-dot" style="background:#1DA1F2"></span>Twitter / X</button>
+  <button class="tab-btn" onclick="showTab('fb',this)"><span class="tab-dot" style="background:#1877F2"></span>Facebook</button>
+  <button class="tab-btn" onclick="showTab('yt',this)"><span class="tab-dot" style="background:#FF0000"></span>YouTube</button>
+</div>
+
+<!-- ============================= INSTAGRAM ============================= -->
+<div id="tab-ig" class="main-content active">
+  <!-- Content Panel -->
+  <div class="content-panel">
+    <div class="ab-toggle">
+      <button class="ab-btn active" onclick="setV('ig','a',this)">🅐 DATA Hook</button>
+      <button class="ab-btn" onclick="setV('ig','b',this)">🅑 STORY Hook</button>
+    </div>
+    <div id="ig-a" class="var-section active">
+      <div class="hook-badge">DATA HOOK</div>
+      <div class="section-label">Caption</div>
+      <div class="caption-box" id="ig-cap-a">237%. That's how much Xanadu's stock jumped in 7 days.
+IonQ: +60% in the same week. 🔥
+
+Reason? NVIDIA just launched the world's first open AI models for quantum computing.
+
+Meet NVIDIA Ising — and here's what it actually does:
+↳ Quantum computers fail 1 in every 1,000 operations today
+↳ To be useful, they need to fail just 1 in 1 TRILLION
+↳ NVIDIA Ising closes that gap — 2.5x faster, 3x more accurate error correction
+
+Already adopted by:
+→ Fermi National Lab
+→ Harvard SEAS
+→ Lawrence Berkeley National Lab
+→ UK National Physical Laboratory
+
+NVIDIA owns 80%+ of the AI GPU market. Now it's solving quantum computing's biggest problem. Free. Open source.
+
+This isn't a chip announcement. It's NVIDIA becoming the operating layer for everything that comes next.
+
+Indian AI founders: the CUDA ecosystem you already use just expanded into quantum. 🇮🇳
+
+DM 'AUTOMATE' — let's talk about what this means for your stack ⚡
+
+@scaleyukti</div>
+      <div class="section-label">Hashtags</div>
+      <div class="hashtag-box">#NVIDIAIsing #QuantumComputingIndia #NVIDIAResearch #ScaleYukti #AIInfrastructure #QuantumAI #NVIDIAStock #AIChips #QuantumComputing #DeepTech #AIAutomation #TechIndia #IndiaAI #StartupIndia #AITools #MachineLearning #ArtificialIntelligence #TechNews #NVDA #Semiconductor #FutureOfAI #AIInvesting #QuantumTech #BuildWithAI #ScaleYuktiAI #AhmedabadStartup #AIForBusiness #TechStartup #DeepLearning #NvidiaGTC</div>
+      <button class="btn-copy" onclick="copyText('ig-cap-a')">📋 Copy Caption</button>
+    </div>
+    <div id="ig-b" class="var-section">
+      <div class="hook-badge">STORY HOOK</div>
+      <div class="section-label">Caption</div>
+      <div class="caption-box" id="ig-cap-b">April 14, 2026. NVIDIA dropped something that made quantum stocks explode.
+Most people were talking about chips. 👀
+
+What actually happened:
+
+NVIDIA launched Ising — the world's first open AI models for quantum computing. Not hardware. AI models. For quantum error correction.
+
+The problem they're solving:
+→ Best quantum processors fail 1 in every 1,000 operations
+→ Useful quantum needs 1 error per TRILLION operations
+→ That's a 1,000,000,000× improvement gap
+
+NVIDIA Ising closes it. 2.5x faster. 3x more accurate.
+
+The week it launched:
+IonQ stock +60%. Xanadu stock +237%.
+
+NVIDIA's AI chip demand outlook: $1 TRILLION through 2027.
+Then it entered quantum. Same week. 🧠
+
+New Vera Rubin chip: 40 million times more compute than a decade ago.
+NVIDIA stock: 11 consecutive winning sessions — longest streak since its 1999 IPO.
+
+Jensen Huang isn't building a chip company. He's building the infrastructure layer for everything that comes next.
+
+Follow @scaleyukti for weekly breakdowns of what actually matters in AI ⚡</div>
+      <div class="section-label">Hashtags</div>
+      <div class="hashtag-box">#NVIDIAIsing #QuantumComputingIndia #NVIDIAResearch #ScaleYukti #AIInfrastructure #QuantumAI #NVIDIAStock #AIChips #QuantumComputing #DeepTech #AIAutomation #TechIndia #IndiaAI #StartupIndia #AITools #MachineLearning #ArtificialIntelligence #TechNews #NVDA #Semiconductor #FutureOfAI #AIInvesting #QuantumTech #BuildWithAI #ScaleYuktiAI #AhmedabadStartup #AIForBusiness #TechStartup #DeepLearning #NvidiaGTC</div>
+      <button class="btn-copy" onclick="copyText('ig-cap-b')">📋 Copy Caption</button>
+    </div>
+  </div>
+  <!-- Visual Panel -->
+  <div class="visual-panel">
+    <div class="visual-ab-toggle">
+      <button class="ab-btn active" onclick="setVis('ig','a',this)" style="flex:1">🅐 DATA Visual</button>
+      <button class="ab-btn" onclick="setVis('ig','b',this)" style="flex:1">🅑 STORY Visual</button>
+    </div>
+    <!-- Variant A Carousel -->
+    <div id="vis-ig-a" class="visual-var active">
+      <div class="carousel-wrap">
+        <div class="carousel-frame" id="car-a">
+          <div class="slide-branding">ScaleYukti</div>
+          <!-- Slide 1: Cover -->
+          <div class="slide slide-cover active" id="ca-s1">
+            <div class="badge">April 14, 2026 • NVIDIA Research</div>
+            <h1>NVIDIA Ising: AI Enters Quantum Computing</h1>
+            <p>World's first open AI models for quantum error correction. And the market noticed.</p>
+            <div class="progress-bar"><div class="progress-fill" style="width:16.6%"></div></div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="slide slide-content" id="ca-s2">
+            <div class="slide-branding">ScaleYukti</div>
+            <div class="slide-card">
+              <div class="slide-icon">⚛️</div>
+              <div class="slide-headline">Quantum's Fatal Flaw</div>
+              <div class="slide-body">The best quantum processors in the world fail once every 1,000 operations. To run useful applications — drug discovery, financial modelling, climate AI — they need to fail just once per TRILLION operations.</div>
+              <div class="slide-stat">1 in 1,000 → 1 in 1 TRILLION</div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:33.2%"></div></div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="slide slide-content" id="ca-s3">
+            <div class="slide-branding">ScaleYukti</div>
+            <div class="slide-card">
+              <div class="slide-icon">🧠</div>
+              <div class="slide-headline">NVIDIA Ising Closes the Gap</div>
+              <div class="slide-body">Two AI model domains:<br><br>→ <strong>Ising Calibration</strong>: automates quantum processor tuning<br>→ <strong>Ising Decoding</strong>: real-time error correction<br><br>2.5× faster. 3× more accurate than the previous gold standard. Free. Open source.</div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:49.8%"></div></div>
+          </div>
+          <!-- Slide 4 -->
+          <div class="slide slide-content" id="ca-s4">
+            <div class="slide-branding">ScaleYukti</div>
+            <div class="slide-card">
+              <div class="slide-icon">📈</div>
+              <div class="slide-headline">The Market Reacted Immediately</div>
+              <div class="slide-body">Week of April 14, 2026:</div>
+              <div class="slide-stat">IonQ +60% &nbsp;|&nbsp; Xanadu +237%</div>
+              <div class="slide-body" style="margin-top:10px">NVIDIA stock: 11 consecutive winning sessions — longest streak since its 1999 IPO. $1 trillion AI chip demand outlook through 2027.</div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:66.4%"></div></div>
+          </div>
+          <!-- Slide 5 -->
+          <div class="slide slide-content" id="ca-s5">
+            <div class="slide-branding">ScaleYukti</div>
+            <div class="slide-card">
+              <div class="slide-icon">🏛️</div>
+              <div class="slide-headline">Already Adopted by Global Leaders</div>
+              <div class="slide-body">
+                → Fermi National Accelerator Laboratory<br>
+                → Harvard John A. Paulson School of Engineering<br>
+                → Lawrence Berkeley National Lab<br>
+                → UK National Physical Laboratory<br><br>
+                Indian AI founders: NVIDIA Ising runs on CUDA-Q — the platform you already use. Quantum access is now free and open. 🇮🇳
+              </div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:83%"></div></div>
+          </div>
+          <!-- Slide 6: CTA -->
+          <div class="slide slide-cta" id="ca-s6">
+            <div class="slide-branding" style="background:rgba(255,255,255,.2);color:#fff">ScaleYukti</div>
+            <h2>NVIDIA Is Now the Operating Layer for AI + Quantum</h2>
+            <p>$1T chip demand. Open quantum AI. Vera Rubin chip. The infrastructure is ready.</p>
+            <p>DM 'AUTOMATE' — let's talk about what this means for your stack ⚡</p>
+            <div class="handle">@scaleyukti</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button onclick="prevSlide('a')">‹</button>
+          <span class="slide-counter" id="sc-a">1 / 6</span>
+          <button onclick="nextSlide('a')">›</button>
+        </div>
+      </div>
+      <button class="btn-dl" onclick="downloadCarousel('a')">⬇ Download Carousel HTML (Variant A)</button>
+    </div>
+    <!-- Variant B Carousel -->
+    <div id="vis-ig-b" class="visual-var">
+      <div class="carousel-wrap">
+        <div class="carousel-frame" id="car-b">
+          <div class="slide-branding">ScaleYukti</div>
+          <!-- Slide 1: Cover B -->
+          <div class="slide slide-cover active" id="cb-s1">
+            <div class="badge">STORY • April 14, 2026</div>
+            <h1>The Day NVIDIA Made Quantum Stocks Explode</h1>
+            <p>Most people missed it. Here's what actually happened.</p>
+            <div class="progress-bar"><div class="progress-fill" style="width:16.6%"></div></div>
+          </div>
+          <!-- Slide 2 B -->
+          <div class="slide slide-content" id="cb-s2">
+            <div class="slide-branding">ScaleYukti</div>
+            <div class="slide-card">
+              <div class="slide-icon">📅</div>
+              <div class="slide-headline">April 14, 2026</div>
+              <div class="slide-body">NVIDIA launched something quietly. Not a chip. Not a partnership.<br><br><strong>NVIDIA Ising</strong> — the world's first open AI model family for quantum computing.<br><br>The headlines missed it. The markets didn't.</div>
+              <div class="slide-stat">Xanadu +237% in one week</div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:33.2%"></div></div>
+          </div>
+          <!-- Slide 3 B -->
+          <div class="slide slide-content" id="cb-s3">
+            <div class="slide-branding">ScaleYukti</div>
+            <div class="slide-card">
+              <div class="slide-icon">🔬</div>
+              <div class="slide-headline">The Problem Nobody Could Solve</div>
+              <div class="slide-body">Quantum computers make 1 error every 1,000 operations. Useful quantum needs 1 error per trillion. That's a 1,000,000,000× improvement gap.<br><br>No hardware company had a solution. Until NVIDIA used AI to fix it.</div>
+              <div class="slide-stat">2.5× faster · 3× more accurate</div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:49.8%"></div></div>
+          </div>
+          <!-- Slide 4 B -->
+          <div class="slide slide-content" id="cb-s4">
+            <div class="slide-branding">ScaleYukti</div>
+            <div class="slide-card">
+              <div class="slide-icon">🏗️</div>
+              <div class="slide-headline">What NVIDIA Now Controls</div>
+              <div class="slide-body">
+                → GPU compute (Blackwell/Vera Rubin)<br>
+                → AI models (Nemotron, NemoClaw, Ising)<br>
+                → Inference (Groq LPU via acquisition)<br>
+                → Quantum calibration + error correction (Ising)<br><br>
+                Name another company with that full stack.
+              </div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:66.4%"></div></div>
+          </div>
+          <!-- Slide 5 B -->
+          <div class="slide slide-content" id="cb-s5">
+            <div class="slide-branding">ScaleYukti</div>
+            <div class="slide-card">
+              <div class="slide-icon">🇮🇳</div>
+              <div class="slide-headline">The CUDA Moment for India</div>
+              <div class="slide-body">When NVIDIA released CUDA in 2006, the developers who learned it first built billion-dollar AI companies on top.<br><br>NVIDIA Ising is the CUDA moment for quantum.<br><br>Free. Open source. Running at Harvard, Fermi Lab, Lawrence Berkeley — and now available to every Indian AI founder.</div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:83%"></div></div>
+          </div>
+          <!-- Slide 6 B: CTA -->
+          <div class="slide slide-cta" id="cb-s6">
+            <div class="slide-branding" style="background:rgba(255,255,255,.2);color:#fff">ScaleYukti</div>
+            <h2>The Infrastructure Is Ready. Are You?</h2>
+            <p>Vera Rubin chip. NVIDIA Ising. CUDA-Q. $1T chip demand.</p>
+            <p>Follow @scaleyukti for weekly AI + quantum breakdowns ⚡</p>
+            <div class="handle">@scaleyukti</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button onclick="prevSlide('b')">‹</button>
+          <span class="slide-counter" id="sc-b">1 / 6</span>
+          <button onclick="nextSlide('b')">›</button>
+        </div>
+      </div>
+      <button class="btn-dl" onclick="downloadCarousel('b')">⬇ Download Carousel HTML (Variant B)</button>
+    </div>
+    <div class="export-panel">
+      <span class="export-toggle" onclick="toggleExport('ig-exp')">▶ PNG export commands</span>
+      <div class="export-cmds" id="ig-exp">
+pip install playwright && playwright install chromium<br>
+python scripts/export.py --platform ig --slides 6 --variant a<br>
+python scripts/export.py --platform ig --slides 6 --variant b
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= LINKEDIN ============================= -->
+<div id="tab-lk" class="main-content">
+  <div class="content-panel">
+    <div class="ab-toggle">
+      <button class="ab-btn active" onclick="setV('lk','a',this)">🅐 CONTRARIAN</button>
+      <button class="ab-btn" onclick="setV('lk','b',this)">🅑 AUTHORITY</button>
+    </div>
+    <div id="lk-a" class="var-section active">
+      <div class="hook-badge">CONTRARIAN HOOK</div>
+      <div class="caption-box" id="lk-cap-a">Everyone says quantum computing is still a decade away.
+
+NVIDIA just made that argument irrelevant.
+
+On April 14, 2026, NVIDIA launched Ising — the world's first open AI model family for quantum computing. Not a partnership. Not an investment. Models. Built by NVIDIA. Open source. Deployable now.
+
+Here's why this matters more than any chip announcement:
+
+1. Quantum computing's #1 problem isn't hardware — it's error rates.
+The best quantum processors today fail once in every 1,000 operations. To run useful applications, they need to reach 1 error per trillion. That's a 1 billion× improvement gap. No amount of new qubits fixes it without AI-driven error correction.
+
+2. NVIDIA Ising is the bridge.
+Ising Decoding: 2.5x faster and 3x more accurate than pyMatching — the previous gold standard for quantum error correction. Ising Calibration automates the hardest part of quantum setup. Together, they compress what took months of manual work into automated pipelines.
+
+3. The institutional signal is already clear.
+Fermi National Accelerator Lab. Harvard John A. Paulson School of Engineering. Lawrence Berkeley National Lab. UK National Physical Laboratory. All adopted in week one.
+
+The market responded before most analysts noticed:
+IonQ +60%. Xanadu +237%. In a single week.
+
+NVIDIA raised its AI chip demand outlook to $1 trillion through 2027. Then entered quantum the same week. This isn't a pivot — it's vertical integration up the stack.
+
+For Indian AI founders and researchers: NVIDIA Ising runs on CUDA-Q, the platform most of you already use. Quantum access just opened up. Free. Open.
+
+The question isn't whether quantum + AI will converge. It already has.
+
+The question is: which Indian companies will be the first to build on it?
+
+#NVIDIAIsing #QuantumComputing #AIInfrastructure #IndiaAI #ScaleYukti</div>
+      <button class="btn-copy" onclick="copyText('lk-cap-a')">📋 Copy Post</button>
+    </div>
+    <div id="lk-b" class="var-section">
+      <div class="hook-badge">AUTHORITY HOOK</div>
+      <div class="caption-box" id="lk-cap-b">After tracking AI infrastructure shifts across 40+ Indian businesses, here's what NVIDIA Ising actually changes:
+
+Most founders I talk to think quantum computing is irrelevant to them. They're wrong — just early.
+
+NVIDIA launched Ising on April 14, 2026: the world's first open AI models for quantum processor calibration and error correction. Here's the plain-language breakdown:
+
+1. What the problem is:
+Quantum computers are basically unusable at scale today. The best ones fail once every 1,000 operations. You need 1 failure per trillion to run anything meaningful. NVIDIA Ising is the AI layer that closes that gap.
+
+2. What Ising actually does:
+→ Ising Calibration: automates the painful process of tuning quantum processors
+→ Ising Decoding: real-time error correction — 2.5x faster, 3x more accurate than the previous best
+→ Integrates directly with CUDA-Q (the quantum software stack you'll start hearing about in every AI conversation)
+
+3. Why the timing matters:
+NVIDIA's Vera Rubin chip delivers 40 million times more compute than a decade ago. SK Hynix is already mass-producing memory for it. The $1 trillion AI chip demand outlook is the floor — not the ceiling.
+
+NVIDIA stock ran 11 consecutive winning sessions — the longest streak since its 1999 IPO — the week Ising launched.
+
+For Indian AI builders: this is the same pattern as when CUDA was released in 2006. The people who learned it early built billion-dollar companies on top of it.
+
+Ising is open source. Free. Running now at Harvard, Fermi National Lab, Lawrence Berkeley.
+
+The infrastructure is ready. The question is whether Indian startups will move first.
+
+What would you build with quantum-AI infrastructure?
+
+#NVIDIAIsing #AIInfrastructure #QuantumAI #DeepTech #ScaleYukti</div>
+      <button class="btn-copy" onclick="copyText('lk-cap-b')">📋 Copy Post</button>
+    </div>
+  </div>
+  <div class="visual-panel">
+    <div class="visual-ab-toggle">
+      <button class="ab-btn active" onclick="setVis('lk','a',this)" style="flex:1">🅐 CONTRARIAN</button>
+      <button class="ab-btn" onclick="setVis('lk','b',this)" style="flex:1">🅑 AUTHORITY</button>
+    </div>
+    <div id="vis-lk-a" class="visual-var active">
+      <div class="lk-card">
+        <div class="lk-header">
+          <div class="lk-avatar">SY</div>
+          <div class="lk-info">
+            <div class="lk-name">ScaleYukti AI Automation</div>
+            <div class="lk-tag">AI Automation Agency · Ahmedabad, India · 1st</div>
+          </div>
+        </div>
+        <div class="lk-body">Everyone says quantum computing is still a decade away.
+
+NVIDIA just made that argument irrelevant.
+
+On April 14, 2026, NVIDIA launched Ising — the world's first open AI model family for quantum computing. Not a partnership. Not an investment. Models. Open source. Deployable now.
+
+1. Quantum's #1 problem isn't hardware — it's error rates.
+Best processors fail 1 in 1,000 ops. Need 1 in 1 trillion. Ising closes that gap: 2.5x faster, 3x more accurate.
+
+2. Institutional adoption — week one.
+Fermi Lab. Harvard. Lawrence Berkeley. UK National Physical Lab. All in.
+
+3. The market reacted before analysts noticed.
+IonQ +60%. Xanadu +237%. In a single week.
+
+Which Indian companies will build on this first?
+
+#NVIDIAIsing #QuantumComputing #AIInfrastructure #IndiaAI #ScaleYukti</div>
+        <div class="lk-footer">
+          <span class="lk-action">👍 Like</span>
+          <span class="lk-action">💬 Comment</span>
+          <span class="lk-action">🔁 Repost</span>
+          <span class="lk-action">📤 Send</span>
+        </div>
+      </div>
+      <button class="btn-dl" onclick="downloadPlatform('lk','a')">⬇ Download Card HTML</button>
+    </div>
+    <div id="vis-lk-b" class="visual-var">
+      <div class="lk-card">
+        <div class="lk-header">
+          <div class="lk-avatar">SY</div>
+          <div class="lk-info">
+            <div class="lk-name">ScaleYukti AI Automation</div>
+            <div class="lk-tag">AI Automation Agency · Ahmedabad, India · 1st</div>
+          </div>
+        </div>
+        <div class="lk-body">After tracking 40+ Indian businesses, here's what NVIDIA Ising actually changes:
+
+Most founders think quantum is irrelevant. They're wrong — just early.
+
+NVIDIA Ising (April 14, 2026): world's first open AI models for quantum error correction.
+
+What it does:
+→ Ising Calibration: automates quantum processor tuning
+→ Ising Decoding: 2.5x faster, 3x more accurate error correction
+→ Runs on CUDA-Q — the platform you already use
+
+Vera Rubin chip = 40 million × more compute than a decade ago.
+NVIDIA stock: 11 straight winning sessions — longest since 1999 IPO.
+
+This is the CUDA moment for quantum. Free. Open source. Available now.
+
+What would you build with quantum-AI infrastructure?
+
+#NVIDIAIsing #AIInfrastructure #QuantumAI #DeepTech #ScaleYukti</div>
+        <div class="lk-footer">
+          <span class="lk-action">👍 Like</span>
+          <span class="lk-action">💬 Comment</span>
+          <span class="lk-action">🔁 Repost</span>
+          <span class="lk-action">📤 Send</span>
+        </div>
+      </div>
+      <button class="btn-dl" onclick="downloadPlatform('lk','b')">⬇ Download Card HTML</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= TWITTER ============================= -->
+<div id="tab-tw" class="main-content">
+  <div class="content-panel">
+    <div class="ab-toggle">
+      <button class="ab-btn active" onclick="setV('tw','a',this)">🅐 DATA Thread</button>
+      <button class="ab-btn" onclick="setV('tw','b',this)">🅑 CURIOSITY GAP</button>
+    </div>
+    <div id="tw-a" class="var-section active">
+      <div class="hook-badge">DATA HOOK — 7 TWEETS</div>
+      <div class="caption-box" id="tw-cap-a">1/ Xanadu +237%. IonQ +60%. In one week.
+
+NVIDIA entered quantum computing on April 14, 2026 and the market went wild.
+
+Here's what they actually launched — and why it matters more than any chip 🧵
+
+---
+2/ NVIDIA Ising: world's first open AI models for quantum computing.
+
+Two domains:
+→ Ising Calibration (automates quantum processor tuning)
+→ Ising Decoding (real-time error correction)
+
+Free. Open source. Running now.
+
+---
+3/ The core problem:
+
+Best quantum processors today: 1 error per 1,000 operations.
+Required for useful quantum: 1 error per 1 TRILLION.
+
+That's a 1,000,000,000× gap.
+
+Ising closes it.
+
+---
+4/ Ising Decoding performance:
+→ 2.5x faster than pyMatching (previous gold standard)
+→ 3x more accurate
+→ Real-time QPU-GPU control via NVQLink
+
+Fermi Lab. Harvard SEAS. Lawrence Berkeley. UK NPL. All in — week one.
+
+---
+5/ The hardware running alongside it:
+
+Vera Rubin chip: 40 million × more compute than a decade ago (TSMC 3nm)
+SK Hynix: mass-producing 192GB SOCAMM2 memory for it now
+AI chip demand outlook: $1 trillion through 2027
+
+---
+6/ NVIDIA stock ran 11 straight winning sessions — longest streak since its 1999 IPO.
+
+80%+ GPU market share for AI.
+Now solving quantum's hardest problem.
+
+This isn't a chip company anymore.
+
+---
+7/ The CUDA playbook: release open infrastructure → entire ecosystem builds on top → NVIDIA captures the hardware layer.
+
+Ising = CUDA for quantum.
+
+Who's building on it first? #NVDA #QuantumComputing @scaleyukti</div>
+      <button class="btn-copy" onclick="copyText('tw-cap-a')">📋 Copy Thread</button>
+    </div>
+    <div id="tw-b" class="var-section">
+      <div class="hook-badge">CURIOSITY GAP — 7 TWEETS</div>
+      <div class="caption-box" id="tw-cap-b">1/ The company that already owns 80% of AI chips just entered quantum computing.
+
+Here's what changes in the next 3 years 🧵
+
+---
+2/ April 14, 2026: NVIDIA launches Ising — open AI models for quantum error correction.
+
+Not a chip. Not an acquisition. AI models that fix quantum computing's fatal flaw: error rates too high to be useful.
+
+---
+3/ Current quantum reality:
+1 error per 1,000 operations.
+
+Required for useful quantum:
+1 error per 1 TRILLION operations.
+
+That 1 billion× gap is what NVIDIA Ising is designed to close.
+
+---
+4/ Why this unlocks quantum sooner than anyone predicted:
+
+Cal + decode used to take months of manual expert work.
+Ising automates it.
+2.5x faster. 3x more accurate.
+
+Harvard + Fermi Lab + Lawrence Berkeley already running it.
+
+---
+5/ The stack NVIDIA now controls:
+
+→ GPU compute (Blackwell/Vera Rubin)
+→ AI models (Nemotron, NemoClaw, Ising)
+→ Inference (Groq LPU via acquisition)
+→ Quantum calibration + error correction (Ising)
+
+Name another company with that range.
+
+---
+6/ Market reaction:
+IonQ +60% in one week.
+Xanadu +237% in one week.
+
+Quantum companies rallied because NVIDIA's entry validates the timeline. If NVIDIA is building for quantum now, quantum is closer than the consensus says.
+
+---
+7/ The playbook: release open infra → ecosystem builds → NVIDIA wins the hardware layer.
+
+We've seen this before. CUDA (2006). cuDNN (2014).
+
+Ising (2026) is next.
+
+Are you paying attention? #NVDA #QuantumAI @scaleyukti</div>
+      <button class="btn-copy" onclick="copyText('tw-cap-b')">📋 Copy Thread</button>
+    </div>
+  </div>
+  <div class="visual-panel">
+    <div class="visual-ab-toggle">
+      <button class="ab-btn active" onclick="setVis('tw','a',this)" style="flex:1">🅐 DATA Thread</button>
+      <button class="ab-btn" onclick="setVis('tw','b',this)" style="flex:1">🅑 CURIOSITY GAP</button>
+    </div>
+    <div id="vis-tw-a" class="visual-var active">
+      <div class="tw-wrap">
+        <div class="tweet-card">
+          <div class="tweet-header">
+            <div class="tweet-avatar">SY</div>
+            <div><div class="tweet-name">ScaleYukti ⚡</div><div class="tweet-handle">@scaleyukti</div></div>
+          </div>
+          <div class="tweet-text">1/ Xanadu +237%. IonQ +60%. In one week.
+
+NVIDIA entered quantum computing on April 14, 2026 and the market went wild.
+
+Here's what they actually launched — and why it matters more than any chip 🧵</div>
+          <div class="tweet-footer"><span class="tweet-action">💬 Reply</span><span class="tweet-action">🔁 Retweet</span><span class="tweet-action">❤️ Like</span></div>
+        </div>
+        <div class="tweet-card">
+          <div class="tweet-header">
+            <div class="tweet-avatar">SY</div>
+            <div><div class="tweet-name">ScaleYukti ⚡</div><div class="tweet-handle">@scaleyukti</div></div>
+          </div>
+          <div class="tweet-text">2/ NVIDIA Ising: world's first open AI models for quantum computing.
+
+Two domains:
+→ Ising Calibration (automates quantum processor tuning)
+→ Ising Decoding (real-time error correction)
+
+Free. Open source. Running now.</div>
+          <div class="tweet-footer"><span class="tweet-action">💬</span><span class="tweet-action">🔁</span><span class="tweet-action">❤️</span></div>
+        </div>
+        <div class="tweet-card">
+          <div class="tweet-header">
+            <div class="tweet-avatar">SY</div>
+            <div><div class="tweet-name">ScaleYukti ⚡</div><div class="tweet-handle">@scaleyukti</div></div>
+          </div>
+          <div class="tweet-text">3/ The core problem:
+
+Best quantum processors today: 1 error per 1,000 operations.
+Required for useful quantum: 1 error per 1 TRILLION.
+
+That's a 1,000,000,000× gap.
+
+Ising closes it.</div>
+          <div class="tweet-footer"><span class="tweet-action">💬</span><span class="tweet-action">🔁</span><span class="tweet-action">❤️</span></div>
+        </div>
+        <div class="tweet-card">
+          <div class="tweet-header">
+            <div class="tweet-avatar">SY</div>
+            <div><div class="tweet-name">ScaleYukti ⚡</div><div class="tweet-handle">@scaleyukti</div></div>
+          </div>
+          <div class="tweet-text">7/ The CUDA playbook: release open infrastructure → entire ecosystem builds on top → NVIDIA captures the hardware layer.
+
+Ising = CUDA for quantum.
+
+Who's building on it first? #NVDA #QuantumComputing @scaleyukti</div>
+          <div class="tweet-footer"><span class="tweet-action">💬</span><span class="tweet-action">🔁</span><span class="tweet-action">❤️</span></div>
+        </div>
+      </div>
+      <button class="btn-dl" onclick="downloadPlatform('tw','a')">⬇ Download Thread Card HTML</button>
+    </div>
+    <div id="vis-tw-b" class="visual-var">
+      <div class="tw-wrap">
+        <div class="tweet-card">
+          <div class="tweet-header">
+            <div class="tweet-avatar">SY</div>
+            <div><div class="tweet-name">ScaleYukti ⚡</div><div class="tweet-handle">@scaleyukti</div></div>
+          </div>
+          <div class="tweet-text">1/ The company that already owns 80% of AI chips just entered quantum computing.
+
+Here's what changes in the next 3 years 🧵</div>
+          <div class="tweet-footer"><span class="tweet-action">💬 Reply</span><span class="tweet-action">🔁 Retweet</span><span class="tweet-action">❤️ Like</span></div>
+        </div>
+        <div class="tweet-card">
+          <div class="tweet-header">
+            <div class="tweet-avatar">SY</div>
+            <div><div class="tweet-name">ScaleYukti ⚡</div><div class="tweet-handle">@scaleyukti</div></div>
+          </div>
+          <div class="tweet-text">5/ The stack NVIDIA now controls:
+
+→ GPU compute (Blackwell/Vera Rubin)
+→ AI models (Nemotron, NemoClaw, Ising)
+→ Inference (Groq LPU via acquisition)
+→ Quantum calibration + error correction (Ising)
+
+Name another company with that range.</div>
+          <div class="tweet-footer"><span class="tweet-action">💬</span><span class="tweet-action">🔁</span><span class="tweet-action">❤️</span></div>
+        </div>
+        <div class="tweet-card">
+          <div class="tweet-header">
+            <div class="tweet-avatar">SY</div>
+            <div><div class="tweet-name">ScaleYukti ⚡</div><div class="tweet-handle">@scaleyukti</div></div>
+          </div>
+          <div class="tweet-text">7/ The playbook: release open infra → ecosystem builds → NVIDIA wins the hardware layer.
+
+We've seen this before. CUDA (2006). cuDNN (2014).
+
+Ising (2026) is next.
+
+Are you paying attention? #NVDA #QuantumAI @scaleyukti</div>
+          <div class="tweet-footer"><span class="tweet-action">💬</span><span class="tweet-action">🔁</span><span class="tweet-action">❤️</span></div>
+        </div>
+      </div>
+      <button class="btn-dl" onclick="downloadPlatform('tw','b')">⬇ Download Thread Card HTML</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= FACEBOOK ============================= -->
+<div id="tab-fb" class="main-content">
+  <div class="content-panel">
+    <div class="ab-toggle">
+      <button class="ab-btn active" onclick="setV('fb','a',this)">🅐 QUESTION Hook</button>
+      <button class="ab-btn" onclick="setV('fb','b',this)">🅑 STORY Hook</button>
+    </div>
+    <div id="fb-a" class="var-section active">
+      <div class="hook-badge">QUESTION HOOK</div>
+      <div class="caption-box" id="fb-cap-a">Did you see what happened to quantum computing stocks last week? 👀
+
+Xanadu jumped 237%. IonQ jumped 60%. In a single week.
+
+The reason? NVIDIA launched something most people completely missed.
+
+On April 14, 2026, NVIDIA released Ising — the world's first open AI models for quantum computing. And it might be the most important research announcement of 2026.
+
+Here's why in plain language:
+
+Quantum computers are basically broken right now. The best ones in the world make an error once every 1,000 operations. To be actually useful, they need to make an error just once in a TRILLION operations.
+
+NVIDIA Ising is the AI system that starts fixing that gap. It's 2.5x faster and 3x more accurate than anything that existed before. And it's free and open source.
+
+Fermi National Lab. Harvard. Lawrence Berkeley. UK National Physical Lab. All started using it immediately.
+
+At the same time:
+→ NVIDIA's new Vera Rubin chip is 40 million times more powerful than NVIDIA chips from a decade ago
+→ NVIDIA stock ran 11 straight winning days — longest streak since 1999
+→ NVIDIA's AI chip demand outlook: $1 trillion through 2027
+
+Jensen Huang isn't just building chips anymore. He's building the infrastructure layer for the entire future of computing.
+
+For Indian tech founders and developers — this is the CUDA moment for quantum. The people who learn this early will build the companies of the next decade.
+
+Tag someone who needs to know about this. 🔥
+
+#NVIDIAIsing #QuantumComputing #AINews #TechIndia</div>
+      <button class="btn-copy" onclick="copyText('fb-cap-a')">📋 Copy Post</button>
+    </div>
+    <div id="fb-b" class="var-section">
+      <div class="hook-badge">STORY HOOK</div>
+      <div class="caption-box" id="fb-cap-b">I want to tell you about April 14, 2026. 📅
+
+Most people had no idea what NVIDIA dropped that day. The headlines were about chips and stock prices.
+
+But the actual story was about quantum computing — and it's bigger than anything I've seen NVIDIA do in years.
+
+Here's what happened:
+
+NVIDIA quietly launched a free, open-source AI model family called Ising. It's designed to solve the single biggest problem blocking quantum computers from being useful: errors.
+
+Right now, the world's best quantum computers make 1 mistake every 1,000 operations. Sounds small, right? But to run real applications — drug discovery, financial modelling, climate simulation — they need to make just 1 mistake per trillion operations.
+
+Ising is the AI system that helps quantum processors get there.
+
+Result of launch week:
+→ IonQ stock surged 60%
+→ Xanadu stock surged 237%
+→ Harvard, Fermi National Lab, Lawrence Berkeley all adopted it immediately
+
+And while this was happening:
+→ NVIDIA's new Vera Rubin chip = 40 million× more powerful than 10 years ago
+→ NVIDIA projected $1 trillion in AI chip demand through 2027
+→ NVIDIA stock hit an 11-day winning streak — longest since its IPO in 1999
+
+Jensen Huang called it: NVIDIA is becoming the operating layer for AI AND quantum.
+
+For developers and founders in India — the CUDA ecosystem you use for AI now opens a door to quantum. This is early. This is the right time.
+
+What do you think India's quantum opportunity looks like in the next 5 years? Drop your thoughts below 👇
+
+#NVIDIA #QuantumAI #DeepTech #IndiaAI</div>
+      <button class="btn-copy" onclick="copyText('fb-cap-b')">📋 Copy Post</button>
+    </div>
+  </div>
+  <div class="visual-panel">
+    <div class="visual-ab-toggle">
+      <button class="ab-btn active" onclick="setVis('fb','a',this)" style="flex:1">🅐 QUESTION</button>
+      <button class="ab-btn" onclick="setVis('fb','b',this)" style="flex:1">🅑 STORY</button>
+    </div>
+    <div id="vis-fb-a" class="visual-var active">
+      <div class="fb-card">
+        <div class="fb-header">
+          <div class="fb-avatar">SY</div>
+          <div>
+            <div class="fb-name">ScaleYukti AI Automation</div>
+            <div class="fb-meta">Ahmedabad, India · Just now · 🌐</div>
+          </div>
+        </div>
+        <div class="fb-image">⚛️ Xanadu +237% · IonQ +60%<br>NVIDIA Just Entered Quantum</div>
+        <div class="fb-body">Did you see what happened to quantum computing stocks last week? 👀
+
+Xanadu jumped 237%. IonQ jumped 60%. In a single week.
+
+NVIDIA launched Ising — the world's first open AI models for quantum computing. Free. Open source. 2.5x faster, 3x more accurate than anything before.
+
+Fermi Lab. Harvard. Lawrence Berkeley. All in — week one.
+
+For Indian founders: this is the CUDA moment for quantum. 🇮🇳
+
+Tag someone who needs to know this. 🔥
+
+#NVIDIAIsing #QuantumComputing #AINews #TechIndia</div>
+        <div class="fb-footer">
+          <span class="fb-action">👍 Like</span>
+          <span class="fb-action">💬 Comment</span>
+          <span class="fb-action">↗ Share</span>
+        </div>
+      </div>
+      <button class="btn-dl" onclick="downloadPlatform('fb','a')">⬇ Download Post Card HTML</button>
+    </div>
+    <div id="vis-fb-b" class="visual-var">
+      <div class="fb-card">
+        <div class="fb-header">
+          <div class="fb-avatar">SY</div>
+          <div>
+            <div class="fb-name">ScaleYukti AI Automation</div>
+            <div class="fb-meta">Ahmedabad, India · Just now · 🌐</div>
+          </div>
+        </div>
+        <div class="fb-image">📅 April 14, 2026<br>The Day NVIDIA Changed Quantum</div>
+        <div class="fb-body">I want to tell you about April 14, 2026. 📅
+
+NVIDIA quietly launched Ising — the world's first open AI model family for quantum computing.
+
+The problem: quantum processors make 1 error per 1,000 ops. Need 1 per trillion. Ising closes that 1 billion× gap.
+
+Launch week: IonQ +60%. Xanadu +237%.
+
+Vera Rubin chip = 40M× more compute. NVIDIA stock: 11 straight wins.
+
+This is the CUDA moment for quantum — and Indian founders should move first.
+
+What do you think India's quantum opportunity looks like? 👇
+
+#NVIDIA #QuantumAI #DeepTech #IndiaAI</div>
+        <div class="fb-footer">
+          <span class="fb-action">👍 Like</span>
+          <span class="fb-action">💬 Comment</span>
+          <span class="fb-action">↗ Share</span>
+        </div>
+      </div>
+      <button class="btn-dl" onclick="downloadPlatform('fb','b')">⬇ Download Post Card HTML</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= YOUTUBE ============================= -->
+<div id="tab-yt" class="main-content">
+  <div class="content-panel">
+    <div class="ab-toggle">
+      <button class="ab-btn active" onclick="setV('yt','a',this)">🅐 EXPLAINER Title</button>
+      <button class="ab-btn" onclick="setV('yt','b',this)">🅑 MARKET Title</button>
+    </div>
+    <div id="yt-a" class="var-section active">
+      <div class="hook-badge">SPF FRAMEWORK — EXPLAINER</div>
+      <div class="section-label">Title</div>
+      <div class="caption-box" id="yt-title-a" style="max-height:50px">NVIDIA Ising: AI Just Fixed Quantum Computing's Biggest Problem</div>
+      <div class="section-label">Thumbnail Text</div>
+      <div class="caption-box" style="max-height:40px">AI FIXED QUANTUM</div>
+      <div class="section-label">Description</div>
+      <div class="caption-box" id="yt-cap-a">NVIDIA just launched the world's first open AI models for quantum computing — and quantum stocks exploded 237% in a week. Here's the full breakdown.
+
+In this video:
+• What NVIDIA Ising actually is (and why it's different from a chip)
+• Quantum computing's fatal flaw: 1 error per 1,000 ops — why it matters
+• How Ising closes the 1 billion× gap: 2.5x faster, 3x more accurate
+• Why IonQ surged 60% and Xanadu surged 237% in one week
+• The Vera Rubin chip + Ising combined: what NVIDIA's full stack looks like now
+• What this means for Indian AI founders and developers
+
+🔔 Subscribe for weekly AI research breakdowns → @ScaleYukti
+
+⏱ Chapters:
+00:00 — The week quantum stocks exploded
+02:15 — What NVIDIA Ising actually is
+05:30 — The quantum error problem explained simply
+09:00 — Ising Calibration vs Ising Decoding
+12:45 — Who's already using it (Fermi Lab, Harvard, Berkeley)
+16:00 — Vera Rubin chip + $1T demand outlook
+19:30 — What this means for India's AI ecosystem
+22:00 — The CUDA analogy: why early movers win</div>
+      <div class="section-label">Tags</div>
+      <div class="hashtag-box">NVIDIA Ising · quantum computing 2026 · NVIDIA research April 2026 · quantum AI models · NVDA stock analysis · IonQ surge 2026 · Vera Rubin chip · quantum error correction AI · NVIDIA GTC 2026 · AI infrastructure 2026 · quantum computing India · CUDA-Q explained · NVIDIA quantum · open source quantum AI · ScaleYukti AI</div>
+      <button class="btn-copy" onclick="copyText('yt-cap-a')">📋 Copy Description</button>
+    </div>
+    <div id="yt-b" class="var-section">
+      <div class="hook-badge">SPF FRAMEWORK — MARKET ANGLE</div>
+      <div class="section-label">Title</div>
+      <div class="caption-box" id="yt-title-b" style="max-height:50px">How NVIDIA Made Quantum Stocks Surge 237% in One Week (2026)</div>
+      <div class="section-label">Thumbnail Text</div>
+      <div class="caption-box" style="max-height:40px">QUANTUM +237%</div>
+      <div class="section-label">Description</div>
+      <div class="caption-box" id="yt-cap-b">IonQ +60%. Xanadu +237%. One week. One NVIDIA announcement. Here's exactly what happened and what it means for the next 3 years of AI + quantum.
+
+In this video:
+• The NVIDIA Ising launch: what nobody explained clearly
+• Why quantum computers keep failing (the 1-in-1,000 problem)
+• What Ising Decoding actually does: 2.5x faster, 3x more accurate
+• The Vera Rubin chip: 40 million times more compute than a decade ago
+• NVIDIA's $1 trillion AI demand outlook + quantum entry — same week
+• Indian quantum opportunity: why now is the CUDA moment
+
+🔔 Subscribe → @ScaleYukti | AI automation breakdowns every week
+
+⏱ Chapters:
+00:00 — IonQ and Xanadu explode — what happened?
+02:00 — NVIDIA Ising explained simply
+05:00 — The quantum error rate problem (and why it blocks everything)
+08:30 — How AI fixes quantum calibration and error correction
+12:00 — Vera Rubin: NVIDIA's next-gen chip stack
+15:30 — Who's already adopted Ising (Fermi Lab, Harvard, Berkeley, UK NPL)
+18:00 — Investment thesis: NVIDIA as quantum operating layer
+21:00 — What Indian developers and founders should do now</div>
+      <div class="section-label">Tags</div>
+      <div class="hashtag-box">NVIDIA quantum computing 2026 · IonQ stock surge 2026 · Xanadu 237 percent · NVIDIA Ising explained · quantum AI 2026 · NVDA April 2026 · quantum error correction · NVIDIA Vera Rubin · quantum computing India 2026 · AI chip demand 1 trillion · quantum computing for beginners · Jensen Huang quantum · NVIDIA open source AI · ScaleYukti · quantum computing investment 2026</div>
+      <button class="btn-copy" onclick="copyText('yt-cap-b')">📋 Copy Description</button>
+    </div>
+  </div>
+  <div class="visual-panel">
+    <div class="visual-ab-toggle">
+      <button class="ab-btn active" onclick="setVis('yt','a',this)" style="flex:1">🅐 EXPLAINER</button>
+      <button class="ab-btn" onclick="setVis('yt','b',this)" style="flex:1">🅑 MARKET</button>
+    </div>
+    <div id="vis-yt-a" class="visual-var active">
+      <div class="yt-wrap">
+        <div class="variant-label">Variant A — Explainer</div>
+        <div class="yt-thumb" style="background:linear-gradient(135deg,#1B2A38,#F37021);margin-bottom:12px">
+          <div class="yt-thumb-text">AI FIXED QUANTUM</div>
+          <div class="yt-duration">22:00</div>
+        </div>
+        <div class="yt-card">
+          <div class="yt-title">NVIDIA Ising: AI Just Fixed Quantum Computing's Biggest Problem</div>
+          <div class="yt-channel">ScaleYukti · 12K views · April 2026</div>
+          <div class="yt-desc">NVIDIA just launched the world's first open AI models for quantum computing — and quantum stocks exploded 237% in a week. Full breakdown: what Ising is, why IonQ surged 60%, what the Vera Rubin chip means, and what Indian AI founders should do now.</div>
+          <div class="yt-tags">
+            <span class="yt-tag">NVIDIA Ising</span>
+            <span class="yt-tag">Quantum Computing 2026</span>
+            <span class="yt-tag">IonQ Surge</span>
+            <span class="yt-tag">Vera Rubin Chip</span>
+            <span class="yt-tag">Quantum AI</span>
+            <span class="yt-tag">India AI</span>
+            <span class="yt-tag">ScaleYukti</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn-dl" onclick="downloadPlatform('yt','a')">⬇ Download Thumbnail HTML</button>
+    </div>
+    <div id="vis-yt-b" class="visual-var">
+      <div class="yt-wrap">
+        <div class="variant-label">Variant B — Market Angle</div>
+        <div class="yt-thumb" style="background:linear-gradient(135deg,#0f1117,#1D8A17);margin-bottom:12px">
+          <div class="yt-thumb-text">QUANTUM +237%</div>
+          <div class="yt-duration">22:00</div>
+        </div>
+        <div class="yt-card">
+          <div class="yt-title">How NVIDIA Made Quantum Stocks Surge 237% in One Week (2026)</div>
+          <div class="yt-channel">ScaleYukti · 8K views · April 2026</div>
+          <div class="yt-desc">IonQ +60%. Xanadu +237%. One week. One NVIDIA announcement. Here's exactly what NVIDIA Ising is, why it made quantum stocks explode, and what the next 3 years of AI + quantum look like for Indian founders.</div>
+          <div class="yt-tags">
+            <span class="yt-tag">NVIDIA Quantum 2026</span>
+            <span class="yt-tag">IonQ +60%</span>
+            <span class="yt-tag">Xanadu +237%</span>
+            <span class="yt-tag">NVDA Stock</span>
+            <span class="yt-tag">Quantum Stocks</span>
+            <span class="yt-tag">AI Infrastructure</span>
+            <span class="yt-tag">ScaleYukti</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn-dl" onclick="downloadPlatform('yt','b')">⬇ Download Thumbnail HTML</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== SLIDE STATE =====
+var slides = {a:1, b:1};
+var totals = {a:6, b:6};
+
+function showTab(id, el) {
+  document.querySelectorAll('.main-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  el.classList.add('active');
+}
+
+function setV(plt, v, el) {
+  var panel = document.getElementById('tab-' + plt);
+  panel.querySelectorAll('.var-section').forEach(s => s.classList.remove('active'));
+  panel.querySelectorAll('.ab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(plt + '-' + v).classList.add('active');
+  el.classList.add('active');
+}
+
+function setVis(plt, v, el) {
+  var panel = document.getElementById('tab-' + plt);
+  panel.querySelectorAll('.visual-var').forEach(s => s.classList.remove('active'));
+  panel.querySelectorAll('.visual-ab-toggle .ab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('vis-' + plt + '-' + v).classList.add('active');
+  el.classList.add('active');
+}
+
+function setTheme(theme, el) {
+  document.body.dataset.theme = theme;
+  document.querySelectorAll('.theme-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ===== CAROUSEL =====
+function nextSlide(v) {
+  slides[v] = slides[v] < totals[v] ? slides[v] + 1 : 1;
+  updateCarousel(v);
+}
+function prevSlide(v) {
+  slides[v] = slides[v] > 1 ? slides[v] - 1 : totals[v];
+  updateCarousel(v);
+}
+function updateCarousel(v) {
+  var car = document.getElementById('car-' + v);
+  car.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  var prefix = 'c' + v + '-s';
+  var target = document.getElementById(prefix + slides[v]);
+  if (target) target.classList.add('active');
+  var counter = document.getElementById('sc-' + v);
+  if (counter) counter.textContent = slides[v] + ' / ' + totals[v];
+}
+
+// ===== COPY =====
+function copyText(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var txt = el.innerText || el.textContent;
+  navigator.clipboard.writeText(txt).then(function() {
+    alert('Copied to clipboard!');
+  }).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = txt;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    alert('Copied!');
+  });
+}
+
+// ===== EXPORT TOGGLE =====
+function toggleExport(id) {
+  var el = document.getElementById(id);
+  if (el) el.classList.toggle('show');
+}
+
+// ===== DOWNLOAD FUNCTIONS =====
+function triggerDownload(html, filename) {
+  var blob = new Blob([html], {type: 'text/html'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function downloadPage() {
+  var html = '<!DOCTYPE html>' + document.documentElement.outerHTML;
+  triggerDownload(html, 'scaleyukti-social-studio-nvidia-ising-quantum-2026.html');
+}
+
+function downloadCarousel(v) {
+  var car = document.getElementById('car-' + v);
+  if (!car) return;
+  var html = '<!DOCTYPE html><html data-theme="' + document.body.dataset.theme + '"><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"><style>' + document.querySelector('style').textContent + '</style></head><body data-theme="' + document.body.dataset.theme + '" style="background:#0f1117;display:flex;justify-content:center;padding:40px">' + car.outerHTML + '</body></html>';
+  triggerDownload(html, 'ig-carousel-nvidia-ising-' + v + '.html');
+}
+
+function downloadPlatform(plt, v) {
+  var el = document.getElementById('vis-' + plt + '-' + v);
+  if (!el) return;
+  var html = '<!DOCTYPE html><html data-theme="' + document.body.dataset.theme + '"><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"><style>' + document.querySelector('style').textContent + '</style></head><body data-theme="' + document.body.dataset.theme + '" style="background:#0f1117;display:flex;justify-content:center;padding:40px">' + el.innerHTML + '</body></html>';
+  triggerDownload(html, plt + '-card-nvidia-ising-' + v + '.html');
+}
+</script>
+</body>
+</html>
