@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microgreens Business Blueprint — Ahmedabad, Gujarat 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#F37021;--green:#1D8A17;--navy:#1B2A38;--slate:#4A5568;
+  --light:#F8FAFC;--white:#FFFFFF;--red:#E53E3E;--gold:#D4A017;
+  --teal:#0E7490;--purple:#6B46C1;
+  --card-shadow:6px 6px 0px rgba(29,138,23,0.15);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);line-height:1.6}
+
+.hero{background:linear-gradient(135deg,#0f2a1a 0%,#1B2A38 60%,#1D8A17 100%);color:#fff;padding:60px 40px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:300px;height:300px;background:rgba(29,138,23,.15);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-80px;left:-80px;width:400px;height:400px;background:rgba(243,112,33,.08);border-radius:50%}
+.hero-badge{display:inline-block;background:rgba(29,138,23,.25);border:1px solid var(--green);color:#4ade80;padding:6px 18px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:1px;margin-bottom:20px;text-transform:uppercase}
+.hero h1{font-family:'Fredoka One',cursive;font-size:clamp(28px,5vw,52px);line-height:1.1;margin-bottom:16px;max-width:900px;margin-left:auto;margin-right:auto}
+.hero h1 span{color:#4ade80}
+.hero-sub{font-size:16px;opacity:.8;max-width:700px;margin:0 auto 30px;line-height:1.6}
+.hero-meta{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;font-size:13px;opacity:.7}
+.hero-meta span{display:flex;align-items:center;gap:6px}
+
+.stats-bar{background:var(--green);padding:20px 40px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap;text-align:center}
+.stat-item{color:#fff}
+.stat-num{font-family:'Fredoka One',cursive;font-size:28px;display:block}
+.stat-label{font-size:11px;opacity:.85;text-transform:uppercase;letter-spacing:.5px}
+
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.section{padding:60px 0}
+.section-header{text-align:center;margin-bottom:48px}
+.section-header h2{font-family:'Fredoka One',cursive;font-size:clamp(24px,4vw,36px);color:var(--navy);margin-bottom:12px}
+.section-header p{font-size:15px;color:var(--slate);max-width:650px;margin:0 auto}
+.section-tag{display:inline-block;padding:4px 16px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:12px}
+.tag-green{background:#E8F5E8;color:var(--green);border:1px solid var(--green)}
+.tag-orange{background:#FFF3E8;color:var(--orange);border:1px solid var(--orange)}
+.tag-blue{background:#E8F0FF;color:#2B6CB0;border:1px solid #2B6CB0}
+.tag-gold{background:#FFF9E8;color:#B7791F;border:1px solid #B7791F}
+.tag-red{background:#FFF0F0;color:#C53030;border:1px solid #C53030}
+.tag-teal{background:#E0F7FA;color:var(--teal);border:1px solid var(--teal)}
+
+/* GRID LAYOUTS */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:24px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+
+/* CARDS */
+.card{background:var(--white);border-radius:16px;padding:28px;box-shadow:var(--card-shadow);transition:transform .2s}
+.card:hover{transform:translateY(-2px)}
+.card-green{border-left:4px solid var(--green)}
+.card-orange{border-left:4px solid var(--orange)}
+.card-navy{border-left:4px solid var(--navy)}
+.card-gold{border-left:4px solid var(--gold)}
+.card-red{border-left:4px solid var(--red)}
+.card-teal{border-left:4px solid var(--teal)}
+.card-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+.icon-green{background:linear-gradient(135deg,#E8F5E8,#C6F6C6)}
+.icon-orange{background:linear-gradient(135deg,#FFF3E8,#FFE0CC)}
+.icon-navy{background:linear-gradient(135deg,#E8EFF5,#C6D9E8)}
+.card h3{font-family:'Fredoka One',cursive;font-size:20px;color:var(--navy);margin-bottom:10px}
+.card p{font-size:14px;color:var(--slate);line-height:1.7}
+
+/* DIVIDER BANNER */
+.banner{border-radius:16px;padding:28px 40px;margin:48px 0;display:flex;align-items:center;gap:24px;color:#fff}
+.banner-green{background:linear-gradient(135deg,var(--green),#2ECC71)}
+.banner-orange{background:linear-gradient(135deg,var(--orange),#FF8C42)}
+.banner-navy{background:linear-gradient(135deg,var(--navy),#2d4a62)}
+.banner-icon{font-size:40px;flex-shrink:0}
+.banner h3{font-family:'Fredoka One',cursive;font-size:24px;margin-bottom:6px}
+.banner p{font-size:14px;opacity:.9}
+
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:12px;overflow:hidden;box-shadow:var(--card-shadow)}
+.data-table th{background:var(--navy);color:#fff;padding:14px 16px;text-align:left;font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.data-table td{padding:12px 16px;font-size:14px;border-bottom:1px solid #f0f4f8;color:var(--slate)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:hover td{background:#f8fffe}
+.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700}
+.badge-green{background:#E8F5E8;color:var(--green)}
+.badge-orange{background:#FFF3E8;color:var(--orange)}
+.badge-red{background:#FFF0F0;color:var(--red)}
+.badge-gold{background:#FFF9E8;color:#B7791F}
+
+/* BRAND CARD */
+.brand-card{background:var(--white);border-radius:20px;padding:32px;box-shadow:0 8px 32px rgba(0,0,0,.08);position:relative;overflow:hidden}
+.brand-card.recommended{border:2px solid var(--green)}
+.brand-rec-badge{position:absolute;top:16px;right:16px;background:var(--green);color:#fff;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.brand-name{font-family:'Fredoka One',cursive;font-size:36px;margin-bottom:6px}
+.brand-tagline{font-size:15px;color:var(--slate);font-style:italic;margin-bottom:20px}
+.brand-meaning{background:var(--light);border-radius:10px;padding:14px;margin-bottom:16px}
+.brand-meaning strong{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--green);margin-bottom:4px}
+.brand-score{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.score-item{text-align:center;background:var(--light);border-radius:10px;padding:10px 16px}
+.score-num{font-family:'Fredoka One',cursive;font-size:22px;color:var(--green);display:block}
+.score-label{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--slate)}
+
+/* PITCH CARD */
+.pitch-card{background:var(--white);border-radius:16px;padding:28px;box-shadow:var(--card-shadow)}
+.pitch-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.pitch-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px}
+.pitch-title{font-family:'Fredoka One',cursive;font-size:22px;color:var(--navy)}
+.pitch-subtitle{font-size:13px;color:var(--slate)}
+.pitch-text{background:linear-gradient(135deg,#f8fffe,#e8f5e8);border-radius:12px;padding:20px;font-size:14px;line-height:1.8;color:var(--navy);border-left:4px solid var(--green);margin-bottom:16px;font-style:italic}
+.pitch-notes{font-size:13px;color:var(--slate)}
+.pitch-notes li{margin-bottom:6px;padding-left:16px;position:relative}
+.pitch-notes li::before{content:'→';position:absolute;left:0;color:var(--green)}
+
+/* RISK CARD */
+.risk-card{background:var(--white);border-radius:16px;padding:24px;box-shadow:var(--card-shadow)}
+.risk-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.risk-level{padding:3px 10px;border-radius:8px;font-size:11px;font-weight:700;text-transform:uppercase}
+.risk-high{background:#FFF0F0;color:var(--red)}
+.risk-medium{background:#FFF9E8;color:#B7791F}
+.risk-low{background:#E8F5E8;color:var(--green)}
+.risk-title{font-family:'Fredoka One',cursive;font-size:18px;color:var(--navy)}
+.risk-body{font-size:13px;color:var(--slate);line-height:1.7;margin-bottom:12px}
+.risk-prevention{background:var(--light);border-radius:8px;padding:12px;font-size:13px}
+.risk-prevention strong{color:var(--green);font-size:11px;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px}
+
+/* ROADMAP */
+.roadmap{display:grid;gap:0}
+.roadmap-step{display:flex;gap:24px;padding:24px 0;position:relative}
+.roadmap-step::before{content:'';position:absolute;left:27px;top:60px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--green),transparent)}
+.roadmap-step:last-child::before{display:none}
+.step-num{width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;font-family:'Fredoka One',cursive;font-size:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1}
+.step-content{flex:1}
+.step-title{font-family:'Fredoka One',cursive;font-size:20px;color:var(--navy);margin-bottom:6px}
+.step-body{font-size:14px;color:var(--slate);line-height:1.7}
+.step-time{display:inline-block;background:#E8F5E8;color:var(--green);padding:3px 12px;border-radius:12px;font-size:12px;font-weight:600;margin-top:8px}
+
+/* EQUIPMENT TABLE */
+.equip-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f0f4f8;font-size:14px}
+.equip-row:last-child{border-bottom:none;font-weight:700;color:var(--navy)}
+.equip-name{color:var(--slate);flex:1}
+.equip-qty{color:var(--navy);width:80px;text-align:center}
+.equip-cost{color:var(--green);width:120px;text-align:right;font-weight:600}
+
+/* COST BREAKDOWN */
+.cost-bar{margin-bottom:12px}
+.cost-bar-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
+.cost-bar-track{background:#f0f4f8;border-radius:6px;height:10px;overflow:hidden}
+.cost-bar-fill{height:100%;border-radius:6px;background:var(--green)}
+
+/* DIAGNOSTIC */
+.diagnostic-item{display:flex;gap:16px;padding:14px;background:var(--white);border-radius:12px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.diag-sign{font-size:24px;flex-shrink:0;width:44px;text-align:center}
+.diag-label{font-weight:600;font-size:14px;color:var(--navy);margin-bottom:2px}
+.diag-action{font-size:13px;color:var(--slate)}
+
+/* FOOTER */
+.footer{background:var(--navy);color:#fff;padding:40px;text-align:center}
+.footer-logo{font-family:'Fredoka One',cursive;font-size:28px;margin-bottom:8px}
+.footer-logo span{color:#4ade80}
+.footer p{font-size:13px;opacity:.6;margin-top:8px}
+
+/* HIGHLIGHT BOX */
+.highlight{background:linear-gradient(135deg,#0f2a1a,#1B2A38);border-radius:16px;padding:32px;color:#fff;text-align:center;margin:32px 0}
+.highlight h3{font-family:'Fredoka One',cursive;font-size:28px;margin-bottom:12px}
+.highlight p{font-size:15px;opacity:.85;max-width:600px;margin:0 auto}
+.highlight span{color:#4ade80;font-weight:700}
+
+/* VARIETY CARD */
+.variety-card{background:var(--white);border-radius:16px;padding:24px;box-shadow:var(--card-shadow);position:relative}
+.variety-rank{position:absolute;top:-8px;right:16px;background:var(--green);color:#fff;font-family:'Fredoka One',cursive;font-size:14px;padding:4px 14px;border-radius:0 0 10px 10px}
+.variety-emoji{font-size:32px;margin-bottom:10px;display:block}
+.variety-name{font-family:'Fredoka One',cursive;font-size:20px;color:var(--navy);margin-bottom:4px}
+.variety-hindi{font-size:13px;color:var(--slate);margin-bottom:12px}
+.variety-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.variety-meta-item{background:var(--light);border-radius:8px;padding:8px;text-align:center}
+.variety-meta-item span{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--slate);display:block}
+.variety-meta-item strong{font-size:14px;color:var(--navy)}
+.demand-pill{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;margin-top:8px}
+
+/* COMPETITOR TABLE */
+.comp-grid{display:grid;gap:16px}
+.comp-row{background:var(--white);border-radius:12px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.05);display:flex;align-items:flex-start;gap:16px}
+.comp-logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--light),#e8f5e8);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.comp-name{font-weight:700;font-size:15px;color:var(--navy)}
+.comp-detail{font-size:13px;color:var(--slate);line-height:1.6}
+.comp-threat{display:inline-block;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:700;margin-top:6px}
+
+@media(max-width:768px){
+  .hero{padding:40px 20px}
+  .stats-bar{gap:24px}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .banner{flex-direction:column;text-align:center;padding:24px}
+  .roadmap-step{flex-direction:column}
+  .roadmap-step::before{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🌱 Business Blueprint 2026</div>
+  <h1>Microgreens Business in<br><span>Ahmedabad, Gujarat</span></h1>
+  <p class="hero-sub">Complete research-backed blueprint — market gap analysis, brand strategy, equipment setup, cost breakdown, local targets & full marketing roadmap for a home-based microgreens startup.</p>
+  <div class="hero-meta">
+    <span>📍 Ahmedabad, Gujarat</span>
+    <span>📐 50–60 sq ft Setup</span>
+    <span>📅 April 2026</span>
+    <span>🎯 B2B First Strategy</span>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-num">₹608 Cr</span><span class="stat-label">India market size 2024</span></div>
+  <div class="stat-item"><span class="stat-num">7.86%</span><span class="stat-label">Annual growth rate (CAGR)</span></div>
+  <div class="stat-item"><span class="stat-num">~6</span><span class="stat-label">Active suppliers in Ahmedabad</span></div>
+  <div class="stat-item"><span class="stat-num">40x</span><span class="stat-label">More nutrients vs adult greens</span></div>
+  <div class="stat-item"><span class="stat-num">7–14</span><span class="stat-label">Days to harvest</span></div>
+  <div class="stat-item"><span class="stat-num">75%+</span><span class="stat-label">Gross margin potential</span></div>
+</div>
+
+<!-- SECTION 1: MARKET LANDSCAPE -->
+<div class="section" style="background:var(--white)">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-green">Market Intelligence</span>
+      <h2>Ahmedabad Microgreens Market — Current State</h2>
+      <p>Who is already operating, how big they are, and where the gap exists that you can fill.</p>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:40px">
+      <div class="card card-green">
+        <div class="card-icon icon-green">📊</div>
+        <h3>India Market Overview</h3>
+        <p>India's microgreens market was valued at <strong>₹608 Crore (USD 73M) in 2024</strong> and is projected to reach <strong>₹1,315 Crore by 2033</strong> at 7.86% CAGR. The urbanisation wave, gym culture boom, and restaurant health menu trends are the primary growth drivers. Gujarat — especially Ahmedabad — is an underserved pocket despite being India's commercial capital of the west.</p>
+      </div>
+      <div class="card card-orange">
+        <div class="card-icon icon-orange">🏙️</div>
+        <h3>Ahmedabad Supply Gap</h3>
+        <p>Only <strong>~6 active microgreens suppliers</strong> serve Ahmedabad's population of 8+ million. The city has a booming fitness culture (500+ registered gyms), a thriving restaurant scene, and growing health-conscious professional class — but barely any fresh local microgreens supply. Most of what's available is shipped from Bangalore or Pune, reducing freshness and increasing cost.</p>
+      </div>
+    </div>
+
+    <div class="banner banner-green">
+      <div class="banner-icon">💡</div>
+      <div>
+        <h3>The Opportunity in Numbers</h3>
+        <p>If Ahmedabad has 500 gyms × avg 200 health-focused members = 100,000 potential microgreens consumers. Current supply covers an estimated 5,000–8,000 people. <strong>The gap: 90,000+ people with zero access to local fresh microgreens.</strong> You don't need to fill all of it — even 0.5% of the gap = 450 regular customers.</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--navy);margin-bottom:20px">Current Competitors in Ahmedabad</h3>
+    <div class="comp-grid">
+      <div class="comp-row">
+        <div class="comp-logo">🌿</div>
+        <div>
+          <div class="comp-name">Mali Greens</div>
+          <div class="comp-detail">Gujarat's self-described largest organic microgreens producer. 3 years old, 150% annual sales growth. Supplies Ahmedabad + other Gujarat cities. Founded by teacher-turned-urban-farmer Aditi Mali. Strong brand, growing fast. <strong>Their growth proves the demand — not a threat, a market validator.</strong></div>
+          <span class="comp-threat badge badge-orange">High Visibility — Study Their Model</span>
+        </div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-logo">🥬</div>
+        <div>
+          <div class="comp-name">Healthy Greens (IndiaMart)</div>
+          <div class="comp-detail">Ahmedabad-based manufacturer. Sells radish, arugula, amaranthus microgreens. Primarily wholesale/B2B via IndiaMart. No strong retail/social presence. Opportunity: Build direct consumer + gym relationships they haven't.</div>
+          <span class="comp-threat badge badge-green">Low Retail Threat — B2B focused</span>
+        </div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-logo">🌱</div>
+        <div>
+          <div class="comp-name">Amdavadi Organic Farms</div>
+          <div class="comp-detail">Microgreens + lettuce + salad boxes. Has delivery setup. Limited variety, limited social presence. Primarily serving restaurants. Gap: No gym/nutritionist targeting, no subscription model.</div>
+          <span class="comp-threat badge badge-green">Manageable — Niche overlap only</span>
+        </div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-logo">💧</div>
+        <div>
+          <div class="comp-name">Gabbar Farms</div>
+          <div class="comp-detail">Hydroponics-focused, chemical-free. Has an e-commerce store. More focused on full vegetables than microgreens specifically. Not a direct head-to-head competitor for microgreens supply.</div>
+          <span class="comp-threat badge badge-green">Different Focus — Not direct competition</span>
+        </div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-logo">🌾</div>
+        <div>
+          <div class="comp-name">Cotygreens + Seedtime Microgreens</div>
+          <div class="comp-detail">Smaller players providing fresh microgreens and home-growing kits. Limited scale, limited marketing. Primarily serving individual consumers, not B2B channels.</div>
+          <span class="comp-threat badge badge-green">Small Scale — Not a barrier</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: TOP VARIETIES -->
+<div class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-green">What to Grow</span>
+      <h2>Top 8 Microgreens Varieties — Demand × Nutrition Ranked</h2>
+      <p>Start with the top 3–4. Add more as capacity grows. Prioritise what gyms and restaurants actually want.</p>
+    </div>
+
+    <div class="grid-4">
+      <div class="variety-card">
+        <div class="variety-rank">🥇 #1</div>
+        <span class="variety-emoji">🌶️</span>
+        <div class="variety-name">Radish</div>
+        <div class="variety-hindi">Mooli Microgreens</div>
+        <p style="font-size:13px;color:var(--slate)">Fastest to grow, peppery taste, most popular restaurant garnish. Easy to sell. High germination rate.</p>
+        <div class="variety-meta">
+          <div class="variety-meta-item"><span>Harvest</span><strong>5–7 days</strong></div>
+          <div class="variety-meta-item"><span>Sell Price</span><strong>₹900–1,200/kg</strong></div>
+        </div>
+        <span class="demand-pill badge badge-green">🔥 High Demand</span>
+      </div>
+
+      <div class="variety-card">
+        <div class="variety-rank">🥈 #2</div>
+        <span class="variety-emoji">🌻</span>
+        <div class="variety-name">Sunflower</div>
+        <div class="variety-hindi">Surajmukhi Microgreens</div>
+        <p style="font-size:13px;color:var(--slate)">Highest protein content. Nutty flavour. Gym owners and nutritionists actively request this. Premium pricing.</p>
+        <div class="variety-meta">
+          <div class="variety-meta-item"><span>Harvest</span><strong>10–12 days</strong></div>
+          <div class="variety-meta-item"><span>Sell Price</span><strong>₹1,200–1,800/kg</strong></div>
+        </div>
+        <span class="demand-pill badge badge-green">🔥 Gym Favourite</span>
+      </div>
+
+      <div class="variety-card">
+        <div class="variety-rank">#3</div>
+        <span class="variety-emoji">🫛</span>
+        <div class="variety-name">Pea Shoots</div>
+        <div class="variety-hindi">Matar Microgreens</div>
+        <p style="font-size:13px;color:var(--slate)">Sweet, tender flavour. Used in salads, Chinese cuisine, continental restaurants. Large bulk orders possible.</p>
+        <div class="variety-meta">
+          <div class="variety-meta-item"><span>Harvest</span><strong>10–14 days</strong></div>
+          <div class="variety-meta-item"><span>Sell Price</span><strong>₹800–1,200/kg</strong></div>
+        </div>
+        <span class="demand-pill badge badge-orange">Restaurant Pick</span>
+      </div>
+
+      <div class="variety-card">
+        <div class="variety-rank">#4</div>
+        <span class="variety-emoji">🌿</span>
+        <div class="variety-name">Fenugreek</div>
+        <div class="variety-hindi">Methi Microgreens</div>
+        <p style="font-size:13px;color:var(--slate)">Indian cuisine staple. Nutritionists recommend it heavily — blood sugar regulation, digestion. Easy to grow.</p>
+        <div class="variety-meta">
+          <div class="variety-meta-item"><span>Harvest</span><strong>5–8 days</strong></div>
+          <div class="variety-meta-item"><span>Sell Price</span><strong>₹700–1,000/kg</strong></div>
+        </div>
+        <span class="demand-pill badge badge-green">Nutritionist Pick</span>
+      </div>
+
+      <div class="variety-card">
+        <div class="variety-rank">#5</div>
+        <span class="variety-emoji">🥦</span>
+        <div class="variety-name">Broccoli</div>
+        <div class="variety-hindi">Broccoli Microgreens</div>
+        <p style="font-size:13px;color:var(--slate)"><strong>40x more nutrition than adult broccoli.</strong> Premium pricing. Health coaches and cancer-prevention dietitians specifically request this. Highest value crop.</p>
+        <div class="variety-meta">
+          <div class="variety-meta-item"><span>Harvest</span><strong>6–8 days</strong></div>
+          <div class="variety-meta-item"><span>Sell Price</span><strong>₹2,000–3,000/kg</strong></div>
+        </div>
+        <span class="demand-pill badge badge-gold">💰 Premium Crop</span>
+      </div>
+
+      <div class="variety-card">
+        <div class="variety-rank">#6</div>
+        <span class="variety-emoji">🌾</span>
+        <div class="variety-name">Wheatgrass</div>
+        <div class="variety-hindi">Gehun Grass</div>
+        <p style="font-size:13px;color:var(--slate)">Gyms and yoga centres use as juice shots. Sell as shots (₹30–50/shot) or bulk trays. High repeat orders from fitness clubs.</p>
+        <div class="variety-meta">
+          <div class="variety-meta-item"><span>Harvest</span><strong>7–10 days</strong></div>
+          <div class="variety-meta-item"><span>Sell Price</span><strong>₹600–900/kg</strong></div>
+        </div>
+        <span class="demand-pill badge badge-green">Gym Shots Demand</span>
+      </div>
+
+      <div class="variety-card">
+        <div class="variety-rank">#7</div>
+        <span class="variety-emoji">🌱</span>
+        <div class="variety-name">Mustard</div>
+        <div class="variety-hindi">Sarson Microgreens</div>
+        <p style="font-size:13px;color:var(--slate)">Fastest growing, spicy, Indian cuisine demand. Cheapest seeds. Great volume filler product. Good for bundling in mixed packs.</p>
+        <div class="variety-meta">
+          <div class="variety-meta-item"><span>Harvest</span><strong>4–6 days</strong></div>
+          <div class="variety-meta-item"><span>Sell Price</span><strong>₹700–900/kg</strong></div>
+        </div>
+        <span class="demand-pill badge badge-orange">Volume Crop</span>
+      </div>
+
+      <div class="variety-card">
+        <div class="variety-rank">#8</div>
+        <span class="variety-emoji">🫀</span>
+        <div class="variety-name">Beetroot</div>
+        <div class="variety-hindi">Chukandar Microgreens</div>
+        <p style="font-size:13px;color:var(--slate)">Stunning deep red/purple colour. Fine dining, luxury hotels want this for visual plating. Higher price, slower to grow.</p>
+        <div class="variety-meta">
+          <div class="variety-meta-item"><span>Harvest</span><strong>10–14 days</strong></div>
+          <div class="variety-meta-item"><span>Sell Price</span><strong>₹1,500–2,500/kg</strong></div>
+        </div>
+        <span class="demand-pill badge badge-gold">Fine Dining Pick</span>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <h3>Start With These 4: Radish + Sunflower + Fenugreek + Broccoli</h3>
+      <p>Covers: <span>restaurant demand + gym demand + nutritionist demand + premium pricing</span>. Add Pea Shoots and Wheatgrass in Month 2 once operations stabilise.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: EQUIPMENT + SETUP -->
+<div class="section" style="background:var(--white)">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-orange">Setup Guide</span>
+      <h2>50–60 Sq Ft Home Setup — Equipment & Investment</h2>
+      <p>Everything you need to start. Vertical racking multiplies your 50 sq ft to 150–200 sq ft of effective growing area.</p>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <h3 style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--navy);margin-bottom:20px">Equipment List with Costs (₹)</h3>
+        <div style="background:var(--white);border-radius:16px;padding:24px;box-shadow:var(--card-shadow)">
+          <div class="equip-row">
+            <div class="equip-name">Standard growing trays (10"×20") — 24 trays</div>
+            <div class="equip-qty">24 pcs</div>
+            <div class="equip-cost">₹1,920</div>
+          </div>
+          <div class="equip-row">
+            <div class="equip-name">Slotted angle iron rack (4-tier, 2 units)</div>
+            <div class="equip-qty">2 units</div>
+            <div class="equip-cost">₹4,500</div>
+          </div>
+          <div class="equip-row">
+            <div class="equip-name">LED grow light panels (18W, full spectrum)</div>
+            <div class="equip-qty">3 panels</div>
+            <div class="equip-cost">₹4,800</div>
+          </div>
+          <div class="equip-row">
+            <div class="equip-name">Coco peat growing medium (10 kg bag)</div>
+            <div class="equip-qty">2 bags</div>
+            <div class="equip-cost">₹1,200</div>
+          </div>
+          <div class="equip-row">
+            <div class="equip-name">Microgreens seeds (4 starter varieties)</div>
+            <div class="equip-qty">4 types</div>
+            <div class="equip-cost">₹3,500</div>
+          </div>
+          <div class="equip-row">
+            <div class="equip-name">Spray bottles (1L, fine mist)</div>
+            <div class="equip-qty">3 pcs</div>
+            <div class="equip-cost">₹350</div>
+          </div>
+          <div class="equip-row">
+            <div class="equip-name">Small pedestal fan (air circulation)</div>
+            <div class="equip-qty">1 unit</div>
+            <div class="equip-cost">₹1,000</div>
+          </div>
+          <div class="equip-row">
+            <div class="equip-name">Digital weighing scale (0.1g precision)</div>
+            <div class="equip-qty">1 unit</div>
+            <div class="equip-cost">₹700</div>
+          </div>
+          <div class="equip-row">
+            <div class="equip-name">Thermometer + Hygrometer combo</div>
+            <div class="equip-qty">1 unit</div>
+            <div class="equip-cost">₹450</div>
+          </div>
+          <div class="equip-row">
+            <div class="equip-name">Packaging pouches 100g (printed, 500 pcs)</div>
+            <div class="equip-qty">500 pcs</div>
+            <div class="equip-cost">₹2,000</div>
+          </div>
+          <div class="equip-row">
+            <div class="equip-name">Custom labels/stickers (brand name)</div>
+            <div class="equip-qty">500 pcs</div>
+            <div class="equip-cost">₹1,200</div>
+          </div>
+          <div class="equip-row">
+            <div class="equip-name">Harvest scissors + knife + trays cover</div>
+            <div class="equip-qty">set</div>
+            <div class="equip-cost">₹500</div>
+          </div>
+          <div class="equip-row" style="border-top:2px solid var(--green);padding-top:16px;margin-top:8px">
+            <div class="equip-name" style="font-weight:700;color:var(--navy)">TOTAL INITIAL INVESTMENT</div>
+            <div class="equip-qty"></div>
+            <div class="equip-cost" style="font-size:18px;color:var(--green)">₹22,120</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--navy);margin-bottom:20px">Space Layout & Production Capacity</h3>
+        <div class="card card-green" style="margin-bottom:20px">
+          <div class="card-icon icon-green">📐</div>
+          <h3>50 Sq Ft → 150+ Sq Ft Effective Area</h3>
+          <p>Two 4-tier racks in 50 sq ft = <strong>8 shelf levels</strong>. Each level holds 3 standard trays. Total: <strong>24 active trays at once</strong>. With staggered planting (new batch every 3–4 days), you maintain a continuous harvest cycle.</p>
+        </div>
+        <div class="card card-navy">
+          <div class="card-icon icon-navy">📦</div>
+          <h3>Monthly Output Estimate</h3>
+          <p><strong>Per tray yield:</strong> 150–300g (avg 200g)<br>
+          <strong>Active trays:</strong> 24<br>
+          <strong>Harvest cycles/month:</strong> 2–3 full cycles<br>
+          <strong>Monthly yield:</strong> 24 trays × 2.5 cycles × 200g = <strong>~12 kg/month</strong><br>
+          <strong>B2B revenue (₹1,000/kg):</strong> ₹12,000/month<br>
+          <strong>Mixed retail (₹1,500/kg avg):</strong> ₹18,000/month</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="banner banner-navy" style="margin-top:32px">
+      <div class="banner-icon">⚡</div>
+      <div>
+        <h3>Ahmedabad Climate Note — Critical</h3>
+        <p>Ahmedabad summers hit 40°C+. Microgreens need 18–25°C for optimal growth. <strong>You MUST grow in an AC room or well-ventilated shaded space.</strong> A dedicated corner of an AC bedroom works. This is non-negotiable — heat stress will ruin crops and waste your investment.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: COST BREAKDOWN + MARGIN -->
+<div class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-gold">Economics</span>
+      <h2>Per 100g Packet — Cost Breakdown & Margin</h2>
+      <p>Real numbers. Every rupee from raw material to delivery accounted for.</p>
+    </div>
+
+    <div class="grid-2">
+      <div style="background:var(--white);border-radius:16px;padding:32px;box-shadow:var(--card-shadow)">
+        <h3 style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--navy);margin-bottom:24px">Cost Per 100g Packet (Radish/Fenugreek)</h3>
+
+        <div class="cost-bar">
+          <div class="cost-bar-label"><span>Seeds (per 100g harvest)</span><span style="color:var(--green);font-weight:600">₹8–12</span></div>
+          <div class="cost-bar-track"><div class="cost-bar-fill" style="width:20%;background:#1D8A17"></div></div>
+        </div>
+        <div class="cost-bar">
+          <div class="cost-bar-label"><span>Growing medium (coco peat, per tray share)</span><span style="color:var(--green);font-weight:600">₹5–8</span></div>
+          <div class="cost-bar-track"><div class="cost-bar-fill" style="width:14%;background:#2ECC71"></div></div>
+        </div>
+        <div class="cost-bar">
+          <div class="cost-bar-label"><span>Water + electricity (lights, fan)</span><span style="color:var(--green);font-weight:600">₹5–8</span></div>
+          <div class="cost-bar-track"><div class="cost-bar-fill" style="width:14%;background:#4ade80"></div></div>
+        </div>
+        <div class="cost-bar">
+          <div class="cost-bar-label"><span>Packaging (pouch + label + sticker)</span><span style="color:var(--orange);font-weight:600">₹10–15</span></div>
+          <div class="cost-bar-track"><div class="cost-bar-fill" style="width:25%;background:#F37021"></div></div>
+        </div>
+        <div class="cost-bar">
+          <div class="cost-bar-label"><span>Delivery (within 5km, per packet share)</span><span style="color:var(--orange);font-weight:600">₹5–8</span></div>
+          <div class="cost-bar-track"><div class="cost-bar-fill" style="width:14%;background:#FF8C42"></div></div>
+        </div>
+
+        <div style="border-top:2px solid var(--light);padding-top:16px;margin-top:16px">
+          <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-bottom:8px">
+            <span>Total Cost per 100g packet</span>
+            <span style="color:var(--navy)">₹33–51</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:15px;color:var(--green);font-weight:700;margin-bottom:8px">
+            <span>B2B selling price (gyms/restaurants)</span>
+            <span>₹100–120</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:15px;color:var(--orange);font-weight:700;margin-bottom:8px">
+            <span>Retail selling price (direct consumer)</span>
+            <span>₹150–200</span>
+          </div>
+          <div style="background:linear-gradient(135deg,var(--green),#2ECC71);border-radius:10px;padding:14px;text-align:center;color:#fff;margin-top:12px">
+            <div style="font-family:'Fredoka One',cursive;font-size:28px">60–75%</div>
+            <div style="font-size:13px;opacity:.9">Gross Margin (B2B) | 70–80% Retail</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card card-gold" style="margin-bottom:20px">
+          <div class="card-icon" style="background:linear-gradient(135deg,#FFF9E8,#FDEFC3);font-size:24px">💰</div>
+          <h3>Pricing Strategy</h3>
+          <div style="font-size:14px;color:var(--slate);line-height:1.8">
+            <strong>Gyms & Nutritionists:</strong> ₹100–120/100g (or ₹1,000–1,200/kg) — bulk orders, regular supply<br><br>
+            <strong>Restaurants & Cafes:</strong> ₹80–100/100g (higher volume, lower per unit) — weekly fixed orders<br><br>
+            <strong>Direct Consumer:</strong> ₹150–180/100g — WhatsApp/Instagram orders<br><br>
+            <strong>Subscription Box (200g weekly):</strong> ₹350–400/week — highest LTV customer<br><br>
+            <strong>Wheatgrass Shots (50ml):</strong> ₹35–50/shot — sell directly to gym members
+          </div>
+        </div>
+        <div class="card card-green">
+          <div class="card-icon icon-green">📅</div>
+          <h3>Revenue Projection</h3>
+          <p style="font-size:14px;color:var(--slate);line-height:1.8">
+            <strong>Month 1–2 (Setup + first clients):</strong> ₹5,000–8,000/month<br>
+            <strong>Month 3–4 (3–5 B2B clients):</strong> ₹12,000–18,000/month<br>
+            <strong>Month 5–6 (10+ clients + retail):</strong> ₹20,000–28,000/month<br>
+            <strong>Break-even point:</strong> Month 2–3<br>
+            <strong>ROI on ₹22,000 investment:</strong> Recovered by Month 3
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RAW MATERIALS LIST -->
+    <div class="banner banner-orange" style="margin-top:32px">
+      <div class="banner-icon">🛒</div>
+      <div>
+        <h3>Complete Raw Materials List (Recurring Monthly)</h3>
+        <p>Seeds (4 varieties, restock monthly): ₹2,000–3,000 | Coco peat (1 bag/month): ₹600 | Packaging pouches (200 pcs): ₹800 | Labels (200 pcs): ₹500 | Water cost: ₹200 | Electricity: ₹400–600 | Total Monthly Operating Cost: <strong>₹4,500–5,700</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: BRAND NAMES -->
+<div class="section" style="background:var(--white)">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-green">Brand Identity</span>
+      <h2>3 Brand Name Recommendations</h2>
+      <p>Each checked for trademark conflicts. All convey health, freshness, and nutrition — your three core brand values.</p>
+    </div>
+
+    <div class="grid-3">
+      <!-- BRAND 1 -->
+      <div class="brand-card recommended">
+        <div class="brand-rec-badge">⭐ Top Pick</div>
+        <div class="brand-name" style="color:var(--green)">AnkurGreens</div>
+        <div class="brand-tagline">"From the first sprout, pure nutrition."</div>
+        <div class="brand-meaning">
+          <strong>Meaning</strong>
+          <span style="font-size:14px;color:var(--slate)"><strong>Ankur</strong> = Sprout / Seedling in Hindi & Sanskrit. The most semantically perfect name for a microgreens brand. "Ankur" literally IS what microgreens are — the first sprouting stage of a plant.</span>
+        </div>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7">No trademark conflicts found in India. Easy to pronounce in Gujarati, Hindi, and English. Short, memorable. Works as @ankurgreens on Instagram. Legal status: Clear — verify on ipindiaonline.gov.in before registering.</p>
+        <div class="brand-score">
+          <div class="score-item"><span class="score-num">9.5</span><span class="score-label">Relevance</span></div>
+          <div class="score-item"><span class="score-num">9</span><span class="score-label">Memorability</span></div>
+          <div class="score-item"><span class="score-num">9</span><span class="score-label">Legal Safety</span></div>
+        </div>
+      </div>
+
+      <!-- BRAND 2 -->
+      <div class="brand-card">
+        <div class="brand-name" style="color:var(--navy)">HaritVana</div>
+        <div class="brand-tagline">"Nature's freshest harvest, daily."</div>
+        <div class="brand-meaning">
+          <strong>Meaning</strong>
+          <span style="font-size:14px;color:var(--slate)"><strong>Harit</strong> = Green/Fresh (Sanskrit), <strong>Vana</strong> = Forest/Garden (Sanskrit). Together: "Green Garden" or "Forest of Freshness." Premium, spiritual, wellness-forward positioning.</span>
+        </div>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7">No conflicts found. Fully Sanskrit — appeals to Gujarati wellness culture. Premium feel, suits fine dining and high-end nutritionist clients. Slightly harder to spell for non-Sanskrit speakers. Best if you target luxury segment.</p>
+        <div class="brand-score">
+          <div class="score-item"><span class="score-num">8</span><span class="score-label">Relevance</span></div>
+          <div class="score-item"><span class="score-num">7.5</span><span class="score-label">Memorability</span></div>
+          <div class="score-item"><span class="score-num">9</span><span class="score-label">Legal Safety</span></div>
+        </div>
+      </div>
+
+      <!-- BRAND 3 -->
+      <div class="brand-card">
+        <div class="brand-name" style="color:var(--orange)">PranaVana</div>
+        <div class="brand-tagline">"Life force in every leaf."</div>
+        <div class="brand-meaning">
+          <strong>Meaning</strong>
+          <span style="font-size:14px;color:var(--slate)"><strong>Prana</strong> = Life Force/Breath (Sanskrit), <strong>Vana</strong> = Garden/Nature. Together: "Garden of Life Force." Deeply wellness-oriented, resonates with yoga community, nutritionists, and health coaches.</span>
+        </div>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7">"Prana Greens" exists in New Zealand (inactive) — PranaVana is distinct. No India conflicts found. Strong wellness positioning. Suits gym + nutritionist + yoga studio targeting. Premium sound. Verify on IP India before filing.</p>
+        <div class="brand-score">
+          <div class="score-item"><span class="score-num">8.5</span><span class="score-label">Relevance</span></div>
+          <div class="score-item"><span class="score-num">8.5</span><span class="score-label">Memorability</span></div>
+          <div class="score-item"><span class="score-num">8</span><span class="score-label">Legal Safety</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-top:40px">
+      <h3>Final Recommendation: <span>AnkurGreens</span></h3>
+      <p>Semantically perfect (ankur = sprout), legally clean, easy across all languages spoken in Ahmedabad, handles available on social media. Tagline: <span>"From the first sprout, pure nutrition."</span> — Before printing anything, verify trademark at <strong>ipindiaonline.gov.in → Trademark Search</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: LOCAL TARGETS -->
+<div class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-blue">Target Outreach</span>
+      <h2>High-Value Targets in Ahmedabad</h2>
+      <p>Your first 30 outreach contacts. Gyms, nutritionists, and restaurants where microgreens are actively needed.</p>
+    </div>
+
+    <!-- GYMS -->
+    <div class="banner banner-green" style="margin-bottom:28px">
+      <div class="banner-icon">💪</div>
+      <div><h3>Target 1: Gyms & Fitness Studios</h3><p>Gym owners care about member results. Microgreens = member nutrition upgrade = gym value add. Approach owner/manager directly, not front desk.</p></div>
+    </div>
+    <div class="grid-3" style="margin-bottom:40px">
+      <div class="card card-green">
+        <div class="card-icon icon-green">🏋️</div>
+        <h3>Gold's Gym Ahmedabad</h3>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7"><strong>Locations:</strong> Vastrapur, Thaltej<br><strong>Profile:</strong> International franchise, premium membership, bodybuilders + general fitness. Members are already spending on supplements.<br><strong>Opportunity:</strong> Sunflower + wheatgrass shots at the juice bar. Approach: Franchise owner/manager.<br><strong>Contact approach:</strong> Walk in, ask for manager, bring a sample pack.</p>
+      </div>
+      <div class="card card-green">
+        <div class="card-icon icon-green">📱</div>
+        <h3>Cult.Fit Ahmedabad</h3>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7"><strong>Locations:</strong> Vastrapur, Prahlad Nagar, Satellite<br><strong>Profile:</strong> App-driven, young urban professionals, multiple class formats. Health-first brand DNA.<br><strong>Opportunity:</strong> Partner as "nutrition add-on" — microgreens packs sold at reception desk. Highest potential for weekly recurring order.<br><strong>Contact approach:</strong> Email centre manager, follow up on Instagram DM.</p>
+      </div>
+      <div class="card card-green">
+        <div class="card-icon icon-green">⏱️</div>
+        <h3>Anytime Fitness</h3>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7"><strong>Location:</strong> 216-219, Shivalik Shilp, Bhopal Ambli Rd, Satellite<br><strong>Profile:</strong> International chain, 24/7 model, fitness-dedicated members.<br><strong>Opportunity:</strong> Weekly microgreens delivery to lobby for resale. Members self-select.<br><strong>Contact approach:</strong> Visit during off-peak hours (10am–12pm), ask for franchise owner.</p>
+      </div>
+      <div class="card card-green">
+        <div class="card-icon icon-green">🔥</div>
+        <h3>CrossFit Ahmedabad</h3>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7"><strong>Profile:</strong> Functional fitness, community-first, performance athletes. CrossFit community = highest nutrition awareness of any gym type.<br><strong>Opportunity:</strong> Community supply deal — provide fresh microgreens for communal nutrition. Coaches themselves will recommend to members.<br><strong>Contact approach:</strong> DM the box owner on Instagram.</p>
+      </div>
+      <div class="card card-green">
+        <div class="card-icon icon-green">💪</div>
+        <h3>O2 Fitness</h3>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7"><strong>Location:</strong> Navrangpura / C.G. Road<br><strong>Profile:</strong> Balanced gym, machines + free weights, personal training focused. Professional trainer clientele.<br><strong>Opportunity:</strong> Work with personal trainers directly — they become micro-distributors recommending you to their clients.<br><strong>Contact approach:</strong> Visit and speak directly to 2–3 personal trainers.</p>
+      </div>
+    </div>
+
+    <!-- NUTRITIONISTS -->
+    <div class="banner banner-orange" style="margin-bottom:28px">
+      <div class="banner-icon">🥗</div>
+      <div><h3>Target 2: Nutritionists & Dietitians</h3><p>Nutritionists are multipliers — one nutritionist recommends you to 50+ clients. Best ROI per outreach contact.</p></div>
+    </div>
+    <div class="grid-3" style="margin-bottom:40px">
+      <div class="card card-orange">
+        <div class="card-icon icon-orange">🏥</div>
+        <h3>QUA Nutrition — Ahmedabad</h3>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7"><strong>Profile:</strong> India's leading nutrition clinic, 50+ certified nutritionists, 12+ years experience. Corporate + individual clients. Premium clientele who will pay ₹200+/100g.<br><strong>Opportunity:</strong> Get them to recommend AnkurGreens in client meal plans — becomes recurring demand without you marketing.<br><strong>Pitch angle:</strong> "Clinical-grade fresh microgreens for your client plans."</p>
+      </div>
+      <div class="card card-orange">
+        <div class="card-icon icon-orange">🌿</div>
+        <h3>Aura — The Diet Clinic</h3>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7"><strong>Location:</strong> 801, Colonnade 2, Rajpath Club Rd, Bodakdev<br><strong>Profile:</strong> Diet clinic, therapeutic nutrition, corporate wellness programs.<br><strong>Opportunity:</strong> Become their recommended fresh food source. Provide brochure-quality sample pack.<br><strong>Pitch angle:</strong> "Freshest microgreens in Ahmedabad, harvested 24hrs before delivery."</p>
+      </div>
+      <div class="card card-orange">
+        <div class="card-icon icon-orange">🩺</div>
+        <h3>Ms. Sarika Agrawal — Swasthya Nutrition</h3>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7"><strong>Location:</strong> Jodhpur Char Rasta, Ahmedabad<br><strong>Profile:</strong> 11 years experience, individual wellness coaching, therapeutic diets.<br><strong>Opportunity:</strong> Individual nutritionist = 30–50 active clients who trust her recommendations. One conversation = multiple customers.<br><strong>Pitch angle:</strong> "Add microgreens to every client's plan — I supply fresh weekly."</p>
+      </div>
+      <div class="card card-orange">
+        <div class="card-icon icon-orange">💊</div>
+        <h3>Fitelo — Ahmedabad Branch</h3>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7"><strong>Profile:</strong> 100,000+ clients, 1200+ nutritionists. Has online + offline presence in Ahmedabad. Technology-driven diet plans.<br><strong>Opportunity:</strong> Supply as their "local fresh food partner" for Ahmedabad-based clients. High volume potential.<br><strong>Pitch angle:</strong> "Partner supply — your Ahmedabad clients get the freshest microgreens, same-day harvested."</p>
+      </div>
+      <div class="card card-orange">
+        <div class="card-icon icon-orange">👩‍⚕️</div>
+        <h3>Dt. Paheli Bhatt</h3>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7"><strong>Profile:</strong> 6 years experience, personalized diet plans, therapeutic nutrition. Active on social media (Instagram).<br><strong>Opportunity:</strong> Social media nutritionists amplify — if she posts about your microgreens, you get 10x organic reach.<br><strong>Pitch angle:</strong> "Free sample pack + collaboration post — tag each other, both audiences grow."</p>
+      </div>
+    </div>
+
+    <!-- RESTAURANTS -->
+    <div class="banner banner-navy" style="margin-bottom:28px">
+      <div class="banner-icon">🍽️</div>
+      <div><h3>Target 3: Restaurants & Health Cafes</h3><p>Restaurants = largest volume orders. One restaurant account = 50–100g daily = ₹3,000–5,000/month per client.</p></div>
+    </div>
+    <div class="grid-3">
+      <div class="card card-navy">
+        <div class="card-icon icon-navy">🌱</div>
+        <h3>Santé Spa Cuisine</h3>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7"><strong>Profile:</strong> Ahmedabad's premium organic/vegan restaurant. Uses organic, locally-sourced ingredients. Vegan and gluten-free menu.<br><strong>Why they need you:</strong> They're already paying premium for local organic produce. Microgreens = premium garnish + health signal on every plate.<br><strong>Pitch angle:</strong> "Locally grown, chemical-free, harvested within 24hrs. No cold chain."</p>
+      </div>
+      <div class="card card-navy">
+        <div class="card-icon icon-navy">🏛️</div>
+        <h3>The Green House — House of MG</h3>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7"><strong>Profile:</strong> Heritage hotel cafe, health-focused menu, smoothies, salads, open toast sandwiches. Upscale clientele.<br><strong>Why they need you:</strong> Salad menu + health focus = natural microgreens customer. Heritage hotels pay premium for freshness.<br><strong>Pitch angle:</strong> "Fresh microgreens for your salad menu — harvested same morning as delivery."</p>
+      </div>
+      <div class="card card-navy">
+        <div class="card-icon icon-navy">🍷</div>
+        <h3>Laurel — Fine Dining</h3>
+        <p style="font-size:13px;color:var(--slate);line-height:1.7"><strong>Profile:</strong> Modern fine dining, global menu, premium crowd. Uses garnishes for visual plating (Thai Pomelo Salad etc.).<br><strong>Why they need you:</strong> Beetroot and sunflower microgreens for plating. Chefs at this level specifically look for artisanal local suppliers.<br><strong>Pitch angle:</strong> "Garnish-grade microgreens — chefs get visual impact + nutrition story on every plate."</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: PERSONALISED PITCHES -->
+<div class="section" style="background:var(--white)">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-teal">Sales Scripts</span>
+      <h2>Personalised Pitch Templates</h2>
+      <p>Use these verbatim or adapt. One pitch per target type. Short, specific, benefit-first.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="pitch-card">
+        <div class="pitch-header">
+          <div class="pitch-icon" style="background:linear-gradient(135deg,#E8F5E8,#C6F6C6)">💪</div>
+          <div>
+            <div class="pitch-title">Gym Owner Pitch</div>
+            <div class="pitch-subtitle">In-person or WhatsApp message</div>
+          </div>
+        </div>
+        <div class="pitch-text">
+          "Hi [Name], I run AnkurGreens — we grow fresh microgreens in Ahmedabad, harvested within 24 hours of delivery. Microgreens carry 40x more nutrients than regular greens — your gym members are already working hard, this is the cleanest nutrition boost they can add. I'd love to supply your gym with a weekly stock for resale or your juice bar. Can I bring a complimentary sample tray this week so you can see and taste the difference?"
+        </div>
+        <ul class="pitch-notes">
+          <li>Bring physical sample — let them taste it</li>
+          <li>Lead with member benefit, not your product</li>
+          <li>Ask for a small trial order first (not commitment)</li>
+          <li>Follow up once if no reply in 3 days</li>
+        </ul>
+      </div>
+
+      <div class="pitch-card">
+        <div class="pitch-header">
+          <div class="pitch-icon" style="background:linear-gradient(135deg,#FFF3E8,#FFE0CC)">🥗</div>
+          <div>
+            <div class="pitch-title">Nutritionist Pitch</div>
+            <div class="pitch-subtitle">Email or Instagram DM</div>
+          </div>
+        </div>
+        <div class="pitch-text">
+          "Hi [Name], I'm Anand — I grow fresh microgreens locally in Ahmedabad (AnkurGreens). Broccoli microgreens alone contain 40x more sulforaphane than adult broccoli — a powerful addition for any client dealing with inflammation, blood sugar, or immune support. I'd love to send you a sample box (complimentary) so you can evaluate quality first-hand. If it meets your standards, I can supply directly to your clinic or your clients on a weekly subscription. Happy to also co-create a meal plan insert about microgreens nutrition for your practice."
+        </div>
+        <ul class="pitch-notes">
+          <li>Use clinical language — nutritionists respect science</li>
+          <li>Offer free sample — removes all buying friction</li>
+          <li>Co-create content offer = they market you for free</li>
+          <li>Never push for sale in first message</li>
+        </ul>
+      </div>
+
+      <div class="pitch-card">
+        <div class="pitch-header">
+          <div class="pitch-icon" style="background:linear-gradient(135deg,#E8EFF5,#C6D9E8)">🍽️</div>
+          <div>
+            <div class="pitch-title">Restaurant / Chef Pitch</div>
+            <div class="pitch-subtitle">In-person (ask for executive chef)</div>
+          </div>
+        </div>
+        <div class="pitch-text">
+          "Hi, I'm Anand from AnkurGreens. We grow restaurant-grade microgreens right here in Ahmedabad — harvested same morning as delivery. No cold chain, no transport damage, no wilting. I work with [nearby restaurant name] already. I'd love to drop off a sample selection — radish for garnish, sunflower for texture, beetroot for plating colour — so your chef can test them in real dishes. If quality works, we can agree on a weekly standing order. Completely flexible quantity."
+        </div>
+        <ul class="pitch-notes">
+          <li>Always go in person with a sample box — chefs are hands-on</li>
+          <li>Mention "same morning harvest" — freshness is their #1 concern</li>
+          <li>Name drop another client if you have one</li>
+          <li>Let chef dictate variety and quantity — you adapt</li>
+        </ul>
+      </div>
+
+      <div class="pitch-card">
+        <div class="pitch-header">
+          <div class="pitch-icon" style="background:linear-gradient(135deg,#F0FFF4,#C6F6D5)">🏃</div>
+          <div>
+            <div class="pitch-title">Health Coach / Yoga Studio Pitch</div>
+            <div class="pitch-subtitle">Instagram DM or WhatsApp</div>
+          </div>
+        </div>
+        <div class="pitch-text">
+          "Hey [Name], love what you do with your community at [Studio Name]. I grow microgreens locally in Ahmedabad — they're literally the most nutrient-dense food you can eat, perfect for your students and clients who are serious about clean eating. I'd love to collaborate — either supply microgreens directly to your students, or do a joint nutrition workshop/post together. Happy to send a free sample box first. Just reply here and I'll get it to you this week."
+        </div>
+        <ul class="pitch-notes">
+          <li>Lead with community angle — health coaches love collaborations</li>
+          <li>Workshop offer = creates content + customer awareness</li>
+          <li>Instagram DM works better than email for this audience</li>
+          <li>Be casual in tone — match their energy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8: RISK PREVENTION -->
+<div class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-red">Risk Management</span>
+      <h2>Crop Risks, Prevention & Early Diagnostics</h2>
+      <p>Ahmedabad's heat and humidity make mold the #1 threat. Know the signs, prevent before they happen.</p>
+    </div>
+
+    <div class="grid-3" style="margin-bottom:40px">
+      <div class="risk-card">
+        <div class="risk-header">
+          <span class="risk-level risk-high">HIGH RISK</span>
+          <div class="risk-title">Mold / Fungal Growth</div>
+        </div>
+        <div class="risk-body">Overwatering + poor air circulation = white/grey fuzzy mold. Ahmedabad humidity in monsoon season (Jun–Sep) makes this your biggest ongoing threat. Can ruin entire tray in 24 hours.</div>
+        <div class="risk-prevention">
+          <strong>Prevention</strong>
+          Always use bottom watering after germination. Run fan 4–6 hrs/day. Maintain 50–60% humidity (use hygrometer). Sterilize trays with diluted hydrogen peroxide (3%) before each grow. Space trays — don't overcrowd shelves.
+        </div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-header">
+          <span class="risk-level risk-high">HIGH RISK</span>
+          <div class="risk-title">Heat Stress</div>
+        </div>
+        <div class="risk-body">Ahmedabad reaches 44°C+ in April–June. Microgreens need 18–25°C. Anything above 30°C causes rapid wilting, stunted growth, and poor yield. Monsoon humidity (75–85%) compounds the problem.</div>
+        <div class="risk-prevention">
+          <strong>Prevention</strong>
+          Grow in AC room set to 22–24°C during summer. Use a cooler or exhaust fan during shoulder months. Never place near a window getting direct afternoon sun. In winter (Nov–Feb) Ahmedabad is ideal — no AC needed.
+        </div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-header">
+          <span class="risk-level risk-medium">MEDIUM RISK</span>
+          <div class="risk-title">Damping Off (Base Rot)</div>
+        </div>
+        <div class="risk-body">Fungal disease at soil/stem junction causing seedlings to collapse at base. Common with overwatering and unsterilized growing medium. Spreads fast tray-to-tray.</div>
+        <div class="risk-prevention">
+          <strong>Prevention</strong>
+          Only use coco peat (not soil) — coco peat has natural antifungal properties. Always sterilize trays between batches. Reduce watering frequency if you see stem darkening near base.
+        </div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-header">
+          <span class="risk-level risk-medium">MEDIUM RISK</span>
+          <div class="risk-title">Leggy / Etiolated Growth</div>
+        </div>
+        <div class="risk-body">Microgreens growing tall, thin, and pale with weak stems. Caused by insufficient light. Looks fine but has poor nutritional density and wilts quickly after harvest — bad for customer experience.</div>
+        <div class="risk-prevention">
+          <strong>Prevention</strong>
+          Use LED full-spectrum grow lights 12–16 hrs/day. Keep lights 15–20cm above tray surface. Natural sunlight from window is NOT enough in most Indian homes — LED lights are non-negotiable for consistent quality.
+        </div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-header">
+          <span class="risk-level risk-medium">MEDIUM RISK</span>
+          <div class="risk-title">Poor / Uneven Germination</div>
+        </div>
+        <div class="risk-body">Seeds not sprouting, or only 50% germination rate. Causes: old/low-quality seeds, incorrect seed density, growing medium too dry/wet during blackout phase.</div>
+        <div class="risk-prevention">
+          <strong>Prevention</strong>
+          Always buy seeds from reputable suppliers (IndiaMart/Urja Seeds/Organicbazar). Store seeds in airtight container in cool dry place. Test germination rate (50 seeds on wet paper towel) before bulk planting. Maintain 70% moisture during 2–3 day blackout phase.
+        </div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-header">
+          <span class="risk-level risk-low">LOW RISK</span>
+          <div class="risk-title">Pest Infestation</div>
+        </div>
+        <div class="risk-body">Fungus gnats, aphids, or spider mites. Less common in indoor setups but possible if growing medium has soil or if there are houseplants nearby. Can damage crops if unchecked.</div>
+        <div class="risk-prevention">
+          <strong>Prevention</strong>
+          Use only coco peat (not soil) — prevents fungus gnats. Keep growing area clean — no food scraps nearby. Yellow sticky traps catch flying pests early. Neem oil spray (diluted) as preventive measure monthly.
+        </div>
+      </div>
+    </div>
+
+    <!-- DIAGNOSTIC GUIDE -->
+    <h3 style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--navy);margin-bottom:20px">🔍 Early Diagnostic Signs — What to Look For Daily</h3>
+    <div class="diagnostic-item"><div class="diag-sign">🤍</div><div><div class="diag-label">White fluffy threads on seeds (days 1–3)</div><div class="diag-action">✅ NORMAL — these are root hairs, not mold. Root hairs grow from seed tips and disappear after watering. Mold smells musty; root hairs don't.</div></div></div>
+    <div class="diagnostic-item"><div class="diag-sign">🟡</div><div><div class="diag-label">Yellow leaves after sprouting</div><div class="diag-action">⚠️ ACTION NEEDED — either overwatering (reduce watering, check drainage holes) OR insufficient light (move closer to LED, add grow hours).</div></div></div>
+    <div class="diagnostic-item"><div class="diag-sign">🟤</div><div><div class="diag-label">Brown tips on leaves</div><div class="diag-action">⚠️ ACTION NEEDED — heat stress (room too hot, above 28°C) OR low humidity (below 40%). Check thermometer/hygrometer immediately.</div></div></div>
+    <div class="diagnostic-item"><div class="diag-sign">🔵</div><div><div class="diag-label">Stems collapsing at base</div><div class="diag-action">🚨 URGENT — damping off fungus. Isolate that tray immediately. Do NOT water it. Increase airflow. If spreading, discard tray, sterilize shelf with H2O2.</div></div></div>
+    <div class="diagnostic-item"><div class="diag-sign">🟢</div><div><div class="diag-label">Slow, uniform growth (all trays same speed)</div><div class="diag-action">✅ NORMAL — consistent growth is a sign of stable environment. If one tray is much slower, it may have poor seeds or less light exposure — rotate trays.</div></div></div>
+    <div class="diagnostic-item"><div class="diag-sign">⬜</div><div><div class="diag-label">Grey/black patches on growing medium</div><div class="diag-action">🚨 MOLD — not root hairs. Smells musty. Spray diluted hydrogen peroxide (1:10 with water) immediately. Reduce watering. Increase fan speed.</div></div></div>
+  </div>
+</div>
+
+<!-- SECTION 9: MARKETING -->
+<div class="section" style="background:var(--white)">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-orange">Marketing Strategy</span>
+      <h2>CMO-Level Marketing Roadmap</h2>
+      <p>Digital-first, low-cost, high-trust. No leaflets needed — your phone is your marketing agency.</p>
+    </div>
+
+    <div class="banner banner-orange" style="margin-bottom:40px">
+      <div class="banner-icon">📵</div>
+      <div>
+        <h3>Skip Leaflets Entirely</h3>
+        <p>Leaflets cost ₹3,000–5,000 and reach random people. WhatsApp + Instagram reach targeted health-conscious people at zero marginal cost. Every rupee of marketing budget should go to product samples, not print.</p>
+      </div>
+    </div>
+
+    <div class="roadmap">
+      <div class="roadmap-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Month 1 — Samples & Direct Outreach (₹0 cost)</div>
+          <div class="step-body">Give away 10 free sample packs to: 3 gym owners, 3 nutritionists, 2 restaurant chefs, 2 health coaches. Each sample pack = 100g of 2 varieties + a 1-page card with your story, WhatsApp number, and pricing. No pitch needed — the product speaks. Follow up in 3 days. Convert 3–4 of them to first paying clients. Use these as testimonials.</div>
+          <span class="step-time">Week 1–4 | Budget: ₹500 (sample packaging)</span>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Month 2 — WhatsApp Marketing (₹0 cost)</div>
+          <div class="step-body">Create a WhatsApp Business account as AnkurGreens. Build a broadcast list: every contact who received a sample. Send weekly: "This week's fresh harvest is ready — radish + sunflower. Order by Thursday for Saturday delivery." Add product photos, harvest date. Ask first 5 customers to add 3 friends to your broadcast. Referral = fastest growth for food businesses in India.</div>
+          <span class="step-time">Week 5–8 | Budget: ₹0 (WhatsApp Business is free)</span>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Month 2–3 — Instagram Content (use /social plugin)</div>
+          <div class="step-body">Create @ankurgreens on Instagram. Post 3x/week: (1) Harvest reels — 30-sec timelapse of microgreens growing, (2) Nutrition fact posts — "25g of broccoli microgreens = nutrition of 1kg adult broccoli", (3) Customer testimonials from gyms/nutritionists. Use the /social skill to generate platform-optimised captions. Target: 500 followers by Month 3. DM local health influencers for barter collab — free microgreens for a post.</div>
+          <span class="step-time">Month 2–3 | Budget: ₹0 + time</span>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Month 3 — Subscription Box Model</div>
+          <div class="step-body">Launch "AnkurGreens Weekly Box" — 4 varieties, 200g total, ₹350/week delivered. Target: health-conscious professionals in Satellite, Prahlad Nagar, Bodakdev areas. Use Google Forms for subscriptions. Collect payment via UPI/Razorpay. Subscription = predictable revenue = you can plan growing cycles better. Start with 10 subscribers, scale to 50 by Month 6.</div>
+          <span class="step-time">Month 3+ | Budget: ₹2,000 (packaging upgrade)</span>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Month 4 — Zomato / Swiggy Listing</div>
+          <div class="step-body">List on Zomato Market (grocery delivery) or Swiggy Instamart as a fresh produce seller. This unlocks Ahmedabad's health-conscious consumer base who order fresh items online. Start with 4 SKUs: Radish 100g, Sunflower 100g, Mixed Microgreens 200g, Weekly Box. Platform commission is 20–25% but brings new customers at zero acquisition cost.</div>
+          <span class="step-time">Month 4+ | Budget: ₹0 (free to list, commission on sales)</span>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <div class="step-title">Month 5–6 — Targeted Facebook + Instagram Ads</div>
+          <div class="step-body">By now you have proof (testimonials, photos, reviews). Spend ₹3,000–5,000/month on Facebook/Instagram ads targeting: Ahmedabad + Satellite + Prahlad Nagar, age 25–45, interests: gym, nutrition, fitness, healthy eating. Use a 30-second harvest-to-pack reel as the ad creative. Objective: WhatsApp leads (not website clicks). Cost per lead: ₹15–30. At ₹3,000 budget = 100–200 new contacts/month.</div>
+          <span class="step-time">Month 5+ | Budget: ₹3,000–5,000/month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 10: EXPANSION -->
+<div class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-green">Scale Up</span>
+      <h2>Expansion to 200 Sq Ft — When & How</h2>
+      <p>Rough guideline only — expand when demand consistently exceeds your current 50 sq ft output.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-green">
+        <div class="card-icon icon-green">📏</div>
+        <h3>When to Expand</h3>
+        <p style="font-size:14px;color:var(--slate);line-height:1.8">
+          Expand to 200 sq ft when: (1) You have 15+ regular B2B clients, (2) You're turning down orders due to capacity, (3) Monthly revenue exceeds ₹25,000 consistently for 2 months.<br><br>
+          200 sq ft = 4x your current output = ~50 kg/month = potential ₹50,000–75,000/month revenue.
+        </p>
+      </div>
+      <div class="card card-orange">
+        <div class="card-icon icon-orange">👤</div>
+        <h3>Labour for 200 Sq Ft</h3>
+        <p style="font-size:14px;color:var(--slate);line-height:1.8">
+          At 200 sq ft you'll need 1 part-time helper (4–5 hours/day).<br><br>
+          <strong>Labour cost:</strong> ₹8,000–12,000/month<br>
+          <strong>Task split:</strong> Helper handles seeding + watering. You handle harvest, QC, packing, delivery, and client relations.<br><br>
+          Don't hire until you're consistently overwhelmed — maintain lean operations first.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Ankur<span>Greens</span> — Business Blueprint 2026</div>
+  <p>Research compiled by ScaleYukti AI Automation | April 2026</p>
+  <p style="margin-top:8px;font-size:12px;opacity:.5">Data sources: IMARC Group, Grand View Research, IndiaMart, JustDial, AllThatGrows, MuGreens, Google Cloud, Bootstrap Farmer. Verify all trademark names at ipindiaonline.gov.in before registration.</p>
+</div>
+
+</body>
+</html>
