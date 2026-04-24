@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tools for Engineers — 5-Day Certificate Course | Indus University, Ahmedabad 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#F37021;--green:#1D8A17;--navy:#1B2A38;--slate:#4A5568;
+  --light:#F8FAFC;--white:#FFFFFF;--red:#E53E3E;--gold:#D4A017;
+  --teal:#0E7490;--purple:#6B46C1;--indigo:#3730A3;
+  --card-shadow:4px 4px 0px rgba(27,42,56,0.1);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);line-height:1.6}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0a1628 0%,#1B2A38 50%,#2d1b69 100%);color:#fff;padding:60px 40px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'🤖';position:absolute;top:20px;right:60px;font-size:120px;opacity:.06}
+.hero::after{content:'⚡';position:absolute;bottom:20px;left:40px;font-size:100px;opacity:.06}
+.hero-badge{display:inline-block;background:rgba(243,112,33,.2);border:1px solid var(--orange);color:#fb923c;padding:6px 18px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:1px;margin-bottom:16px;text-transform:uppercase}
+.hero-inst{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:5px 16px;border-radius:20px;font-size:12px;margin-bottom:20px;margin-left:8px}
+.hero h1{font-family:'Fredoka One',cursive;font-size:clamp(26px,5vw,54px);line-height:1.1;margin-bottom:14px;max-width:900px;margin-left:auto;margin-right:auto}
+.hero h1 span{color:#fb923c}
+.hero-sub{font-size:15px;opacity:.8;max-width:680px;margin:0 auto 28px;line-height:1.6}
+.hero-pills{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.hero-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:6px 16px;border-radius:20px;font-size:13px}
+
+/* STATS BAR */
+.stats-bar{background:var(--orange);padding:18px 40px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap;text-align:center}
+.stat-item{color:#fff}
+.stat-num{font-family:'Fredoka One',cursive;font-size:26px;display:block}
+.stat-label{font-size:11px;opacity:.85;text-transform:uppercase;letter-spacing:.5px}
+
+/* LAYOUT */
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.section{padding:56px 0}
+.section-header{text-align:center;margin-bottom:44px}
+.section-header h2{font-family:'Fredoka One',cursive;font-size:clamp(22px,4vw,34px);color:var(--navy);margin-bottom:10px}
+.section-header p{font-size:14px;color:var(--slate);max-width:620px;margin:0 auto}
+.section-tag{display:inline-block;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:10px}
+.tag-orange{background:#FFF3E8;color:var(--orange);border:1px solid var(--orange)}
+.tag-green{background:#E8F5E8;color:var(--green);border:1px solid var(--green)}
+.tag-navy{background:#E8EFF5;color:var(--navy);border:1px solid var(--navy)}
+.tag-purple{background:#F3F0FF;color:var(--purple);border:1px solid var(--purple)}
+.tag-teal{background:#E0F7FA;color:var(--teal);border:1px solid var(--teal)}
+.tag-gold{background:#FFF9E8;color:#B7791F;border:1px solid #B7791F}
+.tag-red{background:#FFF0F0;color:var(--red);border:1px solid var(--red)}
+
+/* GRIDS */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:24px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+
+/* CARDS */
+.card{background:var(--white);border-radius:14px;padding:24px;box-shadow:var(--card-shadow);transition:transform .2s}
+.card:hover{transform:translateY(-2px)}
+.card-left-orange{border-left:4px solid var(--orange)}
+.card-left-green{border-left:4px solid var(--green)}
+.card-left-navy{border-left:4px solid var(--navy)}
+.card-left-purple{border-left:4px solid var(--purple)}
+.card-left-teal{border-left:4px solid var(--teal)}
+.card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;flex-shrink:0}
+
+/* BANNER */
+.banner{border-radius:16px;padding:26px 36px;margin:36px 0;display:flex;align-items:center;gap:20px;color:#fff}
+.banner-orange{background:linear-gradient(135deg,var(--orange),#FF8C42)}
+.banner-green{background:linear-gradient(135deg,var(--green),#2ECC71)}
+.banner-navy{background:linear-gradient(135deg,var(--navy),#2d4a62)}
+.banner-purple{background:linear-gradient(135deg,var(--purple),#805AD5)}
+.banner-teal{background:linear-gradient(135deg,var(--teal),#0891b2)}
+.banner-icon{font-size:36px;flex-shrink:0}
+.banner h3{font-family:'Fredoka One',cursive;font-size:20px;margin-bottom:4px}
+.banner p{font-size:13px;opacity:.9;line-height:1.6}
+
+/* DAY CARD */
+.day-card{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.07);margin-bottom:32px}
+.day-header{padding:24px 32px;color:#fff;display:flex;align-items:center;gap:20px;position:relative;overflow:hidden}
+.day-header::after{content:attr(data-emoji);position:absolute;right:24px;font-size:80px;opacity:.15}
+.day-1{background:linear-gradient(135deg,#1e3a5f,#2563eb)}
+.day-2{background:linear-gradient(135deg,#14532d,#16a34a)}
+.day-3{background:linear-gradient(135deg,#7c2d12,#ea580c)}
+.day-4{background:linear-gradient(135deg,#4a1d96,#7c3aed)}
+.day-5{background:linear-gradient(135deg,#065f46,#059669)}
+.day-num{font-family:'Fredoka One',cursive;font-size:56px;line-height:1;opacity:.3;flex-shrink:0}
+.day-title{font-family:'Fredoka One',cursive;font-size:26px;margin-bottom:4px}
+.day-subtitle{font-size:14px;opacity:.85}
+.day-body{padding:24px 32px}
+.day-meta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.day-meta-item{background:var(--light);border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;color:var(--navy)}
+.day-meta-item span{color:var(--orange);margin-right:4px}
+
+/* SESSION BLOCK */
+.session{border-left:3px solid var(--light);padding-left:20px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px dashed #f0f4f8}
+.session:last-child{border-bottom:none;margin-bottom:0}
+.session-time{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--orange);margin-bottom:4px}
+.session-title{font-family:'Fredoka One',cursive;font-size:18px;color:var(--navy);margin-bottom:8px}
+.session-body{font-size:13px;color:var(--slate);line-height:1.7}
+.session-body ul{padding-left:16px;margin-top:6px}
+.session-body ul li{margin-bottom:4px}
+.hands-on-badge{display:inline-flex;align-items:center;gap:6px;background:#E8F5E8;color:var(--green);padding:3px 12px;border-radius:12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.demo-badge{display:inline-flex;align-items:center;gap:6px;background:#FFF3E8;color:var(--orange);padding:3px 12px;border-radius:12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;margin-left:6px}
+.theory-badge{display:inline-flex;align-items:center;gap:6px;background:#E8EFF5;color:var(--navy);padding:3px 12px;border-radius:12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;margin-left:6px}
+.warmup-box{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fcd34d;border-radius:10px;padding:14px;margin-bottom:16px}
+.warmup-box strong{color:#92400e;font-size:11px;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px}
+.warmup-box p{font-size:13px;color:#78350f}
+.outcome-box{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;border-radius:10px;padding:14px;margin-top:16px}
+.outcome-box strong{color:#166534;font-size:11px;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px}
+.outcome-box p{font-size:13px;color:#15803d;font-weight:500}
+
+/* TOOLS TABLE */
+.tools-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:12px;overflow:hidden;box-shadow:var(--card-shadow)}
+.tools-table th{background:var(--navy);color:#fff;padding:12px 16px;text-align:left;font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.tools-table td{padding:11px 16px;font-size:13px;border-bottom:1px solid #f0f4f8;color:var(--slate)}
+.tools-table tr:last-child td{border-bottom:none}
+.tools-table tr:hover td{background:#fafffe}
+.free-badge{background:#E8F5E8;color:var(--green);padding:2px 8px;border-radius:8px;font-size:11px;font-weight:700}
+.freemium-badge{background:#FFF9E8;color:#B7791F;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:700}
+
+/* BRANCH TABS */
+.branch-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.branch-tab{padding:8px 18px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;border:2px solid transparent;transition:all .2s}
+.branch-tab.cse{background:#EEF2FF;color:var(--indigo);border-color:var(--indigo)}
+.branch-tab.ec{background:#FFF3E8;color:var(--orange);border-color:var(--orange)}
+.branch-tab.mech{background:#F0FDF4;color:var(--green);border-color:var(--green)}
+.branch-tab.civil{background:#E0F7FA;color:var(--teal);border-color:var(--teal)}
+
+/* PROJECT CARD */
+.project-card{background:var(--white);border-radius:14px;padding:22px;box-shadow:var(--card-shadow);position:relative}
+.project-num{position:absolute;top:16px;right:16px;font-family:'Fredoka One',cursive;font-size:28px;opacity:.1;color:var(--navy)}
+.project-title{font-family:'Fredoka One',cursive;font-size:18px;color:var(--navy);margin-bottom:6px;padding-right:32px}
+.project-goal{background:var(--light);border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13px;color:var(--slate)}
+.project-goal strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--green);margin-bottom:3px}
+.project-pain{background:#FFF0F0;border-radius:8px;padding:10px 14px;margin:8px 0;font-size:13px;color:#7f1d1d}
+.project-pain strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--red);margin-bottom:3px}
+.project-tools{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.tool-tag{background:#f1f5f9;color:var(--slate);padding:2px 10px;border-radius:8px;font-size:11px;font-weight:600}
+
+/* ETHICS */
+.ethics-card{background:var(--white);border-radius:14px;padding:22px;box-shadow:var(--card-shadow);border-left:4px solid var(--red)}
+.ethics-scenario{background:#FFF0F0;border-radius:10px;padding:14px;margin-top:12px;font-size:13px;color:var(--navy);font-style:italic}
+.ethics-scenario strong{color:var(--red);font-style:normal;display:block;margin-bottom:4px;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+
+/* CERTIFICATE CRITERIA */
+.criteria-item{display:flex;gap:16px;align-items:flex-start;padding:14px;background:var(--white);border-radius:12px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.criteria-num{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Fredoka One',cursive;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.criteria-body strong{font-size:14px;color:var(--navy);display:block;margin-bottom:2px}
+.criteria-body p{font-size:13px;color:var(--slate)}
+
+/* HIGHLIGHT */
+.highlight{background:linear-gradient(135deg,#0a1628,#1B2A38);border-radius:16px;padding:28px;color:#fff;text-align:center;margin:28px 0}
+.highlight h3{font-family:'Fredoka One',cursive;font-size:24px;margin-bottom:10px}
+.highlight p{font-size:14px;opacity:.85;max-width:560px;margin:0 auto}
+.highlight span{color:#fb923c;font-weight:700}
+
+/* FOOTER */
+.footer{background:var(--navy);color:#fff;padding:36px;text-align:center}
+.footer-logo{font-family:'Fredoka One',cursive;font-size:24px;margin-bottom:6px}
+.footer-logo span{color:#fb923c}
+
+/* PRINT FRIENDLY */
+@media print{.hero::before,.hero::after{display:none}}
+@media(max-width:768px){
+  .hero{padding:40px 20px}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .banner{flex-direction:column;text-align:center;padding:20px}
+  .day-header{padding:20px}
+  .day-body{padding:20px}
+  .day-num{font-size:40px}
+  .stats-bar{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <span class="hero-badge">🎓 Certificate Course Design 2026</span>
+    <span class="hero-inst">Indus University, Ahmedabad</span>
+  </div>
+  <h1><span>AI Tools</span> for Engineers<br>5-Day Certificate Program</h1>
+  <p class="hero-sub">A practical, hands-on curriculum designed for engineering students across all branches — from first prompt to working AI project. 80% practical. 20% theory. Zero boring lectures.</p>
+  <div class="hero-pills">
+    <span class="hero-pill">📅 5 Days</span>
+    <span class="hero-pill">🎓 8 Branches</span>
+    <span class="hero-pill">🛠️ 14 AI Tools</span>
+    <span class="hero-pill">💡 40 Project Ideas</span>
+    <span class="hero-pill">📍 Ahmedabad, Gujarat</span>
+    <span class="hero-pill">⚡ By ScaleYukti AI</span>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-num">80%</span><span class="stat-label">Practical hands-on</span></div>
+  <div class="stat-item"><span class="stat-num">8</span><span class="stat-label">Engineering branches</span></div>
+  <div class="stat-item"><span class="stat-num">14+</span><span class="stat-label">Free AI tools used</span></div>
+  <div class="stat-item"><span class="stat-num">5</span><span class="stat-label">Daily warm-up challenges</span></div>
+  <div class="stat-item"><span class="stat-num">40</span><span class="stat-label">Mini project ideas</span></div>
+  <div class="stat-item"><span class="stat-num">3 hrs</span><span class="stat-label">Day 5 hackathon</span></div>
+</div>
+
+<!-- COURSE PRINCIPLES -->
+<div class="section" style="background:var(--white)">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-navy">Design Philosophy</span>
+      <h2>How This Course Is Built</h2>
+      <p>Every design decision is driven by one goal: students should leave Day 5 having BUILT something with AI — not just learned about it.</p>
+    </div>
+    <div class="grid-4">
+      <div class="card card-left-orange">
+        <div class="card-icon" style="background:#FFF3E8;font-size:22px">⚡</div>
+        <strong style="font-family:'Fredoka One',cursive;font-size:17px;color:var(--navy);display:block;margin-bottom:8px">Try It First, Explain Later</strong>
+        <p style="font-size:13px;color:var(--slate)">Every day opens with a 5-minute "Try It Now" challenge. Students use AI before they understand it — curiosity drives learning better than theory.</p>
+      </div>
+      <div class="card card-left-green">
+        <div class="card-icon" style="background:#E8F5E8;font-size:22px">🌿</div>
+        <strong style="font-family:'Fredoka One',cursive;font-size:17px;color:var(--navy);display:block;margin-bottom:8px">Branch-Specific Examples</strong>
+        <p style="font-size:13px;color:var(--slate)">Civil engineers see civil examples. ECE students see circuit code. Mechanical students see material selection. No generic examples that feel irrelevant.</p>
+      </div>
+      <div class="card card-left-navy">
+        <div class="card-icon" style="background:#E8EFF5;font-size:22px">📈</div>
+        <strong style="font-family:'Fredoka One',cursive;font-size:17px;color:var(--navy);display:block;margin-bottom:8px">Progressive Complexity</strong>
+        <p style="font-size:13px;color:var(--slate)">Day 1: Everyone types a prompt. Day 5: Everyone builds a working prototype. Complexity builds gradually — no student left behind, no student bored.</p>
+      </div>
+      <div class="card card-left-purple">
+        <div class="card-icon" style="background:#F3F0FF;font-size:22px">🔨</div>
+        <strong style="font-family:'Fredoka One',cursive;font-size:17px;color:var(--navy);display:block;margin-bottom:8px">Build, Not Watch</strong>
+        <p style="font-size:13px;color:var(--slate)">Instructor demos are max 15 minutes. Then students do it themselves. Every session ends with a shareable output — image, report, code, or automation.</p>
+      </div>
+    </div>
+    <div class="banner banner-orange">
+      <div class="banner-icon">⚠️</div>
+      <div>
+        <h3>Pre-Course Setup (Send This 2 Days Before Day 1)</h3>
+        <p>Ask students to create free accounts BEFORE arriving: <strong>ChatGPT</strong> (chat.openai.com) | <strong>Google Gemini</strong> (gemini.google.com) | <strong>Claude</strong> (claude.ai) | <strong>Canva</strong> (canva.com) | <strong>Gamma</strong> (gamma.app) | <strong>Make.com</strong> (make.com) | <strong>Kling AI</strong> (klingai.com). This saves 30–45 minutes of setup time on Day 1.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5-DAY CURRICULUM -->
+<div class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-orange">5-Day Curriculum</span>
+      <h2>Session-by-Session Breakdown</h2>
+      <p>Each day has a clear theme, warm-up challenge, structured sessions, and a tangible end-of-day outcome students take home.</p>
+    </div>
+
+    <!-- DAY 1 -->
+    <div class="day-card">
+      <div class="day-header day-1" data-emoji="🤖">
+        <div class="day-num">1</div>
+        <div>
+          <div class="day-title">AI Foundations + Prompt Engineering Mastery</div>
+          <div class="day-subtitle">Theme: "What AI can do TODAY — blow their minds first, explain after"</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <div class="day-meta">
+          <div class="day-meta-item"><span>🎯</span>Theory: 25% | Practical: 75%</div>
+          <div class="day-meta-item"><span>⏱️</span>Total: 6–7 hours</div>
+          <div class="day-meta-item"><span>🛠️</span>ChatGPT · Gemini · Claude · Copilot</div>
+        </div>
+
+        <div class="warmup-box">
+          <strong>⚡ Day 1 Warm-Up (First 5 minutes — before any introduction)</strong>
+          <p>Everyone opens ChatGPT or Gemini. Task: "Ask AI to explain [your engineering branch] to a 10-year-old in 3 sentences." Read out 3 responses. This immediately creates curiosity and breaks the ice — even the most skeptical student is now engaged.</p>
+        </div>
+
+        <div class="session">
+          <div class="session-time">9:15 – 10:00 AM</div>
+          <div class="session-title">Session 1: What Is AI, ML, and Generative AI?</div>
+          <span class="theory-badge">📚 Theory</span><span class="demo-badge">🎬 Demo</span>
+          <div class="session-body">
+            <ul>
+              <li><strong>AI vs Traditional Programming</strong> — show one visual: "Rules-based: IF brake → STOP" vs "ML: learns from 1 million driving examples"</li>
+              <li><strong>ML vs GenAI</strong> — ML predicts patterns, GenAI creates new content. 2-minute explanation max, then demo.</li>
+              <li><strong>Live Demo:</strong> Ask ChatGPT to solve an actual question from their last semester exam — show speed and capability</li>
+              <li><strong>Live Demo:</strong> Show a hallucination — AI confidently gives wrong answer. Explain why critical thinking still matters.</li>
+              <li><strong>Discussion:</strong> "In your branch, which task takes you the most time?" — collect answers, show AI can help with most of them</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">10:00 – 11:00 AM</div>
+          <div class="session-title">Session 2: AI Impact by Branch — Specific to Their World</div>
+          <span class="demo-badge">🎬 Demo</span>
+          <div class="session-body">
+            <p style="margin-bottom:10px">10 minutes per branch cluster. Show real use cases, not theory.</p>
+            <ul>
+              <li><strong>CSE / IT / CE / ICT:</strong> AI writes code → tests it → deploys it. GitHub Copilot live demo: generate a Python function in 10 seconds</li>
+              <li><strong>EC / Electrical:</strong> AI generates Arduino sensor code, explains circuit faults, writes MATLAB signal processing scripts</li>
+              <li><strong>Mechanical:</strong> AI does material selection analysis, generates CAD descriptions, creates preventive maintenance schedules</li>
+              <li><strong>Civil:</strong> AI calculates structural loads, generates site risk reports, estimates material quantities from building specs</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">11:00 AM – 12:30 PM</div>
+          <div class="session-title">Session 3: Prompt Engineering Workshop — The Core Skill</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <p style="margin-bottom:10px"><strong>The 5 Elements of a Great Prompt:</strong></p>
+            <ul>
+              <li><strong>Role</strong> — "Act as a senior mechanical engineer..."</li>
+              <li><strong>Context</strong> — "I am a 3rd year student working on..."</li>
+              <li><strong>Task</strong> — "Write / Generate / Explain / Analyse..."</li>
+              <li><strong>Format</strong> — "...in bullet points / table / 200 words..."</li>
+              <li><strong>Constraint</strong> — "...without using jargon / use only free tools..."</li>
+            </ul>
+            <p style="margin-top:10px"><strong>Hands-On Challenge (40 min):</strong> Each student gets a branch-specific prompt task. They run 3 progressively better versions of the same prompt and see how output quality changes. Competition: "Who gets the most useful output in 3 prompts?"</p>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">1:30 – 3:30 PM</div>
+          <div class="session-title">Session 4: AI Tools Tour + Hands-On Challenge</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <ul>
+              <li><strong>Quick Comparison (10 min):</strong> ChatGPT vs Gemini vs Claude vs Copilot — same question, different outputs. Show strengths of each.</li>
+              <li><strong>Branch Challenge (80 min):</strong> Each student picks ONE tool and solves ONE real branch-specific problem. Must be something they actually encounter in their studies.</li>
+              <li><strong>Share Out (20 min):</strong> 5 students present their outputs on the projector — class votes on best prompt + best output</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="outcome-box">
+          <strong>✅ Day 1 Student Outcome</strong>
+          <p>Every student has successfully prompted an AI to solve a branch-relevant problem. They understand the difference between a weak prompt and a strong one. They have accounts on 3+ AI tools ready for tomorrow.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-card">
+      <div class="day-header day-2" data-emoji="📄">
+        <div class="day-num">2</div>
+        <div>
+          <div class="day-title">AI for Content Creation + Documentation</div>
+          <div class="day-subtitle">Theme: "You'll never write a report, resume, or presentation the same way again"</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <div class="day-meta">
+          <div class="day-meta-item"><span>🎯</span>Theory: 15% | Practical: 85%</div>
+          <div class="day-meta-item"><span>⏱️</span>Total: 6–7 hours</div>
+          <div class="day-meta-item"><span>🛠️</span>Gamma · NotebookLM · ChatGPT · Canva AI · Claude</div>
+        </div>
+
+        <div class="warmup-box">
+          <strong>⚡ Day 2 Warm-Up (5 minutes)</strong>
+          <p>Everyone opens Gamma.app. Task: "Generate a 5-slide presentation about your final year project idea." 5 minutes. Share 3 results on screen. The shock of "AI made this in 3 minutes" sets the tone for the day.</p>
+        </div>
+
+        <div class="session">
+          <div class="session-time">9:15 – 10:30 AM</div>
+          <div class="session-title">Session 1: AI for Technical Report Writing</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <ul>
+              <li><strong>Demo (10 min):</strong> Paste raw experiment observation data into Claude → AI generates a complete formatted lab report in 60 seconds. Show the structure: Abstract, Objective, Procedure, Results, Conclusion.</li>
+              <li><strong>Hands-On (70 min):</strong> Students use their own experiment data OR a provided dataset to generate a full technical report using ChatGPT/Claude. Apply prompt engineering skills from Day 1.</li>
+              <li><strong>Tools shown:</strong> ChatGPT, Claude, NotebookLM (for reference-based writing)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">10:30 – 11:30 AM</div>
+          <div class="session-title">Session 2: AI for Presentations — Gamma.app Workshop</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <ul>
+              <li><strong>Demo (10 min):</strong> Type one paragraph → Gamma generates a 10-slide professional deck with visuals in under 2 minutes</li>
+              <li><strong>Hands-On (50 min):</strong> Each student creates a 6–8 slide presentation on a branch-specific topic of their choice. Format it, customize design, add images using Canva AI.</li>
+              <li><strong>Challenge:</strong> Export and share — best design wins appreciation. Students now have a real presentation in their portfolio.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">11:30 AM – 12:30 PM</div>
+          <div class="session-title">Session 3: AI for Resume + Career Documents</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <ul>
+              <li><strong>Demo (10 min):</strong> Paste a job description + basic student profile → AI generates a tailored, ATS-optimised resume and cover letter</li>
+              <li><strong>Hands-On (50 min):</strong> Every student improves or builds their own resume using ChatGPT or Kickresume. Must include: skills, projects, and a tailored summary paragraph.</li>
+              <li><strong>Bonus:</strong> Use AI to generate a "cold email to a company for internship" — personalised, professional, non-generic</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">1:30 – 3:00 PM</div>
+          <div class="session-title">Session 4: AI for Study Notes + Summarization</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <ul>
+              <li><strong>Tools:</strong> Google NotebookLM, ChatPDF, Claude</li>
+              <li><strong>Demo (10 min):</strong> Upload a PDF textbook chapter → NotebookLM generates notes, FAQ, and quiz in seconds</li>
+              <li><strong>Hands-On (50 min):</strong> Students upload any PDF (textbook, paper, notes) → generate: 5 key takeaways + 5 MCQs + summary paragraph</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">3:00 – 4:00 PM</div>
+          <div class="session-title">Group Challenge: "30-Minute Document Sprint"</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <p>In pairs: Create a COMPLETE mini project report (Introduction, Methodology, Results, Conclusion) on any branch topic using ONLY AI tools. 30 minutes. Then present outputs — who made the most professional report? Instructor gives live feedback on prompt quality.</p>
+          </div>
+        </div>
+
+        <div class="outcome-box">
+          <strong>✅ Day 2 Student Outcome</strong>
+          <p>Every student leaves with: (1) An AI-generated technical report, (2) A professional presentation made in under 20 minutes, (3) An improved resume ready to send to companies. These are real items they can immediately use.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="day-card">
+      <div class="day-header day-3" data-emoji="💻">
+        <div class="day-num">3</div>
+        <div>
+          <div class="day-title">AI for Coding + Engineering Applications</div>
+          <div class="day-subtitle">Theme: "Write less code, solve bigger problems — across ALL branches"</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <div class="day-meta">
+          <div class="day-meta-item"><span>🎯</span>Theory: 10% | Practical: 90%</div>
+          <div class="day-meta-item"><span>⏱️</span>Total: 6–7 hours</div>
+          <div class="day-meta-item"><span>🛠️</span>GitHub Copilot · Google Colab · ChatGPT · Claude</div>
+        </div>
+
+        <div class="warmup-box">
+          <strong>⚡ Day 3 Warm-Up (5 minutes)</strong>
+          <p>Everyone types in ChatGPT: "Write a 10-line Python program that [solves a simple problem in my branch]." Even non-coders type something. Run it in Google Colab. Show it working in 90 seconds. This removes the fear of coding — AI handles syntax, students focus on logic.</p>
+        </div>
+
+        <div class="session">
+          <div class="session-time">9:15 – 10:00 AM</div>
+          <div class="session-title">Session 1: AI-Assisted Coding Fundamentals</div>
+          <span class="demo-badge">🎬 Demo</span><span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <ul>
+              <li><strong>The New Coding Workflow:</strong> You describe what you want → AI writes the code → You test it → AI debugs it → Done.</li>
+              <li><strong>Demo: GitHub Copilot</strong> — autocomplete code as you type. Show how it completes functions automatically.</li>
+              <li><strong>Demo: ChatGPT vs Claude for code</strong> — same Python task, compare output quality</li>
+              <li><strong>Google Colab intro</strong> — free Python runtime in browser, zero setup required. Every student can use it on their laptop.</li>
+              <li><strong>Challenge (20 min):</strong> Run their warm-up code, see the output, modify it with AI assistance</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">10:00 – 12:00 PM</div>
+          <div class="session-title">Session 2: Branch-Specific Coding Tracks (PARALLEL SESSIONS)</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <p style="margin-bottom:12px">Students split into branch groups. Instructor circulates between groups. Each group has a different track matching their engineering background.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+              <div style="background:#EEF2FF;border-radius:10px;padding:14px">
+                <strong style="color:var(--indigo);font-size:12px;text-transform:uppercase;display:block;margin-bottom:6px">💻 CSE / IT / CE / ICT</strong>
+                <p style="font-size:13px;color:var(--slate)">Build a Python web scraper → AI generates the code → students run + modify it. Then: build a simple chatbot using ChatGPT API (free tier). Advanced: a basic automation script using Python.</p>
+              </div>
+              <div style="background:#FFF3E8;border-radius:10px;padding:14px">
+                <strong style="color:var(--orange);font-size:12px;text-transform:uppercase;display:block;margin-bottom:6px">⚡ EC / Electrical</strong>
+                <p style="font-size:13px;color:var(--slate)">Generate Arduino/ESP32 code for a temperature sensor + LED alert using AI. Then: Python code in Colab to read, plot, and analyse simulated sensor data (voltage, current). No hardware needed — simulate data.</p>
+              </div>
+              <div style="background:#F0FDF4;border-radius:10px;padding:14px">
+                <strong style="color:var(--green);font-size:12px;text-transform:uppercase;display:block;margin-bottom:6px">⚙️ Mechanical Engineering</strong>
+                <p style="font-size:13px;color:var(--slate)">AI generates Python code for beam bending moment calculation + plots graph in Colab. Then: MATLAB code generation for a simple dynamic system simulation. Students who don't know MATLAB can still run AI-generated code.</p>
+              </div>
+              <div style="background:#E0F7FA;border-radius:10px;padding:14px">
+                <strong style="color:var(--teal);font-size:12px;text-transform:uppercase;display:block;margin-bottom:6px">🏗️ Civil Engineering</strong>
+                <p style="font-size:13px;color:var(--slate)">Python code for structural load calculation + safe design check. AI generates it in Colab. Then: Python data analysis of survey data (input: Excel-style data → output: charts + summary). No prior Python knowledge required.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">12:00 – 12:30 PM</div>
+          <div class="session-title">Session 3: AI Debugging Workshop</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <p>Instructor provides 5 pre-written buggy code files (branch-specific). Students use AI to: (1) Identify all bugs, (2) Fix them, (3) Explain why each bug exists. Speed challenge: who fixes all 5 fastest? Key insight: AI is a better debugger than most humans.</p>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">1:30 – 3:30 PM</div>
+          <div class="session-title">Session 4: Branch-Specific Practical Use Case Build</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <p>Each branch group builds ONE small working tool relevant to their engineering problems. Examples given to each group — they can also propose their own. Must be running and producing output by end of session. Present to class in last 30 minutes.</p>
+          </div>
+        </div>
+
+        <div class="outcome-box">
+          <strong>✅ Day 3 Student Outcome</strong>
+          <p>Every student — even non-coders from Civil and Mechanical — has written and run code using AI assistance. They understand that coding knowledge + AI = superpowers. They have a working branch-specific mini script to show.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 4 -->
+    <div class="day-card">
+      <div class="day-header day-4" data-emoji="🎨">
+        <div class="day-num">4</div>
+        <div>
+          <div class="day-title">Generative AI + Workflow Automation</div>
+          <div class="day-subtitle">Theme: "Build a mini AI pipeline that works while you sleep"</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <div class="day-meta">
+          <div class="day-meta-item"><span>🎯</span>Theory: 15% | Practical: 85%</div>
+          <div class="day-meta-item"><span>⏱️</span>Total: 6–7 hours</div>
+          <div class="day-meta-item"><span>🛠️</span>Google ImageFX · Kling AI · Make.com · n8n</div>
+        </div>
+
+        <div class="warmup-box">
+          <strong>⚡ Day 4 Warm-Up (5 minutes)</strong>
+          <p>Everyone opens Google ImageFX (labs.google.com/imagefx). Task: "Generate an image of the future of [your branch] — smart city, AI factory, next-gen circuit." Show 5 results. Spontaneous "wow" reactions set the tone. Then ask: "What if AI could generate this AND send it as a report automatically?"</p>
+        </div>
+
+        <div class="session">
+          <div class="session-time">9:15 – 10:15 AM</div>
+          <div class="session-title">Session 1: AI Image Generation Workshop</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <ul>
+              <li><strong>Tools:</strong> Google ImageFX (primary — free, no signup beyond Google), Canva AI (backup), Bing Image Creator (DALL-E 3, free)</li>
+              <li><strong>Prompt Techniques for Images:</strong> Style + Subject + Lighting + Mood + Camera angle</li>
+              <li><strong>Engineering Use Cases:</strong> Concept visualization, presentation images, product mockups, site layouts (Civil)</li>
+              <li><strong>Hands-On (40 min):</strong> Generate 5 images for a hypothetical engineering product or project. Must tell a visual story across 5 images.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">10:15 – 11:15 AM</div>
+          <div class="session-title">Session 2: AI Video Generation</div>
+          <span class="demo-badge">🎬 Demo</span><span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <ul>
+              <li><strong>Tools:</strong> Kling AI (klingai.com — best free quality), Google VideoFX (labs.google.com/videofx)</li>
+              <li><strong>Demo (10 min):</strong> Type a text description → AI generates a 5-10 second video clip. Show: "Smart factory with robotic arms assembling circuit boards"</li>
+              <li><strong>Use Cases:</strong> Project demos, concept explainers, college fest promos, portfolio showcases</li>
+              <li><strong>Hands-On (40 min):</strong> Each student/pair creates a 10-second AI video concept related to their branch's future technology</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">11:15 AM – 1:00 PM</div>
+          <div class="session-title">Session 3: Workflow Automation with Make.com</div>
+          <span class="demo-badge">🎬 Demo (n8n)</span><span class="hands-on-badge">🛠️ Hands-On (Make.com)</span>
+          <div class="session-body">
+            <ul>
+              <li><strong>Concept (10 min):</strong> Show the "aha moment" — a human sends one WhatsApp message → AI processes it → automatically sends an email → logs it in a spreadsheet. NO CODE. All automated.</li>
+              <li><strong>n8n Demo (15 min):</strong> Instructor shows a complex automation pipeline visually (n8n is most visually impressive for understanding the concept)</li>
+              <li><strong>Make.com Hands-On (60 min):</strong> Students build their first automation: Google Form submission → AI generates a personalised response → Gmail sends it automatically. This is the "I built my first automation" moment.</li>
+              <li><strong>Free tier:</strong> Make.com gives 1,000 operations/month free — plenty for this workshop</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">2:00 – 3:30 PM</div>
+          <div class="session-title">Session 4: Combined AI Pipeline Challenge</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <p>In pairs: Build a pipeline that connects at least TWO AI tools. Example: User submits a topic via form → AI generates a summary → summary gets saved to Google Sheet → automated email sent. Or: Image generation → auto-posted to a Google Drive folder. Students have full freedom to be creative.</p>
+          </div>
+        </div>
+
+        <div style="background:linear-gradient(135deg,#1e3a5f,#2563eb);border-radius:14px;padding:24px;color:#fff;margin-top:20px">
+          <strong style="display:block;font-size:13px;text-transform:uppercase;letter-spacing:.5px;opacity:.7;margin-bottom:8px">🎯 END OF DAY 4 — CRITICAL MOMENT</strong>
+          <div style="font-family:'Fredoka One',cursive;font-size:20px;margin-bottom:10px">Mini Project Ideas Released to All Students</div>
+          <p style="font-size:13px;opacity:.9;line-height:1.6">Share the full list of 40 project ideas (10 per branch group) at the END of Day 4 — not morning of Day 5. This gives students the evening to think, form groups mentally, and arrive on Day 5 ready to build — not plan. Teams of 3–4 students. Groups may also propose their own idea (requires instructor approval on Day 5 morning).</p>
+        </div>
+
+        <div class="outcome-box">
+          <strong>✅ Day 4 Student Outcome</strong>
+          <p>Every student has generated AI images, a short AI video, and built their first working automation pipeline. They arrive on Day 5 already thinking about their project idea.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 5 -->
+    <div class="day-card">
+      <div class="day-header day-5" data-emoji="🚀">
+        <div class="day-num">5</div>
+        <div>
+          <div class="day-title">Mini Project Hackathon + AI Ethics + Certification</div>
+          <div class="day-subtitle">Theme: "You ARE an AI engineer now — prove it with something that works"</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <div class="day-meta">
+          <div class="day-meta-item"><span>🎯</span>Theory: 10% | Practical: 90%</div>
+          <div class="day-meta-item"><span>⏱️</span>Total: 7 hours (incl. ceremony)</div>
+          <div class="day-meta-item"><span>🛠️</span>Any 2+ tools from Days 1–4</div>
+        </div>
+
+        <div class="warmup-box">
+          <strong>⚡ Day 5 Warm-Up (5 minutes)</strong>
+          <p>Quick round: Each student names ONE AI tool they discovered this week that surprised them. Then: Groups officially confirmed, project ideas locked. Hackathon clock starts.</p>
+        </div>
+
+        <div class="session">
+          <div class="session-time">9:15 AM – 12:15 PM</div>
+          <div class="session-title">Mini Project Hackathon — 3 Hours STRICT</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <p style="margin-bottom:10px"><strong>Rules:</strong></p>
+            <ul>
+              <li>Teams: 3–4 students (mixed branches encouraged)</li>
+              <li>Must use minimum 2 AI tools from the course</li>
+              <li>Deliverable: Working live demo (not slides, not theory)</li>
+              <li>Demo must be max 3 minutes — show input, show AI doing work, show output</li>
+              <li>Instructor circulates every 30 minutes to help stuck teams</li>
+            </ul>
+            <p style="margin-top:10px"><strong>Judging Criteria:</strong> Does it work? → Is AI doing the actual work? → Does it solve a real problem? → Is the demo clear?</p>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">12:15 – 1:15 PM</div>
+          <div class="session-title">Lunch + Final Demo Prep</div>
+          <div class="session-body">
+            <p>Teams polish their demo during lunch. No new features — just make sure it works reliably.</p>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">1:15 – 2:30 PM</div>
+          <div class="session-title">Live Demo Showcase — No Slides Allowed</div>
+          <span class="hands-on-badge">🛠️ Hands-On</span>
+          <div class="session-body">
+            <ul>
+              <li>Each team: <strong>3-minute live demo</strong> on screen — input → process → output, live in front of everyone</li>
+              <li>1 minute for Q&A from instructor / audience</li>
+              <li>NO PowerPoint, NO "we planned to..." — only what actually works is shown</li>
+              <li>Top 3 projects get special recognition mention on certificate</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">2:30 – 3:15 PM</div>
+          <div class="session-title">AI Ethics + Governance — Structured Discussion</div>
+          <span class="theory-badge">📚 Discussion</span>
+          <div class="session-body">
+            <p style="margin-bottom:10px">NOT a lecture. Run as an interactive discussion with real scenarios. Each scenario: "What do you think? Ethical or not? Why?"</p>
+            <ul>
+              <li><strong>Academic Integrity:</strong> "Should AI write your final year project report? Where's the line?" (Indian university context)</li>
+              <li><strong>Data Privacy:</strong> "A company trains AI on employee emails without consent — acceptable?" (reference: Indian IT Act)</li>
+              <li><strong>Deepfakes in India:</strong> Show 30-second real example → "Who is responsible for what AI creates?"</li>
+              <li><strong>Bias in AI:</strong> "AI resume screener rejects female candidates more often. Who is responsible — developer, company, or AI?" </li>
+              <li><strong>Job Displacement:</strong> "Will AI take engineering jobs? What's the new role of an engineer?"</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="session">
+          <div class="session-time">3:15 – 4:30 PM</div>
+          <div class="session-title">Certificate Distribution + Closing</div>
+          <div class="session-body">
+            <ul>
+              <li>Course feedback form (use Google Forms + AI to auto-analyse results)</li>
+              <li>Recognition of top 3 projects</li>
+              <li>Certificate distribution — "AI Tools for Engineers" certificate signed by instructor + institution</li>
+              <li>Group photo + LinkedIn tips: how to add certificate + skills to profile</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="outcome-box">
+          <strong>✅ Day 5 Student Outcome</strong>
+          <p>Every student has built a working AI prototype with their team. They have a certificate, a project to put on their resume, and know exactly how to add AI skills to their LinkedIn profile. They leave as AI practitioners — not just AI-aware students.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLS MASTER LIST -->
+<div class="section" style="background:var(--white)">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-teal">Tools Arsenal</span>
+      <h2>Complete Tools List — All 5 Days</h2>
+      <p>All tools are free or have a free tier sufficient for workshop use. Verify access before Day 1.</p>
+    </div>
+    <table class="tools-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Used On</th>
+          <th>Purpose</th>
+          <th>Cost</th>
+          <th>Access</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>ChatGPT (GPT-4o)</strong></td><td>Days 1, 2, 3</td><td>General AI, coding, writing, prompts</td><td><span class="free-badge">FREE</span></td><td>chat.openai.com</td></tr>
+        <tr><td><strong>Google Gemini</strong></td><td>Days 1, 2</td><td>Research, writing, multimodal tasks</td><td><span class="free-badge">FREE</span></td><td>gemini.google.com</td></tr>
+        <tr><td><strong>Claude (Anthropic)</strong></td><td>Days 1, 2, 3</td><td>Long documents, coding, analysis</td><td><span class="free-badge">FREE</span></td><td>claude.ai</td></tr>
+        <tr><td><strong>Microsoft Copilot</strong></td><td>Day 1</td><td>Browser-integrated AI, DALL-E images</td><td><span class="free-badge">FREE</span></td><td>copilot.microsoft.com</td></tr>
+        <tr><td><strong>Gamma.app</strong></td><td>Day 2</td><td>AI-powered presentation generation</td><td><span class="freemium-badge">FREEMIUM</span></td><td>gamma.app</td></tr>
+        <tr><td><strong>Google NotebookLM</strong></td><td>Day 2</td><td>PDF/document summarization + study notes</td><td><span class="free-badge">FREE</span></td><td>notebooklm.google.com</td></tr>
+        <tr><td><strong>Canva AI</strong></td><td>Days 2, 4</td><td>Presentations, image generation, design</td><td><span class="freemium-badge">FREEMIUM</span></td><td>canva.com</td></tr>
+        <tr><td><strong>GitHub Copilot</strong></td><td>Day 3</td><td>AI code autocomplete (free for students)</td><td><span class="free-badge">FREE (Student)</span></td><td>github.com/copilot</td></tr>
+        <tr><td><strong>Google Colab</strong></td><td>Day 3</td><td>Python runtime — zero setup, browser-based</td><td><span class="free-badge">FREE</span></td><td>colab.research.google.com</td></tr>
+        <tr><td><strong>Google ImageFX</strong></td><td>Day 4</td><td>Free AI image generation by Google</td><td><span class="free-badge">FREE</span></td><td>labs.google.com/imagefx</td></tr>
+        <tr><td><strong>Kling AI</strong></td><td>Day 4</td><td>Best free AI video generation in 2026</td><td><span class="freemium-badge">FREEMIUM</span></td><td>klingai.com</td></tr>
+        <tr><td><strong>Google VideoFX</strong></td><td>Day 4</td><td>Google's own video generation (Veo 2)</td><td><span class="free-badge">FREE</span></td><td>labs.google.com/videofx</td></tr>
+        <tr><td><strong>Make.com</strong></td><td>Day 4, 5</td><td>Hands-on workflow automation (1,000 ops/month free)</td><td><span class="free-badge">FREE TIER</span></td><td>make.com</td></tr>
+        <tr><td><strong>n8n</strong></td><td>Day 4 (demo only)</td><td>Visual automation workflow — instructor demo</td><td><span class="free-badge">FREE (self-hosted)</span></td><td>n8n.io</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- MINI PROJECT IDEAS -->
+<div class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-purple">Day 5 Project Bank</span>
+      <h2>40 Mini Project Ideas — By Branch</h2>
+      <p>Each project is designed to be completed in 3 hours using tools taught in Days 1–4. Share this list at END of Day 4.</p>
+    </div>
+
+    <div class="banner banner-navy" style="margin-bottom:32px">
+      <div class="banner-icon">⏱️</div>
+      <div>
+        <h3>Project Selection Rules</h3>
+        <p>Teams of 3–4. Pick any project from their branch list OR propose their own (instructor approves). Must use minimum 2 AI tools from the course. Deliverable: working live demo in 3 hours including testing. If a team finishes early, they improve UX or add one more feature.</p>
+      </div>
+    </div>
+
+    <!-- CSE/IT -->
+    <div style="margin-bottom:40px">
+      <div class="branch-tab cse" style="margin-bottom:20px;display:inline-flex;align-items:center;gap:8px;font-size:15px;padding:10px 22px">💻 CSE / IT / CE / ICT — 10 Project Ideas</div>
+      <div class="grid-2">
+        <div class="project-card card-left-purple">
+          <div class="project-num">1</div>
+          <div class="project-title">AI Campus FAQ Chatbot</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Build a chatbot that answers 20+ common student queries about the department — exams, attendance, labs, timetables.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Students collect 20 real FAQs → ChatGPT trained on them → embed in simple HTML page or WhatsApp bot</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Students ask the same questions repeatedly to faculty and seniors. A bot available 24/7 saves hours.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Botpress / Tidio</span><span class="tool-tag">HTML</span></div>
+        </div>
+        <div class="project-card card-left-purple">
+          <div class="project-num">2</div>
+          <div class="project-title">AI Resume Screener for Placement Cell</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Upload a job description + multiple student resumes → AI scores each resume and ranks candidates with reasons.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Simple Python script + ChatGPT API: input = JD + resume text, output = match score + gaps identified</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>College placement cells manually read hundreds of resumes. AI shortlisting saves 80% of the time.</div>
+          <div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">ChatGPT API</span><span class="tool-tag">Google Colab</span></div>
+        </div>
+        <div class="project-card card-left-purple">
+          <div class="project-num">3</div>
+          <div class="project-title">AI Bug Detector Web Tool</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Paste code → AI identifies all bugs, explains each one, and provides corrected code. Simple web interface.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>HTML form + Claude/ChatGPT API call: user pastes code, AI returns annotated bug report + fixed code</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Students spend hours debugging. An AI reviewer gives instant, educational feedback.</div>
+          <div class="project-tools"><span class="tool-tag">Claude</span><span class="tool-tag">HTML/JS</span><span class="tool-tag">ChatGPT API</span></div>
+        </div>
+        <div class="project-card card-left-purple">
+          <div class="project-num">4</div>
+          <div class="project-title">Smart Study Planner</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input: exam dates + subjects + hours available per day. Output: AI-generated 2-week study timetable with daily targets and revision reminders.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Google Form → Make.com automation → ChatGPT generates personalised plan → emailed to student</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Students study without a plan, then panic in the last week. Structured AI scheduling improves outcomes.</div>
+          <div class="project-tools"><span class="tool-tag">Make.com</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Google Forms</span></div>
+        </div>
+        <div class="project-card card-left-purple">
+          <div class="project-num">5</div>
+          <div class="project-title">AI Interview Prep Coach</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input role + company → AI asks role-specific interview questions → evaluates student answers → gives improvement tips.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>ChatGPT prompt chain: role-play as interviewer, ask 5 questions, evaluate each answer on clarity + correctness</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>No practice space for campus interview prep. AI provides unlimited low-pressure practice.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Claude</span><span class="tool-tag">Gradio</span></div>
+        </div>
+        <div class="project-card card-left-purple">
+          <div class="project-num">6</div>
+          <div class="project-title">Automated Internship Email Sender</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Student fills form with company name + role → AI generates personalised cold email → automatically sent via Gmail.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Make.com workflow: Google Form → ChatGPT API generates email → Gmail sends to target company automatically</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Students send generic copy-paste emails. Personalised AI emails get 3x more responses.</div>
+          <div class="project-tools"><span class="tool-tag">Make.com</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Gmail</span></div>
+        </div>
+        <div class="project-card card-left-purple">
+          <div class="project-num">7</div>
+          <div class="project-title">AI Lecture Notes Generator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Upload a lecture PDF or paste text → AI generates structured notes + 5 MCQs + summary in under 30 seconds.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Python + NotebookLM + Claude: upload PDF, generate notes in 3 formats (bullets, summary, flashcards)</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Students create notes manually after every lecture — AI reduces this to zero effort.</div>
+          <div class="project-tools"><span class="tool-tag">NotebookLM</span><span class="tool-tag">Claude</span><span class="tool-tag">Python</span></div>
+        </div>
+        <div class="project-card card-left-purple">
+          <div class="project-num">8</div>
+          <div class="project-title">College Event Promo Content Generator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input event details → AI generates: Instagram caption, WhatsApp broadcast message, poster text, and email announcement — all in one click.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Make.com form → ChatGPT generates 4 content formats simultaneously → sent to team's WhatsApp group</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>College fest committees spend hours writing the same announcement in 4 different formats.</div>
+          <div class="project-tools"><span class="tool-tag">Make.com</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Canva AI</span></div>
+        </div>
+        <div class="project-card card-left-purple">
+          <div class="project-num">9</div>
+          <div class="project-title">AI Project Idea Generator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input: branch + available tech + interests → AI generates 5 unique final year project ideas with: description, tech stack, difficulty level, and impact.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Structured ChatGPT prompt with constraints: original, feasible in 6 months, uses 2+ AI tools, India-relevant</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Students copy old project ideas. AI generates fresh, relevant, differentiated ideas on demand.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Claude</span><span class="tool-tag">Gamma (for pitch)</span></div>
+        </div>
+        <div class="project-card card-left-purple">
+          <div class="project-num">10</div>
+          <div class="project-title">Smart Assignment Grader</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Faculty uploads rubric + student answer → AI grades with detailed feedback on each criterion. Saves faculty hours per week.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Python + Claude API: input rubric (as prompt context) + student submission → output: score per criterion + overall feedback</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Grading 60 similar assignments manually takes 3–4 hours. AI does it in minutes with consistent standards.</div>
+          <div class="project-tools"><span class="tool-tag">Claude</span><span class="tool-tag">Python</span><span class="tool-tag">Google Colab</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EC/Electrical -->
+    <div style="margin-bottom:40px">
+      <div class="branch-tab ec" style="margin-bottom:20px;display:inline-flex;align-items:center;gap:8px;font-size:15px;padding:10px 22px">⚡ EC / Electronics / Electrical — 10 Project Ideas</div>
+      <div class="grid-2">
+        <div class="project-card card-left-orange">
+          <div class="project-num">1</div>
+          <div class="project-title">AI Circuit Fault Explainer</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Describe circuit fault symptoms in plain text → AI diagnoses likely fault, explains root cause, and suggests a systematic test procedure.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>ChatGPT with system prompt as "experienced electronics lab technician" — given symptoms, produces diagnosis + fix steps</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Students spend entire lab sessions debugging simple faults that an experienced technician would spot in 2 minutes.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">HTML/JS</span><span class="tool-tag">Claude</span></div>
+        </div>
+        <div class="project-card card-left-orange">
+          <div class="project-num">2</div>
+          <div class="project-title">Arduino Code Generator for IoT Projects</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Describe sensor + actuator + output needed in plain English → AI generates complete, commented Arduino sketch ready to flash.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Structured ChatGPT prompt: role=embedded engineer, output=complete .ino file with comments, pin definitions, and serial monitor output</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>EC students who are weak in C programming waste lab time on syntax errors. AI eliminates this barrier completely.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Claude</span><span class="tool-tag">Arduino IDE</span></div>
+        </div>
+        <div class="project-card card-left-orange">
+          <div class="project-num">3</div>
+          <div class="project-title">AI Datasheet Summarizer</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Upload any component datasheet → AI extracts: supply voltage, current rating, key pins, application circuit, and 3 usage tips in a structured 1-page summary.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>NotebookLM or Claude PDF upload → extract structured data into a template: specs + pinout + typical application + limitations</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>50-page datasheets intimidate students. 5 minutes of AI reading replaces 2 hours of manual datasheet parsing.</div>
+          <div class="project-tools"><span class="tool-tag">NotebookLM</span><span class="tool-tag">Claude</span><span class="tool-tag">ChatPDF</span></div>
+        </div>
+        <div class="project-card card-left-orange">
+          <div class="project-num">4</div>
+          <div class="project-title">IoT Sensor Data Dashboard</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">AI generates Python code to simulate sensor data (temperature, voltage, humidity) → plots live graphs → flags anomalies automatically.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>ChatGPT → Python (Colab) → matplotlib dashboard with simulated sensor readings + threshold alerts shown on screen</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>IoT projects require data visualisation which students either skip or manually code for hours.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Python</span><span class="tool-tag">Google Colab</span></div>
+        </div>
+        <div class="project-card card-left-orange">
+          <div class="project-num">5</div>
+          <div class="project-title">EC Lab Report Auto-Writer</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input observation table values from EC experiment → AI generates a complete formatted lab report with: objective, theory, observations, calculations, and conclusion.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Claude/ChatGPT with structured prompt template for EC lab reports — student inputs numbers, AI fills the template</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>EC students write identical lab reports for every experiment. This automates 80% of the writing work.</div>
+          <div class="project-tools"><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Make.com</span></div>
+        </div>
+        <div class="project-card card-left-orange">
+          <div class="project-num">6</div>
+          <div class="project-title">Power Consumption Calculator + Bill Estimator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input: list of appliances + daily usage hours → AI calculates total load, suggests wiring size, estimates monthly electricity bill as per Gujarat tariff rates.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Python (Colab) + ChatGPT: structured calculation with Gujarat DISCOM tariff data, output as table + bar chart</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Electrical load calculation is done manually in industrial design — AI does it in seconds and suggests optimisations.</div>
+          <div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Google Colab</span></div>
+        </div>
+        <div class="project-card card-left-orange">
+          <div class="project-num">7</div>
+          <div class="project-title">Signal Processing Code Generator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Describe a signal processing problem (FFT, filtering, modulation) in plain language → AI generates Python/MATLAB code + plots the signal output.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>ChatGPT → Python in Colab: input = "apply low-pass Butterworth filter to this noisy signal" → output = working code + graph</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>DSP implementation requires complex syntax knowledge. AI removes this barrier — students focus on understanding, not syntax.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Python</span><span class="tool-tag">Google Colab</span></div>
+        </div>
+        <div class="project-card card-left-orange">
+          <div class="project-num">8</div>
+          <div class="project-title">AI PCB Design Review Checklist</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input: PCB purpose + circuit description → AI generates a 20-point design review checklist covering power, signal integrity, thermal, EMI, and manufacturing considerations.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Claude with role=senior PCB design engineer, structured output: checklist by category with explanation for each check</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>First-time PCB designers make costly mistakes that experienced engineers catch instantly. AI provides that expert review.</div>
+          <div class="project-tools"><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Gamma (for report)</span></div>
+        </div>
+        <div class="project-card card-left-orange">
+          <div class="project-num">9</div>
+          <div class="project-title">Automated Electronics Quiz Generator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input topic (e.g., Op-Amps, BJT, Digital Logic) → AI generates 10 MCQ questions with options, correct answers, and explanations. Outputs as Google Form automatically.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>ChatGPT → Make.com automation → creates Google Form with MCQs automatically populated</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Students lack branch-specific practice questions. AI generates unlimited customised practice sets.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Make.com</span><span class="tool-tag">Google Forms</span></div>
+        </div>
+        <div class="project-card card-left-orange">
+          <div class="project-num">10</div>
+          <div class="project-title">IoT Project Planner + BOM Generator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Describe an IoT application idea → AI generates: complete component list + estimated cost + circuit connection description + code outline + 1-week build plan.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Claude with structured output template: BOM table, cost estimate, connection guide, code skeleton, and timeline</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Students have IoT ideas but don't know where to start. This gives them a complete blueprint in 5 minutes.</div>
+          <div class="project-tools"><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Gamma (for BOM)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MECHANICAL -->
+    <div style="margin-bottom:40px">
+      <div class="branch-tab mech" style="margin-bottom:20px;display:inline-flex;align-items:center;gap:8px;font-size:15px;padding:10px 22px">⚙️ Mechanical Engineering — 10 Project Ideas</div>
+      <div class="grid-2">
+        <div class="project-card card-left-green">
+          <div class="project-num">1</div>
+          <div class="project-title">AI Material Selection Assistant</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input: load type, operating environment, temperature, budget → AI recommends top 3 materials with mechanical properties, advantages, limitations, and Indian suppliers.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Claude as material science expert: structured output with property table + decision rationale</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Material selection requires years of experience. Students in design courses guess or copy — AI provides structured, justified recommendations.</div>
+          <div class="project-tools"><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Python (Colab)</span></div>
+        </div>
+        <div class="project-card card-left-green">
+          <div class="project-num">2</div>
+          <div class="project-title">Preventive Maintenance Scheduler</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input machine type + age + operating hours/month → AI generates a complete maintenance schedule with: tasks, intervals, tools needed, and safety precautions.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>ChatGPT with structured prompt → output as table (task | frequency | responsible | check method) → exported to Google Sheet via Make.com</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Industries suffer expensive breakdowns because maintenance is reactive, not planned. AI-generated schedules prevent this.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Make.com</span><span class="tool-tag">Google Sheets</span></div>
+        </div>
+        <div class="project-card card-left-green">
+          <div class="project-num">3</div>
+          <div class="project-title">AI Beam Analysis Calculator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input beam type + span + load conditions → AI generates Python code that calculates bending moment, shear force, deflection, and plots the diagrams.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>ChatGPT → Python in Colab: SFD, BMD plotted with matplotlib; includes max values and safe section recommendation</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Hand-drawing SFD/BMD is error-prone and time-consuming. AI generates accurate plots instantly for design verification.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Python</span><span class="tool-tag">Google Colab</span></div>
+        </div>
+        <div class="project-card card-left-green">
+          <div class="project-num">4</div>
+          <div class="project-title">Manufacturing Process Advisor</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Describe component: geometry, material, quantity, tolerance → AI recommends optimal manufacturing process, cost vs quality tradeoffs, and surface finish achievable.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Claude as senior manufacturing engineer: output = process comparison table + recommendation with justification</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Fresh engineers don't know which process (casting vs forging vs machining) to choose — wrong choice = scrap and rework.</div>
+          <div class="project-tools"><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Gamma (report)</span></div>
+        </div>
+        <div class="project-card card-left-green">
+          <div class="project-num">5</div>
+          <div class="project-title">Machine Fault Symptom Checker</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input symptoms: abnormal vibration, noise type, temperature rise, oil leakage → AI diagnoses likely fault, severity, and step-by-step troubleshooting procedure.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>ChatGPT as field maintenance engineer: structured output = diagnosis + severity level + immediate action + permanent fix</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Machine faults escalate because operators can't identify them early. AI diagnosis prevents costly breakdowns.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Claude</span><span class="tool-tag">HTML interface</span></div>
+        </div>
+        <div class="project-card card-left-green">
+          <div class="project-num">6</div>
+          <div class="project-title">AI Safety SOP Generator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Describe an industrial workshop process → AI generates a complete Standard Operating Procedure with: hazards, PPE required, step-by-step procedure, emergency response.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Claude: structured output as IS/factory act compliant SOP template — export as formatted Word document via ChatGPT</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>SOPs are mandatory in industry but creating them from scratch takes days. AI reduces this to 5 minutes.</div>
+          <div class="project-tools"><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Google Docs</span></div>
+        </div>
+        <div class="project-card card-left-green">
+          <div class="project-num">7</div>
+          <div class="project-title">Product Cost Estimator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Describe product: material, dimensions, manufacturing process, quantity → AI estimates material cost, machining cost, overhead, and profit margin breakdown.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Python + ChatGPT: input form → structured cost breakdown table with Indian market price references</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Mechanical engineers underestimate production costs. Accurate early estimation prevents project overruns.</div>
+          <div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Google Colab</span></div>
+        </div>
+        <div class="project-card card-left-green">
+          <div class="project-num">8</div>
+          <div class="project-title">Welding Parameter Advisor</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input base material + thickness + joint type → AI recommends: welding process (MIG/TIG/SMAW), electrode/wire type, current, voltage, travel speed, and pre/post weld treatment.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Claude as certified welding inspector: output = complete WPS (Welding Procedure Specification) summary</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Wrong welding parameters cause porosity, cracks, and weak joints — common and costly mistakes for inexperienced welders.</div>
+          <div class="project-tools"><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Gamma</span></div>
+        </div>
+        <div class="project-card card-left-green">
+          <div class="project-num">9</div>
+          <div class="project-title">Mechanical Lab Report Generator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input experiment name + observation values → AI generates complete lab report: objective, apparatus, theory, observations, calculations, graphs, and conclusion.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>ChatGPT with pre-built template for: Tensile Test / Hardness Test / Torsion Test / Heat Treatment — student inputs numbers only</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Mechanical lab reports follow fixed formats. Writing 15 identical reports per semester is pure repetitive work.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Claude</span><span class="tool-tag">Python</span></div>
+        </div>
+        <div class="project-card card-left-green">
+          <div class="project-num">10</div>
+          <div class="project-title">Thermal Problem Solver</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Describe heat transfer problem in plain language → AI identifies the correct mode (conduction/convection/radiation), selects formula, does calculation step-by-step, and generates Python simulation code.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>ChatGPT as heat transfer professor: step-by-step solution + Python Colab code that visualises temperature distribution</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Thermal calculations are error-prone by hand. AI solves and verifies simultaneously, teaching students the process.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Python</span><span class="tool-tag">Google Colab</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CIVIL -->
+    <div style="margin-bottom:40px">
+      <div class="branch-tab civil" style="margin-bottom:20px;display:inline-flex;align-items:center;gap:8px;font-size:15px;padding:10px 22px">🏗️ Civil Engineering — 10 Project Ideas</div>
+      <div class="grid-2">
+        <div class="project-card card-left-teal">
+          <div class="project-num">1</div>
+          <div class="project-title">AI Building Material Estimator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input: building type, floor area, number of floors → AI calculates quantity of cement, steel, bricks, sand, aggregate with Indian standard assumptions and current market rates (Ahmedabad).</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Python (Colab) + ChatGPT: formula-based calculation + output as formatted BoQ table with approximate cost</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Manual BoQ preparation for even a simple building takes a full day. AI does it in 2 minutes with consistent accuracy.</div>
+          <div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Google Colab</span></div>
+        </div>
+        <div class="project-card card-left-teal">
+          <div class="project-num">2</div>
+          <div class="project-title">Construction Site Risk Assessment Tool</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input: site location, soil type, proximity to water bodies, construction type → AI generates risk report with: identified hazards, probability level, and mitigation measures per IS codes.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Claude as geotechnical + safety engineer: structured risk matrix output with severity ratings and IS/NBC code references</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Site risk assessments require expensive consultants. AI gives a structured preliminary assessment for free.</div>
+          <div class="project-tools"><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Gamma (report)</span></div>
+        </div>
+        <div class="project-card card-left-teal">
+          <div class="project-num">3</div>
+          <div class="project-title">IS Code Quick Reference Chatbot</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Train a chatbot on key Indian Standard (IS) code provisions → Students ask questions in plain language → Bot returns the relevant clause + explanation + practical implication.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>NotebookLM trained on IS 456, IS 875, IS 1893 key provisions → answers queries in simple language</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Searching IS codes manually during design takes hours. A plain-language chatbot cuts lookup time from 20 minutes to 20 seconds.</div>
+          <div class="project-tools"><span class="tool-tag">NotebookLM</span><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span></div>
+        </div>
+        <div class="project-card card-left-teal">
+          <div class="project-num">4</div>
+          <div class="project-title">AI Construction Project Timeline Generator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input: project scope (building type, floors, area), available workforce, material procurement lead time → AI generates a realistic bar chart schedule with critical path and milestone flags.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>ChatGPT → structured output as timeline table → Python (Colab) renders as Gantt chart using matplotlib</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Poor scheduling is the #1 cause of cost overruns in Indian construction. AI-generated baselines prevent timeline miscalculation.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Python</span><span class="tool-tag">Google Colab</span></div>
+        </div>
+        <div class="project-card card-left-teal">
+          <div class="project-num">5</div>
+          <div class="project-title">Concrete Mix Design Advisor</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input: target strength grade (M25, M30, M40), exposure condition, aggregate size → AI provides mix proportions as per IS 10262, w/c ratio, admixture suggestions, and QC checklist.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Claude with IS 10262 knowledge context: structured output = proportions table + mixing instructions + curing guide</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Mix design requires IS code cross-referencing and manual calculations. AI delivers a verified mix in 30 seconds.</div>
+          <div class="project-tools"><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Python</span></div>
+        </div>
+        <div class="project-card card-left-teal">
+          <div class="project-num">6</div>
+          <div class="project-title">Environmental Impact Assessment Generator</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input: project description + location → AI generates a structured EIA summary with: air/water/noise/ecology impacts, mitigation measures, and regulatory compliance checklist (India).</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Claude as environmental consultant: output = EIA summary formatted per MoEF India guidelines</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>EIA documentation is mandatory for large projects but takes weeks to prepare. AI provides a first-draft baseline.</div>
+          <div class="project-tools"><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Gamma</span></div>
+        </div>
+        <div class="project-card card-left-teal">
+          <div class="project-num">7</div>
+          <div class="project-title">Civil Lab Report Auto-Writer</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input experiment data (sieve analysis / compaction test / concrete cube test) → AI generates complete formatted lab report with observations, calculations, and conclusions.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>ChatGPT template prompt per experiment type: student enters numeric values only, AI fills complete report format</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Civil students write 15+ lab reports per semester with identical formats. AI reduces each report from 2 hours to 10 minutes.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT</span><span class="tool-tag">Claude</span><span class="tool-tag">Google Docs</span></div>
+        </div>
+        <div class="project-card card-left-teal">
+          <div class="project-num">8</div>
+          <div class="project-title">Smart Water Harvesting Planner</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input: building roof area, monthly rainfall data (Ahmedabad), occupancy → AI designs a rainwater harvesting system with storage tank size, filtration steps, and cost estimate.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Python + ChatGPT: rainfall calculation + storage sizing + system diagram description + cost breakdown for Gujarat</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Water scarcity in Gujarat makes rainwater harvesting essential, but buildings skip it due to design complexity. AI makes planning accessible.</div>
+          <div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Google Colab</span></div>
+        </div>
+        <div class="project-card card-left-teal">
+          <div class="project-num">9</div>
+          <div class="project-title">Construction Site Safety Auditor</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input: construction phase (foundation / superstructure / finishing) + site description → AI generates comprehensive safety checklist per National Building Code + Factories Act India.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Claude: structured safety audit output = 30-point checklist per phase with pass/fail criteria and corrective actions</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Construction site accidents in India are largely preventable. Structured AI audits ensure no safety point is missed.</div>
+          <div class="project-tools"><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Make.com (form)</span></div>
+        </div>
+        <div class="project-card card-left-teal">
+          <div class="project-num">10</div>
+          <div class="project-title">Road Infrastructure Maintenance Prioritiser</div>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:8px">Input: road segment data (length, age, traffic volume, observed defects) → AI scores each segment by urgency, generates priority-ranked maintenance schedule, and estimates repair costs.</p>
+          <div class="project-goal"><strong>Initial Goal</strong>Python + ChatGPT: input as table → AI scoring + ranking → bar chart showing priority order with cost estimates</div>
+          <div class="project-pain"><strong>Pain Point It Solves</strong>Municipal road maintenance is reactive and unplanned. AI-prioritised schedules allow proactive budget allocation.</div>
+          <div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Google Colab</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AI ETHICS GUIDE -->
+<div class="section" style="background:var(--white)">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-red">Day 5 — Ethics Discussion</span>
+      <h2>AI Ethics + Governance: 5 Discussion Scenarios</h2>
+      <p>NOT a lecture. Run as a structured group discussion. Each scenario: share the case → ask "What do you think? Ethical or not? Who is responsible?" → discuss for 5 minutes → instructor summarises.</p>
+    </div>
+    <div class="grid-2">
+      <div class="ethics-card">
+        <strong style="font-family:'Fredoka One',cursive;font-size:18px;color:var(--navy);display:block;margin-bottom:6px">1. Academic Integrity — Where's the Line?</strong>
+        <p style="font-size:13px;color:var(--slate)">A student uses ChatGPT to write their entire final year project report, edits 10%, and submits it as their own work. Is this plagiarism? What about using AI to improve their own written draft?</p>
+        <div class="ethics-scenario"><strong>Discussion Anchor</strong>"If a student used a calculator in an exam, is that cheating? How is AI different? Where exactly should the line be?"</div>
+      </div>
+      <div class="ethics-card">
+        <strong style="font-family:'Fredoka One',cursive;font-size:18px;color:var(--navy);display:block;margin-bottom:6px">2. Data Privacy — Your Data Training Their AI</strong>
+        <p style="font-size:13px;color:var(--slate)">When you use free AI tools, your prompts and data may be used to train their models. You just pasted your college's confidential project proposal into ChatGPT. Is this acceptable?</p>
+        <div class="ethics-scenario"><strong>Discussion Anchor</strong>"What personal or professional information should you NEVER put into a free AI tool? How does India's DPDP Act 2023 protect you?"</div>
+      </div>
+      <div class="ethics-card">
+        <strong style="font-family:'Fredoka One',cursive;font-size:18px;color:var(--navy);display:block;margin-bottom:6px">3. Deepfakes — Real Harm, Digital Origin</strong>
+        <p style="font-size:13px;color:var(--slate)">An AI-generated video of a politician saying something they never said goes viral on WhatsApp in India before an election. Who is legally and morally responsible — the person who made it, the platform that hosted it, or the AI company?</p>
+        <div class="ethics-scenario"><strong>Discussion Anchor</strong>"As engineers who now know how to use AI image and video generation — what is YOUR responsibility when you have this power?"</div>
+      </div>
+      <div class="ethics-card">
+        <strong style="font-family:'Fredoka One',cursive;font-size:18px;color:var(--navy);display:block;margin-bottom:6px">4. AI Bias — When Algorithms Discriminate</strong>
+        <p style="font-size:13px;color:var(--slate)">An AI hiring tool used by a large Indian IT company rejects women candidates at 2x the rate of men. The company says "the algorithm did it." The algorithm was trained on 10 years of their own past hiring data.</p>
+        <div class="ethics-scenario"><strong>Discussion Anchor</strong>"Who is responsible — the algorithm, the company, the developers, or the people who generated the biased training data?"</div>
+      </div>
+      <div class="ethics-card">
+        <strong style="font-family:'Fredoka One',cursive;font-size:18px;color:var(--navy);display:block;margin-bottom:6px">5. AI & Jobs — Threat or Opportunity?</strong>
+        <p style="font-size:13px;color:var(--slate)">A manufacturing plant in Gujarat replaces 50 assembly workers with AI-controlled robotic arms. The owner says it reduces costs and errors. The workers lose their livelihood.</p>
+        <div class="ethics-scenario"><strong>Discussion Anchor</strong>"You are now AI-capable engineers. Are you part of the automation wave displacing others? What is your ethical responsibility as you build AI systems?"</div>
+      </div>
+      <div class="ethics-card">
+        <strong style="font-family:'Fredoka One',cursive;font-size:18px;color:var(--navy);display:block;margin-bottom:6px">Key Takeaway for Students</strong>
+        <p style="font-size:13px;color:var(--slate)">AI is a tool. Like any tool — a hammer, a calculator, a car — it amplifies what humans intend to do with it. The ethics sit with the human using the tool, not the tool itself. As engineers, your job is to build responsibly, deploy thoughtfully, and question every system you create: "Who does this help? Who could this harm?"</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATE CRITERIA -->
+<div class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag tag-gold">Certification</span>
+      <h2>Certificate Criteria + Evaluation</h2>
+      <p>Students who meet all 4 criteria receive the "AI Tools for Engineers" certificate from Indus University.</p>
+    </div>
+    <div style="max-width:700px;margin:0 auto">
+      <div class="criteria-item"><div class="criteria-num">1</div><div class="criteria-body"><strong>Attendance — Minimum 4 of 5 Days</strong><p>Students must attend at least 4 sessions to qualify. Attendance recorded via sign-in sheet + Google Form check-in each day.</p></div></div>
+      <div class="criteria-item"><div class="criteria-num">2</div><div class="criteria-body"><strong>Day 2 Deliverable — Submit Report or Resume</strong><p>Students submit their AI-generated technical report OR improved resume at end of Day 2. Any submission qualifies — this ensures engagement, not perfection.</p></div></div>
+      <div class="criteria-item"><div class="criteria-num">3</div><div class="criteria-body"><strong>Day 5 Participation — Working Demo Presented</strong><p>Student must be part of a team that presents a working demo on Day 5. Teams that "tried but it broke" still qualify — attempting is the requirement.</p></div></div>
+      <div class="criteria-item"><div class="criteria-num">4</div><div class="criteria-body"><strong>Feedback Form — Submitted</strong><p>Submit the end-of-course feedback form. Takes 3 minutes. Required for continuous improvement and gives the instructor honest data.</p></div></div>
+    </div>
+    <div class="highlight" style="margin-top:32px">
+      <h3>Special Recognition: <span>Top 3 Projects</span></h3>
+      <p>The 3 best Day 5 demos receive a special mention on their certificate: <span>"Best AI Project — [Course Name] 2026"</span> — this is genuinely valuable for their LinkedIn profiles and future resumes.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">AI Tools for <span>Engineers</span> — Indus University 2026</div>
+  <p style="font-size:13px;opacity:.7;margin-top:8px">Curriculum designed by ScaleYukti AI Automation | Ahmedabad, Gujarat</p>
+  <p style="font-size:12px;opacity:.4;margin-top:6px">All tools recommended are free/freemium. Verify tool availability and free tier limits before Day 1. Tool features change — always test your demo the night before.</p>
+</div>
+
+</body>
+</html>
