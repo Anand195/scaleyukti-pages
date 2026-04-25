@@ -906,13 +906,32 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);
           <div class="project-impact"><strong>Impact</strong>Instant answers at 2 AM before an exam. Reduces student anxiety, cuts department email load, and creates a 24/7 self-service knowledge base from existing documents.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">NotebookLM</span><span class="tool-tag">Telegram</span></div>
         </div>
-        <div class="project-card">
+        <div class="project-card" style="margin-bottom:14px">
           <div class="project-num">3</div>
           <div class="project-title">GitHub Trending Digest</div>
           <div class="project-goal"><strong>What it does</strong>Daily: fetches GitHub trending repos in a chosen language → AI summarises top 5 with use-case explanation → sends to Telegram</div>
-          <div class="project-pain"><strong>Problem it solves</strong>Developers fall behind industry trends because staying current means browsing GitHub, Reddit, and dev blogs for 30–60 minutes daily — time most students don't have.</div>
-          <div class="project-impact"><strong>Impact</strong>Industry-current in 2 minutes per day. Students discover new tools, frameworks, and open-source projects before their peers — visible edge in interviews and hackathons.</div>
+          <div class="project-pain"><strong>Problem statement</strong>Developers fall behind industry trends because staying current means browsing GitHub, Reddit, and dev blogs for 30–60 minutes daily — time most students don't have.</div>
+          <div class="project-pain"><strong>Problem it solves</strong>No structured way to track what the industry is building right now. Students discover tools months after their peers do.</div>
+          <div class="project-impact"><strong>Impact</strong>Industry-current in 2 minutes per day. Students discover new tools and frameworks before their peers — visible edge in interviews and hackathons.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">AI summariser</span><span class="tool-tag">Telegram</span></div>
+        </div>
+        <div class="project-card" style="margin-bottom:14px">
+          <div class="project-num">4</div>
+          <div class="project-title">Study Group Knowledge Bot</div>
+          <div class="project-goal"><strong>What it does</strong>Students add bot to their Telegram study group → it listens to discussions → AI summarises key concepts + decisions + action items → sends a structured recap to all members daily</div>
+          <div class="project-pain"><strong>Problem statement</strong>Study group discussions happen in WhatsApp/Telegram but the actual learning gets buried in hundreds of messages. Students repeat the same discussions because nothing is ever documented.</div>
+          <div class="project-pain"><strong>Problem it solves</strong>No institutional memory in peer study groups. Valuable explanations and problem solutions are lost after the chat scrolls away.</div>
+          <div class="project-impact"><strong>Impact</strong>Every study session produces a structured, searchable summary. Group learning becomes cumulative, not repetitive. Students review in 2 minutes what took 2 hours to discuss.</div>
+          <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">Telegram</span><span class="tool-tag">ChatGPT</span></div>
+        </div>
+        <div class="project-card">
+          <div class="project-num">5</div>
+          <div class="project-title">AI Interview Prep Coach</div>
+          <div class="project-goal"><strong>What it does</strong>Student sends a job role to Telegram bot → AI generates 10 role-specific technical questions → after student answers each, AI gives personalised feedback + model answer + score</div>
+          <div class="project-pain"><strong>Problem statement</strong>Students prepare for interviews using static resources that don't adapt to their actual answer quality. They don't know their real gaps until they're sitting in front of an interviewer.</div>
+          <div class="project-pain"><strong>Problem it solves</strong>No affordable, adaptive mock interview tool exists for Indian engineering students. Coaching is expensive and generic resources don't reflect actual interview patterns.</div>
+          <div class="project-impact"><strong>Impact</strong>Personalised mock interviews on demand at zero cost. Students identify and fix weak spots before actual interviews. Directly measurable improvement in placement confidence and success rate.</div>
+          <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Telegram</span></div>
         </div>
       </div>
 
@@ -934,13 +953,32 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);
           <div class="project-impact"><strong>Impact</strong>Never miss a PSU opening again. Real-time alert = higher application rate = statistically better placement odds for the entire batch using this tool.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">AI filter</span><span class="tool-tag">Telegram</span></div>
         </div>
-        <div class="project-card">
+        <div class="project-card" style="margin-bottom:14px">
           <div class="project-num">3</div>
           <div class="project-title">Circuit Concept Explainer Bot</div>
           <div class="project-goal"><strong>What it does</strong>Student sends circuit concept name to Telegram → AI explains it simply + gives real-world use case + one follow-up question to deepen understanding</div>
-          <div class="project-pain"><strong>Problem it solves</strong>Viva and exam prep requires revisiting every concept in textbooks and YouTube — slow, unstructured, and anxiety-inducing the night before an exam.</div>
-          <div class="project-impact"><strong>Impact</strong>On-demand explanation with real-world context in under 30 seconds. Students walk into vivas noticeably more confident. Compounds over a semester into deep subject fluency.</div>
+          <div class="project-pain"><strong>Problem statement</strong>Viva and exam prep requires revisiting every concept scattered across textbooks and YouTube — slow, unstructured, and anxiety-inducing the night before.</div>
+          <div class="project-pain"><strong>Problem it solves</strong>No single on-demand tool gives a concise, contextualised explanation of EC/Electrical concepts calibrated to a student's current level.</div>
+          <div class="project-impact"><strong>Impact</strong>On-demand explanation with real-world context in 30 seconds. Students walk into vivas noticeably more confident. Compounds into deep subject fluency over a semester.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">ChatGPT/Gemini</span><span class="tool-tag">Telegram</span></div>
+        </div>
+        <div class="project-card" style="margin-bottom:14px">
+          <div class="project-num">4</div>
+          <div class="project-title">Component Datasheet Explainer</div>
+          <div class="project-goal"><strong>What it does</strong>Student pastes or uploads a component datasheet → AI extracts key specs, translates ratings into plain English, highlights critical parameters, and suggests typical application circuits</div>
+          <div class="project-pain"><strong>Problem statement</strong>Datasheets are dense, jargon-heavy, and require years of experience to read efficiently. Students avoid using components they don't fully understand — limiting their design capability.</div>
+          <div class="project-pain"><strong>Problem it solves</strong>The gap between knowing a component exists and knowing how to use it correctly. Students often select components by guesswork and discover specification mismatches after burning them out.</div>
+          <div class="project-impact"><strong>Impact</strong>Students become datasheet-fluent significantly faster. Better component selection, fewer burnt parts, more ambitious lab projects. A directly marketable skill for electronics and embedded roles.</div>
+          <div class="project-tools"><span class="tool-tag">Claude/ChatGPT</span><span class="tool-tag">NotebookLM</span></div>
+        </div>
+        <div class="project-card">
+          <div class="project-num">5</div>
+          <div class="project-title">Lab Viva Preparation Agent</div>
+          <div class="project-goal"><strong>What it does</strong>Student inputs experiment name + subject → AI generates expected viva questions ranked by frequency, model answers, common mistakes to avoid, and 2–3 trap questions examiners typically ask</div>
+          <div class="project-pain"><strong>Problem statement</strong>Lab vivas are unpredictable and structured prep resources for them barely exist. Students rely on seniors' memory or generic textbooks that don't match what examiners actually ask.</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Unstructured last-minute cramming the night before practical exams. Students know the experiment but can't articulate it under pressure.</div>
+          <div class="project-impact"><strong>Impact</strong>Experiment-specific viva prep in 5 minutes. Measurably reduces pre-viva anxiety and improves scores across the batch. Works for any subject, any lab, any semester.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT/Claude</span><span class="tool-tag">n8n</span><span class="tool-tag">Telegram</span></div>
         </div>
       </div>
 
@@ -962,12 +1000,31 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);
           <div class="project-impact"><strong>Impact</strong>Preparation and opportunity tracking run in parallel automatically. Daily MCQs build knowledge consistently while the agent handles the watch work. Higher application rate + better exam scores together.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">AI</span><span class="tool-tag">Telegram</span></div>
         </div>
-        <div class="project-card">
+        <div class="project-card" style="margin-bottom:14px">
           <div class="project-num">3</div>
           <div class="project-title">Maintenance Schedule Generator</div>
           <div class="project-goal"><strong>What it does</strong>Input: machine type + operating hours → AI generates full preventive maintenance checklist + weekly/monthly schedule in structured table format</div>
-          <div class="project-pain"><strong>Problem it solves</strong>Writing maintenance plans from scratch requires industrial experience most final-year students don't have yet. Industry templates are behind paywalls or buried in proprietary manuals.</div>
-          <div class="project-impact"><strong>Impact</strong>Professional-grade maintenance documentation in minutes. Students present this as a concrete portfolio piece in manufacturing and industrial job interviews — tangible, practical output that non-AI graduates don't have.</div>
+          <div class="project-pain"><strong>Problem statement</strong>Writing maintenance plans requires industrial experience most final-year students don't have. Industry templates are behind paywalls or buried in proprietary OEM manuals.</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Students submit project reports with vague "maintenance considerations" sections because they can't produce actual schedules without real plant exposure.</div>
+          <div class="project-impact"><strong>Impact</strong>Professional-grade maintenance documentation in minutes. Concrete, usable portfolio piece for manufacturing and industrial interviews — tangible output that non-AI graduates can't match.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT/Claude</span><span class="tool-tag">NotebookLM</span></div>
+        </div>
+        <div class="project-card" style="margin-bottom:14px">
+          <div class="project-num">4</div>
+          <div class="project-title">Engineering Formula Assistant</div>
+          <div class="project-goal"><strong>What it does</strong>Student inputs a problem in plain English → AI identifies the correct formula, explains when and why to use it, solves step-by-step with units, and flags the 3 most common mistakes for that problem type</div>
+          <div class="project-pain"><strong>Problem statement</strong>Students memorise formulas without understanding when to apply them. Formula sheets exist but the contextual knowledge of which equation fits which real situation is never explicitly taught.</div>
+          <div class="project-pain"><strong>Problem it solves</strong>The gap between knowing a formula and knowing WHEN and HOW to use it — the exact gap that costs marks in exams and causes expensive errors in real design work.</div>
+          <div class="project-impact"><strong>Impact</strong>Problem-solving fluency replaces formula recall. Students develop engineering intuition that compounds across their degree and into their career. Exam scores improve, design errors reduce.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT/Claude</span><span class="tool-tag">Python/Colab</span></div>
+        </div>
+        <div class="project-card">
+          <div class="project-num">5</div>
+          <div class="project-title">CAD Project Description Generator</div>
+          <div class="project-goal"><strong>What it does</strong>Student inputs CAD model name + key dimensions + purpose → AI writes a complete technical description, bill of materials outline, manufacturing process suggestion, and project report abstract</div>
+          <div class="project-pain"><strong>Problem statement</strong>Mechanical students spend as much time documenting projects as designing them. Writing up a CAD model in engineering language is slow and unfamiliar — the documentation phase kills momentum after the exciting design phase.</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Students submit weaker project reports not because their designs are weak but because translating design intent into engineering documentation is a separate skill they haven't developed.</div>
+          <div class="project-impact"><strong>Impact</strong>Professional project documentation from specs in minutes. Students submit stronger reports and invest saved time in actual design improvement. The written output is immediately usable for final year project submissions.</div>
           <div class="project-tools"><span class="tool-tag">ChatGPT/Claude</span><span class="tool-tag">NotebookLM</span></div>
         </div>
       </div>
@@ -990,13 +1047,32 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);
           <div class="project-impact"><strong>Impact</strong>Professional site report generated in under 3 minutes from a voice note or bullet points. Consistent documentation quality across all site staff. Better project records = fewer disputes, faster handovers.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Google Drive</span></div>
         </div>
-        <div class="project-card">
+        <div class="project-card" style="margin-bottom:14px">
           <div class="project-num">3</div>
           <div class="project-title">Structural Load Calculator + Explainer</div>
           <div class="project-goal"><strong>What it does</strong>Input: beam span, load type, material → Python code calculates bending moment and plots BMD → AI explains the result in plain English with design implications</div>
-          <div class="project-pain"><strong>Problem it solves</strong>Students can run structural formulas but struggle to interpret results or explain their significance — a critical gap in design reviews, vivas, and actual site decision-making.</div>
-          <div class="project-impact"><strong>Impact</strong>Students get both the number and the meaning. Builds real structural intuition, not just computation skill. The output (chart + explanation) is directly usable in project reports and design presentations.</div>
+          <div class="project-pain"><strong>Problem statement</strong>Students can run structural formulas but can't interpret results or explain their significance — a critical gap in design reviews, vivas, and real site decision-making.</div>
+          <div class="project-pain"><strong>Problem it solves</strong>The disconnect between computation and understanding. Getting the number right in an exam is different from knowing what it means for a real structure.</div>
+          <div class="project-impact"><strong>Impact</strong>Students get both the number and the meaning. Builds structural intuition, not just computation skill. Output is directly usable in project reports and design presentations.</div>
           <div class="project-tools"><span class="tool-tag">Python/Colab</span><span class="tool-tag">ChatGPT</span></div>
+        </div>
+        <div class="project-card" style="margin-bottom:14px">
+          <div class="project-num">4</div>
+          <div class="project-title">Construction Material Cost Estimator</div>
+          <div class="project-goal"><strong>What it does</strong>Input: project type + built-up area + location → AI calculates material quantities (cement, steel, aggregate, bricks) + current market cost estimate + formatted breakdown table with contingency</div>
+          <div class="project-pain"><strong>Problem statement</strong>Cost estimation requires experience and live market knowledge that students and junior engineers don't have. Manual calculation takes hours and results are often inaccurate without updated rate schedules.</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Students submit project proposals with vague or unrealistic cost estimates because they have no accessible tool for quick, structured quantity takeoff and pricing.</div>
+          <div class="project-impact"><strong>Impact</strong>Credible cost estimate in under 5 minutes — usable in academic project proposals, client presentations, and early-career site roles. Gives students a practical skill that junior engineers are hired specifically for.</div>
+          <div class="project-tools"><span class="tool-tag">Python/Colab</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">n8n (optional)</span></div>
+        </div>
+        <div class="project-card">
+          <div class="project-num">5</div>
+          <div class="project-title">IS Code Compliance Checker</div>
+          <div class="project-goal"><strong>What it does</strong>Student inputs a structural design parameter (mix ratio, rebar spacing, foundation depth, etc.) → AI checks against relevant IS code clauses, flags non-compliance, quotes the exact clause, and explains the engineering reason behind it</div>
+          <div class="project-pain"><strong>Problem statement</strong>IS codes (IS 456, IS 800, IS 1893) are dense, poorly indexed documents that take years of practice to navigate. Students and junior engineers make compliance errors not from carelessness but from not knowing which clause applies.</div>
+          <div class="project-pain"><strong>Problem it solves</strong>The gap between academic structural design and code-compliant professional design. Most students graduate not knowing how to use IS codes in practice despite knowing the theory behind them.</div>
+          <div class="project-impact"><strong>Impact</strong>IS code compliance becomes practical and accessible from Day 1 of a career. Students reduce costly design revisions, build professional confidence, and demonstrate code awareness that sets them apart in interviews and on-site.</div>
+          <div class="project-tools"><span class="tool-tag">ChatGPT/Claude</span><span class="tool-tag">NotebookLM</span></div>
         </div>
       </div>
     </div>
