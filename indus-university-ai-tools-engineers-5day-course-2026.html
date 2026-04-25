@@ -127,6 +127,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);
 .project-title{font-family:'Fredoka One',cursive;font-size:18px;color:var(--navy);margin-bottom:6px;padding-right:32px}
 .project-goal{background:var(--light);border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13px;color:var(--slate)}
 .project-goal strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--green);margin-bottom:3px}
+.project-pain{background:#FFF0F0;border-radius:8px;padding:10px 14px;margin:6px 0;font-size:13px;color:#7f1d1d}
+.project-pain strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--red);margin-bottom:3px}
+.project-impact{background:#FFF9E8;border-radius:8px;padding:10px 14px;margin:6px 0;font-size:13px;color:#78350f}
+.project-impact strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#B7791F;margin-bottom:3px}
 .project-tools{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .tool-tag{background:#f1f5f9;color:var(--slate);padding:2px 10px;border-radius:8px;font-size:11px;font-weight:600}
 .ethics-card{background:var(--white);border-radius:14px;padding:22px;box-shadow:var(--card-shadow);border-left:4px solid var(--red)}
@@ -890,18 +894,24 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);
           <div class="project-num">1</div>
           <div class="project-title">AI Job Alert + Resume Tailor Agent</div>
           <div class="project-goal"><strong>What it does</strong>Daily: scrapes job board → AI filters by branch → tailors 1-line resume bullet → sends to Telegram bot</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Students manually check 5+ job portals every day. By the time they find a relevant opening, application slots are already filled or deadline passed.</div>
+          <div class="project-impact"><strong>Impact</strong>Zero missed opportunities. Agent works 24/7 so students focus on preparation, not searching. First 10 users = first 10 applicants.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">ChatGPT API</span><span class="tool-tag">Telegram</span></div>
         </div>
         <div class="project-card" style="margin-bottom:14px">
           <div class="project-num">2</div>
           <div class="project-title">Department FAQ Chatbot</div>
           <div class="project-goal"><strong>What it does</strong>Students send questions to a Telegram bot → AI answers based on uploaded department FAQ doc via NotebookLM + n8n</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Students repeatedly ask the same admin questions (exam dates, submission deadlines, timetables) at odd hours. Department staff answer the same queries dozens of times per day.</div>
+          <div class="project-impact"><strong>Impact</strong>Instant answers at 2 AM before an exam. Reduces student anxiety, cuts department email load, and creates a 24/7 self-service knowledge base from existing documents.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">NotebookLM</span><span class="tool-tag">Telegram</span></div>
         </div>
         <div class="project-card">
           <div class="project-num">3</div>
           <div class="project-title">GitHub Trending Digest</div>
-          <div class="project-goal"><strong>What it does</strong>Daily: fetches GitHub trending repos in a chosen language → AI summarises top 5 → sends to Telegram</div>
+          <div class="project-goal"><strong>What it does</strong>Daily: fetches GitHub trending repos in a chosen language → AI summarises top 5 with use-case explanation → sends to Telegram</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Developers fall behind industry trends because staying current means browsing GitHub, Reddit, and dev blogs for 30–60 minutes daily — time most students don't have.</div>
+          <div class="project-impact"><strong>Impact</strong>Industry-current in 2 minutes per day. Students discover new tools, frameworks, and open-source projects before their peers — visible edge in interviews and hackathons.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">AI summariser</span><span class="tool-tag">Telegram</span></div>
         </div>
       </div>
@@ -912,18 +922,24 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);
           <div class="project-num">1</div>
           <div class="project-title">IEEE Research Digest Agent</div>
           <div class="project-goal"><strong>What it does</strong>User sends a topic to Telegram bot → n8n searches latest papers → AI summarises in 5 bullets → sends back daily</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Reading 40+ paper abstracts to find 3 relevant ones kills research momentum. Most students abandon literature review halfway through because it's too time-consuming.</div>
+          <div class="project-impact"><strong>Impact</strong>Research becomes a 5-minute daily habit instead of a 4-hour grind. Students stay at the frontier of their specialisation — directly useful for final year projects and thesis work.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">Web search</span><span class="tool-tag">Telegram</span></div>
         </div>
         <div class="project-card" style="margin-bottom:14px">
           <div class="project-num">2</div>
           <div class="project-title">PSU + Power Sector Job Alert</div>
-          <div class="project-goal"><strong>What it does</strong>Monitors ONGC / BHEL / NTPC / Siemens careers pages → AI filters EC/Electrical roles → sends Telegram alert when new jobs post</div>
+          <div class="project-goal"><strong>What it does</strong>Monitors ONGC / BHEL / NTPC / Siemens careers pages → AI filters EC/Electrical roles → sends Telegram alert the moment a new job posts</div>
+          <div class="project-pain"><strong>Problem it solves</strong>PSU notifications are scattered across 10+ portals with no central feed. Students miss application windows by 1–2 days — often the difference between qualifying and not.</div>
+          <div class="project-impact"><strong>Impact</strong>Never miss a PSU opening again. Real-time alert = higher application rate = statistically better placement odds for the entire batch using this tool.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">AI filter</span><span class="tool-tag">Telegram</span></div>
         </div>
         <div class="project-card">
           <div class="project-num">3</div>
           <div class="project-title">Circuit Concept Explainer Bot</div>
-          <div class="project-goal"><strong>What it does</strong>Student sends circuit concept name to Telegram → AI explains it simply + gives a real-world use case + follow-up question</div>
+          <div class="project-goal"><strong>What it does</strong>Student sends circuit concept name to Telegram → AI explains it simply + gives real-world use case + one follow-up question to deepen understanding</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Viva and exam prep requires revisiting every concept in textbooks and YouTube — slow, unstructured, and anxiety-inducing the night before an exam.</div>
+          <div class="project-impact"><strong>Impact</strong>On-demand explanation with real-world context in under 30 seconds. Students walk into vivas noticeably more confident. Compounds over a semester into deep subject fluency.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">ChatGPT/Gemini</span><span class="tool-tag">Telegram</span></div>
         </div>
       </div>
@@ -933,19 +949,25 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);
         <div class="project-card" style="margin-bottom:14px">
           <div class="project-num">1</div>
           <div class="project-title">Material Selection Assistant</div>
-          <div class="project-goal"><strong>What it does</strong>Input: load, environment, weight budget → AI returns top 3 material options with comparison table + PDF report</div>
+          <div class="project-goal"><strong>What it does</strong>Input: load, environment, weight budget → AI returns top 3 material options with comparison table, trade-off reasoning, and exportable report</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Material selection for design projects requires cross-referencing multiple handbooks and standards — a decision that takes hours and often gets made by gut feeling instead of data.</div>
+          <div class="project-impact"><strong>Impact</strong>Engineering decision in under 2 minutes with ranked options and documented justification. Students present more credible design reviews and build a portfolio piece usable in mechanical engineering interviews.</div>
           <div class="project-tools"><span class="tool-tag">Python/Colab</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">n8n (optional)</span></div>
         </div>
         <div class="project-card" style="margin-bottom:14px">
           <div class="project-num">2</div>
           <div class="project-title">PSU Job Alert + Study Prep Agent</div>
-          <div class="project-goal"><strong>What it does</strong>Monitors BHEL/NTPC/ONGC job pages → alerts on new openings + AI generates daily 5 GATE/PSU MCQs on relevant topics</div>
+          <div class="project-goal"><strong>What it does</strong>Monitors BHEL/NTPC/ONGC job pages → alerts on new openings → AI also generates 5 daily GATE/PSU MCQs on relevant topics, sent to Telegram</div>
+          <div class="project-pain"><strong>Problem it solves</strong>GATE preparation and PSU job hunting happen in silos. Students study without knowing when to apply, then scramble when deadlines are discovered late.</div>
+          <div class="project-impact"><strong>Impact</strong>Preparation and opportunity tracking run in parallel automatically. Daily MCQs build knowledge consistently while the agent handles the watch work. Higher application rate + better exam scores together.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">AI</span><span class="tool-tag">Telegram</span></div>
         </div>
         <div class="project-card">
           <div class="project-num">3</div>
           <div class="project-title">Maintenance Schedule Generator</div>
-          <div class="project-goal"><strong>What it does</strong>Input: machine type + operating hours → AI generates full preventive maintenance checklist + schedule in table format</div>
+          <div class="project-goal"><strong>What it does</strong>Input: machine type + operating hours → AI generates full preventive maintenance checklist + weekly/monthly schedule in structured table format</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Writing maintenance plans from scratch requires industrial experience most final-year students don't have yet. Industry templates are behind paywalls or buried in proprietary manuals.</div>
+          <div class="project-impact"><strong>Impact</strong>Professional-grade maintenance documentation in minutes. Students present this as a concrete portfolio piece in manufacturing and industrial job interviews — tangible, practical output that non-AI graduates don't have.</div>
           <div class="project-tools"><span class="tool-tag">ChatGPT/Claude</span><span class="tool-tag">NotebookLM</span></div>
         </div>
       </div>
@@ -955,19 +977,25 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);
         <div class="project-card" style="margin-bottom:14px">
           <div class="project-num">1</div>
           <div class="project-title">Government Tender Finder Agent</div>
-          <div class="project-goal"><strong>What it does</strong>Monitors GEM portal / state PWD sites → AI filters civil engineering tenders by state/category → daily Telegram digest</div>
+          <div class="project-goal"><strong>What it does</strong>Monitors GEM portal / state PWD sites → AI filters civil engineering tenders by state and category → formatted daily digest to Telegram</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Government tender portals (GEM, CPWD, state PWD) are slow, poorly designed, and require daily manual checking across multiple sites with no central feed. Contractors miss crores worth of opportunities.</div>
+          <div class="project-impact"><strong>Impact</strong>Relevant tenders delivered automatically every morning. Civil engineers and small contractors save 1–2 hours of daily manual search. For student entrepreneurs, this becomes a tool they can offer to local contractors.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">AI filter</span><span class="tool-tag">Telegram</span></div>
         </div>
         <div class="project-card" style="margin-bottom:14px">
           <div class="project-num">2</div>
           <div class="project-title">Site Daily Report Generator</div>
-          <div class="project-goal"><strong>What it does</strong>Input: today's activities + workers + issues → AI generates a professional daily site report in standard format + saves to Drive</div>
+          <div class="project-goal"><strong>What it does</strong>Input: today's activities + workers + issues via Telegram → AI generates professional daily site report in standard format → auto-saves to Google Drive</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Site engineers spend 30–45 minutes every evening writing daily progress reports — time that should go toward actual site coordination. Reports are often inconsistent in quality and format across different engineers.</div>
+          <div class="project-impact"><strong>Impact</strong>Professional site report generated in under 3 minutes from a voice note or bullet points. Consistent documentation quality across all site staff. Better project records = fewer disputes, faster handovers.</div>
           <div class="project-tools"><span class="tool-tag">n8n</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Google Drive</span></div>
         </div>
         <div class="project-card">
           <div class="project-num">3</div>
           <div class="project-title">Structural Load Calculator + Explainer</div>
-          <div class="project-goal"><strong>What it does</strong>Input: beam span, load type, material → Python code calculates bending moment + AI explains the result in plain English</div>
+          <div class="project-goal"><strong>What it does</strong>Input: beam span, load type, material → Python code calculates bending moment and plots BMD → AI explains the result in plain English with design implications</div>
+          <div class="project-pain"><strong>Problem it solves</strong>Students can run structural formulas but struggle to interpret results or explain their significance — a critical gap in design reviews, vivas, and actual site decision-making.</div>
+          <div class="project-impact"><strong>Impact</strong>Students get both the number and the meaning. Builds real structural intuition, not just computation skill. The output (chart + explanation) is directly usable in project reports and design presentations.</div>
           <div class="project-tools"><span class="tool-tag">Python/Colab</span><span class="tool-tag">ChatGPT</span></div>
         </div>
       </div>
