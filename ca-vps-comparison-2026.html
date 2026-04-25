@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VPS Selection Guide — CA SmartDoc Infrastructure 2026 | FindocAI</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #050D18; color: #E8EDF2; min-height: 100vh; }
+
+  .topbar { background: #030A12; border-bottom: 2px solid #C9910A; padding: 0.85rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+  .topbar-brand { font-size: 1rem; font-weight: 800; color: #C9910A; }
+  .topbar-meta { font-size: 0.72rem; color: #3A5068; }
+  .topbar-nav { display: flex; gap: 1rem; }
+  .topbar-nav a { font-size: 0.75rem; color: #6B8299; text-decoration: none; }
+  .topbar-nav a:hover { color: #C9910A; }
+
+  .hero { background: linear-gradient(135deg, #060F18 0%, #0D1B2A 70%); padding: 3rem 2rem 2.5rem; text-align: center; border-bottom: 1px solid #1a2e40; }
+  .hero-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.8rem; border-radius: 20px; background: rgba(201,145,10,0.1); border: 1px solid rgba(201,145,10,0.3); color: #C9910A; margin-bottom: 1rem; }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; color: #E8EDF2; line-height: 1.2; margin-bottom: 0.75rem; }
+  .hero h1 span { color: #C9910A; }
+  .hero-sub { font-size: 0.9rem; color: #6B8299; max-width: 620px; margin: 0 auto 2rem; line-height: 1.6; }
+  .req-pills { display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; }
+  .req-pill { font-size: 0.72rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; border: 1px solid #1a2e40; color: #94A3B8; background: rgba(20,30,45,0.6); }
+  .req-pill.gold { border-color: rgba(201,145,10,0.4); color: #C9910A; background: rgba(201,145,10,0.08); }
+
+  .section { max-width: 1060px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+  .section-title { font-size: 1.1rem; font-weight: 800; color: #C9910A; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.35rem; }
+  .section-sub { font-size: 0.82rem; color: #6B8299; margin-bottom: 1.5rem; }
+
+  /* ============ WINNER CARD ============ */
+  .winner-banner { background: linear-gradient(135deg, #0A1828 0%, #0D1B2A 100%); border: 2px solid #C9910A; border-radius: 14px; padding: 1.75rem 2rem; margin-bottom: 2.5rem; position: relative; overflow: hidden; }
+  .winner-banner::before { content: '🏆 RECOMMENDED PICK'; position: absolute; top: 0.75rem; right: 1rem; font-size: 0.62rem; font-weight: 900; color: #C9910A; letter-spacing: 0.1em; }
+  .winner-grid { display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center; }
+  @media (max-width: 640px) { .winner-grid { grid-template-columns: 1fr; } }
+  .winner-logo { font-size: 2.5rem; }
+  .winner-name { font-size: 1.5rem; font-weight: 900; color: #E8EDF2; margin-bottom: 0.3rem; }
+  .winner-tagline { font-size: 0.82rem; color: #6B8299; margin-bottom: 0.75rem; }
+  .winner-specs { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .wspec { font-size: 0.75rem; font-weight: 700; color: #C9910A; background: rgba(201,145,10,0.1); border: 1px solid rgba(201,145,10,0.2); padding: 0.2rem 0.6rem; border-radius: 4px; }
+  .winner-price-block { text-align: right; }
+  .wprice-eu { font-size: 2rem; font-weight: 900; color: #C9910A; line-height: 1; }
+  .wprice-inr { font-size: 1rem; color: #86efac; font-weight: 700; }
+  .wprice-label { font-size: 0.65rem; color: #6B8299; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.2rem; }
+  .winner-why { background: rgba(201,145,10,0.05); border-left: 3px solid #C9910A; padding: 0.9rem 1.1rem; border-radius: 0 8px 8px 0; margin-top: 1rem; font-size: 0.82rem; color: #94A3B8; line-height: 1.6; grid-column: 1 / -1; }
+
+  /* ============ COMPARISON TABLE ============ */
+  .compare-wrap { overflow-x: auto; margin-bottom: 2.5rem; border-radius: 12px; border: 1px solid #1a2e40; }
+  table { width: 100%; border-collapse: collapse; min-width: 900px; }
+  thead tr { background: #070F1C; }
+  th { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B8299; padding: 0.9rem 1rem; text-align: left; border-bottom: 1px solid #1a2e40; white-space: nowrap; }
+  th:first-child { color: #C9910A; }
+  td { font-size: 0.8rem; color: #94A3B8; padding: 0.85rem 1rem; border-bottom: 1px solid #0a1828; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(201,145,10,0.03); }
+  td.provider-name { font-weight: 700; color: #E8EDF2; white-space: nowrap; }
+  td.price-gold { color: #C9910A; font-weight: 700; }
+  td.price-green { color: #86efac; font-weight: 700; }
+  td.price-red { color: #fca5a5; }
+  .badge-rec { display: inline-block; font-size: 0.58rem; font-weight: 900; padding: 0.1rem 0.4rem; border-radius: 3px; background: rgba(201,145,10,0.2); color: #C9910A; border: 1px solid rgba(201,145,10,0.4); vertical-align: middle; margin-left: 0.4rem; }
+  .badge-india { display: inline-block; font-size: 0.58rem; font-weight: 900; padding: 0.1rem 0.4rem; border-radius: 3px; background: rgba(255,153,0,0.15); color: #fbbf24; border: 1px solid rgba(255,153,0,0.3); vertical-align: middle; margin-left: 0.3rem; }
+  .badge-good { display: inline-block; font-size: 0.58rem; font-weight: 900; padding: 0.1rem 0.4rem; border-radius: 3px; background: rgba(34,197,94,0.12); color: #86efac; border: 1px solid rgba(34,197,94,0.2); vertical-align: middle; margin-left: 0.3rem; }
+  .provider-link { font-size: 0.68rem; color: #C9910A; text-decoration: none; display: block; margin-top: 0.2rem; }
+  .provider-link:hover { text-decoration: underline; }
+  td.score-cell { text-align: center; }
+  .score-bar { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .score-num { font-size: 0.8rem; font-weight: 800; }
+  .score-green { color: #86efac; }
+  .score-gold { color: #C9910A; }
+  .score-gray { color: #6B8299; }
+  td.dc-cell { font-size: 0.75rem; }
+  .dc-india { color: #fbbf24; font-weight: 700; }
+  .dc-sg { color: #93c5fd; }
+  .dc-eu { color: #c4b5fd; }
+
+  /* ============ DETAIL CARDS ============ */
+  .detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.1rem; margin-bottom: 2.5rem; }
+  .detail-card { background: #0A1828; border: 1px solid #1a2e40; border-radius: 12px; padding: 1.25rem; transition: border-color 0.2s; }
+  .detail-card:hover { border-color: rgba(201,145,10,0.3); }
+  .detail-card.winner-card { border-color: rgba(201,145,10,0.5); background: linear-gradient(135deg, #0A1828, #0D1B2A); }
+  .dc-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+  .dc-name { font-size: 0.95rem; font-weight: 800; color: #E8EDF2; }
+  .dc-rank { font-size: 0.62rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 3px; }
+  .rank-1 { background: rgba(201,145,10,0.2); color: #C9910A; }
+  .rank-2 { background: rgba(156,163,175,0.15); color: #9ca3af; }
+  .rank-3 { background: rgba(180,83,9,0.15); color: #fb923c; }
+  .rank-n { background: rgba(30,40,55,0.8); color: #6B8299; }
+  .dc-price { font-size: 1.1rem; font-weight: 900; color: #C9910A; margin: 0.5rem 0; }
+  .dc-price-inr { font-size: 0.75rem; color: #86efac; font-weight: 700; }
+  .dc-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem; margin: 0.75rem 0; }
+  .dc-spec { font-size: 0.73rem; color: #6B8299; }
+  .dc-spec strong { color: #94A3B8; }
+  .dc-pros { margin-top: 0.6rem; }
+  .dc-pros-title { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #86efac; margin-bottom: 0.35rem; }
+  .dc-cons-title { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #fca5a5; margin-bottom: 0.35rem; }
+  .dc-pro { font-size: 0.75rem; color: #94A3B8; line-height: 1.5; padding-left: 0.75rem; position: relative; margin-bottom: 0.2rem; }
+  .dc-pro::before { content: '✓'; position: absolute; left: 0; color: #86efac; font-size: 0.65rem; }
+  .dc-con { font-size: 0.75rem; color: #94A3B8; line-height: 1.5; padding-left: 0.75rem; position: relative; margin-bottom: 0.2rem; }
+  .dc-con::before { content: '✗'; position: absolute; left: 0; color: #fca5a5; font-size: 0.65rem; }
+  .dc-link { display: inline-block; margin-top: 0.75rem; font-size: 0.72rem; font-weight: 700; color: #C9910A; text-decoration: none; border: 1px solid rgba(201,145,10,0.3); padding: 0.25rem 0.65rem; border-radius: 5px; transition: background 0.2s; }
+  .dc-link:hover { background: rgba(201,145,10,0.1); }
+
+  /* ============ SCALING SECTION ============ */
+  .scaling-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 2.5rem; }
+  @media (max-width: 640px) { .scaling-grid { grid-template-columns: 1fr; } }
+  .scale-card { background: #0A1828; border: 1px solid #1a2e40; border-radius: 12px; padding: 1.35rem; }
+  .scale-card.vertical { border-color: rgba(59,130,246,0.3); }
+  .scale-card.horizontal { border-color: rgba(34,197,94,0.3); }
+  .scale-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.85rem; }
+  .scale-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .si-blue { background: rgba(59,130,246,0.15); }
+  .si-green { background: rgba(34,197,94,0.15); }
+  .scale-title { font-size: 0.95rem; font-weight: 800; color: #E8EDF2; }
+  .scale-sub { font-size: 0.7rem; color: #6B8299; }
+  .scale-when { font-size: 0.72rem; font-weight: 700; color: #93c5fd; text-transform: uppercase; letter-spacing: 0.07em; margin: 0.75rem 0 0.4rem; }
+  .scale-list li { font-size: 0.78rem; color: #94A3B8; line-height: 1.6; margin-bottom: 0.2rem; padding-left: 0.75rem; position: relative; list-style: none; }
+  .scale-list li::before { content: '→'; position: absolute; left: 0; color: #C9910A; font-size: 0.65rem; }
+  .scale-cost { margin-top: 0.85rem; background: rgba(201,145,10,0.05); border: 1px solid rgba(201,145,10,0.15); border-radius: 6px; padding: 0.65rem 0.9rem; font-size: 0.78rem; color: #94A3B8; }
+  .scale-cost strong { color: #C9910A; }
+
+  .roadmap-steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.85rem; margin-bottom: 2.5rem; }
+  .rs-step { background: #0A1828; border: 1px solid #1a2e40; border-radius: 10px; padding: 1rem; }
+  .rs-phase { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #C9910A; margin-bottom: 0.35rem; }
+  .rs-title { font-size: 0.9rem; font-weight: 800; color: #E8EDF2; margin-bottom: 0.4rem; }
+  .rs-desc { font-size: 0.76rem; color: #6B8299; line-height: 1.55; }
+  .rs-cost { font-size: 0.72rem; font-weight: 700; color: #86efac; margin-top: 0.5rem; }
+
+  /* ============ CHECKLIST ============ */
+  .checklist-box { background: rgba(20,184,166,0.05); border: 1px solid rgba(20,184,166,0.2); border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2.5rem; }
+  .checklist-box h3 { font-size: 0.95rem; font-weight: 800; color: #5eead4; margin-bottom: 1rem; }
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  @media (max-width: 560px) { .check-grid { grid-template-columns: 1fr; } }
+  .check-item { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.78rem; color: #94A3B8; line-height: 1.5; }
+  .check-icon { color: #5eead4; flex-shrink: 0; font-size: 0.7rem; margin-top: 0.1rem; }
+
+  /* ============ INDIA LATENCY ============ */
+  .latency-note { background: rgba(255,153,0,0.05); border: 1px solid rgba(255,153,0,0.2); border-radius: 10px; padding: 1rem 1.35rem; margin-bottom: 2rem; }
+  .latency-note h4 { font-size: 0.82rem; font-weight: 800; color: #fbbf24; margin-bottom: 0.4rem; }
+  .latency-note p { font-size: 0.78rem; color: #94A3B8; line-height: 1.6; }
+
+  .source-note { font-size: 0.68rem; color: #3A5068; text-align: right; margin-top: 0.35rem; font-style: italic; }
+  .source-note a { color: #C9910A; text-decoration: none; }
+  footer { text-align: center; padding: 1.5rem; font-size: 0.72rem; color: #3A5068; border-top: 1px solid #1a2e40; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">📊 FindocAI · VPS Selection Guide</div>
+  <div class="topbar-nav">
+    <a href="index.html">← Back to FindocAI</a>
+    <a href="ca-smartdoc-roadmap-2026.html">Roadmap</a>
+    <a href="ca-leads-pitch-deck-ahmedabad-2026.html">Leads</a>
+    <a href="ca-smartdoc-landing-page-2026.html">Landing Page</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Infrastructure Decision · Internal · Apr 2026</div>
+  <h1>VPS Server Selection<br><span>for CA SmartDoc Launch</span></h1>
+  <p class="hero-sub">13 providers compared on price, performance, latency to India, support quality, and scalability. All prices verified April 2026. Recommendation and scaling roadmap included.</p>
+  <div class="req-pills">
+    <div class="req-pill gold">Target: 16GB RAM</div>
+    <div class="req-pill gold">4–8 vCPU</div>
+    <div class="req-pill gold">240GB+ SSD</div>
+    <div class="req-pill">OCR + RAG workload</div>
+    <div class="req-pill">Private deployment</div>
+    <div class="req-pill">India / Singapore latency</div>
+    <div class="req-pill">Budget: under ₹5,000/mo</div>
+  </div>
+</div>
+
+<!-- WINNER -->
+<div class="section">
+  <div class="section-title">Recommended Pick</div>
+  <div class="section-sub">Best cost-to-performance ratio for CA SmartDoc's OCR + RAG + AI Agent workload</div>
+
+  <div class="winner-banner">
+    <div class="winner-grid">
+      <div class="winner-logo">🇩🇪</div>
+      <div>
+        <div class="winner-name">Hetzner Cloud CPX41</div>
+        <div class="winner-tagline">AMD EPYC · Nuremberg / Helsinki / Singapore · 99.9% SLA · GDPR compliant</div>
+        <div class="winner-specs">
+          <span class="wspec">8 vCPU AMD EPYC</span>
+          <span class="wspec">16 GB RAM</span>
+          <span class="wspec">240 GB NVMe SSD</span>
+          <span class="wspec">20 TB traffic/mo</span>
+          <span class="wspec">1 Gbps uplink</span>
+        </div>
+      </div>
+      <div class="winner-price-block">
+        <div class="wprice-eu">€29.54<span style="font-size:0.8rem;color:#6B8299">/mo</span></div>
+        <div class="wprice-inr">~₹2,700/mo (EU)</div>
+        <div class="wprice-inr" style="color:#93c5fd;">~₹4,500/mo (Singapore)</div>
+        <div class="wprice-label">No setup fee · Hourly billing</div>
+      </div>
+    </div>
+    <div class="winner-why">
+      <strong style="color:#C9910A;">Why Hetzner CPX41?</strong> At €29.54/mo for the EU node (or €49/mo for Singapore), it offers 8 AMD EPYC vCPUs and 16GB RAM at 3–4× lower cost than DigitalOcean or Vultr's equivalent. The CPX41 scores 6,192 multi-core Geekbench6 — 2.2× faster than a Dell Precision baseline. For CA SmartDoc's OCR pipeline (Tesseract/EasyOCR), RAG embedding (sentence transformers), and LLM inference (Ollama/llama.cpp), 16GB RAM is the minimum viable spec and this plan delivers it at the lowest verified price. Singapore datacenter gives ~60–90ms latency to Ahmedabad — acceptable for a web interface. EU datacenter + VPN is also an option for cost-sensitive early deployments.
+    </div>
+  </div>
+
+  <!-- LATENCY NOTE -->
+  <div class="latency-note">
+    <h4>🇮🇳 India Latency Note — Important for CA Firm Demos</h4>
+    <p>Hetzner's nearest datacenter to India is <strong>Singapore (sin-dc1)</strong> — average latency 60–90ms to Ahmedabad. For a document upload + extraction workflow, this is acceptable (users won't notice). For real-time AI chat, responses will feel slightly delayed. <strong>Recommendation:</strong> Start with EU for cost, switch to Singapore when onboarding first 3 clients. Hetzner lets you migrate with one click. Alternative: GigaNodes runs AMD EPYC in India at ₹1,800/mo but support is less established.</p>
+  </div>
+
+  <!-- FULL COMPARISON TABLE -->
+  <div class="section-title">Full Comparison — 13 Providers</div>
+  <div class="section-sub">All prices for 16GB RAM tier, verified April 2026. INR at ₹91.5/USD, ₹100.5/EUR.</div>
+  <div class="compare-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Provider</th>
+          <th>Plan (16GB)</th>
+          <th>vCPU</th>
+          <th>Storage</th>
+          <th>Traffic</th>
+          <th>Price/mo (USD)</th>
+          <th>Price/mo (INR)</th>
+          <th>DC Nearest India</th>
+          <th>Support</th>
+          <th>Score /10</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td class="provider-name">Hetzner CPX41 <span class="badge-rec">✓ PICK</span><br><a href="https://www.hetzner.com/cloud/" class="provider-link" target="_blank">hetzner.com/cloud →</a></td>
+          <td>CPX41 — Dedicated AMD EPYC</td>
+          <td>8 vCPU</td>
+          <td>240 GB NVMe</td>
+          <td>20 TB</td>
+          <td class="price-gold">$32 (EU) · $49 (SG)</td>
+          <td class="price-green">₹2,700 · ₹4,500</td>
+          <td class="dc-cell"><span class="dc-sg">Singapore</span> ~70ms</td>
+          <td>Email 24/7 SLA</td>
+          <td class="score-cell"><span class="score-bar"><span class="score-num score-gold">9.4</span></span></td>
+          <td>Best value overall</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="provider-name">Contabo Cloud VPS M<br><a href="https://contabo.com/en/vps/" class="provider-link" target="_blank">contabo.com →</a></td>
+          <td>Cloud VPS M — Shared EPYC</td>
+          <td>6 vCPU</td>
+          <td>200 GB NVMe</td>
+          <td>Unmetered</td>
+          <td class="price-gold">$14.99</td>
+          <td class="price-green">₹1,370</td>
+          <td class="dc-cell"><span class="dc-sg">Singapore</span> ~75ms</td>
+          <td>Ticket only</td>
+          <td class="score-cell"><span class="score-bar"><span class="score-num score-gold">8.1</span></span></td>
+          <td>Tightest budget</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td class="provider-name">GigaNodes India <span class="badge-india">🇮🇳 India DC</span><br><a href="https://giganodes.host/" class="provider-link" target="_blank">giganodes.host →</a></td>
+          <td>EPYC VPS — India datacenter</td>
+          <td>6 vCPU</td>
+          <td>200 GB NVMe</td>
+          <td>10 TB</td>
+          <td class="price-gold">~$21</td>
+          <td class="price-green">₹1,800</td>
+          <td class="dc-cell"><span class="dc-india">India</span> &lt;10ms</td>
+          <td>Chat support</td>
+          <td class="score-cell"><span class="score-bar"><span class="score-num score-gold">8.0</span></span></td>
+          <td>India-only deployment</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td class="provider-name">DedicatedCore<br><a href="https://dedicatedcore.com/" class="provider-link" target="_blank">dedicatedcore.com →</a></td>
+          <td>Singapore VPS 16GB</td>
+          <td>4 vCPU</td>
+          <td>320 GB SSD</td>
+          <td>Unmetered</td>
+          <td class="price-gold">$16.49</td>
+          <td class="price-green">₹1,509</td>
+          <td class="dc-cell"><span class="dc-sg">Singapore</span> ~65ms</td>
+          <td>Ticket</td>
+          <td class="score-cell"><span class="score-bar"><span class="score-num score-gold">7.8</span></span></td>
+          <td>Budget SG node</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td class="provider-name">SSD Nodes<br><a href="https://www.ssdnodes.com/" class="provider-link" target="_blank">ssdnodes.com →</a></td>
+          <td>Value SSD 16GB</td>
+          <td>4 vCPU</td>
+          <td>180 GB SSD</td>
+          <td>10 TB</td>
+          <td class="price-gold">$28</td>
+          <td class="price-gold">₹2,562</td>
+          <td class="dc-cell"><span class="dc-eu">US / EU</span> ~200ms</td>
+          <td>Ticket</td>
+          <td class="score-cell"><span class="score-bar"><span class="score-num score-gray">7.2</span></span></td>
+          <td>US/EU cost option</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td class="provider-name">Hetzner CX42 (Shared)<br><a href="https://www.hetzner.com/cloud/" class="provider-link" target="_blank">hetzner.com →</a></td>
+          <td>CX42 — Shared x86</td>
+          <td>8 vCPU (shared)</td>
+          <td>160 GB SSD</td>
+          <td>20 TB</td>
+          <td class="price-gold">$16.49</td>
+          <td class="price-green">₹1,509</td>
+          <td class="dc-cell"><span class="dc-sg">Singapore</span> ~70ms</td>
+          <td>Email SLA</td>
+          <td class="score-cell"><span class="score-bar"><span class="score-num score-gold">7.5</span></span></td>
+          <td>Low-traffic start</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td class="provider-name">Vultr High Frequency<br><a href="https://www.vultr.com/products/cloud-compute/" class="provider-link" target="_blank">vultr.com →</a></td>
+          <td>VX1 GP 4C/16G</td>
+          <td>4 vCPU</td>
+          <td>240 GB NVMe</td>
+          <td>6 TB</td>
+          <td class="price-red">$80–110</td>
+          <td class="price-red">₹7,320–10,065</td>
+          <td class="dc-cell"><span class="dc-sg">Singapore</span> ~60ms</td>
+          <td>Chat 24/7</td>
+          <td class="score-cell"><span class="score-bar"><span class="score-num score-gray">7.0</span></span></td>
+          <td>Premium SG option</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td class="provider-name">DigitalOcean Droplets<br><a href="https://www.digitalocean.com/pricing/droplets" class="provider-link" target="_blank">digitalocean.com →</a></td>
+          <td>Regular 16GB Droplet</td>
+          <td>8 vCPU</td>
+          <td>320 GB SSD</td>
+          <td>6 TB</td>
+          <td class="price-red">$96</td>
+          <td class="price-red">₹8,784</td>
+          <td class="dc-cell"><span class="dc-sg">Bangalore 🇮🇳</span> &lt;20ms</td>
+          <td>Chat + Ticket 24/7</td>
+          <td class="score-cell"><span class="score-bar"><span class="score-num score-gray">7.3</span></span></td>
+          <td>India DC + ecosystem</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td class="provider-name">Linode / Akamai Cloud<br><a href="https://www.linode.com/pricing/" class="provider-link" target="_blank">linode.com →</a></td>
+          <td>Dedicated 16GB</td>
+          <td>8 vCPU</td>
+          <td>320 GB SSD</td>
+          <td>6 TB</td>
+          <td class="price-red">$96</td>
+          <td class="price-red">₹8,784</td>
+          <td class="dc-cell"><span class="dc-sg">Singapore</span> ~65ms</td>
+          <td>Chat + Phone 24/7</td>
+          <td class="score-cell"><span class="score-bar"><span class="score-num score-gray">7.1</span></span></td>
+          <td>Reliability-focused</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td class="provider-name">MassiveGRID<br><a href="https://www.massivegrid.com/" class="provider-link" target="_blank">massivegrid.com →</a></td>
+          <td>VPS 16GB (Proxmox+Ceph)</td>
+          <td>6 vCPU</td>
+          <td>200 GB SSD</td>
+          <td>Metered</td>
+          <td class="price-gold">~$35</td>
+          <td class="price-gold">₹3,200</td>
+          <td class="dc-cell"><span class="dc-sg">Singapore</span> ~70ms</td>
+          <td>24/7 Human</td>
+          <td class="score-cell"><span class="score-bar"><span class="score-num score-gray">7.0</span></span></td>
+          <td>HA architecture</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td class="provider-name">AWS EC2 t3.xlarge<br><a href="https://aws.amazon.com/ec2/pricing/" class="provider-link" target="_blank">aws.amazon.com →</a></td>
+          <td>t3.xlarge (burstable)</td>
+          <td>4 vCPU</td>
+          <td>EBS extra</td>
+          <td>Metered $$</td>
+          <td class="price-red">~$120+ (with EBS)</td>
+          <td class="price-red">₹10,980+</td>
+          <td class="dc-cell"><span class="dc-india">Mumbai 🇮🇳</span> &lt;15ms</td>
+          <td>Enterprise 24/7</td>
+          <td class="score-cell"><span class="score-bar"><span class="score-num score-gray">6.5</span></span></td>
+          <td>Enterprise scale only</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td class="provider-name">Google Cloud e2-standard-4<br><a href="https://cloud.google.com/compute/vm-instance-pricing" class="provider-link" target="_blank">cloud.google.com →</a></td>
+          <td>e2-standard-4 + SSD</td>
+          <td>4 vCPU</td>
+          <td>SSD extra</td>
+          <td>Metered $$</td>
+          <td class="price-red">~$130+ (with disk)</td>
+          <td class="price-red">₹11,895+</td>
+          <td class="dc-cell"><span class="dc-india">Mumbai 🇮🇳</span> &lt;15ms</td>
+          <td>Enterprise 24/7</td>
+          <td class="score-cell"><span class="score-bar"><span class="score-num score-gray">6.3</span></span></td>
+          <td>GCP-integrated stacks</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td class="provider-name">Hostinger VPS India<br><a href="https://www.hostinger.in/vps-hosting" class="provider-link" target="_blank">hostinger.in →</a></td>
+          <td>VPS Plan 8 (16GB equiv)</td>
+          <td>8 vCPU</td>
+          <td>200 GB NVMe</td>
+          <td>Unlimited</td>
+          <td class="price-gold">~$38</td>
+          <td class="price-gold">₹3,477</td>
+          <td class="dc-cell"><span class="dc-india">India 🇮🇳</span> &lt;10ms</td>
+          <td>Chat 24/7</td>
+          <td class="score-cell"><span class="score-bar"><span class="score-num score-gold">7.6</span></span></td>
+          <td>India DC + budget</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="source-note">Sources: <a href="https://sparecores.com/server/hcloud/cpx41" target="_blank">sparecores.com</a> · <a href="https://www.vpsbenchmarks.com/compare/hetzner_vs_vultr" target="_blank">vpsbenchmarks.com</a> · <a href="https://giganodes.host/blog/top-5-vps-providers-india-march-2026" target="_blank">giganodes.host Mar 2026</a> · <a href="https://www.hostmycode.com/blog/best-managed-vps-hosting-india-2026-comparison" target="_blank">hostmycode.com 2026</a> · Provider pricing pages verified Apr 25, 2026</div>
+
+</div>
+
+<!-- DETAIL CARDS -->
+<div style="background:#070F1C; border-top:1px solid #1a2e40; border-bottom:1px solid #1a2e40;">
+  <div class="section">
+    <div class="section-title">Provider Deep Dives</div>
+    <div class="section-sub">Top 6 shortlisted for CA SmartDoc — pros, cons, and fit assessment</div>
+
+    <div class="detail-grid">
+
+      <div class="detail-card winner-card">
+        <div class="dc-header">
+          <div class="dc-name">🇩🇪 Hetzner CPX41</div>
+          <span class="dc-rank rank-1">RANK #1</span>
+        </div>
+        <div class="dc-price">€29.54/mo EU &nbsp;|&nbsp; €49/mo SG</div>
+        <div class="dc-price-inr">~₹2,700/mo (EU) · ~₹4,500/mo (Singapore)</div>
+        <div class="dc-specs">
+          <div class="dc-spec"><strong>CPU:</strong> 8× AMD EPYC</div>
+          <div class="dc-spec"><strong>RAM:</strong> 16 GB</div>
+          <div class="dc-spec"><strong>Disk:</strong> 240 GB NVMe</div>
+          <div class="dc-spec"><strong>Traffic:</strong> 20 TB/mo</div>
+          <div class="dc-spec"><strong>Uptime SLA:</strong> 99.9%</div>
+          <div class="dc-spec"><strong>Latency India:</strong> 65–90ms (SG)</div>
+        </div>
+        <div class="dc-pros">
+          <div class="dc-pros-title">Pros</div>
+          <div class="dc-pro">Best price-per-vCPU in class (verified by sparecores.com)</div>
+          <div class="dc-pro">AMD EPYC = excellent parallel processing for OCR + embeddings</div>
+          <div class="dc-pro">20 TB included traffic — no surprise bills</div>
+          <div class="dc-pro">Singapore DC available — one-click migration from EU</div>
+          <div class="dc-pro">GDPR compliant, ISO 27001, C5 certified</div>
+          <div class="dc-pro">Hourly billing, no long-term lock-in</div>
+        </div>
+        <div class="dc-pros" style="margin-top:0.5rem;">
+          <div class="dc-cons-title">Cons</div>
+          <div class="dc-con">No India datacenter (nearest: Singapore, ~70ms)</div>
+          <div class="dc-con">Support English/German only (no Hindi/Indian support)</div>
+        </div>
+        <a href="https://www.hetzner.com/cloud/general-purpose" class="dc-link" target="_blank">View Hetzner Cloud Pricing →</a>
+      </div>
+
+      <div class="detail-card">
+        <div class="dc-header">
+          <div class="dc-name">🌍 Contabo Cloud VPS M</div>
+          <span class="dc-rank rank-2">RANK #2 (Budget)</span>
+        </div>
+        <div class="dc-price">$14.99/mo</div>
+        <div class="dc-price-inr">~₹1,370/mo · Lowest verified price for 16GB</div>
+        <div class="dc-specs">
+          <div class="dc-spec"><strong>CPU:</strong> 6 vCPU</div>
+          <div class="dc-spec"><strong>RAM:</strong> 16 GB</div>
+          <div class="dc-spec"><strong>Disk:</strong> 200 GB NVMe</div>
+          <div class="dc-spec"><strong>Traffic:</strong> Unmetered</div>
+          <div class="dc-spec"><strong>Locations:</strong> EU, US, SG, AU</div>
+          <div class="dc-spec"><strong>Latency India:</strong> 70–90ms (SG)</div>
+        </div>
+        <div class="dc-pros">
+          <div class="dc-pros-title">Pros</div>
+          <div class="dc-pro">Cheapest 16GB option with NVMe storage</div>
+          <div class="dc-pro">Unmetered traffic — no bandwidth surprises</div>
+          <div class="dc-pro">Singapore location available</div>
+        </div>
+        <div class="dc-pros" style="margin-top:0.5rem;">
+          <div class="dc-cons-title">Cons</div>
+          <div class="dc-con">Reliability issues reported in community forums (noisy neighbours)</div>
+          <div class="dc-con">Support quality inconsistent; tickets can take 24–48h</div>
+          <div class="dc-con">Not recommended for production without testing first</div>
+        </div>
+        <a href="https://contabo.com/en/vps/" class="dc-link" target="_blank">View Contabo Pricing →</a>
+      </div>
+
+      <div class="detail-card">
+        <div class="dc-header">
+          <div class="dc-name">🇮🇳 GigaNodes India</div>
+          <span class="dc-rank rank-3">RANK #3 (India DC)</span>
+        </div>
+        <div class="dc-price">₹1,800/mo · India Datacenter</div>
+        <div class="dc-price-inr">AMD EPYC 7C13 · Local latency &lt;10ms</div>
+        <div class="dc-specs">
+          <div class="dc-spec"><strong>CPU:</strong> 6× AMD EPYC 7C13</div>
+          <div class="dc-spec"><strong>RAM:</strong> 16 GB</div>
+          <div class="dc-spec"><strong>Disk:</strong> 200 GB NVMe</div>
+          <div class="dc-spec"><strong>Traffic:</strong> 10 TB/mo</div>
+          <div class="dc-spec"><strong>DC:</strong> India</div>
+          <div class="dc-spec"><strong>Latency India:</strong> &lt;10ms</div>
+        </div>
+        <div class="dc-pros">
+          <div class="dc-pros-title">Pros</div>
+          <div class="dc-pro">India datacenter — best latency for CA firm users in Gujarat</div>
+          <div class="dc-pro">AMD EPYC processors — strong multi-threaded performance</div>
+          <div class="dc-pro">₹1,800/mo is extremely competitive for India-hosted VPS</div>
+          <div class="dc-pro">Ranked #1 for India VPS by giganodes.host benchmark study Mar 2026</div>
+        </div>
+        <div class="dc-pros" style="margin-top:0.5rem;">
+          <div class="dc-cons-title">Cons</div>
+          <div class="dc-con">Newer provider — less track record than Hetzner/DO</div>
+          <div class="dc-con">Limited documentation and community support</div>
+        </div>
+        <a href="https://giganodes.host/" class="dc-link" target="_blank">View GigaNodes Pricing →</a>
+      </div>
+
+      <div class="detail-card">
+        <div class="dc-header">
+          <div class="dc-name">💧 DigitalOcean Bangalore</div>
+          <span class="dc-rank rank-n">RANK #4 (India DC)</span>
+        </div>
+        <div class="dc-price">$96/mo · Bangalore Datacenter</div>
+        <div class="dc-price-inr">~₹8,784/mo · Premium India option</div>
+        <div class="dc-specs">
+          <div class="dc-spec"><strong>CPU:</strong> 8 vCPU</div>
+          <div class="dc-spec"><strong>RAM:</strong> 16 GB</div>
+          <div class="dc-spec"><strong>Disk:</strong> 320 GB SSD</div>
+          <div class="dc-spec"><strong>Traffic:</strong> 6 TB/mo</div>
+          <div class="dc-spec"><strong>DC:</strong> Bangalore 🇮🇳</div>
+          <div class="dc-spec"><strong>Latency India:</strong> &lt;20ms</div>
+        </div>
+        <div class="dc-pros">
+          <div class="dc-pros-title">Pros</div>
+          <div class="dc-pro">India datacenter — &lt;20ms latency from Gujarat</div>
+          <div class="dc-pro">Excellent developer ecosystem (Managed DBs, Spaces, CDN)</div>
+          <div class="dc-pro">24/7 live chat support with SLA</div>
+          <div class="dc-pro">Very reliable — 99.99% uptime track record</div>
+        </div>
+        <div class="dc-pros" style="margin-top:0.5rem;">
+          <div class="dc-cons-title">Cons</div>
+          <div class="dc-con">3× more expensive than Hetzner for same specs</div>
+          <div class="dc-con">Not cost-viable for initial launch phase</div>
+        </div>
+        <a href="https://www.digitalocean.com/pricing/droplets" class="dc-link" target="_blank">View DigitalOcean Pricing →</a>
+      </div>
+
+      <div class="detail-card">
+        <div class="dc-header">
+          <div class="dc-name">🌐 Hostinger VPS India</div>
+          <span class="dc-rank rank-n">RANK #5 (India Budget)</span>
+        </div>
+        <div class="dc-price">~₹3,477/mo · India DC</div>
+        <div class="dc-price-inr">8 vCPU / 16GB / 200GB NVMe</div>
+        <div class="dc-specs">
+          <div class="dc-spec"><strong>CPU:</strong> 8 vCPU</div>
+          <div class="dc-spec"><strong>RAM:</strong> 16 GB</div>
+          <div class="dc-spec"><strong>Disk:</strong> 200 GB NVMe</div>
+          <div class="dc-spec"><strong>Traffic:</strong> Unlimited</div>
+          <div class="dc-spec"><strong>DC:</strong> India 🇮🇳</div>
+          <div class="dc-spec"><strong>Latency India:</strong> &lt;10ms</div>
+        </div>
+        <div class="dc-pros">
+          <div class="dc-pros-title">Pros</div>
+          <div class="dc-pro">India datacenter — zero latency for local CA clients</div>
+          <div class="dc-pro">Unlimited traffic included</div>
+          <div class="dc-pro">Hindi support available (important for India market)</div>
+          <div class="dc-pro">Familiar brand in India — easier billing (INR, UPI)</div>
+        </div>
+        <div class="dc-pros" style="margin-top:0.5rem;">
+          <div class="dc-cons-title">Cons</div>
+          <div class="dc-con">Renewal price higher than intro (~₹5,500/mo after year 1)</div>
+          <div class="dc-con">Less performance per rupee vs Hetzner+SG</div>
+        </div>
+        <a href="https://www.hostinger.in/vps-hosting" class="dc-link" target="_blank">View Hostinger VPS India →</a>
+      </div>
+
+      <div class="detail-card">
+        <div class="dc-header">
+          <div class="dc-name">⚡ DedicatedCore (Singapore)</div>
+          <span class="dc-rank rank-n">RANK #6 (SG Budget)</span>
+        </div>
+        <div class="dc-price">$16.49/mo · Singapore</div>
+        <div class="dc-price-inr">~₹1,509/mo · Best SG price for 16GB</div>
+        <div class="dc-specs">
+          <div class="dc-spec"><strong>CPU:</strong> 4 vCPU</div>
+          <div class="dc-spec"><strong>RAM:</strong> 16 GB</div>
+          <div class="dc-spec"><strong>Disk:</strong> 320+520 GB</div>
+          <div class="dc-spec"><strong>Traffic:</strong> Unmetered</div>
+          <div class="dc-spec"><strong>DC:</strong> Singapore 🇸🇬</div>
+          <div class="dc-spec"><strong>Latency India:</strong> ~65ms</div>
+        </div>
+        <div class="dc-pros">
+          <div class="dc-pros-title">Pros</div>
+          <div class="dc-pro">Cheapest Singapore 16GB option found ($16.49/mo)</div>
+          <div class="dc-pro">Large storage (840 GB total) — good for document archives</div>
+          <div class="dc-pro">Unmetered traffic</div>
+        </div>
+        <div class="dc-pros" style="margin-top:0.5rem;">
+          <div class="dc-cons-title">Cons</div>
+          <div class="dc-con">Less known provider — limited community reviews</div>
+          <div class="dc-con">Only 4 vCPU — may bottleneck OCR processing under load</div>
+        </div>
+        <a href="https://dedicatedcore.com/" class="dc-link" target="_blank">View DedicatedCore →</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SCALING ROADMAP -->
+<div class="section">
+  <div class="section-title">Scaling Strategy</div>
+  <div class="section-sub">When to scale up (vertical) vs scale out (horizontal) — decision framework for CA SmartDoc</div>
+
+  <div class="scaling-grid">
+    <div class="scale-card vertical">
+      <div class="scale-header">
+        <div class="scale-icon si-blue">↑</div>
+        <div>
+          <div class="scale-title">Vertical Scaling</div>
+          <div class="scale-sub">Upgrade the same server to larger specs</div>
+        </div>
+      </div>
+      <div class="scale-when">Use when</div>
+      <ul class="scale-list">
+        <li>OCR processing queue is backing up (CPU-bound)</li>
+        <li>LLM inference is slow — swap to larger model (needs 32GB+ RAM)</li>
+        <li>Single-firm deployment — one server serves one client</li>
+        <li>You have fewer than 5 active client firms</li>
+      </ul>
+      <div class="scale-when">Hetzner vertical path</div>
+      <ul class="scale-list">
+        <li>CPX41 (16GB, €29/mo) → CPX51 (32GB, €58/mo) → CX52 (32GB dedicated, €60/mo)</li>
+        <li>One-click resize in Hetzner console — zero downtime with snapshots</li>
+      </ul>
+      <div class="scale-cost"><strong>Rule:</strong> Go vertical first if RAM or CPU is the bottleneck on a single-tenant deployment.</div>
+    </div>
+
+    <div class="scale-card horizontal">
+      <div class="scale-header">
+        <div class="scale-icon si-green">→→</div>
+        <div>
+          <div class="scale-title">Horizontal Scaling</div>
+          <div class="scale-sub">Add more servers, distribute load</div>
+        </div>
+      </div>
+      <div class="scale-when">Use when</div>
+      <ul class="scale-list">
+        <li>10+ active CA firm clients (each needing isolated data)</li>
+        <li>You need client data isolation (separate server per client)</li>
+        <li>High availability required — single server failure unacceptable</li>
+        <li>Processing volume exceeds single server capacity</li>
+      </ul>
+      <div class="scale-when">Horizontal architecture</div>
+      <ul class="scale-list">
+        <li>OCR worker nodes (stateless) — scale independently from AI/RAG layer</li>
+        <li>Shared vector database on separate node (Qdrant/Weaviate)</li>
+        <li>Load balancer (Hetzner's built-in, €6/mo) routes requests</li>
+        <li>Each client firm gets isolated data namespace, not isolated server</li>
+      </ul>
+      <div class="scale-cost"><strong>Rule:</strong> Horizontal when you have 10+ clients. Start vertical — infrastructure stays simple and cost-controlled.</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-bottom:0.5rem;">Phase-by-Phase Infrastructure Roadmap</div>
+  <div class="section-sub">Based on CA SmartDoc pricing tiers (Starter ₹2,999 / Professional ₹5,999 / Enterprise ₹12,999)</div>
+
+  <div class="roadmap-steps">
+    <div class="rs-step">
+      <div class="rs-phase">Phase 1 · Month 0–3 · 1–5 clients</div>
+      <div class="rs-title">Single Hetzner CPX41</div>
+      <div class="rs-desc">One EU or Singapore server. All services on single node: OCR (Tesseract), embeddings (sentence-transformers), vector store (Qdrant), LLM (Ollama + llama3.1:8b), API (FastAPI). Client data isolated via namespaces.</div>
+      <div class="rs-cost">Cost: ₹2,700–₹4,500/mo · Break-even at 1 Starter client</div>
+    </div>
+    <div class="rs-step">
+      <div class="rs-phase">Phase 2 · Month 3–9 · 5–15 clients</div>
+      <div class="rs-title">Vertical upgrade + backup</div>
+      <div class="rs-desc">Upgrade to CPX51 (32GB) to run larger LLM (llama3.1:70b quantised) or serve multiple clients simultaneously. Add automated daily snapshot backup. Add monitoring (Uptime Kuma, Grafana). Still single server.</div>
+      <div class="rs-cost">Cost: ~₹5,500/mo · Break-even at 2 Starter or 1 Professional client</div>
+    </div>
+    <div class="rs-step">
+      <div class="rs-phase">Phase 3 · Month 9–18 · 15–40 clients</div>
+      <div class="rs-title">Separate OCR + RAG layers</div>
+      <div class="rs-desc">Split OCR processing to dedicated worker server (CPX31, 8GB). Main server handles RAG queries and LLM. Shared Qdrant on separate small node. Hetzner Load Balancer (€6/mo) routes traffic. Each client has isolated vector collection.</div>
+      <div class="rs-cost">Cost: ~₹10,000–₹12,000/mo · 4+ Professional clients cover this</div>
+    </div>
+    <div class="rs-step">
+      <div class="rs-phase">Phase 4 · Month 18+ · 40+ clients</div>
+      <div class="rs-title">Multi-region + dedicated servers</div>
+      <div class="rs-desc">India-dedicated node (GigaNodes or DigitalOcean Bangalore) for latency-sensitive enterprise clients. EU/SG nodes for cost-optimised clients. Enterprise clients get dedicated server (Hetzner AX41, AMD Ryzen, 64GB, €55/mo). Kubernetes optional at this scale.</div>
+      <div class="rs-cost">Cost: ₹25,000–₹50,000/mo · 4+ Enterprise clients or 15+ Professional clients</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SETUP CHECKLIST -->
+<div style="background:#070F1C; border-top:1px solid #1a2e40;">
+  <div class="section">
+    <div class="checklist-box">
+      <h3>✅ First-Server Setup Checklist (Hetzner CPX41)</h3>
+      <div class="check-grid">
+        <div class="check-item"><span class="check-icon">✓</span> Create Hetzner account — console.hetzner.com (no setup fee)</div>
+        <div class="check-item"><span class="check-icon">✓</span> Select CPX41 plan · Ubuntu 22.04 LTS · Singapore DC (sin-dc1)</div>
+        <div class="check-item"><span class="check-icon">✓</span> Add SSH key before creation — never use password login</div>
+        <div class="check-item"><span class="check-icon">✓</span> Assign floating IP (€1.19/mo) for stable public address</div>
+        <div class="check-item"><span class="check-icon">✓</span> Enable Hetzner Firewall — block all except 22 (SSH), 80, 443, 8000 (API)</div>
+        <div class="check-item"><span class="check-icon">✓</span> Install Docker + Docker Compose (one-click app available)</div>
+        <div class="check-item"><span class="check-icon">✓</span> Deploy: Qdrant (vector DB), Ollama (LLM), FastAPI (backend), Nginx (proxy)</div>
+        <div class="check-item"><span class="check-icon">✓</span> Set up automated snapshots (€0.0119/GB/mo) — daily schedule</div>
+        <div class="check-item"><span class="check-icon">✓</span> Install Uptime Kuma for health monitoring (free, self-hosted)</div>
+        <div class="check-item"><span class="check-icon">✓</span> Test OCR pipeline on 50 sample invoices before first client demo</div>
+        <div class="check-item"><span class="check-icon">✓</span> Set RAM alert at 80% — upgrade to CPX51 when consistently exceeded</div>
+        <div class="check-item"><span class="check-icon">✓</span> Document all env vars — use .env file with Vault for secrets</div>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-bottom:0.5rem;">Monthly Cost Projection by Client Count</div>
+    <div class="compare-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Active Clients</th>
+            <th>Infrastructure</th>
+            <th>Server Cost/mo</th>
+            <th>Revenue (avg mix)</th>
+            <th>Server as % Revenue</th>
+            <th>Recommendation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1–3 clients</td>
+            <td>1× Hetzner CPX41 (SG)</td>
+            <td class="price-gold">₹4,500</td>
+            <td>₹9,000–₹18,000</td>
+            <td class="price-gold">25–50%</td>
+            <td>Acceptable — proving phase</td>
+          </tr>
+          <tr>
+            <td>5 clients</td>
+            <td>1× Hetzner CPX41 (SG)</td>
+            <td class="price-gold">₹4,500</td>
+            <td>₹25,000–₹50,000</td>
+            <td class="price-green">9–18%</td>
+            <td>Healthy — stay on same server</td>
+          </tr>
+          <tr>
+            <td>10 clients</td>
+            <td>1× Hetzner CPX51 (32GB)</td>
+            <td class="price-gold">₹9,000</td>
+            <td>₹50,000–₹1,00,000</td>
+            <td class="price-green">9–18%</td>
+            <td>Strong margins — upgrade RAM</td>
+          </tr>
+          <tr>
+            <td>25 clients</td>
+            <td>3× CPX41 + LB</td>
+            <td class="price-gold">₹18,000</td>
+            <td>₹1,50,000–₹3,00,000</td>
+            <td class="price-green">6–12%</td>
+            <td>Horizontal — split workloads</td>
+          </tr>
+          <tr>
+            <td>50+ clients</td>
+            <td>Dedicated + India DC</td>
+            <td>₹40,000–₹60,000</td>
+            <td>₹3,00,000–₹6,00,000</td>
+            <td class="price-green">10–20%</td>
+            <td>Multi-region, dedicated nodes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="source-note">Revenue estimates based on CA SmartDoc pricing: Starter ₹2,999 / Professional ₹5,999 / Enterprise ₹12,999/mo. Mix assumes 60% Starter, 30% Professional, 10% Enterprise.</div>
+  </div>
+</div>
+
+<footer>
+  📊 FindocAI · VPS Selection Guide · CA SmartDoc Infrastructure · Apr 2026 · <a href="index.html" style="color:#C9910A; text-decoration:none;">← Back to FindocAI</a>
+</footer>
+
+</body>
+</html>
