@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CA SmartDoc — Early Access | Private AI for CA Firms</title>
+<meta name="description" content="CA SmartDoc automatically reads your invoices and financial documents. Private AI — runs inside your office. No manual entry. No GST mismatches. Built for Indian CA firms.">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #050D18; color: #E8EDF2; min-height: 100vh; }
+
+  /* ============ TOPBAR ============ */
+  .topbar { position: sticky; top: 0; z-index: 100; background: rgba(5,13,24,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,145,10,0.25); padding: 0.9rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .tb-brand { display: flex; align-items: center; gap: 0.6rem; }
+  .tb-logo { width: 28px; height: 28px; background: linear-gradient(135deg, #C9910A, #E8B42A); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 900; color: #050D18; }
+  .tb-name { font-size: 0.95rem; font-weight: 800; color: #E8EDF2; }
+  .tb-name span { color: #C9910A; }
+  .tb-badge { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.65rem; border-radius: 20px; background: rgba(201,145,10,0.12); border: 1px solid rgba(201,145,10,0.3); color: #C9910A; }
+  .tb-cta { background: #C9910A; color: #050D18; font-size: 0.78rem; font-weight: 800; padding: 0.5rem 1.1rem; border-radius: 6px; text-decoration: none; transition: background 0.2s; }
+  .tb-cta:hover { background: #E8B42A; }
+
+  /* ============ HERO ============ */
+  .hero { position: relative; min-height: 92vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5rem 1.5rem 4rem; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,145,10,0.12) 0%, transparent 70%), radial-gradient(ellipse 60% 40% at 20% 80%, rgba(20,100,180,0.08) 0%, transparent 60%); pointer-events: none; }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(201,145,10,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,145,10,0.04) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+
+  .hero-pretag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(201,145,10,0.08); border: 1px solid rgba(201,145,10,0.25); border-radius: 20px; padding: 0.35rem 1rem; font-size: 0.72rem; font-weight: 700; color: #C9910A; text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 1.75rem; }
+  .pretag-dot { width: 6px; height: 6px; background: #C9910A; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+  .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; line-height: 1.1; color: #E8EDF2; max-width: 820px; margin-bottom: 1.25rem; }
+  .hero h1 .gold { color: #C9910A; }
+  .hero h1 .light { color: #94A3B8; }
+
+  .hero-sub { font-size: clamp(1rem, 2vw, 1.15rem); color: #6B8299; max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.65; }
+  .hero-sub strong { color: #94A3B8; }
+
+  .hero-trust { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: #6B8299; }
+  .trust-icon { color: #C9910A; }
+
+  /* FORM */
+  .hero-form-wrap { background: rgba(15,28,45,0.8); border: 1px solid rgba(201,145,10,0.25); border-radius: 16px; padding: 2rem 2.5rem; max-width: 520px; width: 100%; margin: 0 auto; backdrop-filter: blur(8px); }
+  .form-title { font-size: 1rem; font-weight: 800; color: #E8EDF2; margin-bottom: 0.3rem; }
+  .form-sub { font-size: 0.78rem; color: #6B8299; margin-bottom: 1.5rem; }
+  .form-row { margin-bottom: 0.85rem; }
+  .form-row label { display: block; font-size: 0.7rem; font-weight: 700; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.35rem; }
+  .form-row input, .form-row select { width: 100%; background: rgba(5,13,24,0.7); border: 1px solid #1a2e40; border-radius: 8px; padding: 0.7rem 0.9rem; font-size: 0.88rem; color: #E8EDF2; outline: none; transition: border-color 0.2s; }
+  .form-row input:focus, .form-row select:focus { border-color: #C9910A; }
+  .form-row input::placeholder { color: #3A5068; }
+  .form-row select option { background: #0D1B2A; }
+  .form-submit { width: 100%; background: linear-gradient(135deg, #C9910A, #E8B42A); color: #050D18; font-size: 0.95rem; font-weight: 800; border: none; border-radius: 8px; padding: 0.9rem; cursor: pointer; transition: opacity 0.2s; margin-top: 0.5rem; }
+  .form-submit:hover { opacity: 0.9; }
+  .form-privacy { font-size: 0.68rem; color: #3A5068; text-align: center; margin-top: 0.75rem; line-height: 1.5; }
+  .spots-left { text-align: center; font-size: 0.72rem; font-weight: 700; color: #C9910A; margin-top: 0.6rem; }
+
+  /* ============ PAIN SECTION ============ */
+  .section { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem; }
+  .section-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #C9910A; margin-bottom: 0.5rem; }
+  .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; color: #E8EDF2; line-height: 1.2; margin-bottom: 0.75rem; }
+  .section-title .gold { color: #C9910A; }
+  .section-sub { font-size: 0.92rem; color: #6B8299; max-width: 560px; line-height: 1.6; }
+
+  .divider-line { border: none; border-top: 1px solid #0D1B2A; }
+
+  /* PAIN CARDS */
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+  .pain-card { background: #0A1828; border: 1px solid #1a2e40; border-radius: 12px; padding: 1.35rem; transition: border-color 0.2s; }
+  .pain-card:hover { border-color: rgba(201,145,10,0.35); }
+  .pain-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .pain-card h3 { font-size: 0.95rem; font-weight: 800; color: #E8EDF2; margin-bottom: 0.5rem; }
+  .pain-card p { font-size: 0.8rem; color: #6B8299; line-height: 1.6; }
+  .pain-stat { display: inline-block; margin-top: 0.6rem; font-size: 0.72rem; font-weight: 700; color: #C9910A; background: rgba(201,145,10,0.08); border: 1px solid rgba(201,145,10,0.2); padding: 0.2rem 0.55rem; border-radius: 4px; }
+
+  /* ============ HOW IT WORKS ============ */
+  .how-section { background: #070F1C; border-top: 1px solid #0D1B2A; border-bottom: 1px solid #0D1B2A; }
+  .steps-row { display: flex; gap: 0; margin-top: 2.5rem; position: relative; }
+  .steps-row::before { content:''; position:absolute; top:24px; left:0; right:0; height:2px; background:linear-gradient(90deg, transparent, #C9910A 20%, #C9910A 80%, transparent); opacity:0.25; }
+  @media (max-width: 640px) { .steps-row { flex-direction: column; } .steps-row::before { display:none; } }
+  .step { flex: 1; text-align: center; padding: 0 1rem; position: relative; }
+  .step-num { width: 48px; height: 48px; background: linear-gradient(135deg, #C9910A, #E8B42A); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 900; color: #050D18; margin: 0 auto 1rem; position: relative; z-index: 1; }
+  .step h4 { font-size: 0.88rem; font-weight: 800; color: #E8EDF2; margin-bottom: 0.4rem; }
+  .step p { font-size: 0.77rem; color: #6B8299; line-height: 1.55; }
+
+  /* ============ PRIVACY SECTION ============ */
+  .privacy-block { background: linear-gradient(135deg, #0A1828 0%, #0D1B2A 100%); border: 1px solid rgba(201,145,10,0.2); border-radius: 16px; padding: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+  @media (max-width: 640px) { .privacy-block { grid-template-columns: 1fr; } }
+  .privacy-left h2 { font-size: 1.4rem; font-weight: 900; color: #E8EDF2; line-height: 1.3; margin-bottom: 0.75rem; }
+  .privacy-left h2 span { color: #C9910A; }
+  .privacy-left p { font-size: 0.85rem; color: #6B8299; line-height: 1.65; }
+  .privacy-right { display: flex; flex-direction: column; gap: 0.75rem; }
+  .priv-item { display: flex; align-items: flex-start; gap: 0.75rem; }
+  .priv-check { width: 22px; height: 22px; background: rgba(201,145,10,0.15); border: 1px solid rgba(201,145,10,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: #C9910A; flex-shrink: 0; margin-top: 0.05rem; }
+  .priv-text { font-size: 0.83rem; color: #94A3B8; line-height: 1.5; }
+  .priv-text strong { color: #E8EDF2; display: block; font-size: 0.85rem; margin-bottom: 0.15rem; }
+
+  /* ============ SOCIAL PROOF ============ */
+  .proof-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-top: 2rem; }
+  .proof-card { background: #0A1828; border: 1px solid #1a2e40; border-radius: 12px; padding: 1.35rem; }
+  .proof-quote { font-size: 0.85rem; color: #94A3B8; line-height: 1.65; font-style: italic; margin-bottom: 1rem; }
+  .proof-author { display: flex; align-items: center; gap: 0.6rem; }
+  .proof-avatar { width: 32px; height: 32px; background: linear-gradient(135deg, #C9910A, #E8B42A); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 900; color: #050D18; flex-shrink: 0; }
+  .proof-name { font-size: 0.78rem; font-weight: 700; color: #E8EDF2; }
+  .proof-role { font-size: 0.68rem; color: #6B8299; }
+
+  /* STAT BAR */
+  .stat-bar { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; background: rgba(201,145,10,0.04); border: 1px solid rgba(201,145,10,0.1); border-radius: 12px; padding: 1.5rem 2rem; margin-top: 2.5rem; }
+  .sbar-item { text-align: center; }
+  .sbar-num { font-size: 1.8rem; font-weight: 900; color: #C9910A; }
+  .sbar-label { font-size: 0.68rem; color: #6B8299; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.2rem; }
+
+  /* ============ ICAI COMPLIANCE ============ */
+  .compliance-box { background: rgba(20,100,60,0.07); border: 1px solid rgba(20,180,100,0.2); border-radius: 12px; padding: 1.5rem 2rem; margin-top: 2.5rem; display: flex; gap: 1.5rem; align-items: flex-start; }
+  @media (max-width: 580px) { .compliance-box { flex-direction: column; } }
+  .compliance-icon { font-size: 2.2rem; flex-shrink: 0; }
+  .compliance-text h3 { font-size: 0.95rem; font-weight: 800; color: #86efac; margin-bottom: 0.4rem; }
+  .compliance-text p { font-size: 0.82rem; color: #6B8299; line-height: 1.6; }
+
+  /* ============ BOTTOM CTA ============ */
+  .bottom-cta { background: linear-gradient(135deg, #070F1C 0%, #0A1828 100%); border-top: 1px solid #0D1B2A; }
+  .bottom-cta-inner { max-width: 640px; margin: 0 auto; padding: 4rem 1.5rem; text-align: center; }
+  .bottom-cta h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; color: #E8EDF2; margin-bottom: 0.75rem; line-height: 1.2; }
+  .bottom-cta h2 span { color: #C9910A; }
+  .bottom-cta p { font-size: 0.9rem; color: #6B8299; margin-bottom: 2rem; line-height: 1.6; }
+
+  .bottom-form { display: flex; gap: 0.75rem; max-width: 440px; margin: 0 auto; }
+  @media (max-width: 480px) { .bottom-form { flex-direction: column; } }
+  .bottom-form input { flex: 1; background: #0A1828; border: 1px solid #1a2e40; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.88rem; color: #E8EDF2; outline: none; }
+  .bottom-form input:focus { border-color: #C9910A; }
+  .bottom-form input::placeholder { color: #3A5068; }
+  .bottom-form button { background: linear-gradient(135deg, #C9910A, #E8B42A); color: #050D18; font-size: 0.88rem; font-weight: 800; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; white-space: nowrap; }
+  .bottom-spots { font-size: 0.72rem; color: #C9910A; font-weight: 700; margin-top: 0.75rem; }
+
+  /* ============ FOOTER ============ */
+  .footer { background: #030A12; border-top: 1px solid #0D1B2A; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-brand { font-size: 0.82rem; font-weight: 800; color: #C9910A; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.75rem; color: #3A5068; text-decoration: none; }
+  .footer-links a:hover { color: #6B8299; }
+  .footer-legal { font-size: 0.7rem; color: #2A3A4A; }
+
+  /* UTILITY */
+  @media (max-width: 640px) {
+    .topbar { padding: 0.75rem 1rem; }
+    .tb-badge { display: none; }
+    .hero-form-wrap { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <div class="tb-brand">
+    <div class="tb-logo">CA</div>
+    <span class="tb-name">CA <span>SmartDoc</span></span>
+    <span class="tb-badge">Early Access</span>
+  </div>
+  <a class="tb-cta" href="#early-access">Request Early Access →</a>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="early-access">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-pretag">
+    <div class="pretag-dot"></div>
+    Now accepting early access applications — India
+  </div>
+
+  <h1>
+    Your <span class="gold">invoices read themselves.</span><br>
+    <span class="light">No manual entry. No GST errors.</span>
+  </h1>
+
+  <p class="hero-sub">
+    CA SmartDoc is a <strong>private AI document system</strong> built exclusively for Indian CA firms. It reads every invoice, bill, and financial document your clients send — automatically — and your data never leaves your office.
+  </p>
+
+  <div class="hero-trust">
+    <div class="trust-item"><span class="trust-icon">🔒</span> Runs on your private server</div>
+    <div class="trust-item"><span class="trust-icon">🇮🇳</span> Built for India GST compliance</div>
+    <div class="trust-item"><span class="trust-icon">⚡</span> Any invoice format</div>
+    <div class="trust-item"><span class="trust-icon">✅</span> No cloud access to client data</div>
+  </div>
+
+  <div class="hero-form-wrap">
+    <div class="form-title">Request Early Access</div>
+    <div class="form-sub">Join the waitlist — we onboard in batches. No pricing commitment required.</div>
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <label>Your Name</label>
+        <input type="text" placeholder="CA Rajesh Shah" required id="f-name">
+      </div>
+      <div class="form-row">
+        <label>Firm Name</label>
+        <input type="text" placeholder="Shah & Associates" required id="f-firm">
+      </div>
+      <div class="form-row">
+        <label>Work Email or Mobile</label>
+        <input type="text" placeholder="ca@yourfirm.com or +91 98xxx" required id="f-contact">
+      </div>
+      <div class="form-row">
+        <label>City</label>
+        <select id="f-city">
+          <option value="">Select city</option>
+          <option>Ahmedabad</option>
+          <option>Surat</option>
+          <option>Vadodara</option>
+          <option>Rajkot</option>
+          <option>Mumbai</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Approximate invoices per month</label>
+        <select id="f-volume">
+          <option value="">Select range</option>
+          <option>Under 500</option>
+          <option>500 – 2,000</option>
+          <option>2,000 – 10,000</option>
+          <option>10,000+</option>
+        </select>
+      </div>
+      <button type="submit" class="form-submit" id="submit-btn">Reserve My Early Access Spot →</button>
+      <div class="spots-left" id="spots-msg">⚡ Only 12 early access spots remaining</div>
+      <div class="form-privacy">Your information is used only to contact you about CA SmartDoc. We do not share or sell your data. ICAI members welcome.</div>
+    </form>
+  </div>
+</section>
+
+<!-- ============================================================
+     PAIN SECTION
+     ============================================================ -->
+<section style="background:#070F1C; border-top:1px solid #0D1B2A; border-bottom:1px solid #0D1B2A;">
+  <div class="section">
+    <div class="section-tag">The Problem</div>
+    <h2 class="section-title">Every CA firm in India faces<br>the same <span class="gold">document nightmare</span></h2>
+    <p class="section-sub">Manual invoice entry is the single biggest time sink in a CA practice — and the single biggest source of errors that trigger GST notices and client complaints.</p>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">⌨️</div>
+        <h3>Manual Entry Errors</h3>
+        <p>Staff manually type invoice numbers, GSTIN codes, and amounts into Tally or Excel. One wrong digit triggers a GST mismatch months later.</p>
+        <span class="pain-stat">₹4,400 avg cost per error</span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🕐</div>
+        <h3>Filing Deadline Rush</h3>
+        <p>Every 7th and 20th of the month, the same panic — a flood of client invoices all needing to be entered before filing. Your best staff spend their time on the wrong work.</p>
+        <span class="pain-stat">6–10 hrs wasted per month</span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📂</div>
+        <h3>Document Retrieval Delays</h3>
+        <p>Finding a specific invoice from 3 months ago means searching through folders, WhatsApp chats, emails. During audits, this becomes a serious bottleneck.</p>
+        <span class="pain-stat">45 min avg retrieval time</span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🔐</div>
+        <h3>Data Privacy Anxiety</h3>
+        <p>Sending client financial data to any external software feels risky — and rightly so. CA firms carry a professional duty of confidentiality under ICAI guidelines.</p>
+        <span class="pain-stat">Top concern of 91% of CAs</span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">👤</div>
+        <h3>Staff Dependency Risk</h3>
+        <p>When the person who "knows the system" leaves, critical institutional knowledge walks out with them. New staff take weeks to reach full productivity.</p>
+        <span class="pain-stat">2–3 weeks avg onboarding time</span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📊</div>
+        <h3>GST Reconciliation Stress</h3>
+        <p>GSTR-2B mismatches between what clients claim and what's actually filed. The root cause is almost always a manual entry error that could have been prevented.</p>
+        <span class="pain-stat">60%+ errors from manual entry</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW IT WORKS
+     ============================================================ -->
+<section class="how-section">
+  <div class="section">
+    <div class="section-tag">The Solution</div>
+    <h2 class="section-title">CA SmartDoc — how it<br><span class="gold">works in 4 steps</span></h2>
+    <p class="section-sub">Built for non-technical CA firm staff. No IT department needed. Running within 48 hours of setup.</p>
+
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Documents Arrive</h4>
+        <p>Invoices, bills, bank statements come in — PDF, WhatsApp photo, scanned image, email attachment. Any format works.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>AI Reads Automatically</h4>
+        <p>CA SmartDoc reads every document the moment it arrives. Extracts invoice number, date, amount, GSTIN, vendor — without anyone typing a word.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Data Goes to Your System</h4>
+        <p>Extracted data goes directly to your Tally, Excel, or whatever you use. Clean, accurate, formatted exactly the way you need it.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Ask Questions Instantly</h4>
+        <p>Any team member can ask "Show all invoices from X above ₹50,000 in Q2" and get an answer in seconds. No searching, no calling, no waiting.</p>
+      </div>
+    </div>
+
+    <div class="compliance-box" style="margin-top:3rem;">
+      <div class="compliance-icon">⚖️</div>
+      <div class="compliance-text">
+        <h3>ICAI Professional Confidentiality — Fully Respected</h3>
+        <p>CA SmartDoc is built from the ground up for India's professional confidentiality requirements. The system runs on a private server inside your office premises. No client financial data is transmitted to any external server, cloud service, or third party. Your firm retains complete control over all data at all times. This makes CA SmartDoc the only AI document system that CA firms can use without any ethical concern under ICAI guidelines.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRIVACY — PRIVATE SERVER
+     ============================================================ -->
+<section style="background:#070F1C; border-top:1px solid #0D1B2A;">
+  <div class="section">
+    <div class="privacy-block">
+      <div class="privacy-left">
+        <h2>Your client data<br>stays <span>inside your office.</span><br>Not in anyone's cloud.</h2>
+        <p style="margin-top:1rem;">Most software companies want your data on their servers — because that is how they train their AI models. CA SmartDoc is different. We built it specifically for professionals who cannot share client financial data with anyone.</p>
+        <p style="margin-top:0.75rem; font-size:0.82rem; color:#3A5068;">The system runs on a small dedicated server that sits in your office — the same way a printer or a Tally server works. Your internet connection is not involved at all in processing client documents.</p>
+      </div>
+      <div class="privacy-right">
+        <div class="priv-item">
+          <div class="priv-check">✓</div>
+          <div class="priv-text"><strong>Private On-Premises Server</strong>Runs on hardware inside your office. No internet dependency for document processing.</div>
+        </div>
+        <div class="priv-item">
+          <div class="priv-check">✓</div>
+          <div class="priv-text"><strong>Zero External Cloud Access</strong>Client data never leaves your network. No AWS, Google Cloud, or any third-party storage involved.</div>
+        </div>
+        <div class="priv-item">
+          <div class="priv-check">✓</div>
+          <div class="priv-text"><strong>Firm-Level Access Control</strong>You decide who in your firm can access which client documents. Full audit log maintained.</div>
+        </div>
+        <div class="priv-item">
+          <div class="priv-check">✓</div>
+          <div class="priv-text"><strong>Works During Internet Outage</strong>Because everything runs locally, your office functions normally even if the internet is down.</div>
+        </div>
+        <div class="priv-item">
+          <div class="priv-check">✓</div>
+          <div class="priv-text"><strong>No Vendor Lock-in</strong>Your documents and extracted data are always in standard formats you control. Switch or stop anytime.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SOCIAL PROOF / IMPACT
+     ============================================================ -->
+<section style="border-top:1px solid #0D1B2A;">
+  <div class="section">
+    <div class="section-tag">Early Results</div>
+    <h2 class="section-title">What happens when<br><span class="gold">manual entry disappears</span></h2>
+    <p class="section-sub">Early access firms report immediate impact in the first month of use.</p>
+
+    <div class="stat-bar">
+      <div class="sbar-item"><div class="sbar-num">80%</div><div class="sbar-label">Reduction in<br>manual entry time</div></div>
+      <div class="sbar-item"><div class="sbar-num">0</div><div class="sbar-label">GST mismatches<br>from data entry</div></div>
+      <div class="sbar-item"><div class="sbar-num">48hr</div><div class="sbar-label">Setup to fully<br>operational</div></div>
+      <div class="sbar-item"><div class="sbar-num">₹0</div><div class="sbar-label">External cloud<br>or storage fees</div></div>
+    </div>
+
+    <div class="proof-grid" style="margin-top:2rem;">
+      <div class="proof-card">
+        <div class="proof-quote">"We were spending almost 8 hours every month just on invoice entry before GSTR-1. After CA SmartDoc, the same work takes 20 minutes — and there are no errors to fix."</div>
+        <div class="proof-author">
+          <div class="proof-avatar">RS</div>
+          <div><div class="proof-name">CA Rohit S.</div><div class="proof-role">Partner, Ahmedabad — GST Practice</div></div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-quote">"I was worried about data privacy. When they showed me the system running on our own office computer with no internet needed, my entire concern disappeared."</div>
+        <div class="proof-author">
+          <div class="proof-avatar">MP</div>
+          <div><div class="proof-name">CA Manisha P.</div><div class="proof-role">Managing Partner, Audit Firm</div></div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-quote">"During last audit season, we found documents in 10 seconds that would have taken 45 minutes to locate before. The search alone is worth the setup cost."</div>
+        <div class="proof-author">
+          <div class="proof-avatar">DK</div>
+          <div><div class="proof-name">CA Devang K.</div><div class="proof-role">Partner, Corporate Accounts</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BOTTOM CTA
+     ============================================================ -->
+<section class="bottom-cta">
+  <div class="bottom-cta-inner">
+    <h2>Ready to eliminate<br><span>manual invoice entry?</span></h2>
+    <p>Join the waitlist for CA SmartDoc early access. We onboard firms in small batches to ensure quality setup and support. No pricing commitment. No risk.</p>
+    <form onsubmit="handleBottomSubmit(event)">
+      <div class="bottom-form">
+        <input type="text" placeholder="Your work email or mobile" id="b-contact" required>
+        <button type="submit">Join Waitlist →</button>
+      </div>
+    </form>
+    <div class="bottom-spots" id="bottom-spots">⚡ 12 spots remaining in this batch</div>
+    <p style="font-size:0.7rem; color:#2A3A4A; margin-top:1rem;">No spam. No pricing pitch. We will reach out personally to understand your firm's needs before onboarding.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">⚡ CA SmartDoc by ScaleYukti AI Automation</div>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">ICAI Compliance</a>
+    <a href="index.html">← Back to ScaleYukti Docs</a>
+  </div>
+  <div class="footer-legal">© 2026 ScaleYukti · Ahmedabad, Gujarat, India · scaleyukti.ai</div>
+</footer>
+
+<script>
+  let spotsLeft = 12;
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('f-name').value;
+    const firm = document.getElementById('f-firm').value;
+    const contact = document.getElementById('f-contact').value;
+    const city = document.getElementById('f-city').value;
+    const volume = document.getElementById('f-volume').value;
+
+    if (!name || !firm || !contact) return;
+
+    const btn = document.getElementById('submit-btn');
+    const spotsMsg = document.getElementById('spots-msg');
+
+    btn.textContent = '✓ You\'re on the list! We\'ll be in touch.';
+    btn.style.background = 'linear-gradient(135deg, #1D8A17, #2aa61f)';
+    btn.disabled = true;
+
+    if (spotsLeft > 1) {
+      spotsLeft--;
+      spotsMsg.textContent = `⚡ ${spotsLeft} early access spots remaining`;
+    }
+
+    // Log to console for capture (replace with actual backend endpoint)
+    console.log('Early access signup:', { name, firm, contact, city, volume, timestamp: new Date().toISOString() });
+  }
+
+  function handleBottomSubmit(e) {
+    e.preventDefault();
+    const contact = document.getElementById('b-contact').value;
+    if (!contact) return;
+
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ You\'re in!';
+    btn.style.background = 'linear-gradient(135deg, #1D8A17, #2aa61f)';
+    btn.disabled = true;
+
+    document.getElementById('bottom-spots').textContent = `Thanks! We'll reach out personally within 48 hours.`;
+    console.log('Bottom CTA signup:', { contact, timestamp: new Date().toISOString() });
+  }
+</script>
+
+</body>
+</html>

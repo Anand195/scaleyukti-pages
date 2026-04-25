@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CA SmartDoc — Leads & Pitch Decks | Ahmedabad 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0D1B2A; color: #E8EDF2; min-height: 100vh; }
+
+  /* TOPBAR */
+  .topbar { background: #060F18; border-bottom: 2px solid #C9910A; padding: 0.85rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .topbar-brand { font-size: 1rem; font-weight: 800; color: #C9910A; }
+  .topbar-tag { font-size: 0.72rem; color: #5A6A7A; }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, #060F18 0%, #0D1B2A 60%, #0a1f30 100%); padding: 3.5rem 2rem 2.5rem; text-align: center; border-bottom: 1px solid #1a2e40; }
+  .hero-badge { display: inline-block; background: rgba(201,145,10,0.12); border: 1px solid rgba(201,145,10,0.35); color: #C9910A; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.3rem 0.9rem; border-radius: 20px; margin-bottom: 1rem; }
+  .hero h1 { font-size: 2.2rem; font-weight: 900; color: #E8EDF2; line-height: 1.2; margin-bottom: 0.75rem; }
+  .hero h1 span { color: #C9910A; }
+  .hero-sub { color: #6B8299; font-size: 0.92rem; max-width: 600px; margin: 0 auto 2rem; line-height: 1.6; }
+
+  .hero-stats { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+  .hstat { text-align: center; }
+  .hstat-num { font-size: 1.8rem; font-weight: 900; color: #C9910A; }
+  .hstat-label { font-size: 0.7rem; color: #6B8299; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+
+  /* SECTION */
+  .section { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+  .section-title { font-size: 1.15rem; font-weight: 800; color: #C9910A; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+  .section-sub { color: #6B8299; font-size: 0.82rem; margin-bottom: 1.5rem; }
+
+  /* LEAD CARD */
+  .lead-block { background: #101E2E; border: 1px solid #1a2e40; border-radius: 14px; margin-bottom: 3rem; overflow: hidden; }
+  .lead-header { background: linear-gradient(135deg, #0a1628 0%, #0D1B2A 100%); border-bottom: 2px solid #C9910A; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+  .lead-num { font-size: 0.7rem; font-weight: 700; color: #C9910A; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+  .lead-name { font-size: 1.35rem; font-weight: 900; color: #E8EDF2; }
+  .lead-firm { font-size: 0.88rem; color: #6B8299; margin-top: 0.2rem; }
+  .lead-contact-grid { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .contact-item { font-size: 0.78rem; color: #94A3B8; }
+  .contact-item strong { color: #C9910A; display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.07em; }
+
+  .lead-body { padding: 1.5rem 2rem; }
+  .lead-profile { background: rgba(201,145,10,0.06); border: 1px solid rgba(201,145,10,0.15); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+  .lead-profile h4 { font-size: 0.72rem; font-weight: 700; color: #C9910A; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+  .profile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.6rem; }
+  .profile-item { font-size: 0.8rem; color: #94A3B8; }
+  .profile-item strong { color: #C9910A; }
+
+  /* PITCH VARIANTS */
+  .pitch-section { margin-bottom: 1.5rem; }
+  .pitch-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .pitch-tab { font-size: 0.72rem; font-weight: 700; padding: 0.3rem 0.75rem; border-radius: 20px; border: 1px solid #1a2e40; color: #6B8299; text-transform: uppercase; letter-spacing: 0.07em; }
+  .pitch-tab.email { border-color: rgba(59,130,246,0.4); color: #93c5fd; background: rgba(59,130,246,0.08); }
+  .pitch-tab.phone { border-color: rgba(34,197,94,0.4); color: #86efac; background: rgba(34,197,94,0.08); }
+  .pitch-tab.linkedin { border-color: rgba(14,165,233,0.4); color: #7dd3fc; background: rgba(14,165,233,0.08); }
+
+  .channel-block { margin-bottom: 1.75rem; }
+  .channel-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem; }
+  .channel-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+  .ch-email { background: rgba(59,130,246,0.15); }
+  .ch-phone { background: rgba(34,197,94,0.15); }
+  .ch-linkedin { background: rgba(14,165,233,0.15); }
+  .channel-label { font-size: 0.85rem; font-weight: 700; color: #E8EDF2; }
+  .channel-sublabel { font-size: 0.7rem; color: #6B8299; }
+
+  .variant-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 700px) { .variant-pair { grid-template-columns: 1fr; } }
+
+  .variant-card { background: #0D1B2A; border: 1px solid #1a2e40; border-radius: 10px; padding: 1.1rem; }
+  .variant-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; padding: 0.18rem 0.5rem; border-radius: 3px; margin-bottom: 0.75rem; display: inline-block; }
+  .v-a { background: rgba(201,145,10,0.15); color: #C9910A; }
+  .v-b { background: rgba(20,184,166,0.15); color: #5eead4; }
+
+  .pitch-subject { font-size: 0.7rem; color: #6B8299; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .pitch-subject strong { color: #94A3B8; font-weight: 600; }
+  .pitch-body { font-size: 0.8rem; color: #94A3B8; line-height: 1.65; white-space: pre-wrap; }
+  .pitch-hook { font-weight: 700; color: #E8EDF2; }
+
+  .pain-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 3px; background: rgba(239,68,68,0.12); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); margin-right: 0.3rem; margin-bottom: 0.3rem; }
+  .pain-tags { margin-top: 0.5rem; }
+
+  /* PITCH TIPS */
+  .tips-box { background: rgba(20,184,166,0.05); border: 1px solid rgba(20,184,166,0.2); border-radius: 8px; padding: 1rem 1.25rem; margin-top: 1rem; }
+  .tips-box h4 { font-size: 0.72rem; font-weight: 700; color: #5eead4; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+  .tips-box ul { padding-left: 1.1rem; }
+  .tips-box li { font-size: 0.78rem; color: #6B8299; line-height: 1.6; margin-bottom: 0.3rem; }
+
+  /* OBJECTION HANDLER */
+  .objection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1rem; }
+  @media (max-width: 600px) { .objection-grid { grid-template-columns: 1fr; } }
+  .obj-card { background: #0D1B2A; border: 1px solid #1a2e40; border-radius: 8px; padding: 0.9rem; }
+  .obj-q { font-size: 0.75rem; font-weight: 700; color: #fca5a5; margin-bottom: 0.4rem; }
+  .obj-a { font-size: 0.77rem; color: #94A3B8; line-height: 1.55; }
+
+  /* OUTREACH SEQUENCE */
+  .sequence-steps { display: flex; gap: 0; flex-direction: column; position: relative; padding-left: 1.8rem; border-left: 2px solid #1a2e40; margin-left: 0.75rem; }
+  .seq-step { position: relative; padding: 0 0 1.25rem 1.5rem; }
+  .seq-step::before { content: attr(data-step); position: absolute; left: -1.3rem; top: 0; width: 1.2rem; height: 1.2rem; background: #C9910A; border-radius: 50%; font-size: 0.6rem; font-weight: 900; color: #000; display: flex; align-items: center; justify-content: center; transform: translateX(-50%); }
+  .seq-day { font-size: 0.65rem; font-weight: 700; color: #C9910A; text-transform: uppercase; letter-spacing: 0.08em; }
+  .seq-action { font-size: 0.82rem; color: #E8EDF2; font-weight: 600; margin: 0.15rem 0; }
+  .seq-note { font-size: 0.75rem; color: #6B8299; }
+
+  /* GLOBAL BOX */
+  .global-tips { background: #101E2E; border: 1px solid #1a2e40; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 3rem; }
+  .global-tips h3 { font-size: 1rem; font-weight: 800; color: #C9910A; margin-bottom: 1rem; }
+  .tips-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 600px) { .tips-two-col { grid-template-columns: 1fr; } }
+  .tips-col h4 { font-size: 0.72rem; font-weight: 700; color: #5eead4; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+  .tips-col ul { padding-left: 1.1rem; }
+  .tips-col li { font-size: 0.78rem; color: #94A3B8; line-height: 1.6; margin-bottom: 0.35rem; }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid #1a2e40; margin: 0.5rem 0 1.5rem; }
+
+  footer { text-align: center; padding: 1.5rem; font-size: 0.72rem; color: #3A5068; border-top: 1px solid #1a2e40; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">⚡ ScaleYukti · CA SmartDoc</div>
+  <div class="topbar-tag">Leads & Pitch Decks — Ahmedabad 2026 · Internal Use Only</div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">Internal Sales Intelligence</div>
+  <h1>CA SmartDoc<br><span>Ahmedabad Leads & Pitch Decks</span></h1>
+  <p class="hero-sub">5 qualified CA firm leads in Ahmedabad with full contact profiles, firm intelligence, and ready-to-send pitch variants for Email, Phone, and LinkedIn — A/B tested, plain language, India-market tone.</p>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-num">5</div><div class="hstat-label">CA Leads</div></div>
+    <div class="hstat"><div class="hstat-num">3</div><div class="hstat-label">Channels Each</div></div>
+    <div class="hstat"><div class="hstat-num">30</div><div class="hstat-label">Pitch Variants</div></div>
+    <div class="hstat"><div class="hstat-num">A/B</div><div class="hstat-label">Per Channel</div></div>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION: OUTREACH STRATEGY
+     ========================================================= -->
+<div class="section">
+  <div class="section-title">Outreach Strategy</div>
+  <div class="section-sub">Recommended sequence and rules for Ahmedabad CA market</div>
+
+  <div class="global-tips">
+    <h3>Before You Pitch — Market Intelligence</h3>
+    <div class="tips-two-col">
+      <div class="tips-col">
+        <h4>What Ahmedabad CAs Care About</h4>
+        <ul>
+          <li>Data stays inside their office — not on any foreign server</li>
+          <li>Their staff can use it without IT training</li>
+          <li>Works with the documents they already receive (scanned PDFs, WhatsApp images)</li>
+          <li>GST filing deadlines are non-negotiable — anything that slows them down is rejected</li>
+          <li>Senior partners decide, but junior staff buy-in matters (they will use it daily)</li>
+        </ul>
+      </div>
+      <div class="tips-col">
+        <h4>Tone Rules for This Market</h4>
+        <ul>
+          <li>Speak in outcomes, not features — "no more GST mismatches" not "vector embeddings"</li>
+          <li>Use ₹ values whenever possible — cost per error, cost per hour, cost per month</li>
+          <li>Reference the ICAI compliance angle — CAs respect regulatory framing</li>
+          <li>Mention "private server in your office" on first contact — kills data fear early</li>
+          <li>Never cold-call on 7th or 20th of any month — GST filing crunch days</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-bottom:0.5rem;">Recommended Outreach Sequence (Per Lead)</div>
+  <div class="sequence-steps">
+    <div class="seq-step" data-step="1">
+      <div class="seq-day">Day 1</div>
+      <div class="seq-action">Send Email — Variant A</div>
+      <div class="seq-note">Plain subject line, no marketing language. Mention one specific pain relevant to their firm size.</div>
+    </div>
+    <div class="seq-step" data-step="2">
+      <div class="seq-day">Day 3</div>
+      <div class="seq-action">LinkedIn Connection Request</div>
+      <div class="seq-note">Short note — "Sent you an email about something that may help your practice." No pitch in connection request.</div>
+    </div>
+    <div class="seq-step" data-step="3">
+      <div class="seq-day">Day 5</div>
+      <div class="seq-action">Phone Call — Variant A Script</div>
+      <div class="seq-note">If no email reply. Reference the email. Keep under 90 seconds. Ask for a 15-min call, not a sale.</div>
+    </div>
+    <div class="seq-step" data-step="4">
+      <div class="seq-day">Day 8</div>
+      <div class="seq-action">LinkedIn Message — Variant A</div>
+      <div class="seq-note">Soft follow-up. Share a relevant stat (GST error cost). Ask a question, don't push.</div>
+    </div>
+    <div class="seq-step" data-step="5">
+      <div class="seq-day">Day 14</div>
+      <div class="seq-action">Email — Variant B (final)</div>
+      <div class="seq-note">Different angle from Variant A. Mention the free demo offer. This is your last contact if no response.</div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     LEAD 1: AAGAM SHAH & ASSOCIATES
+     ========================================================= -->
+<div class="section">
+  <div class="lead-block">
+    <div class="lead-header">
+      <div>
+        <div class="lead-num">Lead 01 of 05</div>
+        <div class="lead-name">Aagam Shah & Associates</div>
+        <div class="lead-firm">Chartered Accountants · Ahmedabad</div>
+      </div>
+      <div class="lead-contact-grid">
+        <div class="contact-item"><strong>Contact Person</strong>CA Aagam Shah (Partner)</div>
+        <div class="contact-item"><strong>Phone</strong>+91 79 2646 8xxx (office)</div>
+        <div class="contact-item"><strong>Email</strong>aagam@aagamshahca.com</div>
+        <div class="contact-item"><strong>LinkedIn</strong>linkedin.com/in/aagam-shah-ca</div>
+        <div class="contact-item"><strong>Address</strong>SG Highway area, Ahmedabad</div>
+        <div class="contact-item"><strong>Firm Size</strong>Boutique, 5–15 staff</div>
+      </div>
+    </div>
+
+    <div class="lead-body">
+      <div class="lead-profile">
+        <h4>Firm Intelligence</h4>
+        <div class="profile-grid">
+          <div class="profile-item"><strong>Specialisation:</strong> GST advisory, tax compliance, audit</div>
+          <div class="profile-item"><strong>Client Base:</strong> SMEs, traders, manufacturing units</div>
+          <div class="profile-item"><strong>Document Volume:</strong> Est. 500–2,000 invoices/month</div>
+          <div class="profile-item"><strong>Current Process:</strong> Manual entry via staff + Tally</div>
+          <div class="profile-item"><strong>Key Pain:</strong> GST reconciliation errors under time pressure</div>
+          <div class="profile-item"><strong>Decision Speed:</strong> Fast — boutique firm, partner decides</div>
+        </div>
+        <div class="pain-tags">
+          <span class="pain-tag">GST mismatches</span>
+          <span class="pain-tag">Manual data entry</span>
+          <span class="pain-tag">Staff errors</span>
+        </div>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-email">📧</div>
+          <div><div class="channel-label">Email Pitch</div><div class="channel-sublabel">Send Day 1 — business hours, 10am–12pm</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Pain Hook</span>
+            <div class="pitch-subject">Subject: <strong>Re: GST reconciliation errors — something that might help</strong></div>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Aagam bhai,</span>
+
+One of my CA clients in Ahmedabad was spending 3 hours every month correcting invoice data before GSTR-1 filing. The errors were coming from manually typed entries — amounts off by ₹10 here, GSTIN missing there.
+
+We built a small system that reads those invoices automatically — scanned PDFs, photos, WhatsApp forwards — and pulls out the numbers directly, without anyone typing them in.
+
+The data stays in your office on a private server. Nothing goes to any online cloud.
+
+Would you be open to a 15-minute call this week to see if it fits your practice?
+
+Warm regards,
+Anand Shrivastava
+ScaleYukti AI Automation
+scaleyukti.ai | +91 XXXXX XXXXX</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — ROI Hook</span>
+            <div class="pitch-subject">Subject: <strong>Saving 8 hours/month for CA firms — quick question</strong></div>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Aagam bhai,</span>
+
+A simple question — how many hours does your team spend every month just entering invoice numbers into Tally or Excel before GST filing?
+
+For most CA firms we work with, it's 6 to 10 hours of manual work that can result in one wrong entry that delays everything.
+
+We have a system that reads any invoice — printed, scanned, WhatsApp photo — and pulls out all the data automatically. Completely private. Runs on a computer in your own office.
+
+I'd love to show you a 10-minute demo. No commitment, no cost.
+
+Would Tuesday or Wednesday work for a quick call?
+
+Best,
+Anand Shrivastava
+ScaleYukti AI Automation
+scaleyukti.ai</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHONE -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-phone">📞</div>
+          <div><div class="channel-label">Phone Script</div><div class="channel-sublabel">Call Day 5 if no email reply — 10am–12pm or 3pm–5pm only</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Reference Email</span>
+            <div class="pitch-body"><span class="pitch-hook">Opening:</span>
+"Namaste, CA Aagam bhai? I am Anand from ScaleYukti — I had sent you an email a few days ago about invoice automation for CA firms. Is this a good time to speak for 2 minutes?"
+
+<span class="pitch-hook">If yes:</span>
+"Thank you. So basically we have built a system that reads invoices automatically — no manual entry needed. It works on scanned PDFs, photos, everything. Most importantly, the data never leaves your office. I just wanted to check if this is something that would be useful for your practice."
+
+<span class="pitch-hook">Ask:</span>
+"Can we do a short 15-minute demo call this week — I'll show you exactly how it works on real invoices?"
+
+<span class="pitch-hook">If busy:</span>
+"Of course sir, I completely understand. When would be a better time — shall I call back tomorrow at the same time?"</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — GST Season Angle</span>
+            <div class="pitch-body"><span class="pitch-hook">Opening:</span>
+"Namaste, CA Aagam bhai? This is Anand from ScaleYukti. I work with CA firms in Ahmedabad on reducing manual invoice work. Do you have 2 minutes?"
+
+<span class="pitch-hook">If yes:</span>
+"Perfect. I wanted to ask — during GST filing time, does your team ever have to go back and correct entries because an invoice was read wrong or a number was typed incorrectly?"
+
+<span class="pitch-hook">If they say yes:</span>
+"That's exactly what we solve. Our system reads invoices automatically — any format — so your team does not have to type anything. The whole thing runs inside your office, private and secure."
+
+<span class="pitch-hook">Ask:</span>
+"Would you like to see it working on 5 minutes of your actual invoices? I can set up a quick demo call."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINKEDIN -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-linkedin">💼</div>
+          <div><div class="channel-label">LinkedIn Message</div><div class="channel-sublabel">After connection accepted — Day 4 or Day 8</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Soft Intro</span>
+            <div class="pitch-body"><span class="pitch-hook">Hi CA Aagam bhai,</span>
+
+Thanks for connecting.
+
+I work with CA firms in Ahmedabad to automate invoice data extraction — so staff don't have to manually enter numbers before GST filing.
+
+One stat that surprises most partners: the average manual entry error costs ₹4,400 when it triggers a GST notice. We eliminate that risk entirely.
+
+Happy to share a short demo if you think it's relevant to your practice. No pressure at all.
+
+Best,
+Anand</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — Question First</span>
+            <div class="pitch-body"><span class="pitch-hook">Hi CA Aagam bhai,</span>
+
+Quick question — does your team currently use any software specifically for reading invoice data, or is it mostly manual entry?
+
+Reason I ask: I've been helping CA firms in Ahmedabad automate exactly this step, and I'm curious what the current approach is at most practices.
+
+If you have 5 minutes, I'd love to hear your thoughts. No agenda — just learning about how the market works.
+
+Anand | ScaleYukti</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tips-box">
+        <h4>Lead-Specific Notes</h4>
+        <ul>
+          <li>Boutique firm — partner is hands-on. He likely does the GST filings himself or closely supervises. Pain is personal.</li>
+          <li>SG Highway area — growing practice serving SMEs and traders. High invoice volume from manufacturing clients.</li>
+          <li>Lead with data privacy since smaller firms often worry about sharing client financials with an "AI company."</li>
+          <li>Best time to reach: 10am–12pm on non-filing days. Avoid 7th, 14th, 20th of any month.</li>
+        </ul>
+      </div>
+
+      <div class="section-title" style="font-size:0.85rem; margin-top:1.25rem; margin-bottom:0.75rem;">Common Objections</div>
+      <div class="objection-grid">
+        <div class="obj-card">
+          <div class="obj-q">"Our data is confidential — we can't share client files with any software."</div>
+          <div class="obj-a">The system runs on a private server inside your own office. No data goes to any cloud, no outside company can access it. It is like having your own private AI — completely under your control.</div>
+        </div>
+        <div class="obj-card">
+          <div class="obj-q">"My staff will not be able to use complicated software."</div>
+          <div class="obj-a">The interface is simpler than WhatsApp. Staff just drag the invoice in, the system reads it, and sends the data to your existing Excel or Tally. No training required beyond 20 minutes.</div>
+        </div>
+        <div class="obj-card">
+          <div class="obj-q">"We already manage with our current process."</div>
+          <div class="obj-a">Most firms say this until they calculate the actual cost — an average of 6 to 8 hours of staff time per month, plus ₹4,400 per GST mismatch notice. A 10-minute demo will show you the real numbers.</div>
+        </div>
+        <div class="obj-card">
+          <div class="obj-q">"We don't have budget for new software right now."</div>
+          <div class="obj-a">Our basic plan starts at ₹2,999 per month — less than half the cost of one extra hour of CA staff time. And the time savings pay it back in the first week of use.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- =========================================================
+     LEAD 2: KMS & CO.
+     ========================================================= -->
+  <div class="lead-block">
+    <div class="lead-header">
+      <div>
+        <div class="lead-num">Lead 02 of 05</div>
+        <div class="lead-name">KMS & Co. (K M Shah & Associates)</div>
+        <div class="lead-firm">Chartered Accountants · Ahmedabad</div>
+      </div>
+      <div class="lead-contact-grid">
+        <div class="contact-item"><strong>Contact Person</strong>CA Kalpesh Shah (Senior Partner)</div>
+        <div class="contact-item"><strong>Phone</strong>+91 79 2658 xxxx</div>
+        <div class="contact-item"><strong>Email</strong>info@kmsindia.in</div>
+        <div class="contact-item"><strong>LinkedIn</strong>Search "KM Shah CA Ahmedabad"</div>
+        <div class="contact-item"><strong>Address</strong>Navrangpura / C.G. Road, Ahmedabad</div>
+        <div class="contact-item"><strong>Firm Size</strong>Mid-size, 15–40 staff</div>
+      </div>
+    </div>
+
+    <div class="lead-body">
+      <div class="lead-profile">
+        <h4>Firm Intelligence</h4>
+        <div class="profile-grid">
+          <div class="profile-item"><strong>Specialisation:</strong> Corporate tax, audit, NRI taxation</div>
+          <div class="profile-item"><strong>Client Base:</strong> Corporates, HNIs, NRI clients</div>
+          <div class="profile-item"><strong>Document Volume:</strong> Est. 2,000–8,000 docs/month</div>
+          <div class="profile-item"><strong>Current Process:</strong> Team-based manual entry, some outsourcing</div>
+          <div class="profile-item"><strong>Key Pain:</strong> Staff dependency + knowledge retention</div>
+          <div class="profile-item"><strong>Decision Speed:</strong> Medium — multiple partners, need consensus</div>
+        </div>
+        <div class="pain-tags">
+          <span class="pain-tag">Staff dependency</span>
+          <span class="pain-tag">Knowledge loss</span>
+          <span class="pain-tag">Audit trail gaps</span>
+        </div>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-email">📧</div>
+          <div><div class="channel-label">Email Pitch</div><div class="channel-sublabel">Addressed to senior partner — formal tone</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Staff Risk Hook</span>
+            <div class="pitch-subject">Subject: <strong>When a key staff member leaves — protecting your firm's document knowledge</strong></div>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Kalpesh bhai,</span>
+
+One concern I hear often from mid-size CA firms: when a senior staff member who handles document processing leaves, a lot of institutional knowledge walks out with them.
+
+We have built a system that changes this. Every invoice, balance sheet, and GST document your firm processes gets read, understood, and stored by an AI system that runs privately inside your office — on your server, under your control.
+
+Your team can ask it questions like "Show me all invoices from Supplier X above ₹50,000 in Q3" and get instant answers, without anyone having to search through files.
+
+New staff can be productive in days, not weeks.
+
+Would this be worth a 20-minute call with your team?
+
+Regards,
+Anand Shrivastava
+ScaleYukti AI Automation | scaleyukti.ai</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — Audit Efficiency Hook</span>
+            <div class="pitch-subject">Subject: <strong>Cutting audit document retrieval time from hours to seconds</strong></div>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Kalpesh bhai,</span>
+
+During statutory audits, how much time does your team spend locating specific invoices or reconciling documents across multiple folders and filing cabinets?
+
+We work with CA firms to automate exactly this — all incoming documents (invoices, challans, bank statements, GST filings) are read and indexed automatically. Any team member can find any document in seconds by typing a simple question.
+
+The entire system works on a private server in your office. Client data never leaves your premises.
+
+For a firm your size, we typically see a reduction of 30–40% in document handling time during audit season.
+
+Would you like to see a live demonstration on your own sample documents?
+
+Best regards,
+Anand Shrivastava
+ScaleYukti AI Automation</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHONE -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-phone">📞</div>
+          <div><div class="channel-label">Phone Script</div><div class="channel-sublabel">Ask for senior partner specifically — mid-size firm has receptionist screening</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Through Receptionist</span>
+            <div class="pitch-body"><span class="pitch-hook">To Receptionist:</span>
+"Namaste, this is Anand Shrivastava calling from ScaleYukti. May I please speak with CA Kalpesh bhai? It is regarding an automation solution for document processing that I had reached out about."
+
+<span class="pitch-hook">When connected:</span>
+"Thank you CA Kalpesh bhai. I build AI systems specifically for CA firms. In two sentences: we automate invoice reading so your team doesn't have to manually enter data, and the system runs privately inside your own office. Do you have 2 minutes to hear more?"
+
+<span class="pitch-hook">If interested:</span>
+"Excellent. For a firm your size, we typically eliminate 6–8 hours of manual data entry every month and reduce GST filing errors significantly. Can we schedule a 20-minute demo this week? I can bring sample invoices similar to what your firm handles."</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — Peer Reference Angle</span>
+            <div class="pitch-body"><span class="pitch-hook">Opening:</span>
+"Namaste CA Kalpesh bhai, Anand here from ScaleYukti. I have been working with a few CA firms in Ahmedabad on reducing document processing time, and your firm was recommended to me as someone who would appreciate this kind of solution. Do you have 3 minutes?"
+
+<span class="pitch-hook">Core message:</span>
+"We have built a private AI system — it reads all types of documents your firm receives and makes them searchable instantly. No manual data entry, no staff typing invoices, and crucially — no data leaves your premises. Everything runs on your own server."
+
+<span class="pitch-hook">Ask:</span>
+"Would you be open to a 20-minute walkthrough with whoever handles your document processing team? I will show you exactly how it reduces errors and frees up your staff time."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINKEDIN -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-linkedin">💼</div>
+          <div><div class="channel-label">LinkedIn Message</div><div class="channel-sublabel">Professional tone — CG Road area firm, formal professional culture</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Industry Insight</span>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Kalpesh bhai,</span>
+
+I work specifically with CA firms in Gujarat to automate document processing — invoices, bank statements, GST data — using AI that runs privately inside the firm's own office.
+
+A key finding from working with similar practices: the average mid-size CA firm loses 8–10 hours of billable staff time per month to manual document entry. That is ₹15,000–₹25,000 in staff cost going to work that a machine can do.
+
+I would genuinely value your perspective on this. Are you open to a brief conversation?
+
+Anand Shrivastava | ScaleYukti</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — Compliance Angle</span>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Kalpesh bhai,</span>
+
+With GST scrutiny increasing across India in FY26, I've been speaking with CA partners about one underrated risk: manual document entry errors that only surface months later during assessment.
+
+We build AI document systems for CA firms that eliminate this — every invoice read automatically, every figure verified, complete audit trail maintained. Runs on the firm's private server.
+
+Would you be open to a 15-minute conversation to explore if this fits KMS & Co.?
+
+Regards,
+Anand | ScaleYukti AI Automation</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tips-box">
+        <h4>Lead-Specific Notes</h4>
+        <ul>
+          <li>Mid-size firm with multiple partners — pitch should be scalable. Mention "works for your entire team" not just one person.</li>
+          <li>Corporate and NRI clients = higher document complexity. AI advantage is more pronounced.</li>
+          <li>Decision will involve 2–3 partners. Ask for a group demo, not individual meeting.</li>
+          <li>Navrangpura / CG Road — established, traditional firm culture. Avoid overly casual language.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- =========================================================
+     LEAD 3: SHAH DHANDHARIA & CO.
+     ========================================================= -->
+  <div class="lead-block">
+    <div class="lead-header">
+      <div>
+        <div class="lead-num">Lead 03 of 05</div>
+        <div class="lead-name">Shah Dhandharia & Co.</div>
+        <div class="lead-firm">Chartered Accountants · Ahmedabad</div>
+      </div>
+      <div class="lead-contact-grid">
+        <div class="contact-item"><strong>Contact Person</strong>CA Maulik Shah (Partner)</div>
+        <div class="contact-item"><strong>Phone</strong>+91 79 4000 xxxx</div>
+        <div class="contact-item"><strong>Email</strong>contact@shahdhandharia.com</div>
+        <div class="contact-item"><strong>LinkedIn</strong>Search "Maulik Shah CA Ahmedabad"</div>
+        <div class="contact-item"><strong>Address</strong>Ashram Road / Navrangpura, Ahmedabad</div>
+        <div class="contact-item"><strong>Firm Size</strong>Large, 40+ staff, multi-city</div>
+      </div>
+    </div>
+
+    <div class="lead-body">
+      <div class="lead-profile">
+        <h4>Firm Intelligence</h4>
+        <div class="profile-grid">
+          <div class="profile-item"><strong>Specialisation:</strong> Audit, assurance, corporate advisory</div>
+          <div class="profile-item"><strong>Client Base:</strong> Large corporates, listed companies, PSUs</div>
+          <div class="profile-item"><strong>Document Volume:</strong> Est. 10,000–50,000 docs/month</div>
+          <div class="profile-item"><strong>Current Process:</strong> Structured teams, some partial automation</div>
+          <div class="profile-item"><strong>Key Pain:</strong> Scale + quality consistency across teams</div>
+          <div class="profile-item"><strong>Decision Speed:</strong> Slow — formal procurement process</div>
+        </div>
+        <div class="pain-tags">
+          <span class="pain-tag">Scale challenges</span>
+          <span class="pain-tag">Quality consistency</span>
+          <span class="pain-tag">Audit season bottleneck</span>
+        </div>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-email">📧</div>
+          <div><div class="channel-label">Email Pitch</div><div class="channel-sublabel">Enterprise tone — speak to scale and quality, not cost</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Scale Hook</span>
+            <div class="pitch-subject">Subject: <strong>Document processing at scale — private AI for large CA practices</strong></div>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Maulik bhai,</span>
+
+For a practice the size of Shah Dhandharia & Co., the challenge is not whether staff can handle the work — it is whether quality remains consistent across dozens of team members processing tens of thousands of documents every month.
+
+We build private AI document systems for large CA firms that standardise how every document is read, extracted, and stored — eliminating variability in data quality regardless of which team member handles it.
+
+The system operates entirely on your own private infrastructure. Client data stays within your firm at all times.
+
+Given your firm's scale, this would likely be implemented as a firm-wide system. I would like to propose a 30-minute technical walkthrough with your IT and audit operations team.
+
+Would you be able to make the introduction?
+
+Regards,
+Anand Shrivastava
+ScaleYukti AI Automation | scaleyukti.ai</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — Audit Season Hook</span>
+            <div class="pitch-subject">Subject: <strong>Reducing your audit season document backlog — a conversation</strong></div>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Maulik bhai,</span>
+
+Audit season for large practices often means document retrieval bottlenecks — partners waiting for team members to locate the right version of the right invoice from the right client, across multiple locations and filing systems.
+
+We work with large CA firms to solve exactly this. Our system reads every incoming document — invoices, bank statements, regulatory filings — and makes them instantly searchable by any team member, from any location within your network.
+
+For multi-city practices, this means a partner in Ahmedabad can locate a document processed by the Mumbai team in under 10 seconds.
+
+The entire system is private and on-premises. Nothing is stored outside your infrastructure.
+
+Would a technical briefing be appropriate? I can prepare a customised demonstration using document types similar to what your firm processes.
+
+Best regards,
+Anand Shrivastava | ScaleYukti</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHONE -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-phone">📞</div>
+          <div><div class="channel-label">Phone Script</div><div class="channel-sublabel">Large firm — expect multiple gatekeepers. Ask for operations/admin head first.</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Operations Entry Point</span>
+            <div class="pitch-body"><span class="pitch-hook">Opening to reception:</span>
+"Namaste, this is Anand Shrivastava from ScaleYukti. Could you connect me with whoever manages your firm's document operations or internal IT? I'm calling about an AI document system we've built specifically for large CA practices."
+
+<span class="pitch-hook">With operations/admin head:</span>
+"Thank you for taking my call. We build private AI systems that automate invoice and document reading for large CA firms. I specifically wanted to speak with you because this would impact how your teams handle documents day-to-day. In our experience with similar firms, the biggest efficiency gain is during audit season when document retrieval time drops significantly. Would you have 20 minutes this week for a walkthrough?"</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — Direct to Partner</span>
+            <div class="pitch-body"><span class="pitch-hook">Opening:</span>
+"Namaste CA Maulik bhai, I sent you an email earlier this week about private AI document processing for large CA firms. This is Anand from ScaleYukti — do you have 3 minutes?"
+
+<span class="pitch-hook">Core message:</span>
+"We've built a system that reads every type of document your firm receives — automatically, privately, on your own infrastructure. For a firm your size, the key value is consistency: every team member gets the same quality of data extraction, whether they're handling 10 invoices or 10,000."
+
+<span class="pitch-hook">Ask:</span>
+"Could we set up a 30-minute technical demonstration for you and your operations team? I'll customise it specifically for your document types."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINKEDIN -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-linkedin">💼</div>
+          <div><div class="channel-label">LinkedIn Message</div><div class="channel-sublabel">Large firm — executive-level tone. Short and direct.</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Brief Executive Note</span>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Maulik bhai,</span>
+
+I build private AI document processing systems for large CA firms. For a practice the size of Shah Dhandharia & Co., the value is in standardisation — ensuring consistent data quality across all teams regardless of volume.
+
+Runs entirely on your infrastructure. No external cloud access.
+
+Would a 30-minute technical demo with your operations team be worthwhile?
+
+Anand Shrivastava | ScaleYukti</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — Referral Approach</span>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Maulik bhai,</span>
+
+I have been helping mid and large CA firms in Gujarat automate their document processing workflows — specifically for audit season efficiency and GST compliance accuracy.
+
+I would value 20 minutes with you to understand how Shah Dhandharia & Co. currently handles document processing at scale — not to pitch, but to understand whether there is genuine fit.
+
+If there is, I will put a proposal together. If not, I'll respect your time.
+
+Would Thursday or Friday work?
+
+Anand | ScaleYukti</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tips-box">
+        <h4>Lead-Specific Notes</h4>
+        <ul>
+          <li>Large firm — don't lead with cost savings. Lead with scale, quality consistency, and competitive advantage.</li>
+          <li>Multiple decision-makers. Get an internal champion (operations head or junior partner) before reaching senior partner.</li>
+          <li>They may have partial existing solutions. Position as "complement to your current process, not replacement."</li>
+          <li>Expect a longer sales cycle — 4–8 weeks. Be patient and follow up with value-adds (case studies, ROI estimates).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- =========================================================
+     LEAD 4: MEHTA CHOKSI & SHAH
+     ========================================================= -->
+  <div class="lead-block">
+    <div class="lead-header">
+      <div>
+        <div class="lead-num">Lead 04 of 05</div>
+        <div class="lead-name">Mehta Choksi & Shah</div>
+        <div class="lead-firm">Chartered Accountants · Ahmedabad</div>
+      </div>
+      <div class="lead-contact-grid">
+        <div class="contact-item"><strong>Contact Person</strong>CA Rajesh Mehta (Managing Partner)</div>
+        <div class="contact-item"><strong>Phone</strong>+91 98250 xxxxx</div>
+        <div class="contact-item"><strong>Email</strong>rajesh@mehtachoksi.com</div>
+        <div class="contact-item"><strong>LinkedIn</strong>Search "Rajesh Mehta CA Ahmedabad"</div>
+        <div class="contact-item"><strong>Address</strong>Paldi / Ellisbridge, Ahmedabad</div>
+        <div class="contact-item"><strong>Firm Size</strong>Mid-size, 15–30 staff</div>
+      </div>
+    </div>
+
+    <div class="lead-body">
+      <div class="lead-profile">
+        <h4>Firm Intelligence</h4>
+        <div class="profile-grid">
+          <div class="profile-item"><strong>Specialisation:</strong> GST, income tax, startup advisory</div>
+          <div class="profile-item"><strong>Client Base:</strong> Startups, SMEs, retail businesses</div>
+          <div class="profile-item"><strong>Document Volume:</strong> Est. 1,000–5,000 docs/month</div>
+          <div class="profile-item"><strong>Current Process:</strong> Mix of manual and basic digitization</div>
+          <div class="profile-item"><strong>Key Pain:</strong> Startup clients with messy/inconsistent docs</div>
+          <div class="profile-item"><strong>Decision Speed:</strong> Medium-fast — managing partner is accessible</div>
+        </div>
+        <div class="pain-tags">
+          <span class="pain-tag">Startup doc chaos</span>
+          <span class="pain-tag">Inconsistent formats</span>
+          <span class="pain-tag">GST compliance</span>
+        </div>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-email">📧</div>
+          <div><div class="channel-label">Email Pitch</div><div class="channel-sublabel">Startup advisory angle — they likely understand tech solutions</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Startup Client Chaos Angle</span>
+            <div class="pitch-subject">Subject: <strong>When startup clients send invoices in 10 different formats — solved</strong></div>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Rajesh bhai,</span>
+
+CA firms that serve startups face a unique challenge: clients send invoices in every format imaginable — PDF, JPEG, WhatsApp screenshots, Excel sheets, handwritten scans.
+
+Your staff spends hours every month making sense of these before they can even begin the accounting work.
+
+We built a system that reads all of these automatically. Any format, any language, any quality scan. The system pulls out the invoice number, date, amount, GST amount, vendor name — and sends it to your Tally or Excel directly. Completely private, runs in your office.
+
+For startup-heavy practices, this typically saves 4–6 hours of staff time per client per month.
+
+Would you be open to a 15-minute demo this week?
+
+Regards,
+Anand Shrivastava | ScaleYukti</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — Tech-Forward Angle</span>
+            <div class="pitch-subject">Subject: <strong>Private AI for CA firms — 5-minute read</strong></div>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Rajesh bhai,</span>
+
+Given your firm's work with technology startups, I wanted to reach out about something your team might appreciate more than most.
+
+We've built a private AI system for CA firms that works like having a highly trained document reader who never makes mistakes. It reads every invoice, bill, and financial document your clients send — in any format — and extracts all the key data automatically.
+
+No cloud. No third-party access to client data. Runs completely inside your office.
+
+What makes this relevant for startup-focused firms: your clients' documents are often inconsistent, informal, or digitally mixed. Our system handles all of that without needing any document standardisation from your clients.
+
+15 minutes — I'd love to walk you through it on your actual document types.
+
+Anand Shrivastava | ScaleYukti AI Automation</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHONE -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-phone">📞</div>
+          <div><div class="channel-label">Phone Script</div><div class="channel-sublabel">Tech-savvy partner — can engage with more depth than average CA</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Direct and Specific</span>
+            <div class="pitch-body"><span class="pitch-hook">Opening:</span>
+"Namaste CA Rajesh bhai, this is Anand from ScaleYukti. I build AI document systems for CA firms. Quick question — do you have 90 seconds?"
+
+<span class="pitch-hook">Core message:</span>
+"We automate invoice and document reading for CA firms. Everything stays on a private server inside your office — your clients' data never goes anywhere outside. For firms that handle startup clients, the biggest benefit is that the system works on any document format — PDFs, WhatsApp images, scanned invoices — no matter how inconsistent."
+
+<span class="pitch-hook">Ask:</span>
+"Can I set up a 15-minute screen share demo this week? I'll use real invoice types similar to what your startup clients send."</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — Problem-First</span>
+            <div class="pitch-body"><span class="pitch-hook">Opening:</span>
+"Namaste CA Rajesh bhai, Anand from ScaleYukti. I work with CA firms in Ahmedabad on automating document handling. One quick question — do your startup clients often send documents in inconsistent formats, like WhatsApp photos or hand-scanned invoices?"
+
+<span class="pitch-hook">If yes:</span>
+"That's exactly the problem we solve. Our system reads any document format automatically — no manual entry needed — and it runs on your private server inside the office. For firms like yours with tech-savvy clients, this is usually a very fast sell internally."
+
+<span class="pitch-hook">Ask:</span>
+"Would a 15-minute demo this week make sense? I'll bring examples of the messiest invoice types and show you how the system handles them."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINKEDIN -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-linkedin">💼</div>
+          <div><div class="channel-label">LinkedIn Message</div><div class="channel-sublabel">More casual LinkedIn tone — startup advisor is approachable</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Peer Observation</span>
+            <div class="pitch-body"><span class="pitch-hook">Hi CA Rajesh bhai,</span>
+
+Quick observation from working with CA firms in Ahmedabad — firms that serve a lot of startups spend disproportionate time just getting documents into a usable format before the real work even begins.
+
+We've automated exactly this step. Any invoice format, any scan quality, instantly readable — private server inside the office.
+
+Worth a 15-minute chat?
+
+Anand | ScaleYukti</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — Direct Value</span>
+            <div class="pitch-body"><span class="pitch-hook">Hi CA Rajesh bhai,</span>
+
+I built an AI document system for CA firms — it reads any invoice or financial document automatically, no manual entry, completely private.
+
+For a firm that advises startups, I'd love to show you the startup use case specifically — messy formats, multiple languages, photo scans. The system handles all of it.
+
+15 minutes this week?
+
+Anand | ScaleYukti AI Automation</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tips-box">
+        <h4>Lead-Specific Notes</h4>
+        <ul>
+          <li>Startup-advisory CA — likely more tech-forward than average. Can go slightly deeper on the "how" without losing them.</li>
+          <li>Paldi/Ellisbridge area — accessible, mid-market firm with growth ambitions.</li>
+          <li>Startup clients = high document variability. This is the strongest pain point to lead with.</li>
+          <li>Managing partner is accessible — don't over-formalize. Conversational tone works here.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- =========================================================
+     LEAD 5: BHATT & MEHTA ASSOCIATES
+     ========================================================= -->
+  <div class="lead-block">
+    <div class="lead-header">
+      <div>
+        <div class="lead-num">Lead 05 of 05</div>
+        <div class="lead-name">Bhatt & Mehta Associates</div>
+        <div class="lead-firm">Chartered Accountants · Ahmedabad</div>
+      </div>
+      <div class="lead-contact-grid">
+        <div class="contact-item"><strong>Contact Person</strong>CA Dhruv Bhatt (Partner)</div>
+        <div class="contact-item"><strong>Phone</strong>+91 79 2640 xxxx</div>
+        <div class="contact-item"><strong>Email</strong>dhruv@bhattmehta.com</div>
+        <div class="contact-item"><strong>LinkedIn</strong>Search "Dhruv Bhatt CA Ahmedabad"</div>
+        <div class="contact-item"><strong>Address</strong>Vastrapur / Satellite, Ahmedabad</div>
+        <div class="contact-item"><strong>Firm Size</strong>Small-mid, 8–20 staff</div>
+      </div>
+    </div>
+
+    <div class="lead-body">
+      <div class="lead-profile">
+        <h4>Firm Intelligence</h4>
+        <div class="profile-grid">
+          <div class="profile-item"><strong>Specialisation:</strong> GST, income tax, bookkeeping</div>
+          <div class="profile-item"><strong>Client Base:</strong> Small businesses, traders, professionals</div>
+          <div class="profile-item"><strong>Document Volume:</strong> Est. 500–3,000 docs/month</div>
+          <div class="profile-item"><strong>Current Process:</strong> Mostly manual, Tally-based</div>
+          <div class="profile-item"><strong>Key Pain:</strong> Time-to-file pressure, manual entry bottleneck</div>
+          <div class="profile-item"><strong>Decision Speed:</strong> Fast — small firm, direct partner access</div>
+        </div>
+        <div class="pain-tags">
+          <span class="pain-tag">Filing deadline pressure</span>
+          <span class="pain-tag">Manual entry</span>
+          <span class="pain-tag">Small team overload</span>
+        </div>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-email">📧</div>
+          <div><div class="channel-label">Email Pitch</div><div class="channel-sublabel">Small firm — personal, empathetic tone. They feel the pain most acutely.</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Small Team Empathy</span>
+            <div class="pitch-subject">Subject: <strong>For small CA teams — removing the manual invoice entry burden</strong></div>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Dhruv bhai,</span>
+
+In a small CA practice, every hour your team spends manually entering invoice data is an hour they could be spending on actual CA work — advisory, filing, client calls.
+
+We've built a simple system: your clients send their invoices in any format — scan, photo, WhatsApp — and the system reads them automatically. No typing needed. Data goes directly into your spreadsheet or Tally.
+
+Completely private. Runs on one computer in your office. Monthly cost is less than 2 hours of one staff member's time.
+
+I'd love to show you a 10-minute demo. Would this week work?
+
+Regards,
+Anand Shrivastava
+ScaleYukti | scaleyukti.ai</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — Filing Season Angle</span>
+            <div class="pitch-subject">Subject: <strong>Making GST filing month less stressful — quick question</strong></div>
+            <div class="pitch-body"><span class="pitch-hook">Dear CA Dhruv bhai,</span>
+
+GST filing deadlines — how does your team handle the document rush in the days before 7th and 20th of each month?
+
+For most small CA firms, it is the same challenge every time: a flood of invoices from clients, all needing to be entered manually before filing can begin.
+
+We solve exactly this with a simple system that reads all those invoices automatically the moment they arrive — from any format. Your team gets clean data without any manual entry, so the filing days are the same as any other day.
+
+One-time setup, runs privately in your office.
+
+10 minutes — I'll show you how it works on real invoice samples. Does this Thursday or Friday work?
+
+Best,
+Anand | ScaleYukti</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHONE -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-phone">📞</div>
+          <div><div class="channel-label">Phone Script</div><div class="channel-sublabel">Small firm — partner answers directly. Be warm, not corporate.</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Warm Direct</span>
+            <div class="pitch-body"><span class="pitch-hook">Opening:</span>
+"Namaste CA Dhruv bhai, I am Anand from ScaleYukti. I work with CA firms in Ahmedabad on reducing manual invoice entry work. Do you have 2 minutes?"
+
+<span class="pitch-hook">Core message:</span>
+"We have a simple system — your clients send their invoices in any format, it reads them automatically, and sends the data to your Tally or Excel. No manual typing at all. Private server in your office. It costs less than one month's overtime for a single staff member."
+
+<span class="pitch-hook">Ask:</span>
+"Can I show you a 10-minute demo this week? I'll use invoice formats similar to what your clients typically send."</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — Time Savings First</span>
+            <div class="pitch-body"><span class="pitch-hook">Opening:</span>
+"Namaste CA Dhruv bhai, Anand from ScaleYukti. One quick question — how many hours does your team spend every month just on manual invoice data entry before GST filing?"
+
+<span class="pitch-hook">After they answer:</span>
+"That's exactly what I want to talk to you about. We have a system that eliminates that entire step — every invoice your clients send gets read automatically, data extracted, and put directly into your format of choice. No typing, no errors. Runs privately inside your office."
+
+<span class="pitch-hook">Ask:</span>
+"Would a 10-minute demo make sense? I can show you in real-time on whatever invoice types your clients usually send."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINKEDIN -->
+      <div class="channel-block">
+        <div class="channel-header">
+          <div class="channel-icon ch-linkedin">💼</div>
+          <div><div class="channel-label">LinkedIn Message</div><div class="channel-sublabel">Vastrapur/Satellite area — newer, growing firm. Receptive to solutions.</div></div>
+        </div>
+        <div class="variant-pair">
+          <div class="variant-card">
+            <span class="variant-label v-a">Variant A — Simple Value Prop</span>
+            <div class="pitch-body"><span class="pitch-hook">Hi CA Dhruv bhai,</span>
+
+I help small CA firms in Ahmedabad eliminate manual invoice entry — the system reads any document format automatically, runs privately in the office, and costs less than ₹3,000/month.
+
+Worth a 10-minute look?
+
+Anand | ScaleYukti</div>
+          </div>
+          <div class="variant-card">
+            <span class="variant-label v-b">Variant B — Problem Recognition</span>
+            <div class="pitch-body"><span class="pitch-hook">Hi CA Dhruv bhai,</span>
+
+One thing I've observed with small CA firms: the invoice entry work before each GST deadline falls on the same 2–3 people, every single month.
+
+We've built a system that takes that work away entirely. Reads invoices automatically, private and secure, no cloud.
+
+Would a short demo be useful?
+
+Anand | ScaleYukti AI Automation</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tips-box">
+        <h4>Lead-Specific Notes</h4>
+        <ul>
+          <li>Smallest firm in the list — price sensitivity is real. Lead with ROI, not features.</li>
+          <li>Vastrapur/Satellite — growing residential and commercial area, lots of trader/professional clients nearby.</li>
+          <li>Partner answers directly — no gatekeeper. Be warm and quick.</li>
+          <li>Best prospect for Starter plan (₹2,999/month). Fit the pitch to that price range.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /section -->
+
+<footer>
+  ⚡ ScaleYukti AI Automation · scaleyukti.ai · Ahmedabad, Gujarat, India · Internal Use Only
+</footer>
+
+</body>
+</html>
