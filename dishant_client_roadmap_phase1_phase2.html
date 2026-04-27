@@ -337,45 +337,67 @@
 <div class="section">
   <div class="section-label">Delivery Timeline</div>
   <div class="section-title">What Happens When</div>
-  <p class="section-desc">Estimates from credential handover date. Phase 1 is a 4–5 week build.</p>
+  <p class="section-desc">Clock starts from credential handover date. Phase 1 live in 14 days or less.</p>
+
+  <div class="callout warn" style="margin-bottom:2rem;">
+    <div class="callout-icon">📌</div>
+    <p><strong>Day 0 — Credentials Handover:</strong> Timeline begins the day Dishant provides all required credentials (WhatsApp tokens, Genspark API key, Employeewise docs). Every day of delay on credentials = 1 day added to go-live date.</p>
+  </div>
 
   <div class="timeline">
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-week">Week 1</div>
-      <div class="tl-title">Credential Setup & API Verification</div>
-      <div class="tl-desc">Confirm all credentials received. Verify Genspark API access. Set up Meta App & webhook. Test end-to-end message flow on staging.</div>
+      <div class="tl-week">Days 1–2 · Development</div>
+      <div class="tl-title">Credential Verification & WhatsApp Webhook Setup</div>
+      <div class="tl-desc">Verify Genspark API access. Create Meta App, configure WhatsApp Business account, deploy webhook. Full end-to-end echo test: employee sends message → bot replies. Foundation confirmed before building further.</div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-week">Week 2</div>
+      <div class="tl-week">Days 3–4 · Development</div>
       <div class="tl-title">Employeewise Knowledge Base Build</div>
-      <div class="tl-desc">Ingest all documentation. Build vector search. Test accuracy of knowledge retrieval against sample employee questions.</div>
+      <div class="tl-desc">Ingest all Employeewise documentation. Build semantic search layer. Test against 30+ real employee questions. Accuracy target: >85% relevant answers before moving forward.</div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-week">Week 3</div>
+      <div class="tl-week">Days 5–7 · Development</div>
       <div class="tl-title">AI Agent Integration & Tuning</div>
-      <div class="tl-desc">Connect Genspark AI to WhatsApp pipeline. Fine-tune system prompts for Dishant's use cases. Productivity features (email drafting, idea generation).</div>
+      <div class="tl-desc">Connect Genspark AI to WhatsApp pipeline with Employeewise knowledge. Fine-tune for Dishant's tone and escalation rules. Activate productivity features: email drafting, brainstorming, meeting summaries. Full pipeline smoke test.</div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-week">Week 4</div>
-      <div class="tl-title">Testing, QA & Pilot Launch</div>
-      <div class="tl-desc">Internal testing with 5–10 users. Edge case handling. Load testing. Final fixes before full rollout.</div>
+      <div class="tl-week">Days 8–9 · Testing</div>
+      <div class="tl-title">ScaleYukti Internal Testing</div>
+      <div class="tl-desc">50+ scenario test suite: HR queries, edge cases, incorrect questions, policy escalations, long conversations. Load testing. All issues fixed before Dishant touches the bot.</div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-week">Week 5</div>
-      <div class="tl-title">Full Rollout + Handover</div>
-      <div class="tl-desc">Deploy to production. Onboard full team. Monitoring dashboards live. 2-week post-launch support included.</div>
+      <div class="tl-week">Days 10–11 · Testing</div>
+      <div class="tl-title">Dishant Team Pilot Testing</div>
+      <div class="tl-desc">5–10 employees from Dishant's team test the bot with real day-to-day queries. Feedback collected, critical fixes applied same day. Sign-off from Dishant before deployment.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-week">Days 12–13 · Deployment</div>
+      <div class="tl-title">Production Deployment & Final Verification</div>
+      <div class="tl-desc">Deploy to production server. Monitoring dashboards live. Final 24-hour stability check. UptimeRobot alerts configured. Bot verified live and stable.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-week">Day 14 · Go-Live</div>
+      <div class="tl-title">Full Team Rollout & Handover</div>
+      <div class="tl-desc">Open to all employees. Team onboarding communication shared. Usage guide provided. 30-day post-launch support included — ScaleYukti monitors and fixes any issues reported.</div>
     </div>
     <div class="tl-item">
       <div class="tl-dot green"></div>
-      <div class="tl-week green">Post Phase 1</div>
+      <div class="tl-week green">7–10 Days Post Launch</div>
       <div class="tl-title">Phase 2 Kickoff Discussion</div>
-      <div class="tl-desc">After Phase 1 is stable, we review requirements and scope Phase 2 memory features together.</div>
+      <div class="tl-desc">Once Phase 1 is stable and usage data confirms value, we scope Phase 2 persistent memory features together.</div>
     </div>
+  </div>
+
+  <div class="callout info" style="margin-top:2rem;">
+    <div class="callout-icon">⚠️</div>
+    <p><strong>What Could Delay This:</strong> The only risks that extend the timeline are (1) delayed credential handover from Dishant, (2) Genspark API not available — in which case we switch to OpenAI GPT-4.1 directly with zero quality difference, or (3) Employeewise docs being incomplete. All three are manageable with a Day 1 checklist review.</p>
   </div>
 </div>
 

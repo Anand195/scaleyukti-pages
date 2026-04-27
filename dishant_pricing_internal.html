@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internal Pricing Breakdown — Dishant Project | ScaleYukti</title>
+<style>
+  :root {
+    --orange: #F37021;
+    --green: #1D8A17;
+    --navy: #1B2A38;
+    --slate: #94A3B8;
+    --light: #F8FAFC;
+    --white: #FFFFFF;
+    --card-bg: #243447;
+    --border: #2d3f52;
+    --red: #E53E3E;
+    --yellow: #D69E2E;
+    --gold: #F59E0B;
+    --amber: #D97706;
+    --code-bg: #0f1c27;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--navy); color: var(--light); line-height: 1.6; }
+
+  .topbar { background: linear-gradient(90deg, #1a0f00, #2a1800); border-bottom: 2px solid var(--amber); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .topbar-brand { font-size: 1.2rem; font-weight: 800; color: var(--amber); }
+  .topbar-meta { font-size: 0.78rem; color: var(--slate); text-align: right; }
+  .topbar-meta span { color: #fbbf24; }
+
+  .internal-banner { background: rgba(217,119,6,0.12); border: 1px solid rgba(217,119,6,0.4); padding: 0.65rem 2rem; text-align: center; font-size: 0.8rem; color: #fbbf24; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .hero { background: linear-gradient(135deg, #1a0f00 0%, #1B2A38 60%); padding: 3.5rem 2rem 2.5rem; text-align: center; border-bottom: 1px solid var(--border); }
+  .hero-badge { display: inline-block; background: rgba(217,119,6,0.15); border: 1px solid var(--amber); color: #fbbf24; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 1rem; border-radius: 999px; margin-bottom: 1.5rem; }
+  .hero h1 { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 900; line-height: 1.2; margin-bottom: 1rem; }
+  .hero h1 span { color: #fbbf24; }
+  .hero-sub { color: #B0BEC5; font-size: 0.95rem; max-width: 680px; margin: 0 auto; }
+
+  .section { max-width: 980px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+  .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #fbbf24; margin-bottom: 0.4rem; }
+  .section-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; }
+  .section-desc { color: var(--slate); font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* PRICING TABLE */
+  .price-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; margin: 1.25rem 0; font-size: 0.85rem; }
+  .price-table th { background: rgba(217,119,6,0.15); color: #fbbf24; text-align: left; padding: 0.75rem 1rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--border); }
+  .price-table td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); color: #D8E4F0; vertical-align: top; }
+  .price-table tr:last-child td { border-bottom: none; }
+  .price-table .orig { color: #64748B; text-decoration: line-through; font-size: 0.82rem; }
+  .price-table .discounted { color: #4ade80; font-weight: 700; }
+  .price-table .full { color: var(--light); font-weight: 700; }
+  .price-table .tag { display: inline-block; padding: 0.18rem 0.55rem; border-radius: 4px; font-size: 0.68rem; font-weight: 700; }
+  .price-table .tag-free { background: rgba(29,138,23,0.2); color: #4ade80; border: 1px solid rgba(29,138,23,0.3); }
+  .price-table .tag-disc { background: rgba(217,119,6,0.2); color: #fbbf24; border: 1px solid rgba(217,119,6,0.3); }
+  .price-table .tag-full { background: rgba(243,112,33,0.2); color: var(--orange); border: 1px solid rgba(243,112,33,0.3); }
+  .price-table tr.total-row td { background: rgba(217,119,6,0.1); font-weight: 800; font-size: 0.95rem; }
+  .price-table tr.client-price td { background: rgba(29,138,23,0.1); }
+
+  /* MARGIN BOX */
+  .margin-box { background: var(--code-bg); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; margin: 1.5rem 0; }
+  .margin-row { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+  .margin-row:last-child { border-bottom: none; padding-top: 1rem; font-weight: 800; font-size: 1rem; }
+  .margin-row .label { color: #A8B8C8; }
+  .margin-row .val { font-weight: 700; }
+  .val-red { color: #fc8181; }
+  .val-green { color: #4ade80; }
+  .val-gold { color: #fbbf24; }
+  .val-orange { color: var(--orange); }
+
+  /* CALLOUT */
+  .callout { border-radius: 8px; padding: 0.9rem 1.1rem; margin: 1.25rem 0; display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.83rem; }
+  .callout.amber { background: rgba(217,119,6,0.1); border-left: 3px solid var(--amber); }
+  .callout.red { background: rgba(229,62,62,0.1); border-left: 3px solid var(--red); }
+  .callout.green { background: rgba(29,138,23,0.1); border-left: 3px solid var(--green); }
+  .callout.orange { background: rgba(243,112,33,0.1); border-left: 3px solid var(--orange); }
+  .callout-icon { font-size: 1rem; flex-shrink: 0; }
+  .callout p { color: var(--light); line-height: 1.55; }
+  .callout strong { color: #fbbf24; }
+  .callout.red strong { color: #fc8181; }
+  .callout.green strong { color: #4ade80; }
+  .callout.orange strong { color: var(--orange); }
+
+  /* ASSUMPTIONS */
+  .assumption-list { list-style: none; }
+  .assumption-list li { display: flex; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+  .assumption-list li:last-child { border-bottom: none; }
+  .a-num { background: rgba(217,119,6,0.15); color: #fbbf24; font-size: 0.7rem; font-weight: 800; border-radius: 4px; padding: 0.1rem 0.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .a-body strong { font-weight: 700; display: block; margin-bottom: 0.1rem; }
+  .a-body span { color: #A8B8C8; }
+
+  /* PHASE 2 */
+  .p2-box { background: rgba(29,138,23,0.08); border: 1px solid rgba(29,138,23,0.3); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+  .p2-box .p2-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #4ade80; margin-bottom: 0.5rem; }
+  .p2-box h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.75rem; }
+  .p2-table { width: 100%; font-size: 0.83rem; border-collapse: collapse; }
+  .p2-table td { padding: 0.55rem 0.75rem; border-bottom: 1px solid rgba(29,138,23,0.2); color: #D8E4F0; }
+  .p2-table tr:last-child td { border-bottom: none; font-weight: 800; }
+  .p2-table .p2-price { text-align: right; color: #4ade80; font-weight: 700; }
+
+  /* RISK FLAG */
+  .risk-flag { background: rgba(229,62,62,0.08); border: 1px solid rgba(229,62,62,0.3); border-radius: 10px; padding: 1.25rem; margin-bottom: 0.85rem; }
+  .risk-flag h4 { font-size: 0.9rem; font-weight: 700; color: #fc8181; margin-bottom: 0.4rem; }
+  .risk-flag p { font-size: 0.83rem; color: #A8B8C8; line-height: 1.55; }
+  .risk-flag .mitigation { color: #4ade80; font-size: 0.82rem; margin-top: 0.35rem; }
+
+  footer { background: #0f0a00; border-top: 2px solid var(--amber); padding: 1.5rem; text-align: center; font-size: 0.78rem; color: #94A3B8; }
+  footer strong { color: #fbbf24; }
+
+  @media (max-width: 600px) {
+    .topbar { flex-direction: column; gap: 0.4rem; text-align: center; }
+    .price-table { font-size: 0.78rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">⚡ ScaleYukti — Internal Finance Docs</div>
+  <div class="topbar-meta">
+    Dishant Project — Pricing Breakdown<br>
+    <span>April 27, 2026</span> · 🔒 Internal Only · Do Not Share
+  </div>
+</div>
+
+<div class="internal-banner">🔒 INTERNAL DOCUMENT — NOT FOR CLIENT · ScaleYukti Eyes Only</div>
+
+<div class="hero">
+  <div class="hero-badge">🔒 Internal Pricing — Full Breakdown</div>
+  <h1>Dishant Corporate AI Agent<br><span>Cost, Discount & Margin Analysis</span></h1>
+  <p class="hero-sub">Full internal breakdown: original costs, new client discounts applied, margin analysis, assumptions, and Phase 2 pricing. For Anand's reference only.</p>
+</div>
+
+<!-- FULL ITEMIZED BREAKDOWN -->
+<div class="section">
+  <div class="section-label">Line-Item Breakdown</div>
+  <div class="section-title">Original Cost vs Client Price</div>
+  <p class="section-desc">Every deliverable, original valuation, discount applied, and what we're charging. Rationale column explains the discount decision.</p>
+
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th>Deliverable</th>
+        <th>Original Value</th>
+        <th>Discount</th>
+        <th>Client Price</th>
+        <th>Rationale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>WhatsApp Business API Integration + Webhook</strong><br><span style="font-size:0.78rem;color:var(--slate);">Meta app setup, system user token, n8n webhook, echo test</span></td>
+        <td class="full">₹15,000</td>
+        <td>—</td>
+        <td class="full">₹15,000 <span class="tag tag-full">Full</span></td>
+        <td style="font-size:0.78rem;color:var(--slate);">Core integration, no discount — foundation of everything</td>
+      </tr>
+      <tr>
+        <td><strong>Genspark AI Config + System Prompt Engineering</strong><br><span style="font-size:0.78rem;color:var(--slate);">AI tuning, tone config, escalation rules, 50-scenario testing</span></td>
+        <td class="full">₹12,000</td>
+        <td>—</td>
+        <td class="full">₹12,000 <span class="tag tag-full">Full</span></td>
+        <td style="font-size:0.78rem;color:var(--slate);">High-skill work, no discount — differentiates our delivery quality</td>
+      </tr>
+      <tr>
+        <td><strong>Employeewise Knowledge Base (RAG Pipeline)</strong><br><span style="font-size:0.78rem;color:var(--slate);">Doc ingestion, embedding, Qdrant setup, accuracy validation</span></td>
+        <td class="orig">₹20,000</td>
+        <td><span class="tag tag-disc">70% off</span></td>
+        <td class="discounted">₹6,000</td>
+        <td style="font-size:0.78rem;color:var(--slate);">New client goodwill. NOTE: Do not repeat this on renewal — RAG updates billed at ₹5,000-8,000/refresh going forward.</td>
+      </tr>
+      <tr>
+        <td><strong>QA Testing (Internal + Dishant Pilot)</strong><br><span style="font-size:0.78rem;color:var(--slate);">50-scenario internal test suite + 2-day client pilot</span></td>
+        <td class="orig">₹8,000</td>
+        <td><span class="tag tag-free">100% off</span></td>
+        <td class="discounted">₹0 — FREE</td>
+        <td style="font-size:0.78rem;color:var(--slate);">New client trust-builder. Shows confidence in our output. Not a margin line anyway — folded into dev time.</td>
+      </tr>
+      <tr>
+        <td><strong>Production Deploy + Docs + Handover</strong><br><span style="font-size:0.78rem;color:var(--slate);">Server deploy, monitoring setup, usage guide, team session</span></td>
+        <td class="orig">₹15,000</td>
+        <td><span class="tag tag-disc">67% off</span></td>
+        <td class="discounted">₹5,000</td>
+        <td style="font-size:0.78rem;color:var(--slate);">Merged deploy + docs + PM into one line. Justifiable because deploy is fast on existing infra (n8n already running).</td>
+      </tr>
+      <tr>
+        <td><strong>Project Management + Coordination</strong><br><span style="font-size:0.78rem;color:var(--slate);">Client comms, credential coordination, timeline management</span></td>
+        <td class="full">₹5,000</td>
+        <td>—</td>
+        <td class="full">₹5,000 <span class="tag tag-full">Full</span></td>
+        <td style="font-size:0.78rem;color:var(--slate);">Always billable. PM time is real time.</td>
+      </tr>
+      <tr class="total-row">
+        <td><strong>ORIGINAL TOTAL</strong></td>
+        <td colspan="2"><strong style="color:#64748B;text-decoration:line-through;">₹75,000</strong></td>
+        <td colspan="2"><strong style="color:#64748B;font-size:0.85rem;">Before new client adjustment</strong></td>
+      </tr>
+      <tr class="client-price">
+        <td><strong>CLIENT PRICE (New Client Rate)</strong></td>
+        <td colspan="2"><strong style="color:#fbbf24;">₹20,000 total discount (27% off)</strong></td>
+        <td colspan="2"><strong style="color:#4ade80;font-size:1.1rem;">₹55,000 ← what Dishant pays</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout amber">
+    <div class="callout-icon">⚠️</div>
+    <p><strong>Client sees:</strong> "Original ₹75,000 → New client price ₹55,000." They do NOT see individual line discounts. Do not share this breakdown. Client invoice shows total only.</p>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- MARGIN ANALYSIS -->
+<div class="section">
+  <div class="section-label">Margin Analysis</div>
+  <div class="section-title">Actual Numbers — What We Keep</div>
+  <p class="section-desc">Estimated actual cost (our time + tools) vs revenue. Assumptions: developer rate ₹1,500/hr, 14 working days × 6 hrs = 84 hours total.</p>
+
+  <div class="margin-box">
+    <div class="margin-row"><span class="label">Client One-Time Revenue</span><span class="val val-green">+ ₹55,000</span></div>
+    <div class="margin-row"><span class="label">Developer Time (84 hrs × ₹1,500/hr est.)</span><span class="val val-red">− ₹1,26,000</span></div>
+    <div class="margin-row" style="font-size:0.78rem;padding-left:1rem;"><span class="label" style="color:#64748B;">↳ Note: If 1 person works full-time for 14 days at ₹1,500/hr — see below for more realistic calc</span><span></span></div>
+    <div class="margin-row"><span class="label">Tooling (Unstructured.io, OpenAI embeddings, misc)</span><span class="val val-red">− ₹2,000</span></div>
+    <div class="margin-row"><span class="label">Gross (if hiring developer externally)</span><span class="val val-red">− ₹73,000</span></div>
+  </div>
+
+  <div class="callout red">
+    <div class="callout-icon">🚨</div>
+    <p><strong>Reality check:</strong> At ₹1,500/hr for 84 hours, external dev cost is ₹1,26,000 — this loses money at ₹55,000. BUT this assumes external hiring. If Anand / internal team is doing this work, the actual cash cost is ₹2,000–5,000 in tools. Profit is ~₹50,000 in that scenario.</p>
+  </div>
+
+  <div class="margin-box" style="margin-top:1rem;">
+    <div style="font-size:0.72rem;color:var(--slate);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;">REALISTIC SCENARIO — Internal Build</div>
+    <div class="margin-row"><span class="label">Client One-Time Revenue</span><span class="val val-green">+ ₹55,000</span></div>
+    <div class="margin-row"><span class="label">Actual Tool Costs (embeddings, Unstructured, misc)</span><span class="val val-red">− ₹2,500</span></div>
+    <div class="margin-row"><span class="label">Anand's own time (14 days — opportunity cost, not cash)</span><span class="val" style="color:#94A3B8;">Not cash outflow</span></div>
+    <div class="margin-row"><span class="label">Net Cash Profit (Phase 1 one-time)</span><span class="val val-green">≈ ₹52,500</span></div>
+    <div class="margin-row"><span class="label">Monthly Recurring (₹8,000 — mostly monitoring, 2-3 hrs/month)</span><span class="val val-gold">+ ₹8,000/mo</span></div>
+    <div class="margin-row"><span class="label">Monthly cost (monitoring tools + ~2hrs maintenance)</span><span class="val val-red">− ₹1,500/mo</span></div>
+    <div class="margin-row"><span class="label" style="font-weight:800;">Net Monthly Profit</span><span class="val val-gold" style="font-size:1.1rem;">≈ ₹6,500/mo</span></div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- KEY ASSUMPTIONS -->
+<div class="section">
+  <div class="section-label">Critical Assumptions</div>
+  <div class="section-title">What This Pricing Is Built On</div>
+  <p class="section-desc">These assumptions must hold for the margin to work. Flag immediately if any change.</p>
+
+  <ul class="assumption-list">
+    <li>
+      <span class="a-num">A1</span>
+      <div class="a-body">
+        <strong>Dishant uses their own Genspark Enterprise API key</strong>
+        <span>Monthly AI API costs (Genspark/OpenAI usage) are billed directly to Dishant's account — NOT ours. If we absorb API costs, ₹8,000/month is insufficient. Minimum would need to be ₹12,000-15,000. CONFIRM before contract signing.</span>
+      </div>
+    </li>
+    <li>
+      <span class="a-num">A2</span>
+      <div class="a-body">
+        <strong>Existing VPS infrastructure — no new server setup needed</strong>
+        <span>Dishant already has Docker + n8n running. If not, server procurement + setup adds ₹5,000 one-time + ₹2,000-3,000/month ongoing. Adjust pricing accordingly.</span>
+      </div>
+    </li>
+    <li>
+      <span class="a-num">A3</span>
+      <div class="a-body">
+        <strong>Employeewise docs are complete and in digital format</strong>
+        <span>If docs are incomplete, we spend extra time on KB audit and gap-filling. Cap extra work at 8 hours — beyond that, scope change billable at ₹1,500/hr.</span>
+      </div>
+    </li>
+    <li>
+      <span class="a-num">A4</span>
+      <div class="a-body">
+        <strong>Genspark API available within 48 hours of kickoff</strong>
+        <span>If Genspark API is delayed and we must use OpenAI direct fallback — no cost change, same quality. But Dishant must get an OpenAI API key instead. Not a blocker, just document the swap.</span>
+      </div>
+    </li>
+    <li>
+      <span class="a-num">A5</span>
+      <div class="a-body">
+        <strong>No major scope change during development</strong>
+        <span>Phase 1 scope is fixed. If Dishant adds features mid-build (e.g., group messaging, image handling, multi-language) — these are Phase 1.5 and billed separately. Set this expectation in the kickoff call.</span>
+      </div>
+    </li>
+  </ul>
+</div>
+<hr class="divider">
+
+<!-- MONTHLY RETAINER BREAKDOWN -->
+<div class="section">
+  <div class="section-label">Monthly Retainer — Internal View</div>
+  <div class="section-title">What ₹8,000/Month Covers</div>
+
+  <table class="price-table">
+    <thead>
+      <tr><th>Service</th><th>Time/Month</th><th>Internal Value</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>24/7 Uptime Monitoring</strong><br><span style="font-size:0.78rem;color:var(--slate);">UptimeRobot alerts, webhook health checks</span></td>
+        <td>Automated</td>
+        <td>₹500 (tool cost)</td>
+        <td style="font-size:0.78rem;color:var(--slate);">No manual time needed unless alert fires</td>
+      </tr>
+      <tr>
+        <td><strong>Knowledge Base Refresh</strong><br><span style="font-size:0.78rem;color:var(--slate);">Re-ingest when Employeewise releases updates</span></td>
+        <td>~2 hrs/quarter (avg)</td>
+        <td>₹3,000 (time)</td>
+        <td style="font-size:0.78rem;color:var(--slate);">Usually once a quarter, ~30 min each time</td>
+      </tr>
+      <tr>
+        <td><strong>Priority Bug Fixes</strong><br><span style="font-size:0.78rem;color:var(--slate);">Webhook down, AI errors, Meta API changes</span></td>
+        <td>~1 hr/month avg</td>
+        <td>₹1,500 (time)</td>
+        <td style="font-size:0.78rem;color:var(--slate);">Most months = 0 issues. Occasional config change.</td>
+      </tr>
+      <tr>
+        <td><strong>API Version & Security Updates</strong><br><span style="font-size:0.78rem;color:var(--slate);">WhatsApp API version bumps, n8n updates</span></td>
+        <td>~1 hr/month avg</td>
+        <td>₹1,500 (time)</td>
+        <td style="font-size:0.78rem;color:var(--slate);">Meta updates API versions every 6 months</td>
+      </tr>
+      <tr style="border-top:2px solid var(--border);">
+        <td><strong>Total Internal Cost</strong></td>
+        <td>~4 hrs/month avg</td>
+        <td><strong style="color:#fbbf24;">~₹6,500</strong></td>
+        <td style="color:#4ade80;font-weight:700;">Net: ~₹1,500/month margin on retainer</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout amber">
+    <div class="callout-icon">💡</div>
+    <p><strong>Retainer margin is thin at ₹8,000.</strong> This is intentional for new client relationship-building. When Phase 2 is scoped, revisit retainer to ₹12,000 — justified by increased complexity. Set reminder for 90 days post-launch.</p>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- PHASE 2 INTERNAL PRICING -->
+<div class="section">
+  <div class="section-label">Phase 2 — Internal Costing</div>
+  <div class="section-title">Memory & Personalization Add-On</div>
+
+  <div class="p2-box">
+    <div class="p2-label">Phase 2 Internal Breakdown</div>
+    <h3>Persistent Memory Architecture</h3>
+    <table class="p2-table">
+      <tr>
+        <td>Redis conversation store (per-user, 7-day TTL)</td>
+        <td class="p2-price">₹8,000</td>
+      </tr>
+      <tr>
+        <td>PostgreSQL long-term memory table + summarization pipeline</td>
+        <td class="p2-price">₹10,000</td>
+      </tr>
+      <tr>
+        <td>Memory injection in context window (prompt engineering)</td>
+        <td class="p2-price">₹8,000</td>
+      </tr>
+      <tr>
+        <td>DPDP Act 2023 compliance review + data retention policy</td>
+        <td class="p2-price">₹5,000</td>
+      </tr>
+      <tr>
+        <td>QA + testing (memory accuracy, privacy edge cases)</td>
+        <td class="p2-price">₹6,000</td>
+      </tr>
+      <tr>
+        <td>Deploy + integration with Phase 1 system</td>
+        <td class="p2-price">₹3,000</td>
+      </tr>
+      <tr>
+        <td><strong>INTERNAL COST ESTIMATE</strong></td>
+        <td class="p2-price"><strong>₹40,000</strong></td>
+      </tr>
+      <tr>
+        <td><strong>CLIENT PRICE (proposal)</strong></td>
+        <td class="p2-price" style="color:#4ade80;font-size:1rem;"><strong>₹45,000</strong></td>
+      </tr>
+      <tr>
+        <td style="color:#4ade80;"><strong>Phase 2 Margin</strong></td>
+        <td class="p2-price" style="color:#4ade80;"><strong>~₹5,000 (12%)</strong></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-icon">📌</div>
+    <p><strong>Phase 2 note:</strong> If Redis + PostgreSQL are already on Dishant's server, infra cost is zero. Phase 2 margin improves to ~₹12,000. Confirm server setup before final Phase 2 quote.</p>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- RISK FLAGS -->
+<div class="section">
+  <div class="section-label">Pricing Risks</div>
+  <div class="section-title">What Could Hurt Margin</div>
+
+  <div class="risk-flag">
+    <h4>🚨 Genspark API on ScaleYukti Account (not Dishant's)</h4>
+    <p>If Dishant can't get their own Genspark API key and we run on our OpenAI account, monthly API costs at 50 employees active usage = ₹4,000-7,000/month. At ₹8,000 retainer, we make ₹1,000-4,000 before our maintenance time. Not viable.</p>
+    <div class="mitigation">✅ Fix: Contract must specify API account responsibility. Dishant provides their own key. If they can't, retainer goes to ₹14,000/month minimum.</div>
+  </div>
+
+  <div class="risk-flag">
+    <h4>⚠️ Scope Creep During Development</h4>
+    <p>"Can we also add group message support?" / "Can the bot handle images?" / "Can we add a web dashboard?" — common asks once client sees the bot working. Each of these is 3-5 days of work.</p>
+    <div class="mitigation">✅ Fix: Phase 1 scope is locked in contract. Written change request + quote for anything outside. No verbal commitments.</div>
+  </div>
+
+  <div class="risk-flag">
+    <h4>⚠️ Credentials Delayed Beyond 1 Week</h4>
+    <p>If Dishant delays credential handover past 7 days from agreement signing, our developer time is blocked. At ₹1,500/hr opportunity cost, 1 week delay = ₹45,000-60,000 in opportunity cost.</p>
+    <div class="mitigation">✅ Fix: Contract clause — "14-day timeline begins on Day 0 (credential handover). Delays on Dishant's side extend the deadline day-for-day. No refund for delays caused by client."</div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- SUMMARY -->
+<div class="section">
+  <div class="section-label">Summary</div>
+  <div class="section-title">What We Agreed To</div>
+
+  <div class="margin-box">
+    <div style="font-size:0.72rem;color:var(--slate);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;">DISHANT PROJECT — COMMERCIAL SUMMARY</div>
+    <div class="margin-row"><span class="label">One-Time Setup (Client Price)</span><span class="val val-orange">₹55,000</span></div>
+    <div class="margin-row"><span class="label">Monthly Retainer</span><span class="val val-orange">₹8,000/month</span></div>
+    <div class="margin-row"><span class="label">Phase 2 Add-On (when ready)</span><span class="val val-orange">₹45,000</span></div>
+    <div class="margin-row"><span class="label">API Costs (whose account)</span><span class="val" style="color:#fbbf24;">Dishant's — MUST CONFIRM</span></div>
+    <div class="margin-row"><span class="label">Retainer Review Point</span><span class="val" style="color:#94A3B8;">90 days post-launch → ₹12,000 target</span></div>
+    <div class="margin-row"><span class="label" style="font-weight:800;">Year 1 Revenue Potential (P1 + 12mo retainer)</span><span class="val val-green" style="font-size:1.1rem;">₹1,51,000</span></div>
+    <div class="margin-row"><span class="label" style="font-weight:800;">Year 1 Revenue with Phase 2</span><span class="val val-gold" style="font-size:1.1rem;">₹1,96,000</span></div>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:0.5rem;"><strong>⚡ ScaleYukti</strong> — Internal Finance Document</div>
+  <div>🔒 DO NOT SHARE WITH CLIENT · Anand Shrivastava · April 27, 2026</div>
+</footer>
+
+</body>
+</html>

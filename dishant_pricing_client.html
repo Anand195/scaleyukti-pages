@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Summary — Corporate AI Agent | ScaleYukti × Dishant</title>
+<style>
+  :root {
+    --orange: #F37021;
+    --green: #1D8A17;
+    --navy: #1B2A38;
+    --slate: #94A3B8;
+    --light: #F8FAFC;
+    --white: #FFFFFF;
+    --card-bg: #243447;
+    --border: #2d3f52;
+    --red: #E53E3E;
+    --yellow: #D69E2E;
+    --gold: #F59E0B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--navy); color: var(--light); line-height: 1.6; }
+
+  .topbar { background: linear-gradient(90deg, #0f1c27, #1B2A38); border-bottom: 2px solid var(--orange); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .topbar-brand { font-size: 1.2rem; font-weight: 800; color: var(--orange); }
+  .topbar-meta { font-size: 0.78rem; color: var(--slate); text-align: right; }
+  .topbar-meta span { color: var(--light); }
+
+  .hero { background: linear-gradient(135deg, #0f1c27 0%, #1B2A38 60%, #1a2f1a 100%); padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1px solid var(--border); }
+  .hero-badge { display: inline-block; background: rgba(243,112,33,0.15); border: 1px solid var(--orange); color: var(--orange); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 1rem; border-radius: 999px; margin-bottom: 1.5rem; }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; line-height: 1.2; margin-bottom: 1rem; }
+  .hero h1 span { color: var(--orange); }
+  .hero-sub { color: #B0BEC5; font-size: 1rem; max-width: 620px; margin: 0 auto 2rem; }
+  .hero-pills { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+  .pill { background: var(--card-bg); border: 1px solid var(--border); padding: 0.4rem 1rem; border-radius: 999px; font-size: 0.8rem; color: var(--light); }
+  .pill.orange { border-color: var(--orange); color: var(--orange); }
+  .pill.green { border-color: var(--green); color: #4ade80; }
+
+  .section { max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem; }
+  .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.5rem; }
+  .section-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .section-desc { color: var(--slate); font-size: 0.95rem; max-width: 680px; margin-bottom: 2rem; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* PAIN COST SECTION */
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+  .pain-card { background: rgba(229,62,62,0.08); border: 1px solid rgba(229,62,62,0.3); border-radius: 12px; padding: 1.5rem; }
+  .pain-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .pain-card h4 { font-size: 0.95rem; font-weight: 700; color: #fc8181; margin-bottom: 0.5rem; }
+  .pain-card .cost { font-size: 1.4rem; font-weight: 900; color: #fc8181; margin-bottom: 0.35rem; }
+  .pain-card p { color: #A8B8C8; font-size: 0.84rem; line-height: 1.55; }
+
+  /* VALUE STACK */
+  .value-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+  .value-item:last-child { border-bottom: none; }
+  .value-check { width: 28px; height: 28px; background: rgba(29,138,23,0.2); border: 1px solid var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #4ade80; font-size: 0.8rem; font-weight: 700; margin-top: 0.1rem; }
+  .value-body strong { font-weight: 700; display: block; font-size: 0.95rem; margin-bottom: 0.2rem; }
+  .value-body span { color: #A8B8C8; font-size: 0.85rem; line-height: 1.5; }
+  .value-tag { display: inline-block; background: rgba(243,112,33,0.15); border: 1px solid rgba(243,112,33,0.3); color: var(--orange); font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 4px; margin-top: 0.4rem; }
+
+  /* PRICING BOX */
+  .pricing-hero { background: linear-gradient(135deg, #0f1c27, #1a2a1a); border: 2px solid var(--orange); border-radius: 20px; padding: 2.5rem; text-align: center; margin: 2rem 0; position: relative; overflow: hidden; }
+  .pricing-hero::before { content: 'NEW CLIENT RATE'; position: absolute; top: 1.25rem; right: -2rem; background: var(--orange); color: #fff; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1em; padding: 0.25rem 3rem; transform: rotate(45deg); }
+  .price-label { font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .price-original { font-size: 1.4rem; font-weight: 700; color: #64748B; text-decoration: line-through; margin-bottom: 0.25rem; }
+  .price-main { font-size: 4rem; font-weight: 900; color: var(--orange); line-height: 1; margin-bottom: 0.25rem; }
+  .price-main sup { font-size: 1.8rem; vertical-align: top; margin-top: 0.6rem; margin-right: 0.25rem; }
+  .price-main sub { font-size: 1rem; color: var(--slate); }
+  .price-desc { color: #A8B8C8; font-size: 0.9rem; margin-bottom: 1.75rem; }
+  .price-divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+  .monthly-price { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .monthly-label { font-size: 0.8rem; color: var(--slate); text-transform: uppercase; letter-spacing: 0.08em; }
+  .monthly-amount { font-size: 1.8rem; font-weight: 900; color: #4ade80; }
+  .monthly-period { font-size: 0.85rem; color: var(--slate); }
+
+  /* WHAT'S INCLUDED */
+  .included-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .included-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; }
+  .included-card.highlight { border-color: rgba(243,112,33,0.4); }
+  .included-card .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+  .included-card h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .included-card p { color: #A8B8C8; font-size: 0.82rem; line-height: 1.55; }
+
+  /* OBJECTION BOX */
+  .objection { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+  .objection-q { font-size: 0.95rem; font-weight: 700; color: #fbd38d; margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem; }
+  .objection-a { color: #A8B8C8; font-size: 0.88rem; line-height: 1.65; }
+  .objection-a strong { color: var(--light); }
+
+  /* CALLOUT */
+  .callout { border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.85rem; }
+  .callout.orange { background: rgba(243,112,33,0.1); border-left: 3px solid var(--orange); }
+  .callout.green { background: rgba(29,138,23,0.1); border-left: 3px solid var(--green); }
+  .callout.gold { background: rgba(245,158,11,0.1); border-left: 3px solid var(--gold); }
+  .callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .callout p { color: var(--light); line-height: 1.55; }
+  .callout strong { color: var(--orange); }
+  .callout.green strong { color: #4ade80; }
+  .callout.gold strong { color: var(--gold); }
+
+  /* TIMELINE SUMMARY */
+  .tl-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .tl-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem; text-align: center; }
+  .tl-box .tl-days { font-size: 2rem; font-weight: 900; color: var(--orange); line-height: 1; }
+  .tl-box .tl-phase { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--slate); margin-top: 0.25rem; }
+  .tl-box .tl-what { font-size: 0.82rem; color: var(--light); margin-top: 0.35rem; }
+
+  /* CTA */
+  .cta-box { background: linear-gradient(135deg, rgba(243,112,33,0.15), rgba(243,112,33,0.05)); border: 2px solid rgba(243,112,33,0.4); border-radius: 16px; padding: 2.5rem; text-align: center; margin: 2rem 0; }
+  .cta-box h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 0.75rem; }
+  .cta-box p { color: #A8B8C8; font-size: 0.9rem; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .cta-steps { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
+  .cta-step { background: rgba(243,112,33,0.1); border: 1px solid rgba(243,112,33,0.3); border-radius: 8px; padding: 0.75rem 1.25rem; font-size: 0.85rem; }
+  .cta-step span { color: var(--orange); font-weight: 800; display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.2rem; }
+
+  footer { background: #0f1c27; border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 0.8rem; color: #94A3B8; }
+  footer strong { color: var(--orange); }
+
+  @media (max-width: 600px) {
+    .topbar { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .price-main { font-size: 3rem; }
+    .pricing-hero::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">⚡ ScaleYukti × Dishant</div>
+  <div class="topbar-meta">
+    Corporate AI Agent — Investment Summary<br>
+    <span>April 2026</span> · Confidential · New Client Onboarding
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">Investment Summary — Client Proposal</div>
+  <h1>Corporate AI Agent<br><span>What It Costs. What It Returns.</span></h1>
+  <p class="hero-sub">An honest breakdown of what you're investing in, what you get back, and why this is the most cost-efficient hire you'll make in 2026.</p>
+  <div class="hero-pills">
+    <span class="pill orange">Phase 1 — Ready to Build</span>
+    <span class="pill green">Live in 14 Days</span>
+    <span class="pill">WhatsApp Native</span>
+    <span class="pill">Genspark AI</span>
+    <span class="pill">No New App Needed</span>
+  </div>
+</div>
+
+<!-- THE REAL COST OF NOT HAVING THIS -->
+<div class="section">
+  <div class="section-label">The Problem First</div>
+  <div class="section-title">What This Is Replacing</div>
+  <p class="section-desc">Before we talk about what this costs, let's talk about what your current setup is costing you — every single month, silently.</p>
+
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="icon">👤</div>
+      <h4>Junior HR Executive (Ahmedabad)</h4>
+      <div class="cost">₹18,000–25,000/mo</div>
+      <p>Handles repetitive employee queries. Leaves at 6pm. Takes sick leave. Resigned? 30-day notice period + rehiring cost of ₹30,000–50,000.</p>
+    </div>
+    <div class="pain-card">
+      <div class="icon">⏱️</div>
+      <h4>Employee Time Lost on Repetitive Queries</h4>
+      <div class="cost">~₹45,000/mo</div>
+      <p>50 employees × 15 min/day on "how do I submit leave?" × ₹200/hr average = ₹37,500/month in productive hours burned on questions a bot answers in 3 seconds.</p>
+    </div>
+    <div class="pain-card">
+      <div class="icon">🕐</div>
+      <h4>Queries That Fall Through Cracks</h4>
+      <div class="cost">Unquantified — but real</div>
+      <p>After-hours questions go unanswered. Weekend queries wait until Monday. New joiners spend 2–3 days figuring out basic processes. Every delay is money.</p>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-icon">💡</div>
+    <p><strong>The math is simple:</strong> Your current situation costs ₹18,000–70,000/month in direct and indirect costs. This AI agent handles 80% of those scenarios for ₹8,000/month — and works at 2am on a Sunday without a salary review.</p>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- WHAT YOU GET -->
+<div class="section">
+  <div class="section-label">What's Included — Phase 1</div>
+  <div class="section-title">Every Deliverable, Listed</div>
+  <p class="section-desc">No vague "consulting." Here is exactly what ScaleYukti builds and hands over.</p>
+
+  <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; margin-bottom: 1.5rem;">
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-body">
+        <strong>WhatsApp Business API Integration — End-to-End</strong>
+        <span>Your existing WhatsApp Business number connected to the AI. Employees send a message — they get an intelligent reply. No new app to download, no training required. Works on any phone, any plan.</span>
+        <div class="value-tag">Fully functional WhatsApp AI bot</div>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-body">
+        <strong>Genspark AI Configuration & System Prompt Engineering</strong>
+        <span>The AI is tuned specifically for Dishant's tone, policies, and escalation rules. It doesn't behave like a generic chatbot — it behaves like a trained Dishant employee who knows your processes.</span>
+        <div class="value-tag">Custom-trained for your organization</div>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-body">
+        <strong>Employeewise Knowledge Base (RAG System)</strong>
+        <span>All your Employeewise documentation ingested and indexed. Employees ask "how do I apply for casual leave?" — the bot gives step-by-step instructions pulled directly from your official docs. Accurate. Grounded. No hallucination.</span>
+        <div class="value-tag">Your docs → AI answers in seconds</div>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-body">
+        <strong>Productivity Features — Email, Brainstorming, Summaries</strong>
+        <span>Beyond HR queries: employees can draft professional emails, generate event ideas, summarize meetings, and get writing help — all via WhatsApp. A productivity assistant in every pocket.</span>
+        <div class="value-tag">10x daily tasks for your team</div>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-body">
+        <strong>Production Deployment + Monitoring</strong>
+        <span>Full server deployment on your existing infrastructure. UptimeRobot monitoring. Error alerting. Structured handover with usage documentation for your team.</span>
+        <div class="value-tag">Live on your server, fully monitored</div>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-body">
+        <strong>30-Day Post-Launch Support</strong>
+        <span>ScaleYukti monitors the system for 30 days post-launch. Any bugs, performance issues, or knowledge gaps — fixed within 24 hours. No extra charge. This is included.</span>
+        <div class="value-tag">Included — not an upsell</div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- PRICING -->
+<div class="section">
+  <div class="section-label">Investment</div>
+  <div class="section-title">What You Pay</div>
+  <p class="section-desc">Two numbers. That's it. One-time setup, monthly retainer for upkeep.</p>
+
+  <div class="pricing-hero">
+    <div class="price-label">One-Time Setup Fee</div>
+    <div class="price-original">₹75,000</div>
+    <div class="price-main"><sup>₹</sup>55,000</div>
+    <div class="price-desc">New client onboarding rate · Complete Phase 1 build + handover</div>
+
+    <div class="price-divider"></div>
+
+    <div class="monthly-price">
+      <div>
+        <div class="monthly-label">Monthly Retainer</div>
+        <div class="monthly-amount">₹8,000<span class="monthly-period">/month</span></div>
+        <div style="font-size:0.78rem; color:var(--slate); margin-top:0.35rem;">Hosting · monitoring · maintenance · KB updates</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <div class="callout-icon">📊</div>
+    <p><strong>Return on Investment:</strong> At ₹8,000/month, if this agent saves even one employee 30 minutes per day on repetitive queries, you've recovered the monthly cost in the first week. For 50 employees — you're looking at 10–15x ROI month one.</p>
+  </div>
+
+  <!-- WHAT'S NOT INCLUDED -->
+  <div style="margin-top: 2rem;">
+    <div class="section-label">What's NOT Included</div>
+    <div style="background: rgba(214,158,46,0.08); border: 1px solid rgba(214,158,46,0.3); border-radius: 10px; padding: 1.25rem;">
+      <p style="font-size: 0.85rem; color: #A8B8C8; line-height: 1.7;">
+        ① <strong style="color: var(--light);">Genspark/OpenAI API costs</strong> — These are billed directly to Dishant's Genspark Enterprise account. ScaleYukti does not mark up API usage.<br>
+        ② <strong style="color: var(--light);">WhatsApp Business API fees</strong> — Meta charges per message for business-initiated conversations (your bot replies to employee messages, so this is mostly free under the 1,000 free service conversations/month quota).<br>
+        ③ <strong style="color: var(--light);">VPS/Server hosting costs</strong> — Dishant's existing server handles this (no new infrastructure needed if you have Docker + n8n running).
+      </p>
+    </div>
+  </div>
+
+  <!-- PHASE 2 OPTION -->
+  <div style="margin-top: 2rem; background: rgba(29,138,23,0.08); border: 1px solid rgba(29,138,23,0.3); border-radius: 14px; padding: 1.75rem;">
+    <div class="section-label" style="color: #4ade80;">Phase 2 — Optional Add-On</div>
+    <div style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem;">Persistent Memory & Personalization</div>
+    <p style="color: #A8B8C8; font-size: 0.88rem; margin-bottom: 1rem;">The bot remembers every employee's past interactions, preferences, and conversation history. "What did I ask last week about expenses?" — it knows. Turns the bot from useful to indispensable.</p>
+    <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+      <div>
+        <div style="font-size: 0.72rem; color: var(--slate); text-transform: uppercase; letter-spacing: 0.08em;">Add-On Price</div>
+        <div style="font-size: 1.8rem; font-weight: 900; color: #4ade80;">₹45,000</div>
+        <div style="font-size: 0.78rem; color: var(--slate);">After Phase 1 is stable</div>
+      </div>
+      <div style="font-size: 0.83rem; color: #A8B8C8; line-height: 1.6; flex: 1; min-width: 200px;">
+        No additional monthly retainer increase. Same ₹8,000/month covers Phase 2 maintenance.
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- OBJECTIONS -->
+<div class="section">
+  <div class="section-label">Honest Answers</div>
+  <div class="section-title">Questions You'll Probably Ask</div>
+  <p class="section-desc">Not fluff. Real answers to the real concerns we've heard from every business owner before they signed.</p>
+
+  <div class="objection">
+    <div class="objection-q">💬 "₹55,000 is a lot. Can we start smaller?"</div>
+    <div class="objection-a">
+      The ₹55,000 already accounts for a new client adjustment — original project cost is ₹75,000. Here's the math: if this bot saves 2 hours of HR time per day, that's ₹4,000–5,000 of time recovered in the first week. <strong>The one-time cost pays for itself in 2–3 months. After that, you're running at pure profit on the investment.</strong> Starting smaller means starting with something incomplete — we don't do partial builds because partial builds don't work, and that costs more in the long run.
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="objection-q">💬 "What if employees don't use it?"</div>
+    <div class="objection-a">
+      This lives in WhatsApp — where your employees already spend 3–4 hours a day. <strong>There's no new app to install, no new password to remember, no learning curve.</strong> Adoption barrier is zero. In our experience, WhatsApp-native bots see 60–80% active usage within the first week versus 15–20% for standalone apps. If it's not getting used, we'll diagnose and fix it during the 30-day post-launch period.
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="objection-q">💬 "What if the AI gives wrong answers?"</div>
+    <div class="objection-a">
+      <strong>It can only answer from your Employeewise documentation — we've engineered it to not guess.</strong> If it doesn't know, it says "I don't have that information, please contact HR at [contact]." It never invents policy details. We test with 50+ real scenarios before launch and you test it for 2 days with your own team before we go live. You sign off before a single employee touches it.
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="objection-q">💬 "₹8,000/month seems high for maintenance. What are you actually doing?"</div>
+    <div class="objection-a">
+      Server monitoring (24/7 uptime alerts), monthly knowledge base refresh when Employeewise releases updates, performance monitoring (response time, error rate), security updates, and priority support for any issues. <strong>Alternatively: hire an intern to do this. Budget ₹10,000–15,000/month plus their time to learn the system.</strong> We do it better, faster, and it's our full accountability.
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="objection-q">💬 "14 days seems fast. Is it actually 14 days?"</div>
+    <div class="objection-a">
+      Yes — provided credentials are handed over on Day 0 and the Employeewise docs are complete. <strong>The only variable is your side: Genspark API key, WhatsApp Business tokens, and documentation.</strong> ScaleYukti's build timeline is fixed. We've structured this to move fast because slow projects are expensive projects — for both sides.
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- DELIVERY TIMELINE SUMMARY -->
+<div class="section">
+  <div class="section-label">Delivery Summary</div>
+  <div class="section-title">Live in 14 Days</div>
+
+  <div class="tl-summary">
+    <div class="tl-box">
+      <div class="tl-days">7</div>
+      <div class="tl-phase">Days — Development</div>
+      <div class="tl-what">WhatsApp integration, KB build, AI tuning</div>
+    </div>
+    <div class="tl-box">
+      <div class="tl-days">4</div>
+      <div class="tl-phase">Days — Testing</div>
+      <div class="tl-what">Internal QA + Dishant pilot with real employees</div>
+    </div>
+    <div class="tl-box">
+      <div class="tl-days">3</div>
+      <div class="tl-phase">Days — Deployment</div>
+      <div class="tl-what">Production deploy, monitoring live, go-live</div>
+    </div>
+    <div class="tl-box" style="border-color: rgba(29,138,23,0.4);">
+      <div class="tl-days" style="color: #4ade80;">30</div>
+      <div class="tl-phase" style="color: #4ade80;">Days — Support</div>
+      <div class="tl-what">Post-launch monitoring included at no extra cost</div>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- CTA -->
+<div class="section">
+  <div class="cta-box">
+    <h3>Ready to Move Forward?</h3>
+    <p>The next step is a 30-minute call to confirm credentials availability and finalise the scope. From that call to go-live: 14 days.</p>
+    <div class="cta-steps">
+      <div class="cta-step"><span>Step 1</span>Confirm credential availability</div>
+      <div class="cta-step"><span>Step 2</span>Agreement + 50% advance</div>
+      <div class="cta-step"><span>Step 3</span>Day 0 kickoff</div>
+      <div class="cta-step"><span>Step 4</span>Live in 14 days</div>
+    </div>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-icon">⚡</div>
+    <p><strong>ScaleYukti · AI Automation Agency · Ahmedabad, Gujarat</strong><br>scaleyukti.ai · @scaleyukti · Anand Shrivastava</p>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:0.5rem;"><strong>⚡ ScaleYukti</strong> — AI Automation Agency, Ahmedabad, Gujarat, India</div>
+  <div>scaleyukti.ai · @scaleyukti · Prepared for Dishant · <strong>Confidential</strong></div>
+  <div style="margin-top:0.5rem; font-size:0.75rem;">Generated: April 27, 2026 · Pricing valid for 30 days</div>
+</footer>
+
+</body>
+</html>

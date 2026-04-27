@@ -630,92 +630,111 @@ Employee: {employee_name} ({employee_phone})</pre></div>
 
   <div class="phase-banner p1">
     <div class="phase-num">01</div>
-    <div class="phase-info"><h3>Phase 1 — 4 Weeks</h3><p>WhatsApp AI Agent + Employeewise Knowledge Base</p></div>
+    <div class="phase-info"><h3>Phase 1 — 7 Days Development + 4 Days Testing + 3 Days Deploy</h3><p>WhatsApp AI Agent + Employeewise Knowledge Base · Target: Live in 14 days from credential handover</p></div>
+  </div>
+
+  <div class="callout yellow" style="margin-bottom:1.5rem;">
+    <div class="callout-icon">📌</div>
+    <p><strong>Day 0 (Pre-start):</strong> Collect all credentials from Dishant. Verify each before clock starts. Missing any single credential = blocked. Complete checklist: Genspark API key, Meta System User Token, WhatsApp Phone Number ID, WABA ID, Employeewise docs.</p>
   </div>
 
   <ul class="task-list">
     <li>
-      <span class="task-num">W1.1</span>
+      <span class="task-num">D1.1</span>
       <div class="task-body">
         <strong>Verify Genspark API Access</strong>
-        <span>Call Genspark API with Dishant's credentials. Confirm base URL, API key, and model access. If unavailable → activate OpenAI fallback. DO NOT proceed without this confirmed.</span>
+        <span>Call Genspark API with Dishant's credentials. Confirm base URL, API key, and model access. If unavailable → activate OpenAI fallback immediately. DO NOT proceed without this confirmed.</span>
       </div>
     </li>
     <li>
-      <span class="task-num">W1.2</span>
+      <span class="task-num">D1.2</span>
       <div class="task-body">
         <strong>Meta Developer App Setup</strong>
-        <span>Create Meta App → WhatsApp product → configure WABA → generate system user token → test send/receive in Meta's sandbox.</span>
+        <span>Create Meta App → WhatsApp product → configure WABA → generate system user token → test send/receive in Meta's sandbox. Verify token type is System User (not user token — expires in 60 days).</span>
       </div>
     </li>
     <li>
-      <span class="task-num">W1.3</span>
+      <span class="task-num">D1.3</span>
       <div class="task-body">
         <strong>n8n Webhook Endpoint</strong>
-        <span>Create n8n workflow: Webhook node (GET for verification, POST for messages) → parse payload → extract message body + sender phone → route to AI pipeline.</span>
+        <span>Create n8n workflow: Webhook node (GET for verification, POST for messages) → parse payload → extract message body + sender phone → route to AI pipeline. HTTPS + valid SSL required by Meta.</span>
       </div>
     </li>
     <li>
-      <span class="task-num">W1.4</span>
+      <span class="task-num">D2.1</span>
       <div class="task-body">
-        <strong>Basic Echo Test</strong>
-        <span>End-to-end test: Employee sends "hello" → webhook receives → n8n processes → replies "Hello from bot" via Meta API. Confirm full loop working before adding AI.</span>
+        <strong>Basic Echo Test — Full Loop Confirmation</strong>
+        <span>End-to-end test: Employee sends "hello" → webhook receives → n8n processes → replies "Hello from bot" via Meta API. Confirm full loop working before adding AI. Gate: DO NOT proceed to D3 without this passing.</span>
       </div>
     </li>
     <li>
-      <span class="task-num">W2.1</span>
+      <span class="task-num">D3.1</span>
       <div class="task-body">
         <strong>Employeewise Doc Ingestion Pipeline</strong>
-        <span>Collect all docs from Dishant. Process with Unstructured.io. Chunk at 500 tokens / 50 overlap. Embed with text-embedding-3-small. Store in Qdrant collection "employeewise_kb".</span>
+        <span>Collect all docs from Dishant. Process with Unstructured.io. Chunk at 500 tokens / 50 overlap. Embed with text-embedding-3-small. Store in Qdrant collection "employeewise_kb". Log chunk count and coverage.</span>
       </div>
     </li>
     <li>
-      <span class="task-num">W2.2</span>
+      <span class="task-num">D4.1</span>
       <div class="task-body">
-        <strong>RAG Retrieval Test</strong>
-        <span>Run 30 sample employee questions through Qdrant. Evaluate top-5 chunk relevance. Tune chunk size if needed. Target: >85% relevant retrieval on sample set.</span>
+        <strong>RAG Retrieval Test & Accuracy Validation</strong>
+        <span>Run 30 sample employee questions through Qdrant. Evaluate top-5 chunk relevance. Tune chunk size if needed. Target: >85% relevant retrieval on sample set. Flag coverage gaps to Dishant before proceeding.</span>
       </div>
     </li>
     <li>
-      <span class="task-num">W3.1</span>
+      <span class="task-num">D5.1</span>
       <div class="task-body">
         <strong>AI Integration in n8n Workflow</strong>
         <span>Connect: Inbound message → Qdrant query → inject context → Genspark API call → extract reply → send via Meta API. Full pipeline in n8n with error handling at each step.</span>
       </div>
     </li>
     <li>
-      <span class="task-num">W3.2</span>
+      <span class="task-num">D6.1</span>
       <div class="task-body">
         <strong>System Prompt Engineering</strong>
         <span>Finalize system prompt for Dishant's tone, escalation rules, and Employeewise constraints. Test against 50 real employee question scenarios. Iterate until quality is production-grade.</span>
       </div>
     </li>
     <li>
-      <span class="task-num">W3.3</span>
+      <span class="task-num">D7.1</span>
       <div class="task-body">
-        <strong>Error Handling & Fallbacks</strong>
-        <span>Handle: Genspark API timeout → retry 2x → fallback message. Qdrant unavailable → use pure AI without context. Meta API error → log + alert. 3s max response time SLA.</span>
+        <strong>Error Handling, Fallbacks & Productivity Features</strong>
+        <span>Handle: Genspark API timeout → retry 2x → fallback message. Qdrant unavailable → pure AI mode. Meta API error → log + alert. 3s max response time SLA. Activate: email drafting, brainstorming, meeting summary features. Run final dev smoke test.</span>
       </div>
     </li>
     <li>
-      <span class="task-num">W4.1</span>
+      <span class="task-num">D8.1</span>
       <div class="task-body">
-        <strong>Pilot Launch (5–10 Users)</strong>
-        <span>Select 5–10 internal test users. Run for 5 business days. Collect feedback. Log all queries + AI responses for quality review. Fix issues before full rollout.</span>
+        <strong>ScaleYukti Internal Testing — 50+ Scenarios</strong>
+        <span>Full QA: HR queries, edge cases, wrong questions, policy escalations, long conversations, load test. Document all failures. Fix before handing to Dishant. No open bugs allowed at this gate.</span>
       </div>
     </li>
     <li>
-      <span class="task-num">W4.2</span>
+      <span class="task-num">D9.1</span>
       <div class="task-body">
         <strong>Monitoring & Alerting Setup</strong>
-        <span>UptimeRobot for webhook endpoint. n8n error notifications to Slack/email. Daily query volume dashboard. Token usage tracking (cost monitoring).</span>
+        <span>UptimeRobot for webhook endpoint. n8n error notifications to email. Daily query volume dashboard. Token usage tracking (cost monitoring). All configured before Dishant pilot begins.</span>
       </div>
     </li>
     <li>
-      <span class="task-num">W5.1</span>
+      <span class="task-num">D10.1</span>
       <div class="task-body">
-        <strong>Production Rollout</strong>
-        <span>Open to all employees. Communicate via internal channels. Provide "how to use" guide. Monitor for first 48 hours closely.</span>
+        <strong>Dishant Team Pilot (5–10 Users)</strong>
+        <span>Provide test access to 5–10 Dishant employees. Collect structured feedback over 2 days. Log all queries + AI responses for quality review. Critical fixes applied same day. Get sign-off before production deploy.</span>
+      </div>
+    </li>
+    <li>
+      <span class="task-num">D12.1</span>
+      <div class="task-body">
+        <strong>Production Deployment</strong>
+        <span>Deploy to production. Verify webhook live. Run final smoke test on production environment. Confirm monitoring dashboards active. 24-hour stability check before full rollout.</span>
+      </div>
+    </li>
+    <li>
+      <span class="task-num">D14.1</span>
+      <div class="task-body">
+        <strong>Full Team Rollout + Handover</strong>
+        <span>Open to all employees. Internal communication sent. Usage guide distributed. 30-day post-launch monitoring active. ScaleYukti on standby for any reported issues.</span>
       </div>
     </li>
   </ul>
