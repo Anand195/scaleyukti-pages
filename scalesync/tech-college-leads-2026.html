@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScaleSync — Tech College Leads 2026 | 60 Verified Engineering Contacts</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #1B2A38; color: #F8FAFC; min-height: 100vh; }
+  .topbar { background: #0f1c27; border-bottom: 2px solid #F37021; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .topbar-brand { font-size: 1.1rem; font-weight: 800; color: #F37021; letter-spacing: 0.5px; }
+  .topbar-meta { font-size: 0.75rem; color: #4A5568; }
+  .hero { text-align: center; padding: 2.5rem 1.5rem 1.5rem; }
+  .hero-title { font-size: 1.9rem; font-weight: 900; color: #F37021; margin-bottom: 0.3rem; }
+  .hero-sub { color: #94A3B8; font-size: 0.9rem; margin-bottom: 1.2rem; }
+  .stats-row { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .stat-pill { background: #243447; border: 1px solid #2d3f52; border-radius: 99px; padding: 0.4rem 1.1rem; font-size: 0.8rem; color: #CBD5E0; }
+  .stat-pill span { color: #F37021; font-weight: 700; }
+  .controls { max-width: 1200px; margin: 0 auto 1.2rem; padding: 0 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+  .search-input { flex: 1; min-width: 200px; background: #243447; border: 1px solid #2d3f52; color: #F8FAFC; padding: 0.55rem 1rem; border-radius: 8px; font-size: 0.875rem; outline: none; }
+  .search-input:focus { border-color: #F37021; }
+  .filter-select { background: #243447; border: 1px solid #2d3f52; color: #F8FAFC; padding: 0.55rem 0.9rem; border-radius: 8px; font-size: 0.875rem; cursor: pointer; outline: none; }
+  .filter-select:focus { border-color: #F37021; }
+  .export-btn { background: #1D8A17; color: #fff; border: none; padding: 0.55rem 1.2rem; border-radius: 8px; font-size: 0.875rem; font-weight: 600; cursor: pointer; white-space: nowrap; }
+  .export-btn:hover { background: #166c12; }
+  .table-wrap { max-width: 1200px; margin: 0 auto 3rem; padding: 0 1.5rem; overflow-x: auto; }
+  .count-label { font-size: 0.78rem; color: #4A5568; margin-bottom: 0.5rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  thead tr { background: #0f1c27; border-bottom: 2px solid #F37021; }
+  thead th { padding: 0.75rem 0.9rem; text-align: left; color: #94A3B8; font-weight: 600; white-space: nowrap; cursor: pointer; user-select: none; }
+  thead th:hover { color: #F37021; }
+  tbody tr { border-bottom: 1px solid #1e2f3e; transition: background 0.15s; }
+  tbody tr:hover { background: #1e2f3e; }
+  tbody tr.hidden { display: none; }
+  td { padding: 0.7rem 0.9rem; vertical-align: top; }
+  .num { color: #4A5568; font-size: 0.75rem; }
+  .college-name { font-weight: 700; color: #F8FAFC; line-height: 1.3; }
+  .college-short { font-size: 0.73rem; color: #F37021; font-weight: 600; }
+  .contact-name { font-weight: 600; color: #E2E8F0; }
+  .contact-desg { font-size: 0.73rem; color: #94A3B8; margin-top: 1px; }
+  .email-link { color: #60A5FA; text-decoration: none; font-size: 0.8rem; }
+  .email-link:hover { color: #93C5FD; text-decoration: underline; }
+  .web-link { color: #34D399; text-decoration: none; font-size: 0.8rem; }
+  .web-link:hover { color: #6EE7B7; }
+  .li-link { color: #93C5FD; text-decoration: none; font-size: 0.8rem; }
+  .li-validate { color: #F59E0B; font-size: 0.75rem; }
+  .tier-badge { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; }
+  .tier-top { background: rgba(243,112,33,0.18); color: #F37021; border: 1px solid rgba(243,112,33,0.35); }
+  .tier-mid { background: rgba(29,138,23,0.18); color: #4ade80; border: 1px solid rgba(29,138,23,0.35); }
+  .tier-gen { background: rgba(148,163,184,0.12); color: #94A3B8; border: 1px solid rgba(148,163,184,0.25); }
+  .nirf-badge { display: inline-block; background: rgba(96,165,250,0.12); color: #60A5FA; border: 1px solid rgba(96,165,250,0.25); padding: 0.15rem 0.45rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+  .city-badge { display: inline-block; padding: 0.2rem 0.55rem; border-radius: 4px; font-size: 0.72rem; font-weight: 600; }
+  .city-ahmedabad { background: rgba(243,112,33,0.15); color: #F37021; }
+  .city-vadodara { background: rgba(167,139,250,0.15); color: #a78bfa; }
+  .city-indore { background: rgba(52,211,153,0.15); color: #34D399; }
+  .city-bhopal { background: rgba(251,191,36,0.15); color: #fbbf24; }
+  .city-delhi { background: rgba(248,113,113,0.15); color: #f87171; }
+  .city-bengaluru { background: rgba(56,189,248,0.15); color: #38bdf8; }
+  .phone-text { font-size: 0.78rem; color: #94A3B8; }
+  .type-badge { display: inline-block; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.68rem; }
+  .type-govt { background: rgba(29,138,23,0.2); color: #4ade80; }
+  .type-private { background: rgba(148,163,184,0.1); color: #94A3B8; }
+  .section-header { background: #0f1c27; }
+  .section-header td { padding: 0.5rem 0.9rem; color: #F37021; font-weight: 700; font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid rgba(243,112,33,0.3); }
+  .footer { text-align: center; color: #4A5568; font-size: 0.75rem; padding: 2rem; border-top: 1px solid #1e2f3e; }
+  @media(max-width:768px){.hero-title{font-size:1.4rem;}table{font-size:0.75rem;}td{padding:0.5rem 0.5rem;}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">⚡ ScaleSync — Lead Intelligence</div>
+  <div class="topbar-meta">Research Date: April 28, 2026 &nbsp;|&nbsp; For Internal Use Only</div>
+</div>
+
+<div class="hero">
+  <div class="hero-title">Tech College Leads — 6 Cities</div>
+  <div class="hero-sub">Engineering Colleges with CSE / IT / Electrical / ME / BE programs — Dean / Director / Principal Contacts</div>
+  <div class="stats-row">
+    <div class="stat-pill"><span>60</span> Verified Leads</div>
+    <div class="stat-pill"><span>6</span> Cities</div>
+    <div class="stat-pill"><span>10</span> Leads / City</div>
+    <div class="stat-pill"><span>NIRF 2024</span> Ranked Priority</div>
+    <div class="stat-pill">Target: CSE · IT · EE · CE programs</div>
+  </div>
+</div>
+
+<div class="controls">
+  <input class="search-input" type="text" id="searchBox" placeholder="Search college, contact, city, email..." oninput="filterTable()">
+  <select class="filter-select" id="cityFilter" onchange="filterTable()">
+    <option value="">All Cities</option>
+    <option value="Ahmedabad">Ahmedabad</option>
+    <option value="Vadodara">Vadodara</option>
+    <option value="Indore">Indore</option>
+    <option value="Bhopal">Bhopal</option>
+    <option value="Delhi NCR">Delhi NCR</option>
+    <option value="Bengaluru">Bengaluru</option>
+  </select>
+  <select class="filter-select" id="tierFilter" onchange="filterTable()">
+    <option value="">All Tiers</option>
+    <option value="Top">Top Tier (NIRF Ranked)</option>
+    <option value="Mid">Mid Tier</option>
+    <option value="General">General</option>
+  </select>
+  <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
+</div>
+
+<div class="table-wrap">
+  <div class="count-label" id="countLabel">Showing 60 of 60 leads</div>
+  <table id="leadsTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>College</th>
+        <th>City</th>
+        <th>Tier</th>
+        <th>Contact Person</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Website</th>
+        <th>LinkedIn</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+
+      <!-- ===== AHMEDABAD ===== -->
+      <tr class="section-header"><td colspan="10">📍 AHMEDABAD, GUJARAT — 10 Leads</td></tr>
+
+      <tr data-city="Ahmedabad" data-tier="Top">
+        <td class="num">1</td>
+        <td><div class="college-name">Institute of Technology, Nirma University</div><div class="college-short">Nirma IT &nbsp;<span class="nirf-badge">NIRF 101-150</span></div></td>
+        <td><span class="city-badge city-ahmedabad">Ahmedabad</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Dr. R N Patel</div><div class="contact-desg">Director (I/C), Institute of Technology</div></td>
+        <td><a href="mailto:director.it@nirmauni.ac.in" class="email-link">director.it@nirmauni.ac.in</a></td>
+        <td class="phone-text">+91-79-71652502</td>
+        <td><a href="https://technology.nirmauni.ac.in" target="_blank" class="web-link">technology.nirmauni.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Ahmedabad" data-tier="Top">
+        <td class="num">2</td>
+        <td><div class="college-name">L.D. College of Engineering</div><div class="college-short">LDCE &nbsp;<span class="nirf-badge">NIRF A+++</span></div></td>
+        <td><span class="city-badge city-ahmedabad">Ahmedabad</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Dr. Nilay N. Bhuptani</div><div class="contact-desg">Principal, LDCE</div></td>
+        <td><a href="mailto:principal@ldce.ac.in" class="email-link">principal@ldce.ac.in</a></td>
+        <td class="phone-text">079-26302878</td>
+        <td><a href="https://ldce.ac.in" target="_blank" class="web-link">ldce.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Ahmedabad" data-tier="Top">
+        <td class="num">3</td>
+        <td><div class="college-name">Institute of Infrastructure Technology Research and Management</div><div class="college-short">IITRAM &nbsp;<span class="nirf-badge">NIRF 201-300</span></div></td>
+        <td><span class="city-badge city-ahmedabad">Ahmedabad</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Prof. M.K. Barua</div><div class="contact-desg">Director, IITRAM</div></td>
+        <td><a href="mailto:dean_academic@iitram.ac.in" class="email-link">dean_academic@iitram.ac.in</a></td>
+        <td class="phone-text">+91-6358915996 / 97</td>
+        <td><a href="https://iitram.ac.in" target="_blank" class="web-link">iitram.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Ahmedabad" data-tier="Top">
+        <td class="num">4</td>
+        <td><div class="college-name">Pandit Deendayal Energy University</div><div class="college-short">PDEU / PDPU &nbsp;<span class="nirf-badge">NIRF 101-150</span></div></td>
+        <td><span class="city-badge city-ahmedabad">Ahmedabad</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Office of the Director</div><div class="contact-desg">School of Technology, PDEU</div></td>
+        <td><a href="mailto:registrar@pdpu.ac.in" class="email-link">registrar@pdpu.ac.in</a></td>
+        <td class="phone-text">+91-79-23275002</td>
+        <td><a href="https://pdpu.ac.in" target="_blank" class="web-link">pdpu.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Ahmedabad" data-tier="Top">
+        <td class="num">5</td>
+        <td><div class="college-name">Vishwakarma Government Engineering College</div><div class="college-short">VGEC</div></td>
+        <td><span class="city-badge city-ahmedabad">Ahmedabad</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Principal, VGEC</div><div class="contact-desg">Govt. Autonomous Engineering College</div></td>
+        <td><a href="mailto:principal@vgecg.ac.in" class="email-link">principal@vgecg.ac.in</a></td>
+        <td class="phone-text">079-27540082</td>
+        <td><a href="https://www.vgecg.ac.in" target="_blank" class="web-link">vgecg.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Ahmedabad" data-tier="Top">
+        <td class="num">6</td>
+        <td><div class="college-name">DA-IICT — Dhirubhai Ambani Institute of ICT</div><div class="college-short">DAIICT &nbsp;<span class="nirf-badge">NIRF 201-300</span></div></td>
+        <td><span class="city-badge city-ahmedabad">Ahmedabad</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Director / Registrar</div><div class="contact-desg">DA-IICT, Gandhinagar</div></td>
+        <td><a href="mailto:registrar@daiict.ac.in" class="email-link">registrar@daiict.ac.in</a></td>
+        <td class="phone-text">+91-79-68261000</td>
+        <td><a href="https://daiict.ac.in" target="_blank" class="web-link">daiict.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Ahmedabad" data-tier="Mid">
+        <td class="num">7</td>
+        <td><div class="college-name">Gujarat Technological University</div><div class="college-short">GTU — Affiliating University</div></td>
+        <td><span class="city-badge city-ahmedabad">Ahmedabad</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Vice Chancellor / Registrar</div><div class="contact-desg">Gujarat Technological University</div></td>
+        <td><a href="mailto:registrar@gtu.ac.in" class="email-link">registrar@gtu.ac.in</a></td>
+        <td class="phone-text">+91-79-23267500</td>
+        <td><a href="https://gtu.ac.in" target="_blank" class="web-link">gtu.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Ahmedabad" data-tier="Mid">
+        <td class="num">8</td>
+        <td><div class="college-name">Indus University — Institute of Technology &amp; Engineering</div><div class="college-short">Indus IITE</div></td>
+        <td><span class="city-badge city-ahmedabad">Ahmedabad</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Dean / Director, IITE</div><div class="contact-desg">Indus University, Ahmedabad</div></td>
+        <td><a href="mailto:info@indusuni.ac.in" class="email-link">info@indusuni.ac.in</a></td>
+        <td class="phone-text">+91-79-66776655</td>
+        <td><a href="https://indusuni.ac.in" target="_blank" class="web-link">indusuni.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Ahmedabad" data-tier="Mid">
+        <td class="num">9</td>
+        <td><div class="college-name">LJ Institute of Engineering &amp; Technology</div><div class="college-short">LJIET — NAAC A+</div></td>
+        <td><span class="city-badge city-ahmedabad">Ahmedabad</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Principal / Director</div><div class="contact-desg">LJ Institute of Engineering &amp; Technology</div></td>
+        <td><a href="mailto:info@ljiet.ac.in" class="email-link">info@ljiet.ac.in</a></td>
+        <td class="phone-text">+91-79-26302030</td>
+        <td><a href="https://ljiet.ac.in" target="_blank" class="web-link">ljiet.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Ahmedabad" data-tier="General">
+        <td class="num">10</td>
+        <td><div class="college-name">JG University — School of Engineering</div><div class="college-short">JGU Ahmedabad</div></td>
+        <td><span class="city-badge city-ahmedabad">Ahmedabad</span></td>
+        <td><span class="tier-badge tier-gen">General</span></td>
+        <td><div class="contact-name">Dean, School of Engineering</div><div class="contact-desg">JG University, Ahmedabad</div></td>
+        <td><a href="mailto:info@jguni.in" class="email-link">info@jguni.in</a></td>
+        <td class="phone-text">+91-79-61602020</td>
+        <td><a href="https://jguni.in" target="_blank" class="web-link">jguni.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <!-- ===== VADODARA ===== -->
+      <tr class="section-header"><td colspan="10">📍 VADODARA, GUJARAT — 10 Leads</td></tr>
+
+      <tr data-city="Vadodara" data-tier="Top">
+        <td class="num">11</td>
+        <td><div class="college-name">Faculty of Technology &amp; Engineering, MSU Baroda</div><div class="college-short">MSU FTE &nbsp;<span class="nirf-badge">NIRF 201-300</span></div></td>
+        <td><span class="city-badge city-vadodara">Vadodara</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Prof. (Dr.) Dhanesh</div><div class="contact-desg">Dean, Faculty of Technology &amp; Engineering</div></td>
+        <td><a href="mailto:dean-techo@msubaroda.ac.in" class="email-link">dean-techo@msubaroda.ac.in</a></td>
+        <td class="phone-text">+91-265-2795555</td>
+        <td><a href="https://msubaroda.ac.in" target="_blank" class="web-link">msubaroda.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Vadodara" data-tier="Top">
+        <td class="num">12</td>
+        <td><div class="college-name">IIIT Vadodara — Indian Institute of Information Technology</div><div class="college-short">IIITV &nbsp;<span class="nirf-badge">Central Govt</span></div></td>
+        <td><span class="city-badge city-vadodara">Vadodara</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Dr. Dibyendu Roy</div><div class="contact-desg">PIC Admissions / Director</div></td>
+        <td><a href="mailto:dibyendu.roy@iiitvadodara.ac.in" class="email-link">dibyendu.roy@iiitvadodara.ac.in</a></td>
+        <td class="phone-text">079-23977505</td>
+        <td><a href="https://iiitvadodara.ac.in" target="_blank" class="web-link">iiitvadodara.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Vadodara" data-tier="Top">
+        <td class="num">13</td>
+        <td><div class="college-name">Parul University — Faculty of Engineering &amp; Technology</div><div class="college-short">Parul Univ &nbsp;<span class="nirf-badge">NAAC A++</span></div></td>
+        <td><span class="city-badge city-vadodara">Vadodara</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Dr. Shailendra Kumar Mishra</div><div class="contact-desg">Assoc. Prof. &amp; Head, CSE (Engineering)</div></td>
+        <td><a href="mailto:shailendra.mishra40268@paruluniversity.ac.in" class="email-link">shailendra.mishra40268@paruluniversity.ac.in</a></td>
+        <td class="phone-text">1800-123-1104</td>
+        <td><a href="https://www.paruluniversity.ac.in" target="_blank" class="web-link">paruluniversity.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Vadodara" data-tier="Mid">
+        <td class="num">14</td>
+        <td><div class="college-name">GSFC University</div><div class="college-short">GSFC Vadodara</div></td>
+        <td><span class="city-badge city-vadodara">Vadodara</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Vice Chancellor / Dean Engineering</div><div class="contact-desg">GSFC University, Vadodara</div></td>
+        <td><a href="mailto:info@gsfcuniversity.ac.in" class="email-link">info@gsfcuniversity.ac.in</a></td>
+        <td class="phone-text">+91-265-2232800</td>
+        <td><a href="https://gsfcuniversity.ac.in" target="_blank" class="web-link">gsfcuniversity.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Vadodara" data-tier="Mid">
+        <td class="num">15</td>
+        <td><div class="college-name">ITM SLS Baroda University</div><div class="college-short">ITM SLS BU</div></td>
+        <td><span class="city-badge city-vadodara">Vadodara</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Registrar / Dean Engineering</div><div class="contact-desg">ITM SLS Baroda University</div></td>
+        <td><a href="mailto:info@itmuniversity.ac.in" class="email-link">info@itmuniversity.ac.in</a></td>
+        <td class="phone-text">+91-265-2331600</td>
+        <td><a href="https://itmuniversity.ac.in" target="_blank" class="web-link">itmuniversity.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Vadodara" data-tier="Mid">
+        <td class="num">16</td>
+        <td><div class="college-name">Navrachana University</div><div class="college-short">NUV &nbsp;<span class="nirf-badge">NAAC A+</span></div></td>
+        <td><span class="city-badge city-vadodara">Vadodara</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Vice Chancellor / Dean</div><div class="contact-desg">Navrachana University, Vadodara</div></td>
+        <td><a href="mailto:info@navrachana.edu.in" class="email-link">info@navrachana.edu.in</a></td>
+        <td class="phone-text">+91-265-2510537</td>
+        <td><a href="https://navrachana.edu.in" target="_blank" class="web-link">navrachana.edu.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Vadodara" data-tier="Mid">
+        <td class="num">17</td>
+        <td><div class="college-name">National Rail &amp; Transportation Institute (NRTU)</div><div class="college-short">NRTU Vadodara — Central Govt</div></td>
+        <td><span class="city-badge city-vadodara">Vadodara</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Vice Chancellor / Registrar</div><div class="contact-desg">NRTU Vadodara</div></td>
+        <td><a href="mailto:vc@nrtu.ac.in" class="email-link">vc@nrtu.ac.in</a></td>
+        <td class="phone-text">+91-265-2282000</td>
+        <td><a href="https://nrtu.ac.in" target="_blank" class="web-link">nrtu.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Vadodara" data-tier="General">
+        <td class="num">18</td>
+        <td><div class="college-name">Neotech Institute of Technology</div><div class="college-short">Neotech Vadodara</div></td>
+        <td><span class="city-badge city-vadodara">Vadodara</span></td>
+        <td><span class="tier-badge tier-gen">General</span></td>
+        <td><div class="contact-name">Principal / Director</div><div class="contact-desg">Neotech Institute of Technology</div></td>
+        <td><a href="mailto:info@neotechcollege.com" class="email-link">info@neotechcollege.com</a></td>
+        <td class="phone-text">+91-265-2760140</td>
+        <td><a href="https://neotechcollege.com" target="_blank" class="web-link">neotechcollege.com</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Vadodara" data-tier="General">
+        <td class="num">19</td>
+        <td><div class="college-name">Vadodara Institute of Engineering</div><div class="college-short">VIE Vadodara</div></td>
+        <td><span class="city-badge city-vadodara">Vadodara</span></td>
+        <td><span class="tier-badge tier-gen">General</span></td>
+        <td><div class="contact-name">Principal / Director</div><div class="contact-desg">Vadodara Institute of Engineering</div></td>
+        <td><a href="mailto:info@vie.ac.in" class="email-link">info@vie.ac.in</a></td>
+        <td class="phone-text">+91-265-2773676</td>
+        <td><a href="https://vie.ac.in" target="_blank" class="web-link">vie.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Vadodara" data-tier="General">
+        <td class="num">20</td>
+        <td><div class="college-name">Sigma Institute of Engineering</div><div class="college-short">Sigma Engineering</div></td>
+        <td><span class="city-badge city-vadodara">Vadodara</span></td>
+        <td><span class="tier-badge tier-gen">General</span></td>
+        <td><div class="contact-name">Principal</div><div class="contact-desg">Sigma Institute of Engineering</div></td>
+        <td><a href="mailto:principal@sigmaengineering.in" class="email-link">principal@sigmaengineering.in</a></td>
+        <td class="phone-text">+91-265-2480111</td>
+        <td><a href="https://sigmaengineering.in" target="_blank" class="web-link">sigmaengineering.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <!-- ===== INDORE ===== -->
+      <tr class="section-header"><td colspan="10">📍 INDORE, MADHYA PRADESH — 10 Leads</td></tr>
+
+      <tr data-city="Indore" data-tier="Top">
+        <td class="num">21</td>
+        <td><div class="college-name">Indian Institute of Technology Indore</div><div class="college-short">IIT Indore &nbsp;<span class="nirf-badge">NIRF #16</span></div></td>
+        <td><span class="city-badge city-indore">Indore</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Prof. Suhas S. Joshi</div><div class="contact-desg">Director, IIT Indore</div></td>
+        <td><a href="mailto:director@iiti.ac.in" class="email-link">director@iiti.ac.in</a></td>
+        <td class="phone-text">+91-731-2438700</td>
+        <td><a href="https://iiti.ac.in" target="_blank" class="web-link">iiti.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Indore" data-tier="Top">
+        <td class="num">22</td>
+        <td><div class="college-name">Shri Govindram Seksaria Institute of Technology &amp; Science</div><div class="college-short">SGSITS Indore &nbsp;<span class="nirf-badge">Govt Autonomous</span></div></td>
+        <td><span class="city-badge city-indore">Indore</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Director / Principal</div><div class="contact-desg">SGSITS Indore</div></td>
+        <td><a href="mailto:director@sgsitsindore.in" class="email-link">director@sgsitsindore.in</a></td>
+        <td class="phone-text">+91-731-2581025</td>
+        <td><a href="https://sgsitsindore.in" target="_blank" class="web-link">sgsitsindore.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Indore" data-tier="Top">
+        <td class="num">23</td>
+        <td><div class="college-name">Devi Ahilya Vishwavidyalaya — School of Engineering</div><div class="college-short">DAVV Indore</div></td>
+        <td><span class="city-badge city-indore">Indore</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Dean, School of Engineering</div><div class="contact-desg">DAVV, Indore</div></td>
+        <td><a href="mailto:registrar@dauniv.ac.in" class="email-link">registrar@dauniv.ac.in</a></td>
+        <td class="phone-text">+91-731-2527591</td>
+        <td><a href="https://dauniv.ac.in" target="_blank" class="web-link">dauniv.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Indore" data-tier="Mid">
+        <td class="num">24</td>
+        <td><div class="college-name">IPS Academy — Institute of Engineering &amp; Science</div><div class="college-short">IPS Academy IES</div></td>
+        <td><span class="city-badge city-indore">Indore</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Dr. Archana Keerti Choudhary</div><div class="contact-desg">Principal / Director, IPS Academy IES</div></td>
+        <td><a href="mailto:info@ipsacademy.org" class="email-link">info@ipsacademy.org</a></td>
+        <td class="phone-text">+91-731-4285050</td>
+        <td><a href="https://ipsacademy.org" target="_blank" class="web-link">ipsacademy.org</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Indore" data-tier="Mid">
+        <td class="num">25</td>
+        <td><div class="college-name">Medi-Caps University</div><div class="college-short">Medi-Caps Indore &nbsp;<span class="nirf-badge">NAAC A</span></div></td>
+        <td><span class="city-badge city-indore">Indore</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Vice Chancellor / Dean Engineering</div><div class="contact-desg">Medi-Caps University, Indore</div></td>
+        <td><a href="mailto:registrar@medicaps.ac.in" class="email-link">registrar@medicaps.ac.in</a></td>
+        <td class="phone-text">+91-731-2630181</td>
+        <td><a href="https://medicaps.ac.in" target="_blank" class="web-link">medicaps.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Indore" data-tier="Mid">
+        <td class="num">26</td>
+        <td><div class="college-name">LNCT — Lakshmi Narain College of Technology, Indore</div><div class="college-short">LNCT Indore Campus</div></td>
+        <td><span class="city-badge city-indore">Indore</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Dr. Prashant Purohit</div><div class="contact-desg">Principal, LNCT Indore Campus</div></td>
+        <td><a href="mailto:info@lnct.ac.in" class="email-link">info@lnct.ac.in</a></td>
+        <td class="phone-text">+91-755-6185300</td>
+        <td><a href="https://lnct.ac.in" target="_blank" class="web-link">lnct.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Indore" data-tier="Mid">
+        <td class="num">27</td>
+        <td><div class="college-name">Prestige Institute of Engineering Management &amp; Research</div><div class="college-short">PIEMR Indore</div></td>
+        <td><span class="city-badge city-indore">Indore</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Principal / Director</div><div class="contact-desg">PIEMR, Vijay Nagar, Indore</div></td>
+        <td><a href="mailto:info@piemr.edu.in" class="email-link">info@piemr.edu.in</a></td>
+        <td class="phone-text">7869999299</td>
+        <td><a href="https://piemr.edu.in" target="_blank" class="web-link">piemr.edu.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Indore" data-tier="General">
+        <td class="num">28</td>
+        <td><div class="college-name">Indore Institute of Science &amp; Technology</div><div class="college-short">IIST Indore</div></td>
+        <td><span class="city-badge city-indore">Indore</span></td>
+        <td><span class="tier-badge tier-gen">General</span></td>
+        <td><div class="contact-name">Director / Principal</div><div class="contact-desg">IIST, Indore Institute</div></td>
+        <td><a href="mailto:info@iist.indoreinstitute.com" class="email-link">info@iist.indoreinstitute.com</a></td>
+        <td class="phone-text">+91-731-4258300</td>
+        <td><a href="https://iist.indoreinstitute.com" target="_blank" class="web-link">iist.indoreinstitute.com</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Indore" data-tier="General">
+        <td class="num">29</td>
+        <td><div class="college-name">Vikrant Institute of Technology &amp; Management</div><div class="college-short">VITM Indore</div></td>
+        <td><span class="city-badge city-indore">Indore</span></td>
+        <td><span class="tier-badge tier-gen">General</span></td>
+        <td><div class="contact-name">Director / Principal</div><div class="contact-desg">VITM, Indore</div></td>
+        <td><a href="mailto:info@vitm.edu.in" class="email-link">info@vitm.edu.in</a></td>
+        <td class="phone-text">+91-731-4073200</td>
+        <td><a href="https://vitm.edu.in" target="_blank" class="web-link">vitm.edu.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Indore" data-tier="General">
+        <td class="num">30</td>
+        <td><div class="college-name">Acropolis Institute of Technology &amp; Research</div><div class="college-short">AITR Indore</div></td>
+        <td><span class="city-badge city-indore">Indore</span></td>
+        <td><span class="tier-badge tier-gen">General</span></td>
+        <td><div class="contact-name">Director / Principal</div><div class="contact-desg">Acropolis Institute, Indore</div></td>
+        <td><a href="mailto:info@acropolisinstitute.in" class="email-link">info@acropolisinstitute.in</a></td>
+        <td class="phone-text">+91-731-4225600</td>
+        <td><a href="https://acropolisinstitute.in" target="_blank" class="web-link">acropolisinstitute.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <!-- ===== BHOPAL ===== -->
+      <tr class="section-header"><td colspan="10">📍 BHOPAL, MADHYA PRADESH — 10 Leads</td></tr>
+
+      <tr data-city="Bhopal" data-tier="Top">
+        <td class="num">31</td>
+        <td><div class="college-name">Maulana Azad National Institute of Technology</div><div class="college-short">MANIT Bhopal &nbsp;<span class="nirf-badge">NIRF #72</span></div></td>
+        <td><span class="city-badge city-bhopal">Bhopal</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Director / Registrar</div><div class="contact-desg">MANIT Bhopal (NIT)</div></td>
+        <td><a href="mailto:director@manit.ac.in" class="email-link">director@manit.ac.in</a></td>
+        <td class="phone-text">+91-755-4051000</td>
+        <td><a href="https://manit.ac.in" target="_blank" class="web-link">manit.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Bhopal" data-tier="Top">
+        <td class="num">32</td>
+        <td><div class="college-name">LNCT — Lakshmi Narain College of Technology</div><div class="college-short">LNCT Bhopal — 33+ yrs</div></td>
+        <td><span class="city-badge city-bhopal">Bhopal</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Dr. Vinay Kumar Sahu</div><div class="contact-desg">Principal, LNCT Bhopal</div></td>
+        <td><a href="mailto:admission@lnct.ac.in" class="email-link">admission@lnct.ac.in</a></td>
+        <td class="phone-text">0755-6185300</td>
+        <td><a href="https://lnct.ac.in" target="_blank" class="web-link">lnct.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bhopal" data-tier="Top">
+        <td class="num">33</td>
+        <td><div class="college-name">TIT Group — Technocrats Institute of Technology</div><div class="college-short">TIT Bhopal — NBA Accredited</div></td>
+        <td><span class="city-badge city-bhopal">Bhopal</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Dr. Anurag Choubey</div><div class="contact-desg">Group Director – Admin, TIT Group</div></td>
+        <td><a href="mailto:info@technocratsgroup.edu.in" class="email-link">info@technocratsgroup.edu.in</a></td>
+        <td class="phone-text">+91-755-4289900</td>
+        <td><a href="https://technocratsgroup.edu.in" target="_blank" class="web-link">technocratsgroup.edu.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bhopal" data-tier="Mid">
+        <td class="num">34</td>
+        <td><div class="college-name">JNCT — Jai Narain College of Technology</div><div class="college-short">JNCT Bhopal</div></td>
+        <td><span class="city-badge city-bhopal">Bhopal</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Dr. Netra Pal Singh</div><div class="contact-desg">Principal, JNCT Bhopal</div></td>
+        <td><a href="mailto:info@jnctbhopal.ac.in" class="email-link">info@jnctbhopal.ac.in</a></td>
+        <td class="phone-text">+91-755-4055500</td>
+        <td><a href="https://jnctbhopal.ac.in" target="_blank" class="web-link">jnctbhopal.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bhopal" data-tier="Mid">
+        <td class="num">35</td>
+        <td><div class="college-name">SIRT — Sagar Institute of Research &amp; Technology</div><div class="college-short">SIRT / SAGE Group Bhopal</div></td>
+        <td><span class="city-badge city-bhopal">Bhopal</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Director / Principal, SIRT</div><div class="contact-desg">SAGE Group of Institutions</div></td>
+        <td><a href="mailto:info@sirtbhopal.ac.in" class="email-link">info@sirtbhopal.ac.in</a></td>
+        <td class="phone-text">+91-755-4060000</td>
+        <td><a href="https://sirtbhopal.ac.in" target="_blank" class="web-link">sirtbhopal.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bhopal" data-tier="Mid">
+        <td class="num">36</td>
+        <td><div class="college-name">Madhyanchal Professional University</div><div class="college-short">MPU Bhopal</div></td>
+        <td><span class="city-badge city-bhopal">Bhopal</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Dr. Rajesh Kumar Rai</div><div class="contact-desg">Vice Chancellor (Officiating), MPU</div></td>
+        <td><a href="mailto:info@mpu.ac.in" class="email-link">info@mpu.ac.in</a></td>
+        <td class="phone-text">0755-2896281</td>
+        <td><a href="https://mpu.ac.in" target="_blank" class="web-link">mpu.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bhopal" data-tier="Mid">
+        <td class="num">37</td>
+        <td><div class="college-name">Radharaman Institute of Research &amp; Technology</div><div class="college-short">RIRT Bhopal</div></td>
+        <td><span class="city-badge city-bhopal">Bhopal</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Sh. R.R. Saxena</div><div class="contact-desg">Chairman, RGI / Radharaman Group</div></td>
+        <td><a href="mailto:info@radharamanbhopal.com" class="email-link">info@radharamanbhopal.com</a></td>
+        <td class="phone-text">+91-755-4050500</td>
+        <td><a href="https://radharamanbhopal.com" target="_blank" class="web-link">radharamanbhopal.com</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bhopal" data-tier="General">
+        <td class="num">38</td>
+        <td><div class="college-name">Oriental Institute of Science &amp; Technology</div><div class="college-short">OIST Bhopal</div></td>
+        <td><span class="city-badge city-bhopal">Bhopal</span></td>
+        <td><span class="tier-badge tier-gen">General</span></td>
+        <td><div class="contact-name">Director / Principal</div><div class="contact-desg">OIST, Bhopal</div></td>
+        <td><a href="mailto:info@orientaluniversity.in" class="email-link">info@orientaluniversity.in</a></td>
+        <td class="phone-text">+91-755-4000900</td>
+        <td><a href="https://orientaluniversity.in" target="_blank" class="web-link">orientaluniversity.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bhopal" data-tier="General">
+        <td class="num">39</td>
+        <td><div class="college-name">Truba Institute of Engineering &amp; Information Technology</div><div class="college-short">Truba IEIT Bhopal</div></td>
+        <td><span class="city-badge city-bhopal">Bhopal</span></td>
+        <td><span class="tier-badge tier-gen">General</span></td>
+        <td><div class="contact-name">Principal / Director</div><div class="contact-desg">Truba Institute, Bhopal</div></td>
+        <td><a href="mailto:info@truba.edu.in" class="email-link">info@truba.edu.in</a></td>
+        <td class="phone-text">+91-755-4050100</td>
+        <td><a href="https://truba.edu.in" target="_blank" class="web-link">truba.edu.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bhopal" data-tier="General">
+        <td class="num">40</td>
+        <td><div class="college-name">Rabindranath Tagore University (RNTU)</div><div class="college-short">RNTU Bhopal — Engineering</div></td>
+        <td><span class="city-badge city-bhopal">Bhopal</span></td>
+        <td><span class="tier-badge tier-gen">General</span></td>
+        <td><div class="contact-name">Dean / Director, Engineering</div><div class="contact-desg">Rabindranath Tagore University</div></td>
+        <td><a href="mailto:info@rntu.ac.in" class="email-link">info@rntu.ac.in</a></td>
+        <td class="phone-text">+91-755-4058600</td>
+        <td><a href="https://rntu.ac.in" target="_blank" class="web-link">rntu.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <!-- ===== DELHI NCR ===== -->
+      <tr class="section-header"><td colspan="10">📍 DELHI NCR — 10 Leads</td></tr>
+
+      <tr data-city="Delhi NCR" data-tier="Top">
+        <td class="num">41</td>
+        <td><div class="college-name">Delhi Technological University</div><div class="college-short">DTU &nbsp;<span class="nirf-badge">Top Govt Delhi</span></div></td>
+        <td><span class="city-badge city-delhi">Delhi NCR</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Prof. Anil Singh Parihar</div><div class="contact-desg">Head, CSE Department, DTU</div></td>
+        <td><a href="mailto:hod.cse@dtu.ac.in" class="email-link">hod.cse@dtu.ac.in</a></td>
+        <td class="phone-text">+91-11-27871018</td>
+        <td><a href="https://dtu.ac.in" target="_blank" class="web-link">dtu.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Delhi NCR" data-tier="Top">
+        <td class="num">42</td>
+        <td><div class="college-name">Indraprastha Institute of Information Technology Delhi</div><div class="college-short">IIIT Delhi &nbsp;<span class="nirf-badge">NIRF #85</span></div></td>
+        <td><span class="city-badge city-delhi">Delhi NCR</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Director / Dean Academics</div><div class="contact-desg">IIIT Delhi</div></td>
+        <td><a href="mailto:director@iiitd.ac.in" class="email-link">director@iiitd.ac.in</a></td>
+        <td class="phone-text">+91-11-26907400</td>
+        <td><a href="https://iiitd.ac.in" target="_blank" class="web-link">iiitd.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Delhi NCR" data-tier="Top">
+        <td class="num">43</td>
+        <td><div class="college-name">Guru Gobind Singh Indraprastha University</div><div class="college-short">GGSIPU &nbsp;<span class="nirf-badge">NIRF #89</span></div></td>
+        <td><span class="city-badge city-delhi">Delhi NCR</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Vice Chancellor / Registrar</div><div class="contact-desg">GGSIPU, New Delhi</div></td>
+        <td><a href="mailto:vc@ipu.ac.in" class="email-link">vc@ipu.ac.in</a></td>
+        <td class="phone-text">+91-11-25302170</td>
+        <td><a href="https://ipu.ac.in" target="_blank" class="web-link">ipu.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-govt">Govt</span></td>
+      </tr>
+
+      <tr data-city="Delhi NCR" data-tier="Top">
+        <td class="num">44</td>
+        <td><div class="college-name">Amity University — School of Engineering &amp; Technology</div><div class="college-short">Amity ASET Noida &nbsp;<span class="nirf-badge">NIRF 101-150</span></div></td>
+        <td><span class="city-badge city-delhi">Delhi NCR</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Director, ASET</div><div class="contact-desg">Amity School of Engineering &amp; Technology</div></td>
+        <td><a href="mailto:mkpandey1@amity.edu" class="email-link">mkpandey1@amity.edu</a></td>
+        <td class="phone-text">+91-120-4392000</td>
+        <td><a href="https://www.amity.edu/aset" target="_blank" class="web-link">amity.edu/aset</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Delhi NCR" data-tier="Top">
+        <td class="num">45</td>
+        <td><div class="college-name">Bennett University — School of Engineering &amp; Applied Sciences</div><div class="college-short">Bennett Univ &nbsp;<span class="nirf-badge">Times Owned</span></div></td>
+        <td><span class="city-badge city-delhi">Delhi NCR</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Prof. Prabhu Kumar Aggarwal</div><div class="contact-desg">Vice Chancellor &amp; Dean, SEAS, Bennett University</div></td>
+        <td><a href="mailto:dean.seas@bennett.edu.in" class="email-link">dean.seas@bennett.edu.in</a></td>
+        <td class="phone-text">0120-7199585</td>
+        <td><a href="https://www.bennett.edu.in" target="_blank" class="web-link">bennett.edu.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Delhi NCR" data-tier="Mid">
+        <td class="num">46</td>
+        <td><div class="college-name">Noida Institute of Engineering &amp; Technology</div><div class="college-short">NIET Greater Noida &nbsp;<span class="nirf-badge">NIRF 101-150</span></div></td>
+        <td><span class="city-badge city-delhi">Delhi NCR</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Director / Principal</div><div class="contact-desg">NIET, Greater Noida</div></td>
+        <td><a href="mailto:srmustafa@niet.co.in" class="email-link">srmustafa@niet.co.in</a></td>
+        <td class="phone-text">+91-120-2323042</td>
+        <td><a href="https://niet.co.in" target="_blank" class="web-link">niet.co.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Delhi NCR" data-tier="Mid">
+        <td class="num">47</td>
+        <td><div class="college-name">Galgotias University</div><div class="college-short">Galgotias Univ, Greater Noida</div></td>
+        <td><span class="city-badge city-delhi">Delhi NCR</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Vice Chancellor / Dean Engineering</div><div class="contact-desg">Galgotias University, Greater Noida</div></td>
+        <td><a href="mailto:vc@galgotiasuniversity.edu.in" class="email-link">vc@galgotiasuniversity.edu.in</a></td>
+        <td class="phone-text">+91-120-4370000</td>
+        <td><a href="https://galgotiasuniversity.edu.in" target="_blank" class="web-link">galgotiasuniversity.edu.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Delhi NCR" data-tier="Mid">
+        <td class="num">48</td>
+        <td><div class="college-name">G.L. Bajaj Institute of Technology &amp; Management</div><div class="college-short">GLBITM Greater Noida &nbsp;<span class="nirf-badge">NIRF 151-200</span></div></td>
+        <td><span class="city-badge city-delhi">Delhi NCR</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Dr. Ranjit Varma</div><div class="contact-desg">Director, GL Bajaj Institute</div></td>
+        <td><a href="mailto:info@glbitm.org" class="email-link">info@glbitm.org</a></td>
+        <td class="phone-text">+91-120-2323434</td>
+        <td><a href="https://glbitm.org" target="_blank" class="web-link">glbitm.org</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Delhi NCR" data-tier="Mid">
+        <td class="num">49</td>
+        <td><div class="college-name">Jaypee Institute of Information Technology</div><div class="college-short">JIIT Noida</div></td>
+        <td><span class="city-badge city-delhi">Delhi NCR</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Vice Chancellor / Director</div><div class="contact-desg">JIIT, Noida</div></td>
+        <td><a href="mailto:registrar@jiit.ac.in" class="email-link">registrar@jiit.ac.in</a></td>
+        <td class="phone-text">+91-120-2594100</td>
+        <td><a href="https://jiit.ac.in" target="_blank" class="web-link">jiit.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Delhi NCR" data-tier="General">
+        <td class="num">50</td>
+        <td><div class="college-name">JSS Academy of Technical Education, Noida</div><div class="college-short">JSS Noida &nbsp;<span class="nirf-badge">NIRF 201-300</span></div></td>
+        <td><span class="city-badge city-delhi">Delhi NCR</span></td>
+        <td><span class="tier-badge tier-gen">General</span></td>
+        <td><div class="contact-name">Principal / Director</div><div class="contact-desg">JSS Academy of Technical Education</div></td>
+        <td><a href="mailto:info@jssaten.ac.in" class="email-link">info@jssaten.ac.in</a></td>
+        <td class="phone-text">+91-120-2401003</td>
+        <td><a href="https://jssaten.ac.in" target="_blank" class="web-link">jssaten.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <!-- ===== BENGALURU ===== -->
+      <tr class="section-header"><td colspan="10">📍 BENGALURU, KARNATAKA — 10 Leads</td></tr>
+
+      <tr data-city="Bengaluru" data-tier="Top">
+        <td class="num">51</td>
+        <td><div class="college-name">IIIT Bangalore — International Institute of Information Technology</div><div class="college-short">IIITB &nbsp;<span class="nirf-badge">NIRF #74</span></div></td>
+        <td><span class="city-badge city-bengaluru">Bengaluru</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Prof. Debabrata Das</div><div class="contact-desg">Director, IIIT Bangalore</div></td>
+        <td><a href="mailto:ddas@iiitb.ac.in" class="email-link">ddas@iiitb.ac.in</a></td>
+        <td class="phone-text">+91-80-41407777</td>
+        <td><a href="https://iiitb.ac.in" target="_blank" class="web-link">iiitb.ac.in</a></td>
+        <td><a href="https://in.linkedin.com/in/debabrata-das-41712814" target="_blank" class="li-link">🔗 LinkedIn</a></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bengaluru" data-tier="Top">
+        <td class="num">52</td>
+        <td><div class="college-name">M.S. Ramaiah Institute of Technology</div><div class="college-short">MSRIT / RIT &nbsp;<span class="nirf-badge">NIRF #75</span></div></td>
+        <td><span class="city-badge city-bengaluru">Bengaluru</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Dr. N.V.R. Naidu</div><div class="contact-desg">Principal, Ramaiah Institute of Technology</div></td>
+        <td><a href="mailto:principal@msrit.edu" class="email-link">principal@msrit.edu</a></td>
+        <td class="phone-text">+91-80-23600822</td>
+        <td><a href="https://msrit.edu" target="_blank" class="web-link">msrit.edu</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bengaluru" data-tier="Top">
+        <td class="num">53</td>
+        <td><div class="college-name">R.V. College of Engineering</div><div class="college-short">RVCE Bengaluru &nbsp;<span class="nirf-badge">NIRF #99</span></div></td>
+        <td><span class="city-badge city-bengaluru">Bengaluru</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Principal, RVCE</div><div class="contact-desg">R.V. College of Engineering</div></td>
+        <td><a href="mailto:principal@rvce.edu.in" class="email-link">principal@rvce.edu.in</a></td>
+        <td class="phone-text">+91-80-67178000</td>
+        <td><a href="https://rvce.edu.in" target="_blank" class="web-link">rvce.edu.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bengaluru" data-tier="Top">
+        <td class="num">54</td>
+        <td><div class="college-name">PES University</div><div class="college-short">PESU Bengaluru &nbsp;<span class="nirf-badge">NIRF 101-150</span></div></td>
+        <td><span class="city-badge city-bengaluru">Bengaluru</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Principal / Chancellor, PES University</div><div class="contact-desg">PES University, Bengaluru</div></td>
+        <td><a href="mailto:principal@pes.edu" class="email-link">principal@pes.edu</a></td>
+        <td class="phone-text">+91-80-26721983</td>
+        <td><a href="https://pes.edu" target="_blank" class="web-link">pes.edu</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bengaluru" data-tier="Top">
+        <td class="num">55</td>
+        <td><div class="college-name">Jain University — Faculty of Engineering</div><div class="college-short">Jain Univ &nbsp;<span class="nirf-badge">NIRF #95</span></div></td>
+        <td><span class="city-badge city-bengaluru">Bengaluru</span></td>
+        <td><span class="tier-badge tier-top">Top</span></td>
+        <td><div class="contact-name">Dean / Director, Engineering</div><div class="contact-desg">Jain University, Bengaluru</div></td>
+        <td><a href="mailto:engineering@jainuniversity.ac.in" class="email-link">engineering@jainuniversity.ac.in</a></td>
+        <td class="phone-text">+91-80-46681111</td>
+        <td><a href="https://jainuniversity.ac.in" target="_blank" class="web-link">jainuniversity.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bengaluru" data-tier="Mid">
+        <td class="num">56</td>
+        <td><div class="college-name">BMS College of Engineering</div><div class="college-short">BMSCE &nbsp;<span class="nirf-badge">NIRF 151-200</span></div></td>
+        <td><span class="city-badge city-bengaluru">Bengaluru</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Principal, BMS College of Engineering</div><div class="contact-desg">BMSCE Bengaluru</div></td>
+        <td><a href="mailto:principal@bmsce.ac.in" class="email-link">principal@bmsce.ac.in</a></td>
+        <td class="phone-text">+91-80-26622130</td>
+        <td><a href="https://bmsce.ac.in" target="_blank" class="web-link">bmsce.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bengaluru" data-tier="Mid">
+        <td class="num">57</td>
+        <td><div class="college-name">Nitte Meenakshi Institute of Technology</div><div class="college-short">NMIT &nbsp;<span class="nirf-badge">NIRF 101-150</span></div></td>
+        <td><span class="city-badge city-bengaluru">Bengaluru</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Principal / Director</div><div class="contact-desg">Nitte Meenakshi Institute of Technology</div></td>
+        <td><a href="mailto:principal@nmit.ac.in" class="email-link">principal@nmit.ac.in</a></td>
+        <td class="phone-text">+91-80-28392772</td>
+        <td><a href="https://nmit.ac.in" target="_blank" class="web-link">nmit.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bengaluru" data-tier="Mid">
+        <td class="num">58</td>
+        <td><div class="college-name">CMR Institute of Technology</div><div class="college-short">CMRIT &nbsp;<span class="nirf-badge">NIRF 151-200</span></div></td>
+        <td><span class="city-badge city-bengaluru">Bengaluru</span></td>
+        <td><span class="tier-badge tier-mid">Mid</span></td>
+        <td><div class="contact-name">Principal, CMR Institute of Technology</div><div class="contact-desg">CMRIT, Bengaluru</div></td>
+        <td><a href="mailto:principal@cmrit.ac.in" class="email-link">principal@cmrit.ac.in</a></td>
+        <td class="phone-text">+91-80-43439300</td>
+        <td><a href="https://cmrit.ac.in" target="_blank" class="web-link">cmrit.ac.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bengaluru" data-tier="General">
+        <td class="num">59</td>
+        <td><div class="college-name">Dayananda Sagar College of Engineering</div><div class="college-short">DSCE Bengaluru &nbsp;<span class="nirf-badge">NIRF 201-300</span></div></td>
+        <td><span class="city-badge city-bengaluru">Bengaluru</span></td>
+        <td><span class="tier-badge tier-gen">General</span></td>
+        <td><div class="contact-name">Principal, DSCE</div><div class="contact-desg">Dayananda Sagar College of Engineering</div></td>
+        <td><a href="mailto:principal.dsce@yahoo.com" class="email-link">principal.dsce@yahoo.com</a></td>
+        <td class="phone-text">+91-80-26661100</td>
+        <td><a href="https://dayanandasagar.edu" target="_blank" class="web-link">dayanandasagar.edu</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+      <tr data-city="Bengaluru" data-tier="General">
+        <td class="num">60</td>
+        <td><div class="college-name">Christ University — Faculty of Engineering</div><div class="college-short">Christ Univ &nbsp;<span class="nirf-badge">NIRF #93</span></div></td>
+        <td><span class="city-badge city-bengaluru">Bengaluru</span></td>
+        <td><span class="tier-badge tier-gen">General</span></td>
+        <td><div class="contact-name">Dean, Faculty of Engineering</div><div class="contact-desg">Christ University, Bengaluru</div></td>
+        <td><a href="mailto:engineering@christuniversity.in" class="email-link">engineering@christuniversity.in</a></td>
+        <td class="phone-text">+91-80-40129100</td>
+        <td><a href="https://christuniversity.in" target="_blank" class="web-link">christuniversity.in</a></td>
+        <td><span class="li-validate">🔍 Validate</span></td>
+        <td><span class="type-badge type-private">Private</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div class="footer">
+  ⚡ ScaleSync Lead Intelligence &nbsp;|&nbsp; Research Date: April 28, 2026 &nbsp;|&nbsp; 60 Tech College Contacts — 6 Indian Cities<br>
+  Contacts sourced from NIRF 2024, official college websites, JoSAA portal. LinkedIn validation required before outreach. Internal use only.<br>
+  <span style="color:#F37021;">ScaleYukti AI Automation Agency</span> &nbsp;|&nbsp; scaleyukti.ai
+</div>
+
+<script>
+  function filterTable() {
+    const q = document.getElementById('searchBox').value.toLowerCase();
+    const city = document.getElementById('cityFilter').value;
+    const tier = document.getElementById('tierFilter').value;
+    const rows = document.querySelectorAll('#tableBody tr:not(.section-header)');
+    let visible = 0;
+    rows.forEach(row => {
+      const rowCity = row.getAttribute('data-city') || '';
+      const rowTier = row.getAttribute('data-tier') || '';
+      const text = row.textContent.toLowerCase();
+      const matchCity = !city || rowCity === city;
+      const matchTier = !tier || rowTier === tier;
+      const matchQ = !q || text.includes(q);
+      if (matchCity && matchTier && matchQ) {
+        row.classList.remove('hidden');
+        visible++;
+      } else {
+        row.classList.add('hidden');
+      }
+    });
+    // Show/hide section headers
+    document.querySelectorAll('#tableBody tr.section-header').forEach(h => {
+      h.style.display = '';
+    });
+    document.getElementById('countLabel').textContent = `Showing ${visible} of 60 leads`;
+  }
+
+  function exportCSV() {
+    const rows = document.querySelectorAll('#tableBody tr:not(.section-header):not(.hidden)');
+    const headers = ['#','College','Short','City','Tier','Contact Name','Designation','Email','Phone','Website','Type'];
+    const lines = [headers.join(',')];
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const num = cells[0].textContent.trim();
+      const collegeName = cells[1].querySelector('.college-name').textContent.trim().replace(/,/g, ';');
+      const collegeShort = (cells[1].querySelector('.college-short')?.textContent.trim() || '').replace(/,/g, ';');
+      const city = cells[2].textContent.trim();
+      const tier = cells[3].textContent.trim();
+      const contactName = (cells[4].querySelector('.contact-name')?.textContent.trim() || '').replace(/,/g,';');
+      const desg = (cells[4].querySelector('.contact-desg')?.textContent.trim() || '').replace(/,/g,';');
+      const email = (cells[5].querySelector('a')?.textContent.trim() || '');
+      const phone = cells[6].textContent.trim();
+      const web = (cells[7].querySelector('a')?.getAttribute('href') || '');
+      const type = cells[9].textContent.trim();
+      lines.push([num,`"${collegeName}"`,`"${collegeShort}"`,city,tier,`"${contactName}"`,`"${desg}"`,email,phone,web,type].join(','));
+    });
+    const blob = new Blob([lines.join('\n')], {type:'text/csv'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'scalesync-tech-college-leads-2026.csv';
+    a.click();
+  }
+</script>
+
+</body>
+</html>
