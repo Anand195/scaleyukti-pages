@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AEO / GEO / SEO Master Strategy – Anand Shrivastav</title>
+  <style>
+    :root { color-scheme: light dark; --bg: #f8fafc; --card: #fff; --text: #1e293b; --accent: #0ea5e9; --border: #e2e8f0; }
+    [data-theme="dark"] { --bg: #0f172a; --card: #1e293b; --text: #e2e8f0; --accent: #38bdf8; --border: #334155; }
+    body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 2rem 1rem; }
+    .container { max-width: 960px; margin: 0 auto; }
+    h1 { color: var(--accent); margin-bottom: .25rem; }
+    .subtitle { opacity: .7; margin-bottom: 2rem; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 1.5rem; }
+    .card h2 { margin-top: 0; color: var(--accent); }
+    pre { background: #0f172a; color: #e2e8f0; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-size: .875rem; }
+    .badge { display: inline-block; padding: .3rem .8rem; border-radius: 6px; font-size: .75rem; font-weight: 600; margin-bottom: .5rem; }
+    .badge.p1 { background: #dcfce7; color: #15803d; } .badge.p2 { background: #fef9c3; color: #a16207; } .badge.p3 { background: #e0e7ff; color: #3730a3; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid var(--border); padding: .75rem; text-align: left; }
+    th { background: var(--border); }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>🚀 AEO · GEO · SEO Master Strategy</h1>
+  <p class="subtitle"><strong>Site:</strong> anandshrivastav.com | <strong>Entity:</strong> Anand Shrivastav – AI Consultant | <strong>Version:</strong> May 2026</p>
+
+  <!-- ===== GSC VERIFICATION FALLBACKS ===== -->
+  <div class="card">
+    <h2>🔐 GSC Verification Plan (Fallback Strategy)</h2>
+    <table>
+      <tr><th>Priority</th><th>Method</th><th>Action</th><th>Fallback Trigger</th></tr>
+      <tr>
+        <td>1</td><td>HTML Meta Tag</td>
+        <td>Inject <code>&lt;meta name="google-site-verification" content="VjpS04Knskys9Df3tc..." /&gt;</code> inside <code>&lt;head&gt;</code></td>
+        <td>If source code tag is not found</td>
+      </tr>
+      <tr>
+        <td>2</td><td>HTML File Upload</td>
+        <td>Place <code>googleb9461e3aa5f57f7d.html</code> in <code>/public</code> folder. Verify at <code>/googleb9461e3aa5f57f7d.html</code></td>
+        <td>If the file returns 404 or redirects to homepage</td>
+      </tr>
+      <tr>
+        <td>3</td><td>DNS TXT Record</td>
+        <td>Add TXT record: <code>google-site-verification=VjpS04Knsksy9Df3tGCyebYvJ5dL</code> at your domain registrar</td>
+        <td>If you lack direct server access</td>
+      </tr>
+      <tr>
+        <td>4</td><td>GA / GTM</td>
+        <td>Click VERIFY in GSC if analytics or tag manager code already exists on page</td>
+        <td>If Methods 1-3 all fail within 24 hours</td>
+      </tr>
+    </table>
+    <p>Once GSC is verified, immediately submit your <code>sitemap.xml</code> and inspect your homepage to check for SPA rendering issues.</p>
+  </div>
+
+  <!-- ===== SITEMAP & ROBOTS ===== -->
+  <div class="card">
+    <h2>📂 robots.txt + sitemap.xml Instructions</h2>
+    <p>Both files must live at the root of your domain. For Next.js, place them in <code>/public</code>.</p>
+
+    <p><strong>robots.txt</strong> – Paste the following:</p>
+    <pre>User-agent: *
+Allow: /
+
+# AI Crawlers (Required for GEO visibility)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Disallow non-public paths
+Disallow: /api/
+Disallow: /_next/
+
+Sitemap: https://anandshrivastav.com/sitemap.xml</pre>
+
+    <p><strong>sitemap.xml</strong> – If your framework does not auto-generate it, create a basic one:</p>
+    <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;&lt;loc&gt;https://anandshrivastav.com/&lt;/loc&gt;&lt;priority&gt;1.0&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://anandshrivastav.com/services&lt;/loc&gt;&lt;priority&gt;0.8&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://anandshrivastav.com/about&lt;/loc&gt;&lt;priority&gt;0.7&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://anandshrivastav.com/insights&lt;/loc&gt;&lt;priority&gt;0.8&lt;/priority&gt;&lt;/url&gt;
+&lt;/urlset&gt;</pre>
+    <p><em>Note: Dynamic auto-generation is preferred. Ensure your build process creates this file on every deploy.</em></p>
+  </div>
+
+  <!-- ===== LLMS.TXT ===== -->
+  <div class="card">
+    <h2>🤖 llms.txt – AI Discovery File</h2>
+    <p>Save this file as <code>llms.txt</code> in your <code>/public</code> folder (i.e., <code>https://anandshrivastav.com/llms.txt</code>).</p>
+    <pre># Anand Shrivastav – AI Consultant
+I help organizations implement AI systems delivering measurable ROI. Based in Ahmedabad, India.
+
+## Core Services
+- AI Workflow Automation: https://anandshrivastav.com/
+- Enterprise AI Implementation: https://anandshrivastav.com/services
+- Institutional Training & Workshops: https://anandshrivastav.com/training
+
+## Published Research & Authority
+- IJSRD Research Paper: [Link to PDF or page]
+- ISETE Conference Paper: [Link to PDF or page]
+
+## Contact & Social
+- LinkedIn: https://linkedin.com/in/anandshrivastav
+- Email: anand@anandshrivastav.com</pre>
+  </div>
+
+  <!-- ===== AEO / GEO CONTENT FRAMEWORK ===== -->
+  <div class="card">
+    <h2>✍️ AEO / GEO Content Restructuring Plan</h2>
+    <p>To be cited by Google AI Overviews, ChatGPT, and voice assistants, rewrite your key pages using the <strong>Atomic Answer Framework</strong>. This places a concise, 40-60 word direct answer immediately under every question-based heading[reference:5].</p>
+    <hr>
+    <h3>Example Transformation:</h3>
+    <p><strong>Before:</strong><br>"I offer comprehensive AI consulting services including workflow analysis, custom model development, and team training..."</p>
+    <p><strong>After (AEO Optimized):</strong></p>
+    <pre>&lt;h2&gt;How does AI reduce code review time?&lt;/h2&gt;
+&lt;div class="atomic-answer"&gt;
+  Our automated AI code review pipeline reduces manual review time by up to 80% by instantly analyzing pull requests for errors, security vulnerabilities, and style violations before a human even looks at them.
+&lt;/div&gt;
+&lt;p&gt;Here is the detailed breakdown of the pipeline...&lt;/p&gt;</pre>
+    <p><strong>Target Keywords/Questions for Your Site:</strong></p>
+    <ul>
+      <li>"How can AI improve DevOps workflow?"</li>
+      <li>"What is the ROI of implementing AI agents?"</li>
+      <li>"Where can I get hands-on AI training in Gujarat?"</li>
+      <li>"Who is the best AI consultant in Ahmedabad?"</li>
+    </ul>
+    <p>Publish a dedicated <strong>Q&A Resource Hub</strong> at <code>/insights</code> to house articles answering these exact questions.</p>
+  </div>
+
+  <!-- ===== SCHEMA MARKUP ===== -->
+  <div class="card">
+    <h2>🧩 Core Schema Markups (JSON-LD)</h2>
+    <p>Copy these scripts into the <code>&lt;head&gt;</code> of every relevant page. These are the minimum required for AI entity recognition.</p>
+
+    <p><span class="badge p1">HOMEPAGE</span> <strong>Organization + Person</strong></p>
+    <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Anand Shrivastav AI Consulting",
+  "url": "https://anandshrivastav.com",
+  "logo": "https://anandshrivastav.com/logo.png",
+  "founder": {
+    "@type": "Person",
+    "name": "Anand Shrivastav",
+    "jobTitle": "AI Consultant",
+    "url": "https://anandshrivastav.com/about",
+    "sameAs": [
+      "https://linkedin.com/in/anandshrivastav",
+      "https://github.com/anandshrivastav"
+    ]
+  }
+}
+&lt;/script&gt;</pre>
+
+    <p><span class="badge p2">HOMEPAGE</span> <strong>FAQPage (For AI Overviews & Voice)</strong></p>
+    <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What does Anand Shrivastav do?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "He is an AI consultant who helps organizations implement custom AI systems, automate workflows, and train teams for measurable ROI."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Where is his consulting based?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ahmedabad, Gujarat, India, with global clients including UK-based organizations."
+    }
+  }]
+}
+&lt;/script&gt;</pre>
+
+    <p><span class="badge p3">ALL PAGES</span> <strong>Speakable (For Voice Assistants)</strong></p>
+    <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".atomic-answer"]
+  }
+}
+&lt;/script&gt;</pre>
+  </div>
+
+  <!-- ===== GBP STRATEGY ===== -->
+  <div class="card">
+    <h2>📍 Google Business Profile (GBP) Decision & Strategy</h2>
+    <p><strong>Verdict: Proceed as a Service Area Business (SAB).</strong></p>
+    <p>Your face-to-face sessions with organizations in Ahmedabad (e.g., Vastrapur area) and the UK-based client's local office fulfill Google's eligibility criteria. Operating as an SAB allows you to hide your physical coworking address, which is the best practice for protecting your privacy and avoiding any potential "moonlighting" visibility. This will boost your local search presence without conflicting with your role at CAYPRO.</p>
+    <p><strong>Verification Steps:</strong></p>
+    <ol>
+      <li>List your business name exactly as "Anand Shrivastav AI Consulting".</li>
+      <li>Select "Service Area Business" and define service areas (e.g., Ahmedabad, Gujarat, India).</li>
+      <li>Hide your physical address completely.</li>
+      <li>Prepare for live video verification by having your coworking space, laptop, certificates, and momentos ready. You'll need to show the external surroundings, your workspace, and proof of business operation.</li>
+    </ol>
+  </div>
+
+  <!-- ===== TOOL STACK ===== -->
+  <div class="card">
+    <h2>🛠️ Recommended Tool Stack (May 2026)</h2>
+    <table>
+      <tr><th>Purpose</th><th>Tools</th></tr>
+      <tr><td>Technical SEO & Indexing</td><td>Google Search Console, Bing Webmaster Tools, Screaming Frog</td></tr>
+      <tr><td>Keyword & Question Research</td><td>AnswerThePublic, AlsoAsked.com, Semrush</td></tr>
+      <tr><td>Schema Markup</td><td>Google Rich Results Test, Merkle Schema Builder</td></tr>
+      <tr><td>GEO & AI Visibility Tracking</td><td>Geoptie (Free GEO Audit), SE Ranking</td></tr>
+      <tr><td>GBP Management</td><td>Google Business Profile Manager (Official App)</td></tr>
+    </table>
+  </div>
+
+  <hr>
+  <p style="text-align:center; opacity:.6; font-size:.85rem;">End of Master Strategy Document – Anand Shrivastav, AI Consultant.</p>
+</div>
+</body>
+</html>
