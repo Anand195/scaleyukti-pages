@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WACRM vs AISensy — Competitive Audit Report 2026</title>
+<style>
+:root {
+  --bg: #0f172a; --surface: #1e293b; --border: #334155;
+  --text: #e2e8f0; --text2: #94a3b8; --primary: #3b82f6;
+  --danger: #ef4444; --warn: #f59e0b; --success: #22c55e;
+  --info: #06b6d4; --gap: #f97316;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+.container { max-width:1400px; margin:0 auto; padding:2rem; }
+header { text-align:center; padding:3rem 1rem; border-bottom:1px solid var(--border); margin-bottom:2rem; }
+header h1 { font-size:2.5rem; background:linear-gradient(135deg,var(--primary),var(--info)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+header p { color:var(--text2); margin-top:.5rem; font-size:1.1rem; }
+nav.tabs { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:2rem; border-bottom:1px solid var(--border); padding-bottom:1rem; }
+nav.tabs button { padding:.6rem 1.2rem; border:1px solid var(--border); background:var(--surface); color:var(--text); border-radius:8px; cursor:pointer; font-size:.9rem; transition:all .2s; }
+nav.tabs button:hover, nav.tabs button.active { background:var(--primary); border-color:var(--primary); color:#fff; }
+.section { display:none; }
+.section.active { display:block; }
+h2 { font-size:1.6rem; margin:2rem 0 1rem; padding-bottom:.5rem; border-bottom:2px solid var(--primary); }
+h3 { font-size:1.2rem; margin:1.5rem 0 .75rem; color:var(--primary); }
+h4 { font-size:1rem; margin:1rem 0 .5rem; }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem; }
+table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.9rem; }
+th, td { padding:.75rem; text-align:left; border-bottom:1px solid var(--border); }
+th { background:var(--surface); font-weight:600; color:var(--primary); position:sticky; top:0; }
+tr:hover { background:rgba(59,130,246,0.05); }
+.badge { display:inline-block; padding:.2rem .6rem; border-radius:4px; font-size:.75rem; font-weight:600; }
+.badge-has { background:rgba(34,197,94,0.15); color:var(--success); }
+.badge-miss { background:rgba(239,68,68,0.15); color:var(--danger); }
+.badge-partial { background:rgba(245,158,11,0.15); color:var(--warn); }
+.score { display:inline-block; width:32px; height:32px; line-height:32px; text-align:center; border-radius:50%; font-weight:700; font-size:.85rem; }
+.score-high { background:var(--danger); color:#fff; }
+.score-med { background:var(--warn); color:#000; }
+.score-low { background:var(--success); color:#fff; }
+.gap-row { border-left:3px solid var(--gap); }
+.priority-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(350px,1fr)); gap:1rem; }
+.priority-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.5rem; }
+.priority-card h4 { color:var(--primary); margin-bottom:.5rem; }
+.priority-card .meta { display:flex; gap:1rem; margin:.75rem 0; font-size:.85rem; }
+.priority-card .meta span { background:var(--bg); padding:.3rem .7rem; border-radius:6px; }
+ul, ol { padding-left:1.5rem; margin:.5rem 0; }
+li { margin:.3rem 0; }
+.matrix-wrap { overflow-x:auto; }
+code { background:var(--bg); padding:.15rem .4rem; border-radius:4px; font-size:.85rem; }
+.footer { text-align:center; padding:3rem 1rem; color:var(--text2); border-top:1px solid var(--border); margin-top:3rem; }
+.api-endpoint { font-family:monospace; background:var(--bg); padding:.5rem 1rem; border-radius:6px; margin:.5rem 0; display:block; }
+.summary-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin:1.5rem 0; }
+.summary-stat { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.5rem; text-align:center; }
+.summary-stat .num { font-size:2.5rem; font-weight:800; color:var(--primary); }
+.summary-stat .label { color:var(--text2); font-size:.9rem; margin-top:.25rem; }
+.diff-block { background:var(--bg); border-radius:8px; padding:1rem; margin:.5rem 0; overflow-x:auto; }
+@media (max-width:768px) {
+  .container { padding:1rem; }
+  header h1 { font-size:1.8rem; }
+  nav.tabs { gap:.3rem; }
+  nav.tabs button { padding:.4rem .8rem; font-size:.8rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>WACRM vs AISensy — Competitive Audit Report</h1>
+  <p>Comprehensive feature gap analysis | May 21, 2026 | Confidential</p>
+  <p style="font-size:.85rem;margin-top:.25rem;">Prepared for: ScaleYukti Product & Engineering Teams</p>
+</header>
+
+<nav class="tabs">
+  <button class="active" onclick="showTab('exec')">Executive Summary</button>
+  <button onclick="showTab('compare')">Feature Comparison</button>
+  <button onclick="showTab('gaps')">Gap Analysis</button>
+  <button onclick="showTab('api')">API Architecture</button>
+  <button onclick="showTab('security')">Security</button>
+  <button onclick="showTab('roadmap')">Roadmap</button>
+  <button onclick="showTab('db')">DB & Schema</button>
+  <button onclick="showTab('ux')">UX/UI</button>
+  <button onclick="showTab('matrix')">Priority Matrix</button>
+</nav>
+
+<!-- EXECUTIVE SUMMARY -->
+<div id="exec" class="section active">
+<h2>Executive Summary</h2>
+
+<div class="summary-grid">
+  <div class="summary-stat"><div class="num">8</div><div class="label">WACRM Modules</div></div>
+  <div class="summary-stat"><div class="num">11</div><div class="label">AISensy Modules</div></div>
+  <div class="summary-stat"><div class="num" style="color:var(--danger)">27</div><div class="label">Missing Features</div></div>
+  <div class="summary-stat"><div class="num" style="color:var(--warn)">8.4</div><div class="label">Avg. Criticality (1-10)</div></div>
+  <div class="summary-stat"><div class="num">0</div><div class="label">WACRM Public API</div></div>
+  <div class="summary-stat"><div class="num">2</div><div class="label">AISensy API Types</div></div>
+</div>
+
+<div class="card">
+<h3>Key Findings</h3>
+<ol>
+  <li><strong>WACRM has NO public API.</strong> AISensy offers two complete API systems: Campaign API (JWT-based) and Project API (password-based) with full REST coverage. This is WACRM's single biggest gap — blocking integrations, partnerships, and enterprise adoption.</li>
+  <li><strong>AISensy's "Manage" module alone has 11 sub-modules</strong> (Template Gallery, Opt-in Management, Live Chat Settings, Campaign Settings, User Attributes, Canned Messages, Agents, Tags, Analytics, Billing, Notifications). WACRM's equivalent Settings has only 4 tabs.</li>
+  <li><strong>Contact data model is significantly richer in AISensy</strong> — 25+ fields including custom attributes ($variables), source tracking, opt-in status, MAU status, WA conversation status, and multiple tag support per contact.</li>
+  <li><strong>AISensy has an App Store / Integration Marketplace</strong> with 18+ native integrations (Shopify, WooCommerce, Zoho, Razorpay, PayU, Google Sheets, Dialogflow, LeadSquared, WebEngage, etc.). WACRM has none.</li>
+  <li><strong>WACRM lacks AI features entirely.</strong> AISensy actively promotes AI Messages, AI Flows, and AI-powered template generation throughout the platform.</li>
+  <li><strong>AISensy has Facebook/Instagram Ads Manager</strong> built-in with ad credits, CTWA setup, and campaign management. WACRM has no advertising capabilities.</li>
+  <li><strong>AISensy's flow builder supports catalogue management</strong> (WhatsApp Commerce), products, and AI routing. WACRM's automations are basic event-trigger workflows.</li>
+  <li><strong>Developer Hub is a first-class citizen</strong> in AISensy — with API key management, webhook config, documentation links all in one place. WACRM has nothing comparable.</li>
+</ol>
+</div>
+
+<div class="card">
+<h3>Critical Gaps at a Glance (Top 10)</h3>
+<table>
+<tr><th>#</th><th>Feature</th><th>Criticality</th><th>Priority</th><th>Effort</th></tr>
+<tr><td>1</td><td>Public REST API (Campaign + Project)</td><td><span class="score score-high">10</span></td><td>P0</td><td>High</td></tr>
+<tr><td>2</td><td>API Key Management & Developer Hub</td><td><span class="score score-high">10</span></td><td>P0</td><td>Medium</td></tr>
+<tr><td>3</td><td>Webhook Management System</td><td><span class="score score-high">9</span></td><td>P0</td><td>Medium</td></tr>
+<tr><td>4</td><td>Integration Marketplace / App Store</td><td><span class="score score-high">9</span></td><td>P1</td><td>High</td></tr>
+<tr><td>5</td><td>Rich Contact Data Model (custom attributes)</td><td><span class="score score-high">9</span></td><td>P0</td><td>Medium</td></tr>
+<tr><td>6</td><td>Campaign Types (API, Scheduled, QR Scan)</td><td><span class="score score-high">8</span></td><td>P1</td><td>Medium</td></tr>
+<tr><td>7</td><td>WhatsApp Commerce / Catalogue Support</td><td><span class="score score-high">8</span></td><td>P1</td><td>Medium</td></tr>
+<tr><td>8</td><td>Ads Manager (Facebook/Instagram CTWA)</td><td><span class="score score-med">8</span></td><td>P2</td><td>High</td></tr>
+<tr><td>9</td><td>AI-Powered Features (Messages, Flows, Templates)</td><td><span class="score score-med">7</span></td><td>P2</td><td>High</td></tr>
+<tr><td>10</td><td>Analytics & Usage Dashboard</td><td><span class="score score-med">7</span></td><td>P1</td><td>Medium</td></tr>
+</table>
+</div>
+</div>
+
+<!-- FEATURE COMPARISON -->
+<div id="compare" class="section">
+<h2>Feature Comparison Matrix</h2>
+<p style="color:var(--text2);margin-bottom:1rem;">Comprehensive side-by-side comparison of all modules and features.</p>
+
+<div class="matrix-wrap">
+<table>
+<tr><th style="min-width:200px">Feature / Module</th><th style="min-width:150px">WACRM</th><th style="min-width:150px">AISensy</th><th>Gap</th></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">DASHBOARD</td></tr>
+<tr><td>Analytics Overview</td><td><span class="badge badge-has">YES</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Account Status (WABA, Plan, Quota)</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>WABA health, quality rating, tier, remaining quota</td></tr>
+<tr><td>Onboarding/Training Resources</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Training calls, video tutorials, help links</td></tr>
+<tr><td>Credit Balance Display</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>WhatsApp credits + Ad credits display</td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">INBOX / LIVE CHAT</td></tr>
+<tr><td>WhatsApp Conversations</td><td><span class="badge badge-has">YES</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Multi-Tab Chat (Active/Requesting/Intervened)</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Contact request management</td></tr>
+<tr><td>Agent Assignment</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Assign chats to specific agents</td></tr>
+<tr><td>Search Conversations</td><td><span class="badge badge-has">YES</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">CONTACTS</td></tr>
+<tr><td>Contact List with Search</td><td><span class="badge badge-has">YES</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Import/Export</td><td><span class="badge badge-has">YES</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Custom Attributes (Dynamic Fields)</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>$variable system for arbitrary data</td></tr>
+<tr><td>Source Tracking</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Facebook, Website, Organic, etc.</td></tr>
+<tr><td>Opt-in/Opt-out Tracking</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>WA opt-in compliance tracking</td></tr>
+<tr><td>MAU / WA Conversation Status</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Marketing opt-in window tracking</td></tr>
+<tr><td>Last Active Timestamp</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Bulk Actions (Broadcast, Run Ad)</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Select & broadcast directly from contacts</td></tr>
+<tr><td>Advanced Filters/Segments</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Filter by tags, source, status, attributes</td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">CAMPAIGNS / BROADCASTS</td></tr>
+<tr><td>Template-based Broadcasts</td><td><span class="badge badge-has">YES</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>API Campaigns</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Trigger campaigns via REST API</td></tr>
+<tr><td>Scheduled Campaigns</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>QR Code Scan Campaigns</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Campaign Analytics & Download Report</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">AUTOMATIONS / FLOWS</td></tr>
+<tr><td>Event-Based Workflows</td><td><span class="badge badge-has">YES</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Visual Flow Builder</td><td><span class="badge badge-partial">BASIC</span></td><td><span class="badge badge-has">YES</span></td><td>AISensy has richer builder</td></tr>
+<tr><td>AI-Powered Flow Generation</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>"Generate flow with AI"</td></tr>
+<tr><td>AI Messages in Flows</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Context-aware AI responses</td></tr>
+<tr><td>Catalogue/Commerce Integration</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>WhatsApp catalogues, products</td></tr>
+<tr><td>Flow Templates Gallery</td><td><span class="badge badge-partial">4 TEMPLATES</span></td><td><span class="badge badge-has">YES</span></td><td>Rich template library</td></tr>
+<tr><td>Global Attributes</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>AI Routing</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">ADS MANAGER</td></tr>
+<tr><td>Facebook/Instagram CTWA Ads</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Entire module missing</td></tr>
+<tr><td>Ad Credits System</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Ad Performance Analytics</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Events, leads, audiences</td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">MANAGE / SETTINGS</td></tr>
+<tr><td>Template Message Gallery (Explore)</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Pre-built industry templates</td></tr>
+<tr><td>Opt-in Management</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Live Chat Settings</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Campaign Settings</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>User Attributes Management</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Custom attribute definitions</td></tr>
+<tr><td>Canned Messages (Quick Replies)</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Agent Management</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Team/role management</td></tr>
+<tr><td>Billing & Usage</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Notification Preferences</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>AI Template Generation ("Magic")</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>AI-powered WhatsApp template gen</td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">INTEGRATIONS</td></tr>
+<tr><td>App Store / Integration Marketplace</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>18+ native integrations</td></tr>
+<tr><td>WhatsApp Link Generator</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>WhatsApp Website Widget</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Shopify / WooCommerce Sync</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Payment Gateway Integrations</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>Razorpay, PayU</td></tr>
+<tr><td>CRM Integrations (Zoho, LeadSquared, etc.)</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Google Sheets Sync</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Zapier / Pabbly / Integrately</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>800+ apps via no-code platforms</td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">DEVELOPER PLATFORM</td></tr>
+<tr><td>Public REST API</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>2 complete API systems</td></tr>
+<tr><td>API Key Management (JWT-based)</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Project API Keys</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Webhook Configuration UI</td><td><span class="badge badge-partial">BASIC</span></td><td><span class="badge badge-has">YES</span></td><td>AISensy has richer webhook system</td></tr>
+<tr><td>API Documentation (Stoplight)</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>OpenAPI/Swagger docs</td></tr>
+<tr><td>Postman Collection</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+<tr><td>Mock Server</td><td><span class="badge badge-miss">NO</span></td><td><span class="badge badge-has">YES</span></td><td>-</td></tr>
+</table>
+</div>
+</div>
+
+<!-- GAP ANALYSIS -->
+<div id="gaps" class="section">
+<h2>Gap Analysis — Detailed Breakdown</h2>
+<p style="color:var(--text2);margin-bottom:1rem;">Each missing feature analyzed for business impact, technical impact, and implementation complexity.</p>
+
+<div class="card gap-row">
+<h3>1. Public REST API — Campaign + Project <span class="score score-high">10</span></h3>
+<h4>Why it matters</h4>
+<p>Without a public API, WACRM cannot integrate with CRMs, ERPs, e-commerce platforms, or any third-party system. This is the primary integration mechanism for enterprise customers. AISensy's API enables automated WhatsApp messaging triggered from any external system — a core requirement for SMBs using multiple tools.</p>
+<h4>Business Impact</h4>
+<ul><li>Blocks enterprise sales entirely — large customers require API access</li><li>Prevents no-code integrations (Zapier, Pabbly, Integrately)</li><li>Limits WACRM to manual-only operations</li><li>Prevents partnership integrations with CRMs, payment gateways, e-commerce</li></ul>
+<h4>Technical Impact</h4>
+<ul><li>Requires new API layer (REST + authentication + rate limiting)</li><li>Needs API key management system in database</li><li>Requires comprehensive API documentation (OpenAPI/Swagger)</li><li>Backend: New controllers, middleware, serializers, versioning</li><li>Database: API keys table, rate limit tracking, audit logs</li></ul>
+<h4>Implementation Complexity: HIGH</h4>
+<p>Estimated: 4-6 weeks for MVP (campaign send + contact CRUD + webhook endpoints)</p>
+<h4>Priority: P0 | Criticality: 10/10</h4>
+</div>
+
+<div class="card gap-row">
+<h3>2. API Key Management & Developer Hub <span class="score score-high">10</span></h3>
+<h4>Why it matters</h4>
+<p>AISensy has a dedicated Developer Hub with JWT-based API keys, project API keys, webhook configuration, and documentation links. WACRM has none of this infrastructure.</p>
+<h4>Key observations from AISensy</h4>
+<ul>
+  <li>API Campaign Key uses JWT with claims: id, name, appName, clientId, activePlan, iat</li>
+  <li>Separate Project API Key with X-AiSensy-Project-API-Pwd header auth</li>
+  <li>Copy Key + Regenerate Key actions in UI</li>
+  <li>4 tabs: API Campaign Key, Project API Keys, Project Webhooks, Documentation</li>
+</ul>
+<h4>Implementation Complexity: MEDIUM</h4>
+<p>Estimated: 2-3 weeks for auth system + UI + key management</p>
+<h4>Priority: P0 | Criticality: 10/10</h4>
+</div>
+
+<div class="card gap-row">
+<h3>3. Webhook Management System <span class="score score-high">9</span></h3>
+<p>WACRM has basic webhooks (forward + auto-reply). AISensy has a full webhook management system with getting-started guides, event types, and configuration UI.</p>
+<h4>Required enhancements</h4>
+<ul>
+  <li>Multiple webhook endpoints per project</li>
+  <li>Event type filtering (message.received, message.sent, contact.created, etc.)</li>
+  <li>Webhook retry logic with exponential backoff</li>
+  <li>Webhook logs and delivery status dashboard</li>
+  <li>Webhook secret/signature verification</li>
+  <li>Manual test/replay capability</li>
+</ul>
+<h4>Priority: P0 | Criticality: 9/10</h4>
+</div>
+
+<div class="card gap-row">
+<h3>4. Rich Contact Data Model — Custom Attributes <span class="score score-high">9</span></h3>
+<p>AISensy supports dynamic custom attributes using $variable naming (e.g., $PreferredLocation, $Projects, $PurchasePurpose, $SiteVisitDate). WACRM only has Name, Phone, Email, Company, Tags.</p>
+<h4>Database changes</h4>
+<div class="diff-block"><code>-- New table for custom attribute definitions
+CREATE TABLE contact_attributes (
+  id UUID PRIMARY KEY,
+  project_id UUID REFERENCES projects(id),
+  name VARCHAR(100) NOT NULL, -- $prefixed
+  display_name VARCHAR(200),
+  type VARCHAR(20) DEFAULT 'string',
+  UNIQUE(project_id, name)
+);
+
+-- New table for attribute values
+CREATE TABLE contact_attribute_values (
+  contact_id UUID REFERENCES contacts(id),
+  attribute_id UUID REFERENCES contact_attributes(id),
+  value TEXT,
+  updated_at TIMESTAMPTZ,
+  PRIMARY KEY(contact_id, attribute_id)
+);</code></div>
+<h4>Priority: P0 | Criticality: 9/10</h4>
+</div>
+
+<div class="card gap-row">
+<h3>5. Integration Marketplace / App Store <span class="score score-high">9</span></h3>
+<p>AISensy's App Store features 18+ native integrations. WACRM has zero. This is a major competitive disadvantage.</p>
+<h4>AISensy integrations observed:</h4>
+<ul>
+  <li>E-commerce: Shopify, WooCommerce, OpenCart</li>
+  <li>Payments: Razorpay, PayU</li>
+  <li>CRM: Zoho, LeadSquared, WebEngage, CleverTap, Moengage, Wherehouse</li>
+  <li>Productivity: Google Sheets, Dialogflow, Easyinsights</li>
+  <li>No-code: Pabbly (800+ apps), Integrately (8M+ automations)</li>
+  <li>Engagement: WhatsApp Link Generator, WhatsApp Website Widget</li>
+</ul>
+<h4>Implementation approach</h4>
+<p>Start with Zapier/Pabbly/Integrately integration (widest reach with least effort), then add native integrations for popular CRMs and payment gateways.</p>
+<h4>Priority: P1 | Criticality: 9/10</h4>
+</div>
+
+<div class="card gap-row">
+<h3>6. Campaign Types — API, Scheduled, QR Scan <span class="score score-high">8</span></h3>
+<p>WACRM only supports manual template broadcasts. AISensy supports 4 campaign types: Broadcast, API, Scheduled, QR Scan.</p>
+<ul>
+  <li><strong>API Campaigns:</strong> Trigger via REST API from external systems</li>
+  <li><strong>Scheduled Campaigns:</strong> Time-based delivery</li>
+  <li><strong>QR Scan Campaigns:</strong> User scans QR → receives template</li>
+</ul>
+<h4>Priority: P1 | Criticality: 8/10</h4>
+</div>
+
+<div class="card gap-row">
+<h3>7. WhatsApp Commerce / Catalogue Support <span class="score score-high">8</span></h3>
+<p>AISensy Flows module includes catalogue management, product listings, and Facebook Commerce Manager integration. WACRM has none.</p>
+<h4>Priority: P1 | Criticality: 8/10</h4>
+</div>
+
+<div class="card gap-row">
+<h3>8. AI-Powered Features <span class="score score-med">7</span></h3>
+<p>AISensy promotes three AI features across the platform:</p>
+<ul>
+  <li><strong>AI Messages:</strong> Context-aware chatbot responses (₹3,500 / 7,000 messages)</li>
+  <li><strong>AI Flows:</strong> Generate chatbot flows from description</li>
+  <li><strong>AI Magic:</strong> Generate WhatsApp templates in seconds</li>
+</ul>
+<h4>Priority: P2 | Criticality: 7/10</h4>
+</div>
+
+<div class="card gap-row">
+<h3>9. Ads Manager (Facebook/Instagram CTWA) <span class="score score-med">8</span></h3>
+<p>Complete missing module. AISensy has 4-step setup flow: Connect FB Account → Select Page → Link WhatsApp → Create Ad. Includes ₹5,000 ad credits reward system.</p>
+<h4>Priority: P2 | Criticality: 8/10</h4>
+</div>
+
+<div class="card gap-row">
+<h3>10. Analytics & Reporting <span class="score score-med">7</span></h3>
+<p>WACRM dashboard has basic stats. AISensy's Campaigns module has Download Report, detailed delivery analytics. AISensy's Manage > Analytics sub-module provides deeper insights.</p>
+<h4>Priority: P1 | Criticality: 7/10</h4>
+</div>
+
+<div class="card gap-row">
+<h3>Additional Missing Features</h3>
+<table>
+<tr><th>#</th><th>Feature</th><th>Criticality</th><th>Priority</th></tr>
+<tr><td>11</td><td>Agent/Team Management with roles</td><td><span class="score score-med">7</span></td><td>P1</td></tr>
+<tr><td>12</td><td>Canned Messages (Quick Replies library)</td><td><span class="score score-low">6</span></td><td>P2</td></tr>
+<tr><td>13</td><td>Opt-in/Opt-out Management</td><td><span class="score score-high">8</span></td><td>P1</td></tr>
+<tr><td>14</td><td>Billing & Usage dashboard</td><td><span class="score score-med">7</span></td><td>P1</td></tr>
+<tr><td>15</td><td>Notification Preferences</td><td><span class="score score-low">5</span></td><td>P2</td></tr>
+<tr><td>16</td><td>Live Chat Requesting/Intervened tabs</td><td><span class="score score-med">7</span></td><td>P1</td></tr>
+<tr><td>17</td><td>Account Status (WABA health, quality rating)</td><td><span class="score score-med">7</span></td><td>P1</td></tr>
+<tr><td>18</td><td>Source tracking for contacts</td><td><span class="score score-med">7</span></td><td>P1</td></tr>
+<tr><td>19</td><td>MAU/WA Conversation status tracking</td><td><span class="score score-high">8</span></td><td>P1</td></tr>
+<tr><td>20</td><td>WhatsApp Link Generator</td><td><span class="score score-low">5</span></td><td>P2</td></tr>
+<tr><td>21</td><td>WhatsApp Website Widget</td><td><span class="score score-low">5</span></td><td>P2</td></tr>
+<tr><td>22</td><td>Multi-Project/Company Switcher</td><td><span class="score score-med">7</span></td><td>P2</td></tr>
+<tr><td>23</td><td>Template Approval Status Sync</td><td><span class="score score-med">7</span></td><td>P1</td></tr>
+<tr><td>24</td><td>Industry-specific Template Gallery</td><td><span class="score score-low">6</span></td><td>P2</td></tr>
+<tr><td>25</td><td>Referral/Affiliate Program</td><td><span class="score score-low">4</span></td><td>P3</td></tr>
+<tr><td>26</td><td>Mobile App QR Code / Companion App</td><td><span class="score score-low">5</span></td><td>P3</td></tr>
+<tr><td>27</td><td>Intercom/Support Chat Integration</td><td><span class="score score-low">4</span></td><td>P3</td></tr>
+</table>
+</div>
+</div>
+
+<!-- API ARCHITECTURE -->
+<div id="api" class="section">
+<h2>API Architecture Analysis</h2>
+
+<div class="card">
+<h3>AISensy API Systems — How They Work</h3>
+
+<h4>System 1: Campaign API (JWT-based)</h4>
+<div class="api-endpoint">POST https://backend.aisensy.com/campaign/t1/api/v2</div>
+<table>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+<tr><td>apiKey</td><td>string</td><td>Yes</td><td>JWT token from Developer Hub</td></tr>
+<tr><td>campaignName</td><td>string</td><td>Yes</td><td>Pre-created API campaign name (must be "Live")</td></tr>
+<tr><td>destination</td><td>string</td><td>Yes</td><td>Phone with country code</td></tr>
+<tr><td>userName</td><td>string</td><td>Yes</td><td>Recipient name</td></tr>
+<tr><td>source</td><td>string</td><td>No</td><td>Lead source label</td></tr>
+<tr><td>media</td><td>object</td><td>No</td><td>{url, filename} for media attachments</td></tr>
+<tr><td>templateParams</td><td>string[]</td><td>No</td><td>Template variable values</td></tr>
+<tr><td>tags</td><td>string[]</td><td>No</td><td>Tags to assign</td></tr>
+<tr><td>attributes</td><td>object</td><td>No</td><td>Custom attribute key-value pairs</td></tr>
+</table>
+<p><strong>Key behavior:</strong> If contact doesn't exist, auto-creates it. Auto-assigns tags, attributes, source.</p>
+
+<h4>System 2: Project API (Password-based)</h4>
+<div class="api-endpoint">Base URL: https://apis.aisensy.com/project-apis/v1/</div>
+<p><strong>Auth:</strong> Header <code>X-AiSensy-Project-API-Pwd: &lt;password&gt;</code></p>
+<p><strong>Endpoints cover:</strong> Business, Project, Messages, Webhooks, WA Templates, Contacts, Campaigns, Catalogue, Media</p>
+<p><strong>Security:</strong> Three auth types supported — App Password, App Access Code, Partner API Key</p>
+<p><strong>Mock Server:</strong> https://stoplight.io/mocks/aisensy/project-api/57184003</p>
+
+<h4>Documentation Stack</h4>
+<ul>
+  <li>Stoplight for OpenAPI/Swagger docs (interactive API reference)</li>
+  <li>Intercom Wiki for step-by-step guides</li>
+  <li>Postman Collection for testing</li>
+  <li>Mock server for development</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Recommendations for WACRM Public API</h3>
+
+<h4>Proposed API Authentication Architecture</h4>
+<table>
+<tr><th>Layer</th><th>Recommendation</th><th>Rationale</th></tr>
+<tr><td>API Key Type</td><td>JWT with HMAC-SHA256 (matching AISensy)</td><td>Stateless, self-contained claims, industry standard</td></tr>
+<tr><td>Key Format</td><td>Header: <code>Authorization: Bearer &lt;JWT&gt;</code></td><td>Standard, compatible with all HTTP clients</td></tr>
+<tr><td>JWT Claims</td><td>{sub, project_id, plan, scopes[], iat, exp}</td><td>Enable scope-based access control</td></tr>
+<tr><td>Key Rotation</td><td>Regenerate button, old key valid 24h after rotation</td><td>Smooth rotation without downtime</td></tr>
+<tr><td>Rate Limiting</td><td>Per-key: 100 req/min default, configurable by plan</td><td>Match AISensy's tiered approach</td></tr>
+<tr><td>API Versioning</td><td>URL-based: /api/v1/, /api/v2/</td><td>Explicit, easy to maintain</td></tr>
+</table>
+
+<h4>Proposed API Endpoints (MVP)</h4>
+<div class="diff-block"><code>
+# Campaigns
+POST   /api/v1/campaigns/send          # Send template message
+GET    /api/v1/campaigns               # List campaigns
+GET    /api/v1/campaigns/:id           # Get campaign status
+
+# Contacts
+POST   /api/v1/contacts                # Create/upsert contact
+GET    /api/v1/contacts                # List/search contacts
+GET    /api/v1/contacts/:id            # Get contact details
+PUT    /api/v1/contacts/:id            # Update contact
+DELETE /api/v1/contacts/:id            # Delete contact
+POST   /api/v1/contacts/import         # Bulk import
+
+# Templates
+GET    /api/v1/templates               # List templates
+GET    /api/v1/templates/:id           # Get template details
+
+# Webhooks
+POST   /api/v1/webhooks                # Register webhook
+GET    /api/v1/webhooks                # List webhooks
+DELETE /api/v1/webhooks/:id            # Remove webhook
+
+# Analytics
+GET    /api/v1/analytics/messages      # Message stats
+GET    /api/v1/analytics/campaigns     # Campaign stats
+</code></div>
+
+<h4>API Documentation Recommendations</h4>
+<ol>
+  <li><strong>Use Stoplight or Redoc</strong> for interactive OpenAPI documentation</li>
+  <li><strong>Publish a Postman Collection</strong> for developer onboarding</li>
+  <li><strong>Provide a mock server</strong> for integration testing</li>
+  <li><strong>Create step-by-step guides</strong> in a wiki/help center (like AISensy's Intercom wiki)</li>
+  <li><strong>Include code samples</strong> in Python, JavaScript, PHP, cURL</li>
+</ol>
+</div>
+</div>
+
+<!-- SECURITY -->
+<div id="security" class="section">
+<h2>Security Architecture Analysis</h2>
+
+<div class="card">
+<h3>AISensy Security Model</h3>
+<table>
+<tr><th>Aspect</th><th>AISensy Implementation</th><th>WACRM Status</th></tr>
+<tr><td>API Authentication</td><td>JWT (Campaign API) + Password header (Project API) + Partner API key</td><td><span class="badge badge-miss">MISSING</span></td></tr>
+<tr><td>API Key Storage</td><td>JWT with embedded claims, regenerable</td><td><span class="badge badge-miss">MISSING</span></td></tr>
+<tr><td>Multi-tenancy</td><td>Project-scoped API keys, project ID in JWT claims</td><td><span class="badge badge-miss">MISSING</span></td></tr>
+<tr><td>Rate Limiting</td><td>Tiered by plan (Tier 3 = 100K/24hrs)</td><td><span class="badge badge-miss">MISSING</span></td></tr>
+<tr><td>Webhook Security</td><td>Separate webhook docs with verification</td><td><span class="badge badge-partial">BASIC</span></td></tr>
+<tr><td>RBAC</td><td>Agent roles, manager access for settings</td><td><span class="badge badge-miss">MISSING</span></td></tr>
+<tr><td>Audit Logs</td><td>Not visible in UI but implied by system</td><td><span class="badge badge-miss">MISSING</span></td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>Security Recommendations for WACRM</h3>
+<ol>
+  <li><strong>Implement JWT-based API authentication</strong> with scoped claims (project_id, permissions, expiry)</li>
+  <li><strong>Add rate limiting middleware</strong> — per API key, per IP, configurable by plan tier</li>
+  <li><strong>Implement RBAC</strong> — Owner, Admin, Manager, Agent roles with granular permissions</li>
+  <li><strong>Add audit logging</strong> — track all API calls, key generation, webhook deliveries, admin actions</li>
+  <li><strong>Webhook signature verification</strong> — HMAC-SHA256 signatures so receivers can verify payload authenticity</li>
+  <li><strong>API key encryption at rest</strong> — store hashed keys, never plaintext after generation</li>
+  <li><strong>CORS configuration</strong> — restrict to known origins</li>
+  <li><strong>Input validation</strong> — all API inputs validated against schemas</li>
+  <li><strong>HTTPS enforcement</strong> — reject all non-HTTPS requests</li>
+  <li><strong>Plan-based access control</strong> — feature gating by subscription tier</li>
+</ol>
+</div>
+</div>
+
+<!-- ROADMAP -->
+<div id="roadmap" class="section">
+<h2>Implementation Roadmap</h2>
+
+<div class="card">
+<h3>Phase 1 — Foundation (Weeks 1-4) | P0</h3>
+<table>
+<tr><th>Item</th><th>Effort</th><th>Impact</th></tr>
+<tr><td>1.1 Public REST API — Campaign send endpoint (POST /campaigns/send)</td><td>1 week</td><td>Immediately enables CRM integrations</td></tr>
+<tr><td>1.2 API Key Management — JWT generation, storage, regeneration</td><td>1 week</td><td>Foundation for all API access</td></tr>
+<tr><td>1.3 Developer Hub UI — API keys tab, webhook tab, docs links</td><td>1 week</td><td>Self-serve developer onboarding</td></tr>
+<tr><td>1.4 Rate Limiting Middleware</td><td>3 days</td><td>API protection</td></tr>
+<tr><td>1.5 Contact CRUD API (GET/POST/PUT/DELETE /contacts)</td><td>1 week</td><td>External contact management</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>Phase 2 — Rich Features (Weeks 5-8) | P1</h3>
+<table>
+<tr><th>Item</th><th>Effort</th><th>Impact</th></tr>
+<tr><td>2.1 Custom Contact Attributes ($variable system)</td><td>1 week</td><td>Matches AISensy data model</td></tr>
+<tr><td>2.2 Webhook Management System (multiple endpoints, event types, retry)</td><td>1.5 weeks</td><td>Enterprise requirement</td></tr>
+<tr><td>2.3 Campaign Types — API + Scheduled + QR Scan</td><td>1.5 weeks</td><td>Feature parity on campaigns</td></tr>
+<tr><td>2.4 Opt-in/Opt-out Tracking & MAU Status</td><td>3 days</td><td>Compliance requirement</td></tr>
+<tr><td>2.5 Agent/Team Management with RBAC</td><td>1 week</td><td>Multi-user support</td></tr>
+<tr><td>2.6 Analytics Dashboard — campaign & message analytics</td><td>1 week</td><td>Data-driven decision making</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>Phase 3 — Platform Expansion (Weeks 9-14) | P2</h3>
+<table>
+<tr><th>Item</th><th>Effort</th><th>Impact</th></tr>
+<tr><td>3.1 Integration Marketplace — Zapier/Pabbly first, then native apps</td><td>3 weeks</td><td>Ecosystem lock-in</td></tr>
+<tr><td>3.2 WhatsApp Commerce / Catalogue Support</td><td>2 weeks</td><td>E-commerce use cases</td></tr>
+<tr><td>3.3 AI-Powered Features — Template generation (fastest win)</td><td>2 weeks</td><td>Competitive differentiator</td></tr>
+<tr><td>3.4 Ads Manager (Facebook/Instagram CTWA)</td><td>2 weeks</td><td>New revenue stream</td></tr>
+<tr><td>3.5 Complete API Documentation (Stoplight/Redoc + Postman + Wiki)</td><td>1 week</td><td>Developer experience</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>Phase 4 — Maturity (Weeks 15+) | P3</h3>
+<ul>
+  <li>AI Messages & AI Flows (context-aware chatbot)</li>
+  <li>WhatsApp Link Generator & Website Widget</li>
+  <li>Mobile companion app</li>
+  <li>Referral/Affiliate program</li>
+  <li>Multi-project/company switcher</li>
+  <li>Advanced audit logging & compliance</li>
+  <li>Intercom/support chat integration</li>
+</ul>
+</div>
+</div>
+
+<!-- DB & SCHEMA -->
+<div id="db" class="section">
+<h2>Database & Schema Recommendations</h2>
+
+<div class="card">
+<h3>New Tables Required</h3>
+
+<h4>1. API Keys</h4>
+<div class="diff-block"><code>
+CREATE TABLE api_keys (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_id UUID NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+  name VARCHAR(100) NOT NULL,
+  key_hash VARCHAR(255) NOT NULL UNIQUE,
+  key_prefix VARCHAR(8) NOT NULL, -- for display: "sk_live_..."
+  scopes TEXT[] NOT NULL DEFAULT '{}',
+  last_used_at TIMESTAMPTZ,
+  expires_at TIMESTAMPTZ,
+  is_active BOOLEAN DEFAULT true,
+  created_by UUID REFERENCES users(id),
+  created_at TIMESTAMPTZ DEFAULT now(),
+  updated_at TIMESTAMPTZ DEFAULT now()
+);
+CREATE INDEX idx_api_keys_project ON api_keys(project_id);
+</code></div>
+
+<h4>2. Contact Custom Attributes</h4>
+<div class="diff-block"><code>
+CREATE TABLE contact_attribute_defs (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_id UUID NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+  name VARCHAR(100) NOT NULL,
+  display_name VARCHAR(200),
+  data_type VARCHAR(20) DEFAULT 'string',
+  UNIQUE(project_id, name)
+);
+
+CREATE TABLE contact_attribute_values (
+  contact_id UUID REFERENCES contacts(id) ON DELETE CASCADE,
+  attribute_id UUID REFERENCES contact_attribute_defs(id) ON DELETE CASCADE,
+  value TEXT,
+  updated_at TIMESTAMPTZ DEFAULT now(),
+  PRIMARY KEY(contact_id, attribute_id)
+);
+</code></div>
+
+<h4>3. Webhooks</h4>
+<div class="diff-block"><code>
+CREATE TABLE webhooks (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_id UUID NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+  url TEXT NOT NULL,
+  secret VARCHAR(255),
+  events TEXT[] NOT NULL DEFAULT '{}',
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE TABLE webhook_deliveries (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  webhook_id UUID REFERENCES webhooks(id) ON DELETE CASCADE,
+  event_type VARCHAR(50),
+  payload JSONB,
+  response_status INTEGER,
+  response_body TEXT,
+  attempt_count INTEGER DEFAULT 1,
+  delivered_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+</code></div>
+
+<h4>4. RBAC & Agents</h4>
+<div class="diff-block"><code>
+CREATE TABLE roles (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_id UUID NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+  name VARCHAR(50) NOT NULL, -- owner, admin, manager, agent
+  permissions TEXT[] NOT NULL DEFAULT '{}',
+  UNIQUE(project_id, name)
+);
+
+CREATE TABLE project_members (
+  project_id UUID REFERENCES projects(id) ON DELETE CASCADE,
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  role_id UUID REFERENCES roles(id),
+  joined_at TIMESTAMPTZ DEFAULT now(),
+  PRIMARY KEY(project_id, user_id)
+);
+</code></div>
+
+<h4>5. Audit Logs</h4>
+<div class="diff-block"><code>
+CREATE TABLE audit_logs (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_id UUID REFERENCES projects(id) ON DELETE CASCADE,
+  actor_id UUID REFERENCES users(id),
+  action VARCHAR(100) NOT NULL,
+  resource_type VARCHAR(50),
+  resource_id UUID,
+  details JSONB,
+  ip_address INET,
+  user_agent TEXT,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+CREATE INDEX idx_audit_project_time ON audit_logs(project_id, created_at DESC);
+</code></div>
+
+<h4>6. Rate Limiting</h4>
+<div class="diff-block"><code>
+CREATE TABLE rate_limits (
+  key VARCHAR(255) PRIMARY KEY,
+  window_start TIMESTAMPTZ NOT NULL,
+  count INTEGER DEFAULT 1,
+  ttl INTEGER NOT NULL
+);
+</code></div>
+</div>
+</div>
+
+<!-- UX/UI -->
+<div id="ux" class="section">
+<h2>UI/UX Assessment</h2>
+
+<div class="card">
+<h3>WACRM UI Observations</h3>
+<ul>
+  <li><strong>Clean, minimal interface</strong> — easy to navigate, 8 sidebar items</li>
+  <li><strong>Sidebar navigation</strong> with clear labels, active state indication</li>
+  <li><strong>Dashboard</strong> has good analytics cards with trend indicators</li>
+  <li><strong>Pipelines</strong> has functional Kanban board with drag-drop</li>
+  <li><strong>Webhooks</strong> are simple toggle-based with status indicator</li>
+  <li><strong>Settings</strong> organized into 4 tabs — could be expanded</li>
+  <li><strong>Gaps:</strong> No dark mode, no onboarding wizards, no help center integration, no video tutorials</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>AISensy UI Observations</h3>
+<ul>
+  <li><strong>Feature-rich but cluttered</strong> — dashboard has too many elements</li>
+  <li><strong>Multiple video demo modals</strong> appear on every page load (intrusive)</li>
+  <li><strong>11 sidebar items</strong> with Manage having 11 sub-tabs — deep hierarchy</li>
+  <li><strong>Intercom chat widget</strong> on every page for support</li>
+  <li><strong>AI features promoted</strong> in banners across all pages (repetitive)</li>
+  <li><strong>Help links</strong> embedded contextually (good pattern)</li>
+  <li><strong>Quick Guide sections</strong> on each module page</li>
+  <li><strong>Template Explore gallery</strong> with industry filters — excellent UX</li>
+  <li><strong>Developer Hub</strong> has clear 4-tab layout with copy-key functionality</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>UX Recommendations for WACRM</h3>
+<ol>
+  <li><strong>Add contextual help links</strong> on each page (like AISensy's "Quick Guide")</li>
+  <li><strong>Implement onboarding wizard</strong> for new users (WABA setup, template creation, first broadcast)</li>
+  <li><strong>Add video tutorials</strong> section (but don't auto-play modals)</li>
+  <li><strong>Show account health status</strong> on dashboard (WABA status, quality rating, quota)</li>
+  <li><strong>Consolidate Settings</strong> as features grow — avoid AISensy's overly deep hierarchy</li>
+  <li><strong>Keep the clean sidebar</strong> — it's actually better than AISensy's crowded layout</li>
+  <li><strong>Add search across all modules</strong> (global search)</li>
+  <li><strong>Implement dark mode</strong> for developer-friendly usage</li>
+</ol>
+</div>
+</div>
+
+<!-- PRIORITY MATRIX -->
+<div id="matrix" class="section">
+<h2>Priority Matrix</h2>
+<p style="color:var(--text2);margin-bottom:1rem;">All missing features mapped by Criticality (1-10) vs Implementation Effort.</p>
+
+<div class="priority-grid">
+  <div class="priority-card" style="border-top:3px solid var(--danger);">
+    <h4>P0 — Critical (Do First)</h4>
+    <p style="color:var(--text2);">High criticality, foundational gaps</p>
+    <table>
+    <tr><td>Public REST API</td><td>Crit: 10 | Effort: High</td></tr>
+    <tr><td>API Key Management + Dev Hub</td><td>Crit: 10 | Effort: Med</td></tr>
+    <tr><td>Webhook Management System</td><td>Crit: 9 | Effort: Med</td></tr>
+    <tr><td>Custom Contact Attributes</td><td>Crit: 9 | Effort: Med</td></tr>
+    </table>
+  </div>
+
+  <div class="priority-card" style="border-top:3px solid var(--warn);">
+    <h4>P1 — High Priority</h4>
+    <p style="color:var(--text2);">Feature parity, competitive necessity</p>
+    <table>
+    <tr><td>Campaign Types (API/Scheduled/QR)</td><td>Crit: 8 | Effort: Med</td></tr>
+    <tr><td>Integration Marketplace</td><td>Crit: 9 | Effort: High</td></tr>
+    <tr><td>Agent/Team RBAC</td><td>Crit: 7 | Effort: Med</td></tr>
+    <tr><td>Opt-in/MAU Tracking</td><td>Crit: 8 | Effort: Low</td></tr>
+    <tr><td>Analytics Dashboard</td><td>Crit: 7 | Effort: Med</td></tr>
+    <tr><td>WhatsApp Commerce/Catalogue</td><td>Crit: 8 | Effort: Med</td></tr>
+    </table>
+  </div>
+
+  <div class="priority-card" style="border-top:3px solid var(--info);">
+    <h4>P2 — Medium Priority</h4>
+    <p style="color:var(--text2);">Differentiators, nice-to-have</p>
+    <table>
+    <tr><td>AI Template Generation</td><td>Crit: 7 | Effort: High</td></tr>
+    <tr><td>Ads Manager (CTWA)</td><td>Crit: 8 | Effort: High</td></tr>
+    <tr><td>Canned Messages Library</td><td>Crit: 6 | Effort: Low</td></tr>
+    <tr><td>Multi-Project Switcher</td><td>Crit: 7 | Effort: Low</td></tr>
+    <tr><td>Industry Template Gallery</td><td>Crit: 6 | Effort: Low</td></tr>
+    </table>
+  </div>
+
+  <div class="priority-card" style="border-top:3px solid var(--success);">
+    <h4>P3 — Low Priority</h4>
+    <p style="color:var(--text2);">Long-term roadmap items</p>
+    <table>
+    <tr><td>AI Messages in Flows</td><td>Crit: 7 | Effort: High</td></tr>
+    <tr><td>Referral/Affiliate Program</td><td>Crit: 4 | Effort: Low</td></tr>
+    <tr><td>Mobile Companion App</td><td>Crit: 5 | Effort: High</td></tr>
+    <tr><td>Support Chat Integration</td><td>Crit: 4 | Effort: Low</td></tr>
+    </table>
+  </div>
+</div>
+
+<h3 style="margin-top:2rem;">Engineering Effort Summary</h3>
+<table>
+<tr><th>Phase</th><th>Features</th><th>Total Effort</th><th>Eng Team</th></tr>
+<tr><td>P0</td><td>API + Auth + Webhooks + Custom Attributes</td><td>~6 weeks</td><td>2 Backend + 1 Frontend</td></tr>
+<tr><td>P1</td><td>Campaign Types + Integrations + RBAC + Analytics + Commerce</td><td>~10 weeks</td><td>3 Backend + 2 Frontend + 1 DevOps</td></tr>
+<tr><td>P2</td><td>AI Templates + Ads + Canned Messages + Templates</td><td>~7 weeks</td><td>2 Backend + 2 Frontend + AI/ML</td></tr>
+<tr><td>P3</td><td>AI Chatbot + Mobile + Affiliate + Support</td><td>~8 weeks</td><td>2 Backend + 1 Frontend + Mobile Dev</td></tr>
+</table>
+</div>
+
+<div class="footer">
+  <p>WACRM vs AISensy Competitive Audit Report — May 2026</p>
+  <p>Prepared by ScaleYukti AI Automation | Confidential</p>
+  <p style="font-size:.8rem;">All findings based on direct observation of live platforms and API documentation. No fabrication or hallucination.</p>
+</div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav.tabs button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
