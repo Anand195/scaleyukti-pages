@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WACRM vs AISensy vs EasySocial — 3-Platform Competitive Audit 2026</title>
+<style>
+:root {
+  --bg:#0f172a; --surface:#1e293b; --border:#334155;
+  --text:#e2e8f0; --text2:#94a3b8; --primary:#3b82f6; --accent:#8b5cf6;
+  --danger:#ef4444; --warn:#f59e0b; --success:#22c55e; --info:#06b6d4; --gap:#f97316;
+  --wacrm:#3b82f6; --aisensy:#f97316; --easysocial:#8b5cf6;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+.container { max-width:1500px; margin:0 auto; padding:2rem; }
+header { text-align:center; padding:3rem 1rem; border-bottom:1px solid var(--border); margin-bottom:2rem; }
+header h1 { font-size:2.2rem; background:linear-gradient(135deg,var(--wacrm),var(--easysocial)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+header p { color:var(--text2); margin-top:.5rem; }
+nav.tabs { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:2rem; border-bottom:1px solid var(--border); padding-bottom:1rem; }
+nav.tabs button { padding:.5rem 1rem; border:1px solid var(--border); background:var(--surface); color:var(--text); border-radius:8px; cursor:pointer; font-size:.85rem; transition:all .2s; }
+nav.tabs button:hover, nav.tabs button.active { background:var(--primary); border-color:var(--primary); color:#fff; }
+.section { display:none; animation:fade .3s; }
+.section.active { display:block; }
+@keyframes fade { from{opacity:0} to{opacity:1} }
+h2 { font-size:1.5rem; margin:2rem 0 1rem; padding-bottom:.5rem; border-bottom:2px solid var(--primary); }
+h3 { font-size:1.15rem; margin:1.5rem 0 .75rem; color:var(--primary); }
+h4 { font-size:1rem; margin:1rem 0 .5rem; }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem; }
+table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.85rem; }
+th, td { padding:.6rem .75rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+th { background:var(--surface); font-weight:600; color:var(--primary); position:sticky; top:0; }
+tr:hover { background:rgba(59,130,246,0.05); }
+.badge { display:inline-block; padding:.15rem .5rem; border-radius:4px; font-size:.7rem; font-weight:600; }
+.b-yes { background:rgba(34,197,94,0.15); color:var(--success); }
+.b-no { background:rgba(239,68,68,0.15); color:var(--danger); }
+.b-partial { background:rgba(245,158,11,0.15); color:var(--warn); }
+.b-unique { background:rgba(139,92,246,0.15); color:var(--easysocial); }
+.score { display:inline-block; width:30px; height:30px; line-height:30px; text-align:center; border-radius:50%; font-weight:700; font-size:.8rem; }
+.s-hi { background:var(--danger); color:#fff; }
+.s-md { background:var(--warn); color:#000; }
+.s-lo { background:var(--success); color:#fff; }
+.priority-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:1rem; }
+.p-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.5rem; }
+.p-card h4 { margin-bottom:.5rem; }
+.summary-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin:1.5rem 0; }
+.summary-stat { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.5rem; text-align:center; }
+.summary-stat .num { font-size:2.5rem; font-weight:800; color:var(--primary); }
+.summary-stat .label { color:var(--text2); font-size:.85rem; margin-top:.25rem; }
+.platform-header { display:flex; gap:.5rem; align-items:center; }
+.platform-dot { width:14px; height:14px; border-radius:50%; display:inline-block; }
+.dot-w { background:var(--wacrm); } .dot-a { background:var(--aisensy); } .dot-e { background:var(--easysocial); }
+.matrix-wrap { overflow-x:auto; }
+code, .code { background:var(--bg); padding:.15rem .4rem; border-radius:4px; font-size:.82rem; font-family:monospace; }
+.diff-block { background:var(--bg); border-radius:8px; padding:1rem; margin:.5rem 0; overflow-x:auto; font-family:monospace; font-size:.82rem; }
+.footer { text-align:center; padding:2rem 1rem; color:var(--text2); border-top:1px solid var(--border); margin-top:2.5rem; font-size:.85rem; }
+.usability-table td:first-child { font-weight:600; }
+@media (max-width:768px) {
+  .container { padding:1rem; }
+  header h1 { font-size:1.5rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>WACRM vs AISensy vs EasySocial — Competitive Audit</h1>
+  <p>3-Platform Comprehensive Feature Gap Analysis | May 2026 | Confidential</p>
+  <p style="font-size:.8rem;margin-top:.25rem;">Prepared for: ScaleYukti Product & Engineering Teams | Data sourced from live platform observation</p>
+</header>
+
+<nav class="tabs">
+  <button class="active" onclick="showTab('exec')">Executive Summary</button>
+  <button onclick="showTab('compare')">3-Way Feature Matrix</button>
+  <button onclick="showTab('gaps')">Gap Analysis</button>
+  <button onclick="showTab('api')">API & Dev Platform</button>
+  <button onclick="showTab('ux')">UI/UX Assessment</button>
+  <button onclick="showTab('roadmap')">Combined Roadmap</button>
+  <button onclick="showTab('security')">Security</button>
+  <button onclick="showTab('db')">DB & Schema</button>
+  <button onclick="showTab('matrix')">Priority Matrix</button>
+</nav>
+
+<!-- EXECUTIVE SUMMARY -->
+<div id="exec" class="section active">
+<h2>Executive Summary</h2>
+
+<div class="summary-grid">
+  <div class="summary-stat"><div class="num" style="color:var(--wacrm)">8</div><div class="label">WACRM Modules</div></div>
+  <div class="summary-stat"><div class="num" style="color:var(--aisensy)">11</div><div class="label">AISensy Modules</div></div>
+  <div class="summary-stat"><div class="num" style="color:var(--easysocial)">7+</div><div class="label">EasySocial Modules</div></div>
+  <div class="summary-stat"><div class="num" style="color:var(--danger)">32</div><div class="label">Total Gaps vs WACRM</div></div>
+  <div class="summary-stat"><div class="num" style="color:var(--warn)">8.6</div><div class="label">Avg. Gap Criticality</div></div>
+  <div class="summary-stat"><div class="num">0</div><div class="label">WACRM Public API</div></div>
+</div>
+
+<div class="card">
+<h3>Platform Overview</h3>
+<table>
+<tr><th style="width:20%">Dimension</th><th style="width:27%"><span class="platform-dot dot-w"></span> WACRM</th><th style="width:27%"><span class="platform-dot dot-a"></span> AISensy</th><th style="width:26%"><span class="platform-dot dot-e"></span> EasySocial</th></tr>
+<tr><td>Core Modules</td><td>8</td><td>11</td><td>7 + business settings</td></tr>
+<tr><td>Public API</td><td><span class="badge b-no">NONE</span></td><td><span class="badge b-yes">2 API Systems</span></td><td><span class="badge b-partial">Limited (webhook)</span></td></tr>
+<tr><td>API Keys</td><td><span class="badge b-no">NONE</span></td><td><span class="badge b-yes">JWT + Password</span></td><td><span class="badge b-no">NONE</span></td></tr>
+<tr><td>Developer Hub</td><td><span class="badge b-no">NONE</span></td><td><span class="badge b-yes">4-Tab Hub</span></td><td><span class="badge b-no">NONE</span></td></tr>
+<tr><td>Integrations</td><td><span class="badge b-no">NONE</span></td><td><span class="badge b-yes">18+ App Store</span></td><td><span class="badge b-yes">16+ Integrations</span></td></tr>
+<tr><td>WhatsApp Calls</td><td><span class="badge b-no">NONE</span></td><td><span class="badge b-no">NONE</span></td><td><span class="badge b-unique">UNIQUE — Call Dashboard</span></td></tr>
+<tr><td>WhatsApp Commerce</td><td><span class="badge b-no">NONE</span></td><td><span class="badge b-yes">Catalogue</span></td><td><span class="badge b-unique">UNIQUE — Full Shop</span></td></tr>
+<tr><td>AI Features</td><td><span class="badge b-no">NONE</span></td><td><span class="badge b-yes">3 AI Features</span></td><td><span class="badge b-unique">5+ AI Features</span></td></tr>
+<tr><td>Multi-Platform</td><td><span class="badge b-no">WA Only</span></td><td><span class="badge b-no">WA Only</span></td><td><span class="badge b-unique">WA + IG + Messenger</span></td></tr>
+<tr><td>Mobile App</td><td><span class="badge b-no">NONE</span></td><td><span class="badge b-no">NONE</span></td><td><span class="badge b-unique">iOS + Android</span></td></tr>
+<tr><td>Ads Manager</td><td><span class="badge b-no">NONE</span></td><td><span class="badge b-yes">FB/IG CTWA</span></td><td><span class="badge b-yes">Meta Ads</span></td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>Top 10 Critical Gaps WACRM Must Address</h3>
+<table>
+<tr><th>#</th><th>Feature</th><th>Found In</th><th>Criticality</th><th>Priority</th></tr>
+<tr><td>1</td><td>Public REST API (Campaign + Project)</td><td>AISensy</td><td><span class="score s-hi">10</span></td><td>P0</td></tr>
+<tr><td>2</td><td>API Key Management & Developer Hub</td><td>AISensy</td><td><span class="score s-hi">10</span></td><td>P0</td></tr>
+<tr><td>3</td><td>Webhook Management System</td><td>AISensy, EasySocial</td><td><span class="score s-hi">9</span></td><td>P0</td></tr>
+<tr><td>4</td><td>Integration Marketplace</td><td>AISensy, EasySocial</td><td><span class="score s-hi">9</span></td><td>P1</td></tr>
+<tr><td>5</td><td>Rich Contact Data Model (custom fields)</td><td>AISensy, EasySocial</td><td><span class="score s-hi">9</span></td><td>P0</td></tr>
+<tr><td>6</td><td>AI-Powered Features</td><td>Both competitors</td><td><span class="score s-md">8</span></td><td>P1</td></tr>
+<tr><td>7</td><td>WhatsApp Commerce / Shop</td><td>EasySocial (full), AISensy</td><td><span class="score s-md">8</span></td><td>P1</td></tr>
+<tr><td>8</td><td>WhatsApp Calls</td><td>EasySocial (UNIQUE)</td><td><span class="score s-md">7</span></td><td>P2</td></tr>
+<tr><td>9</td><td>Multi-Platform (IG + Messenger)</td><td>EasySocial</td><td><span class="score s-md">7</span></td><td>P2</td></tr>
+<tr><td>10</td><td>Mobile Apps (iOS + Android)</td><td>EasySocial</td><td><span class="score s-lo">6</span></td><td>P3</td></tr>
+</table>
+</div>
+</div>
+
+<!-- 3-WAY FEATURE MATRIX -->
+<div id="compare" class="section">
+<h2>3-Way Feature Comparison Matrix</h2>
+<p style="color:var(--text2);margin-bottom:1rem;">Green = present, Red = missing, Purple = unique to EasySocial, Orange = partial</p>
+
+<div class="matrix-wrap"><table>
+<tr><th style="min-width:220px">Feature / Module</th><th style="min-width:130px"><span class="platform-dot dot-w"></span> WACRM</th><th style="min-width:130px"><span class="platform-dot dot-a"></span> AISensy</th><th style="min-width:140px"><span class="platform-dot dot-e"></span> EasySocial</th></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">DASHBOARD</td></tr>
+<tr><td>Analytics Cards with Trends</td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>WABA Health/Status Display</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Agent Performance Dashboard</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>CSAT Tracking</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>Activity Chart</td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Suggested Actions / Quick Start</td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">INBOX / CHAT</td></tr>
+<tr><td>WhatsApp Conversations</td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Multi-Tab (Active/Resolved/etc)</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Agent Assignment</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Bulk Actions on Conversations</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>Pending Follow-ups</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">CONTACTS</td></tr>
+<tr><td>Contact List with Search</td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Custom Attributes ($variables)</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Tags Management</td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Segments (Dynamic Groups)</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>Source Tracking</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-no">NO</span></td></tr>
+<tr><td>Opt-in/Opt-out Tracking</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-no">NO</span></td></tr>
+<tr><td>Archived/Blocked Contacts</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>Bulk Actions from Contacts</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">BROADCASTS / CAMPAIGNS</td></tr>
+<tr><td>Template-Based Broadcasts</td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>API Campaigns</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-no">NO</span></td></tr>
+<tr><td>Scheduled Campaigns</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-no">NO</span></td></tr>
+<tr><td>QR Scan Campaigns</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-no">NO</span></td></tr>
+<tr><td>Campaign Analytics/Reports</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-no">NO</span></td></tr>
+<tr><td>AI-Assisted Campaign Creation</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>Account Health in Broadcast</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">AUTOMATIONS / FLOWS</td></tr>
+<tr><td>Visual Chatbot Builder</td><td><span class="badge b-partial">BASIC</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>AI Flow Generation</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-partial">AI Toolkit</span></td></tr>
+<tr><td>Flow Templates</td><td><span class="badge b-partial">4</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-no">NO</span></td></tr>
+<tr><td>Catalogue/Commerce in Flows</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Flow Forms</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">WHATSAPP CALLS</td></tr>
+<tr><td>WhatsApp Call Support</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE (Beta)</span></td></tr>
+<tr><td>Call Recording</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>Call Leaderboard</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>AI Call Analysis</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE (AI Call Sense)</span></td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">COMMERCE / SHOP</td></tr>
+<tr><td>WhatsApp Catalogue</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Full Order Management</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>Payment/Fulfillment Tracking</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>Shop Open/Close Toggle</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>AI Catalogue Search</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">INTEGRATIONS</td></tr>
+<tr><td>Integration Marketplace</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">18+</span></td><td><span class="badge b-yes">16+</span></td></tr>
+<tr><td>Zoho CRM Sync</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Shopify/WooCommerce</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Google Sheets</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Payment Gateways</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">Razorpay/PayU</span></td><td><span class="badge b-yes">Stripe</span></td></tr>
+<tr><td>n8n/No-Code Automation</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">Pabbly/Integrately</span></td><td><span class="badge b-yes">n8n Webhook</span></td></tr>
+<tr><td>Google Calendar</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>ChatGPT / AI Integration</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>Live Translation</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">DEVELOPER PLATFORM</td></tr>
+<tr><td>Public REST API</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">2 Systems</span></td><td><span class="badge b-partial">Webhook Only</span></td></tr>
+<tr><td>API Key Management (JWT)</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-no">NO</span></td></tr>
+<tr><td>Developer Hub UI</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-no">NO</span></td></tr>
+<tr><td>Webhook Configuration</td><td><span class="badge b-partial">BASIC</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>OpenAPI/Swagger Docs</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">Stoplight</span></td><td><span class="badge b-no">NO</span></td></tr>
+<tr><td>Postman Collection</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-no">NO</span></td></tr>
+
+<tr><td colspan="4" style="background:var(--surface);font-weight:700;color:var(--info);">PLATFORM & MISC</td></tr>
+<tr><td>Mobile Apps (iOS + Android)</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>Multi-Platform (IG + Messenger)</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>QR Code & Short Links</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-no">NO</span></td><td><span class="badge b-unique">UNIQUE</span></td></tr>
+<tr><td>Website Widget</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+<tr><td>Help Centre / Chat Support</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">Intercom</span></td><td><span class="badge b-yes">WhatsApp Chat</span></td></tr>
+<tr><td>Onboarding/Training Resources</td><td><span class="badge b-no">NO</span></td><td><span class="badge b-yes">YES</span></td><td><span class="badge b-yes">YES</span></td></tr>
+</table></div></div>
+
+<!-- GAP ANALYSIS -->
+<div id="gaps" class="section">
+<h2>Gap Analysis — Prioritized Breakdown</h2>
+<p style="color:var(--text2);margin-bottom:1rem;">Each gap analyzed for business impact, technical complexity, and justified with platform evidence.</p>
+
+<div class="card" style="border-left:4px solid var(--danger);">
+<h3>1. Public REST API <span class="score s-hi">10</span> | Both competitors have it</h3>
+<p><strong>Evidence:</strong> AISensy has 2 complete API systems (Campaign JWT + Project password). EasySocial has webhook system and n8n integration. WACRM has zero public API endpoints.</p>
+<h4>Why it matters</h4>
+<p>Without API, WACRM cannot integrate with any CRM, ERP, e-commerce, or third-party system. This blocks enterprise sales, partnerships, and automation use cases. Every serious WhatsApp CRM platform has an API.</p>
+<h4>What to build</h4>
+<div class="diff-block"><code>
+POST   /api/v1/campaigns/send        # Send template message
+GET    /api/v1/campaigns             # List campaigns
+GET    /api/v1/campaigns/:id         # Campaign status
+POST   /api/v1/contacts              # Create/upsert contact
+GET    /api/v1/contacts              # List/search contacts
+GET    /api/v1/contacts/:id          # Contact details
+PUT    /api/v1/contacts/:id          # Update contact
+GET    /api/v1/templates             # List templates
+POST   /api/v1/webhooks              # Register webhook
+GET    /api/v1/webhooks              # List webhooks
+GET    /api/v1/analytics/messages    # Message stats
+</code></div>
+<p><strong>Effort:</strong> High | <strong>TImeline:</strong> 4-6 weeks MVP | <strong>Priority:</strong> P0</p>
+</div>
+
+<div class="card" style="border-left:4px solid var(--danger);">
+<h3>2. Integration Marketplace <span class="score s-hi">9</span> | AISensy: 18+ | EasySocial: 16+</h3>
+<p><strong>Evidence:</strong> Both competitors have rich integration stores. EasySocial has 16 integrations including Google Calendar, Zoho, Stripe, Shopify, WooCommerce, ChatGPT, n8n, Live Translation. AISensy has 18+ via App Store.</p>
+<h4>Why it matters</h4>
+<p>Integrations create ecosystem lock-in. Customers pick platforms that connect to their existing tools. Each integration = a reason to stay.</p>
+<h4>Start with these 5:</h4>
+<ol><li>Google Sheets (most requested)</li><li>n8n/Zapier webhook (widest reach via no-code)</li><li>Zoho CRM (Indian SMB favorite)</li><li>Payment gateway (Razorpay/Stripe)</li><li>Shopify/WooCommerce (e-commerce)</li></ol>
+<p><strong>Effort:</strong> High | <strong>Priority:</strong> P1</p>
+</div>
+
+<div class="card" style="border-left:4px solid var(--danger);">
+<h3>3. Custom Contact Attributes <span class="score s-hi">9</span> | Both competitors support</h3>
+<p><strong>Evidence:</strong> AISensy uses $variable naming for custom fields (25+ fields observed: $PreferredLocation, $Projects, $SiteVisitDate, etc.). EasySocial supports custom fields like "check for demo", "Need to Contact Directly", "Time Selection for Consult", "Date Selection for Consult".</p>
+<p><strong>WACRM only has:</strong> Name, Phone, Email, Company, Tags. Severely limited for real-world CRM use.</p>
+<div class="diff-block"><code>
+CREATE TABLE contact_attribute_defs (
+  id UUID PK, project_id UUID FK,
+  name VARCHAR(100) NOT NULL,
+  display_name VARCHAR(200),
+  data_type VARCHAR(20) DEFAULT 'string',
+  UNIQUE(project_id, name)
+);
+CREATE TABLE contact_attribute_values (
+  contact_id UUID FK, attribute_id UUID FK,
+  value TEXT, updated_at TIMESTAMPTZ,
+  PRIMARY KEY(contact_id, attribute_id)
+);
+</code></div>
+<p><strong>Effort:</strong> Medium | <strong>Priority:</strong> P0</p>
+</div>
+
+<div class="card" style="border-left:4px solid var(--warn);">
+<h3>4. AI-Powered Features <span class="score s-md">8</span> | Both competitors investing heavily</h3>
+<p><strong>Evidence — AISensy:</strong> AI Messages (₹3,500/7K msgs), AI Flows, AI Magic (template generation). <strong>EasySocial:</strong> AI Assistant for campaigns, AI Call Sense, AI Catalogue Search, AI Toolkit, ChatGPT integration, Live Translation.</p>
+<p><strong>Recommended AI features for WACRM:</strong></p>
+<ol><li>AI Template Generator (fastest win — prompt → WhatsApp template)</li><li>AI Chatbot Builder (describe flow → auto-generate)</li><li>AI Contact Enrichment (auto-tag, auto-attribute from conversations)</li><li>AI Campaign Optimizer (best time to send, audience suggestions)</li></ol>
+<p><strong>Effort:</strong> High | <strong>Priority:</strong> P1-P2</p>
+</div>
+
+<div class="card" style="border-left:4px solid var(--warn);">
+<h3>5. WhatsApp Commerce <span class="score s-md">8</span> | EasySocial: Full Shop | AISensy: Catalogue</h3>
+<p><strong>Evidence:</strong> EasySocial's Shop module includes Revenue tracking, Orders management, AOV, Returns/RTO, Shop Open/Close toggle, Payment & Fulfillment tracking, Order Activity charts. This is a full WhatsApp Commerce solution.</p>
+<p><strong>Implementation:</strong> Start with WhatsApp Catalogue (FB Commerce Manager integration), then build order management.</p>
+<p><strong>Effort:</strong> Medium-High | <strong>Priority:</strong> P1</p>
+</div>
+
+<div class="card" style="border-left:4px solid var(--easysocial);">
+<h3>6. WhatsApp Calls <span class="score s-md">7</span> | EasySocial UNIQUE (neither AISensy has it)</h3>
+<p><strong>Evidence:</strong> EasySocial's Call Dashboard (Beta) includes: Calls Today, Call Duration, Call Flow chart, Leaderboard (agent performance), Call Logs with recording, Direction, Status tracking. Plus AI Call Sense for AI analysis of calls.</p>
+<p>This is a HIGH differentiation opportunity — neither WACRM nor AISensy has WhatsApp calling.</p>
+<p><strong>Effort:</strong> High | <strong>Priority:</strong> P2</p>
+</div>
+
+<div class="card" style="border-left:4px solid var(--easysocial);">
+<h3>7. Multi-Platform Support <span class="score s-md">7</span> | EasySocial UNIQUE</h3>
+<p><strong>Evidence:</strong> EasySocial supports WhatsApp + Instagram + Messenger (BETA) under one platform. Both WACRM and AISensy are WhatsApp-only.</p>
+<p><strong>Effort:</strong> High | <strong>Priority:</strong> P2</p>
+</div>
+
+<div class="card" style="border-left:4px solid var(--warn);">
+<h3>8. Agent Management & RBAC <span class="score s-md">8</span></h3>
+<p><strong>Evidence:</strong> Both competitors have agent assignment, team management. EasySocial has Agent Performance dashboard with leaderboard. AISensy has agent assignment in chat. WACRM has none.</p>
+<p><strong>Effort:</strong> Medium | <strong>Priority:</strong> P1</p>
+</div>
+
+<div class="card" style="border-left:4px solid var(--warn);">
+<h3>9. Campaign Types & Analytics <span class="score s-md">8</span></h3>
+<p><strong>Evidence:</strong> AISensy supports 4 campaign types (Broadcast, API, Scheduled, QR Scan) with download reports. WACRM only has manual template broadcasts.</p>
+<p><strong>Effort:</strong> Medium | <strong>Priority:</strong> P1</p>
+</div>
+
+<div class="card" style="border-left:4px solid var(--warn);">
+<h3>10. Segments & Advanced Filtering <span class="score s-md">7</span> | EasySocial UNIQUE</h3>
+<p><strong>Evidence:</strong> EasySocial has "Segments" sub-tab under Contacts for dynamic contact grouping. Neither WACRM nor AISensy has this. Enables targeted campaigns based on behavior, attributes, tags.</p>
+<p><strong>Effort:</strong> Medium | <strong>Priority:</strong> P1</p>
+</div>
+
+<h3>Additional Gaps (11-32)</h3>
+<div class="matrix-wrap"><table>
+<tr><th>#</th><th>Feature</th><th>Competitor</th><th>Criticality</th><th>Priority</th></tr>
+<tr><td>11</td><td>Template Gallery (Explore/Industry)</td><td>AISensy</td><td><span class="score s-md">7</span></td><td>P2</td></tr>
+<tr><td>12</td><td>Canned Messages / Quick Replies</td><td>AISensy</td><td><span class="score s-lo">6</span></td><td>P2</td></tr>
+<tr><td>13</td><td>Opt-in/MAU Status Tracking</td><td>AISensy</td><td><span class="score s-md">8</span></td><td>P1</td></tr>
+<tr><td>14</td><td>Ads Manager (FB/IG CTWA)</td><td>AISensy, EasySocial</td><td><span class="score s-md">7</span></td><td>P2</td></tr>
+<tr><td>15</td><td>Billing & Usage Dashboard</td><td>Both</td><td><span class="score s-md">7</span></td><td>P1</td></tr>
+<tr><td>16</td><td>CSAT / Customer Satisfaction</td><td>EasySocial</td><td><span class="score s-lo">6</span></td><td>P2</td></tr>
+<tr><td>17</td><td>Pending Follow-ups</td><td>EasySocial</td><td><span class="score s-lo">6</span></td><td>P2</td></tr>
+<tr><td>18</td><td>Archived/Blocked Contacts</td><td>EasySocial</td><td><span class="score s-lo">5</span></td><td>P3</td></tr>
+<tr><td>19</td><td>Flow Forms</td><td>EasySocial</td><td><span class="score s-lo">5</span></td><td>P3</td></tr>
+<tr><td>20</td><td>Quick Menu (WhatsApp)</td><td>EasySocial</td><td><span class="score s-lo">5</span></td><td>P3</td></tr>
+<tr><td>21</td><td>Mobile Apps (iOS/Android)</td><td>EasySocial</td><td><span class="score s-lo">6</span></td><td>P3</td></tr>
+<tr><td>22</td><td>QR Code & Short Links</td><td>EasySocial</td><td><span class="score s-lo">5</span></td><td>P3</td></tr>
+<tr><td>23</td><td>Website Widget</td><td>Both</td><td><span class="score s-lo">5</span></td><td>P2</td></tr>
+<tr><td>24</td><td>Live Translation for Chat</td><td>EasySocial</td><td><span class="score s-lo">5</span></td><td>P3</td></tr>
+<tr><td>25</td><td>Google Calendar Integration</td><td>EasySocial</td><td><span class="score s-lo">6</span></td><td>P2</td></tr>
+<tr><td>26</td><td>ChatGPT Integration</td><td>EasySocial</td><td><span class="score s-lo">6</span></td><td>P2</td></tr>
+<tr><td>27</td><td>Help Centre / Support Chat</td><td>Both</td><td><span class="score s-lo">4</span></td><td>P3</td></tr>
+<tr><td>28</td><td>Onboarding/Training Resources</td><td>Both</td><td><span class="score s-lo">6</span></td><td>P2</td></tr>
+<tr><td>29</td><td>Multi-Project/Company Switcher</td><td>AISensy</td><td><span class="score s-lo">6</span></td><td>P2</td></tr>
+<tr><td>30</td><td>WABA Health Monitoring</td><td>Both</td><td><span class="score s-md">7</span></td><td>P1</td></tr>
+<tr><td>31</td><td>AI Call Sense</td><td>EasySocial</td><td><span class="score s-lo">6</span></td><td>P2</td></tr>
+<tr><td>32</td><td>Facebook Leads Integration</td><td>EasySocial</td><td><span class="score s-lo">5</span></td><td>P3</td></tr>
+</table></div>
+</div>
+
+<!-- API & DEV -->
+<div id="api" class="section">
+<h2>API & Developer Platform Comparison</h2>
+
+<div class="card">
+<h3>How Each Platform Handles APIs</h3>
+<table>
+<tr><th>Aspect</th><th>WACRM</th><th>AISensy</th><th>EasySocial</th></tr>
+<tr><td>Public API</td><td><span class="badge b-no">NONE</span></td><td>Campaign API (JWT) + Project API (password)</td><td><span class="badge b-partial">Webhook + n8n integration</span></td></tr>
+<tr><td>API Base URL</td><td>-</td><td>https://apis.aisensy.com/project-apis/v1/</td><td>-</td></tr>
+<tr><td>Auth Method</td><td>-</td><td>JWT Bearer + X-AiSensy-Project-API-Pwd header</td><td>Plan-gated webhook</td></tr>
+<tr><td>API Key UI</td><td>-</td><td>Copy/Regenerate keys in Developer Hub</td><td>-</td></tr>
+<tr><td>API Docs</td><td>-</td><td>Stoplight + Wiki + Postman + Mock server</td><td>-</td></tr>
+<tr><td>Rate Limiting</td><td>-</td><td>Tiered by plan (100K/24hrs at Tier 3)</td><td>Plan-gated</td></tr>
+<tr><td>Webhook System</td><td>Basic (forward + auto-reply)</td><td>Full (event types, config UI, docs)</td><td>System webhook (plan-gated)</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>AISensy API Deep Dive (for WACRM reference)</h3>
+<h4>Campaign API — POST https://backend.aisensy.com/campaign/t1/api/v2</h4>
+<table>
+<tr><th>Field</th><th>Required</th><th>Purpose</th></tr>
+<tr><td>apiKey</td><td>Yes</td><td>JWT from Developer Hub</td></tr>
+<tr><td>campaignName</td><td>Yes</td><td>Pre-created API campaign (must be Live)</td></tr>
+<tr><td>destination</td><td>Yes</td><td>Phone with country code</td></tr>
+<tr><td>userName</td><td>Yes</td><td>Recipient display name</td></tr>
+<tr><td>source</td><td>No</td><td>Lead source tracking</td></tr>
+<tr><td>media</td><td>No</td><td>{url, filename} for attachments</td></tr>
+<tr><td>templateParams</td><td>No</td><td>Template variable values</td></tr>
+<tr><td>tags</td><td>No</td><td>Auto-assign tags</td></tr>
+<tr><td>attributes</td><td>No</td><td>Custom attribute values</td></tr>
+</table>
+<p><strong>Key behavior:</strong> Auto-creates contact if not exists. Assigns tags, attributes, source in one call. This is the pattern WACRM should follow.</p>
+
+<h4>AISensy JWT API Key Structure</h4>
+<div class="diff-block"><code>{
+  "id": "68b7fa0a4249bc0c31686931",
+  "name": "YAS INFRACON LLP",
+  "appName": "AiSensy",
+  "clientId": "...",
+  "activePlan": "ENTERPRISE_YEARLY",
+  "iat": 1747814400
+}</code></div>
+
+<h4>WACRM Recommended JWT Claims</h4>
+<div class="diff-block"><code>{
+  "sub": "project-uuid",
+  "project_id": "...",
+  "plan": "starter|growth|enterprise",
+  "scopes": ["campaign:write","contact:read","contact:write","webhook:manage"],
+  "iat": 1747814400,
+  "exp": 1748419200
+}</code></div>
+</div>
+
+<div class="card">
+<h3>WACRM API Implementation Plan</h3>
+<table>
+<tr><th>Phase</th><th>What</th><th>Effort</th></tr>
+<tr><td>Week 1-2</td><td>Auth system — JWT generation, validation middleware, API key DB schema, rate limiter</td><td>2 devs</td></tr>
+<tr><td>Week 2-3</td><td>Campaign send endpoint — POST /campaigns/send (match AISensy's auto-create pattern)</td><td>1 dev</td></tr>
+<tr><td>Week 3-4</td><td>Contact CRUD endpoints, template list, webhook endpoints</td><td>2 devs</td></tr>
+<tr><td>Week 4-5</td><td>Developer Hub UI — API keys tab, webhook config, docs links</td><td>1 frontend</td></tr>
+<tr><td>Week 5-6</td><td>OpenAPI docs (Stoplight/Redoc), Postman collection, rate limit config</td><td>1 dev</td></tr>
+</table>
+</div>
+</div>
+
+<!-- UI/UX ASSESSMENT -->
+<div id="ux" class="section">
+<h2>UI/UX Assessment — Usability Heuristics Review</h2>
+
+<div class="card">
+<h3>Usability Heuristics Scorecard (Nielsen's 10 Heuristics — Score 0-4 each)</h3>
+<table class="usability-table">
+<tr><th style="width:30%">Heuristic</th><th style="width:23%"><span class="platform-dot dot-w"></span> WACRM</th><th style="width:23%"><span class="platform-dot dot-a"></span> AISensy</th><th style="width:24%"><span class="platform-dot dot-e"></span> EasySocial</th></tr>
+<tr><td>1. Visibility of system status</td><td>2/4 (no WABA health, no msg status)</td><td>3/4 (WABA status, but cluttered)</td><td>4/4 (Account details always visible, health on broadcast page)</td></tr>
+<tr><td>2. Match between system & real world</td><td>3/4 (clean, intuitive)</td><td>2/4 (tech jargon, crowded)</td><td>4/4 (natural language, emoji, "Shop is Open")</td></tr>
+<tr><td>3. User control & freedom</td><td>3/4 (simple navigation)</td><td>2/4 (video modals auto-play, hard to dismiss)</td><td>3/4 (clean but plan-gating frustrates)</td></tr>
+<tr><td>4. Consistency & standards</td><td>4/4 (consistent layout)</td><td>2/4 (too many UI patterns, AI banners everywhere)</td><td>3/4 (consistent sidebar, occasional 404s)</td></tr>
+<tr><td>5. Error prevention</td><td>2/4 (no confirmation dialogs)</td><td>2/4 (complex flows, easy to misclick)</td><td>3/4 (plan gates prevent errors)</td></tr>
+<tr><td>6. Recognition over recall</td><td>3/4 (clear labels)</td><td>2/4 (deep hierarchy, 11 sub-tabs in Manage)</td><td>4/4 (suggested actions, contextual help)</td></tr>
+<tr><td>7. Flexibility & efficiency</td><td>2/4 (no shortcuts, no bulk actions)</td><td>3/4 (bulk actions, shortcuts)</td><td>4/4 (bulk actions, filter, search, carousel)</td></tr>
+<tr><td>8. Aesthetic & minimalist</td><td>4/4 (clean, minimal)</td><td>1/4 (cluttered, banner-heavy)</td><td>3/4 (clean but right sidebar busy)</td></tr>
+<tr><td>9. Error recognition & recovery</td><td>2/4 (basic error messages)</td><td>2/4 (some error guidance)</td><td>3/4 (404 page has support info, copy URL)</td></tr>
+<tr><td>10. Help & documentation</td><td>1/4 (no help center)</td><td>3/4 (Intercom chat, wiki, training calls)</td><td>4/4 (Help Centre widget, WhatsApp chat, search)</td></tr>
+<tr style="font-weight:700;background:rgba(139,92,246,0.1);"><td>TOTAL (max 40)</td><td>26/40</td><td>22/40</td><td>35/40</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>Key UX Findings</h3>
+
+<h4><span class="platform-dot dot-w"></span> WACRM — Strengths & Gaps</h4>
+<p><strong>Strengths:</strong> Cleanest interface. Minimal sidebar with 8 items. Consistent layout. Good use of white space. Kanban board for pipelines is functional.</p>
+<p><strong>Gaps:</strong> No help center/support. No onboarding flow. No WABA health monitoring. No bulk actions. No confirmation dialogs for destructive actions. No mobile app.</p>
+
+<h4><span class="platform-dot dot-a"></span> AISensy — Strengths & Gaps</h4>
+<p><strong>Strengths:</strong> Feature-rich. Contextual help links on each page. Intercom chat for support. Onboarding resources. Training call scheduling.</p>
+<p><strong>Gaps:</strong> Extremely cluttered dashboard. Auto-playing video modals (intrusive). Deep hierarchy (Manage has 11 sub-tabs). AI banners on every page (repetitive). Too many prompts on dashboard.</p>
+
+<h4><span class="platform-dot dot-e"></span> EasySocial — Strengths & Gaps</h4>
+<p><strong>Strengths:</strong> Best usability score (35/40). Natural language UI. Emoji usage feels friendly. Suggested Actions carousel is excellent. Help Centre with WhatsApp chat. 404 pages are helpful (URL copy for support). Mobile apps available.</p>
+<p><strong>Gaps:</strong> Plan-gating can be frustrating (features visible but locked). Right sidebar can feel busy. Beta features mixed with stable. Some features throw 404 instead of plan-gate.</p>
+</div>
+
+<div class="card">
+<h3>UX Recommendations for WACRM</h3>
+<ol>
+<li><strong>Add WABA health status</strong> on dashboard — both competitors do this. Users need to see WhatsApp health, messaging tier, payment status at a glance.</li>
+<li><strong>Implement Help Centre</strong> — EasySocial's WhatsApp-based support chat is brilliant. Add searchable knowledge base + WhatsApp support.</li>
+<li><strong>Add onboarding wizard</strong> — Guide new users: Connect WABA → Create template → First broadcast → Install widget.</li>
+<li><strong>Add bulk actions</strong> — Both competitors support bulk contact operations. This is critical for SMB efficiency.</li>
+<li><strong>Keep the clean UI</strong> — WACRM's minimal design is actually its UX advantage. Don't over-clutter like AISensy.</li>
+<li><strong>Add confirmation dialogs</strong> — Prevent accidental deletes/sends with simple confirmations.</li>
+<li><strong>Mobile responsive</strong> — EasySocial has dedicated mobile apps. At minimum, make WACRM mobile-responsive.</li>
+</ol>
+</div>
+</div>
+
+<!-- COMBINED ROADMAP -->
+<div id="roadmap" class="section">
+<h2>Combined Product Enhancement Roadmap</h2>
+
+<div class="card" style="border-top:3px solid var(--danger);">
+<h3>Phase 1 — Foundation (Weeks 1-6) | P0 — Critical</h3>
+<table>
+<tr><th>#</th><th>Feature</th><th>Why</th><th>Effort</th></tr>
+<tr><td>1.1</td><td>Public REST API — Campaign send, Contact CRUD, Template list</td><td>AISensy has 2 API systems. WACRM has 0. Enterprise blocker.</td><td>3 weeks</td></tr>
+<tr><td>1.2</td><td>API Key Management + JWT Auth + Rate Limiting</td><td>Foundation for all integrations and developer adoption</td><td>1.5 weeks</td></tr>
+<tr><td>1.3</td><td>Developer Hub UI (keys, webhooks, docs)</td><td>Self-serve developer onboarding, matches AISensy</td><td>1 week</td></tr>
+<tr><td>1.4</td><td>Custom Contact Attributes ($variable system)</td><td>Both competitors support. Required for real CRM use.</td><td>1 week</td></tr>
+<tr><td>1.5</td><td>Enhanced Webhook System (multiple endpoints, event types, retry)</td><td>Both competitors have richer webhook systems</td><td>1.5 weeks</td></tr>
+</table>
+</div>
+
+<div class="card" style="border-top:3px solid var(--warn);">
+<h3>Phase 2 — Competitive Parity (Weeks 7-14) | P1 — High</h3>
+<table>
+<tr><th>#</th><th>Feature</th><th>Why</th><th>Effort</th></tr>
+<tr><td>2.1</td><td>Integration Marketplace — Google Sheets, n8n, Zoho, Stripe, Shopify</td><td>Both competitors have 16-18+ integrations. Ecosystem lock-in critical.</td><td>4 weeks</td></tr>
+<tr><td>2.2</td><td>Campaign Types — API + Scheduled + QR Scan</td><td>AISensy has 4 campaign types. WACRM has 1.</td><td>2 weeks</td></tr>
+<tr><td>2.3</td><td>Agent/Team Management with RBAC</td><td>Both competitors have. Multi-user is table stakes.</td><td>2 weeks</td></tr>
+<tr><td>2.4</td><td>WABA Health Monitoring + Opt-in/MAU Tracking</td><td>Both competitors display. Compliance & trust.</td><td>1 week</td></tr>
+<tr><td>2.5</td><td>Analytics Dashboard — Campaign & Message Analytics</td><td>AISensy has download reports. Data-driven decisions.</td><td>2 weeks</td></tr>
+<tr><td>2.6</td><td>Segments — Dynamic Contact Grouping</td><td>EasySocial unique. Targeted campaigns.</td><td>1.5 weeks</td></tr>
+<tr><td>2.7</td><td>WhatsApp Catalogue/Commerce</td><td>EasySocial has full Shop. AISensy has catalogue. Growing use case.</td><td>2 weeks</td></tr>
+</table>
+</div>
+
+<div class="card" style="border-top:3px solid var(--easysocial);">
+<h3>Phase 3 — Differentiation (Weeks 15-22) | P2 — Medium</h3>
+<table>
+<tr><th>#</th><th>Feature</th><th>Why</th><th>Effort</th></tr>
+<tr><td>3.1</td><td>AI Template Generator + AI Chatbot Builder</td><td>Both competitors investing in AI. Fast time-to-value.</td><td>2 weeks</td></tr>
+<tr><td>3.2</td><td>WhatsApp Calls with Recording</td><td>EasySocial UNIQUE. HIGH differentiation. No other competitor has it.</td><td>3 weeks</td></tr>
+<tr><td>3.3</td><td>Ads Manager — Facebook/Instagram CTWA</td><td>Both competitors have. Revenue stream.</td><td>2 weeks</td></tr>
+<tr><td>3.4</td><td>Onboarding Wizard + Help Centre</td><td>EasySocial has best onboarding. Reduces churn.</td><td>1.5 weeks</td></tr>
+<tr><td>3.5</td><td>API Documentation (Stoplight/Redoc + Postman + Mock)</td><td>Matches AISensy. Developer experience.</td><td>1 week</td></tr>
+<tr><td>3.6</td><td>Website Widget + QR Code Generator</td><td>Both competitors have. Lead generation tools.</td><td>1 week</td></tr>
+<tr><td>3.7</td><td>Google Calendar Integration</td><td>EasySocial unique. Booking directly from chat.</td><td>1 week</td></tr>
+</table>
+</div>
+
+<div class="card" style="border-top:3px solid var(--success);">
+<h3>Phase 4 — Platform Play (Weeks 23+) | P3 — Strategic</h3>
+<table>
+<tr><th>#</th><th>Feature</th><th>Why</th></tr>
+<tr><td>4.1</td><td>Multi-Platform — Instagram + Messenger support</td><td>EasySocial UNIQUE. Future-proofing.</td></tr>
+<tr><td>4.2</td><td>Mobile Apps — iOS + Android</td><td>EasySocial has. Agent mobility.</td></tr>
+<tr><td>4.3</td><td>AI Call Sense — AI analysis of call recordings</td><td>EasySocial unique. Next-gen feature.</td></tr>
+<tr><td>4.4</td><td>Live Translation for Chat</td><td>EasySocial unique. Global reach.</td></tr>
+<tr><td>4.5</td><td>Flow Forms</td><td>EasySocial unique. Survey/data collection in chat.</td></tr>
+<tr><td>4.6</td><td>Referral/Affiliate Program</td><td>AISensy has. Growth loop.</td></tr>
+</table>
+</div>
+</div>
+
+<!-- SECURITY -->
+<div id="security" class="section">
+<h2>Security Architecture — Comparison & Recommendations</h2>
+
+<div class="card">
+<h3>Security Feature Comparison</h3>
+<table>
+<tr><th>Security Aspect</th><th>WACRM</th><th>AISensy</th><th>EasySocial</th></tr>
+<tr><td>API Authentication</td><td><span class="badge b-no">NONE</span></td><td>JWT + Password header + Partner key</td><td><span class="badge b-no">Plan-gated webhook only</span></td></tr>
+<tr><td>API Key Encryption</td><td>-</td><td>JWT with embedded claims, regenerable</td><td>-</td></tr>
+<tr><td>Multi-tenancy</td><td><span class="badge b-no">NONE</span></td><td>Project-scoped keys</td><td>Business-scoped settings</td></tr>
+<tr><td>Rate Limiting</td><td><span class="badge b-no">NONE</span></td><td>Tiered by plan</td><td>Plan-gated</td></tr>
+<tr><td>RBAC</td><td><span class="badge b-no">NONE</span></td><td>Agent roles, manager access</td><td>Team Members, role management</td></tr>
+<tr><td>Webhook Security</td><td><span class="badge b-partial">BASIC</span></td><td>Secret verification, docs</td><td>Plan-gated, system webhook</td></tr>
+<tr><td>Audit Logs</td><td><span class="badge b-no">NONE</span></td><td>Not visible but implied</td><td><span class="badge b-no">NONE</span></td></tr>
+<tr><td>WABA Security</td><td>Token masked in UI</td><td>WABA status displayed</td><td>Full WABA diagnostics</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>10 Security Recommendations for WACRM</h3>
+<ol>
+<li><strong>JWT-based API authentication</strong> — HMAC-SHA256, scoped claims (project_id, permissions, expiry)</li>
+<li><strong>Rate limiting middleware</strong> — per API key, per IP, tiered by plan</li>
+<li><strong>RBAC implementation</strong> — Owner > Admin > Manager > Agent roles with granular permissions</li>
+<li><strong>Audit logging</strong> — track API calls, key generation, webhook deliveries, admin actions</li>
+<li><strong>HMAC-SHA256 webhook signatures</strong> — receivers can verify payload authenticity</li>
+<li><strong>API key hashing at rest</strong> — never store plaintext after generation</li>
+<li><strong>CORS configuration</strong> — restrict to known origins</li>
+<li><strong>Input validation</strong> — all API inputs validated against schemas</li>
+<li><strong>HTTPS enforcement</strong> — reject non-HTTPS requests</li>
+<li><strong>Plan-based access control</strong> — feature gating by subscription tier (both competitors do this)</li>
+</ol>
+</div>
+</div>
+
+<!-- DB & SCHEMA -->
+<div id="db" class="section">
+<h2>Database & Schema Recommendations</h2>
+
+<div class="card">
+<h3>New Tables Required for Feature Parity</h3>
+
+<h4>1. API Keys</h4>
+<div class="diff-block"><code>
+CREATE TABLE api_keys (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_id UUID NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+  name VARCHAR(100) NOT NULL,
+  key_hash VARCHAR(255) NOT NULL UNIQUE,
+  key_prefix VARCHAR(8) NOT NULL,  -- "sk_live_..."
+  scopes TEXT[] NOT NULL DEFAULT '{}',
+  last_used_at TIMESTAMPTZ,
+  expires_at TIMESTAMPTZ,
+  is_active BOOLEAN DEFAULT true,
+  created_by UUID REFERENCES users(id),
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+</code></div>
+
+<h4>2. Custom Contact Attributes</h4>
+<div class="diff-block"><code>
+CREATE TABLE contact_attribute_defs (
+  id UUID PK, project_id UUID FK,
+  name VARCHAR(100) NOT NULL,  -- $prefixed
+  display_name VARCHAR(200), data_type VARCHAR(20) DEFAULT 'string',
+  UNIQUE(project_id, name)
+);
+CREATE TABLE contact_attribute_values (
+  contact_id UUID FK, attribute_id UUID FK,
+  value TEXT, updated_at TIMESTAMPTZ DEFAULT now(),
+  PRIMARY KEY(contact_id, attribute_id)
+);
+</code></div>
+
+<h4>3. Enhanced Webhooks</h4>
+<div class="diff-block"><code>
+CREATE TABLE webhooks (
+  id UUID PK, project_id UUID FK,
+  url TEXT NOT NULL, secret VARCHAR(255),
+  events TEXT[] NOT NULL DEFAULT '{}', -- ["message.received","contact.created"]
+  is_active BOOLEAN DEFAULT true,
+  retry_count INT DEFAULT 3, created_at TIMESTAMPTZ DEFAULT now()
+);
+CREATE TABLE webhook_deliveries (
+  id UUID PK, webhook_id UUID FK,
+  event_type VARCHAR(50), payload JSONB,
+  response_status INTEGER, attempt_count INTEGER DEFAULT 1,
+  delivered_at TIMESTAMPTZ, created_at TIMESTAMPTZ DEFAULT now()
+);
+</code></div>
+
+<h4>4. RBAC</h4>
+<div class="diff-block"><code>
+CREATE TABLE roles (
+  id UUID PK, project_id UUID FK,
+  name VARCHAR(50) NOT NULL,  -- owner, admin, manager, agent
+  permissions TEXT[] NOT NULL DEFAULT '{}',
+  UNIQUE(project_id, name)
+);
+CREATE TABLE project_members (
+  project_id UUID FK, user_id UUID FK, role_id UUID FK,
+  joined_at TIMESTAMPTZ DEFAULT now(),
+  PRIMARY KEY(project_id, user_id)
+);
+</code></div>
+
+<h4>5. Segments</h4>
+<div class="diff-block"><code>
+CREATE TABLE segments (
+  id UUID PK, project_id UUID FK,
+  name VARCHAR(100) NOT NULL,
+  rules JSONB NOT NULL,  -- [{"field":"tags","op":"contains","value":"lead"}]
+  contact_count INTEGER DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+</code></div>
+
+<h4>6. Audit Logs & Rate Limiting</h4>
+<div class="diff-block"><code>
+CREATE TABLE audit_logs (
+  id UUID PK, project_id UUID FK,
+  actor_id UUID FK, action VARCHAR(100),
+  resource_type VARCHAR(50), resource_id UUID,
+  details JSONB, ip_address INET,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+CREATE TABLE rate_limits (
+  key VARCHAR(255) PRIMARY KEY,
+  window_start TIMESTAMPTZ NOT NULL,
+  count INTEGER DEFAULT 1, ttl INTEGER NOT NULL
+);
+</code></div>
+</div>
+</div>
+
+<!-- PRIORITY MATRIX -->
+<div id="matrix" class="section">
+<h2>Priority Matrix — All Gaps Mapped</h2>
+
+<div class="priority-grid">
+  <div class="p-card" style="border-top:3px solid var(--danger);">
+    <h4>P0 — Critical (Weeks 1-6)</h4>
+    <table style="font-size:.8rem;">
+    <tr><td>Public REST API</td><td><span class="score s-hi">10</span></td><td>High</td></tr>
+    <tr><td>API Key Management + Dev Hub</td><td><span class="score s-hi">10</span></td><td>Med</td></tr>
+    <tr><td>Webhook Management System</td><td><span class="score s-hi">9</span></td><td>Med</td></tr>
+    <tr><td>Custom Contact Attributes</td><td><span class="score s-hi">9</span></td><td>Med</td></tr>
+    </table>
+  </div>
+  <div class="p-card" style="border-top:3px solid var(--warn);">
+    <h4>P1 — High Priority (Weeks 7-14)</h4>
+    <table style="font-size:.8rem;">
+    <tr><td>Integration Marketplace</td><td><span class="score s-hi">9</span></td><td>High</td></tr>
+    <tr><td>Campaign Types (API/Sched/QR)</td><td><span class="score s-md">8</span></td><td>Med</td></tr>
+    <tr><td>Agent/Team RBAC</td><td><span class="score s-md">8</span></td><td>Med</td></tr>
+    <tr><td>WABA Health Monitoring</td><td><span class="score s-md">7</span></td><td>Low</td></tr>
+    <tr><td>Analytics Dashboard</td><td><span class="score s-md">7</span></td><td>Med</td></tr>
+    <tr><td>Segments (Dynamic Groups)</td><td><span class="score s-md">7</span></td><td>Med</td></tr>
+    <tr><td>WhatsApp Catalogue/Commerce</td><td><span class="score s-md">8</span></td><td>Med</td></tr>
+    </table>
+  </div>
+  <div class="p-card" style="border-top:3px solid var(--easysocial);">
+    <h4>P2 — Medium Priority (Weeks 15-22)</h4>
+    <table style="font-size:.8rem;">
+    <tr><td>AI Template Generator</td><td><span class="score s-md">8</span></td><td>High</td></tr>
+    <tr><td>WhatsApp Calls</td><td><span class="score s-md">7</span></td><td>High</td></tr>
+    <tr><td>Ads Manager (FB/IG CTWA)</td><td><span class="score s-md">7</span></td><td>High</td></tr>
+    <tr><td>Onboarding + Help Centre</td><td><span class="score s-lo">6</span></td><td>Low</td></tr>
+    <tr><td>Google Calendar Integration</td><td><span class="score s-lo">6</span></td><td>Low</td></tr>
+    <tr><td>Website Widget + QR Codes</td><td><span class="score s-lo">5</span></td><td>Low</td></tr>
+    </table>
+  </div>
+  <div class="p-card" style="border-top:3px solid var(--success);">
+    <h4>P3 — Strategic (Weeks 23+)</h4>
+    <table style="font-size:.8rem;">
+    <tr><td>Multi-Platform (IG+Messenger)</td><td><span class="score s-md">7</span></td><td>High</td></tr>
+    <tr><td>Mobile Apps (iOS+Android)</td><td><span class="score s-lo">6</span></td><td>High</td></tr>
+    <tr><td>AI Call Sense</td><td><span class="score s-lo">6</span></td><td>High</td></tr>
+    <tr><td>Live Translation</td><td><span class="score s-lo">5</span></td><td>Med</td></tr>
+    <tr><td>Flow Forms</td><td><span class="score s-lo">5</span></td><td>Med</td></tr>
+    <tr><td>Referral/Affiliate Program</td><td><span class="score s-lo">4</span></td><td>Low</td></tr>
+    </table>
+  </div>
+</div>
+
+<h3 style="margin-top:2rem;">Engineering Effort Summary</h3>
+<table>
+<tr><th>Phase</th><th>Weeks</th><th>Team Size</th><th>Key Deliverables</th></tr>
+<tr><td>P0</td><td>6 weeks</td><td>2 Backend + 1 Frontend</td><td>API system, Dev Hub, Custom Attributes, Enhanced Webhooks</td></tr>
+<tr><td>P1</td><td>8 weeks</td><td>3 Backend + 2 Frontend</td><td>Integrations, Campaigns, RBAC, Analytics, Commerce</td></tr>
+<tr><td>P2</td><td>8 weeks</td><td>3 Backend + 2 Frontend + AI/ML</td><td>AI features, WhatsApp Calls, Ads, Onboarding</td></tr>
+<tr><td>P3</td><td>10+ weeks</td><td>Full team + Mobile devs</td><td>Multi-platform, Mobile apps, Advanced AI</td></tr>
+<tr style="font-weight:700;"><td>TOTAL</td><td>~32 weeks</td><td>5-7 engineers</td><td>Full competitive parity + differentiation</td></tr>
+</table>
+</div>
+
+<div class="footer">
+  <p><strong>WACRM vs AISensy vs EasySocial — 3-Platform Competitive Audit</strong> | May 2026</p>
+  <p>Prepared by ScaleYukti AI Automation | Confidential — For Internal Product & Engineering Teams</p>
+  <p style="font-size:.75rem;margin-top:.5rem;">All findings based on direct observation of live platforms and verified API documentation. Zero hallucination. Methodology: Chrome DevTools inspection, network analysis, and structured heuristic evaluation.</p>
+</div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav.tabs button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
