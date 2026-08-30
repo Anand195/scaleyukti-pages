@@ -3,8 +3,8 @@ import path from "path";
 import bcrypt from "bcryptjs";
 import { prisma } from "../lib/prisma";
 
-// Source repo root, one level up from the portal app (docs live there as loose HTML files).
-const REPO_ROOT = path.resolve(process.cwd(), "..");
+// Source docs live in marketing/, one level up from the portal app.
+const MARKETING_DIR = path.resolve(process.cwd(), "..", "marketing");
 
 const documents = [
   {
@@ -192,7 +192,7 @@ async function main() {
   });
 
   for (const doc of documents) {
-    const filePath = path.join(REPO_ROOT, doc.file);
+    const filePath = path.join(MARKETING_DIR, doc.file);
     const bodyHtml = fs.readFileSync(filePath, "utf-8");
 
     await prisma.document.upsert({
@@ -203,7 +203,7 @@ async function main() {
         description: doc.description,
         category: doc.category,
         client: doc.client,
-        sourceFile: doc.file,
+        sourceFile: `marketing/${doc.file}`,
         bodyHtml,
         publishedAt: new Date(doc.publishedAt),
       },

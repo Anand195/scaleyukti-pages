@@ -17,7 +17,7 @@ instead of an unlisted-but-public URL.
 | Access model | Two roles, `ADMIN` / `TEAM`. v1 treats them identically for viewing; `ADMIN` is reserved for future content-management screens |
 | Content model | The ~18 existing static HTML documents were migrated into `Document` rows (title, description, category, client, raw HTML body) rather than kept as loose files, per the brief — enables the search/filter and category grouping the old flat file list couldn't do |
 | Document rendering | Each doc's original HTML (own `<style>`, sometimes inline `<script>`) is rendered in a sandboxed `<iframe srcDoc>` on the detail page, so 18 documents authored independently over months never fight the portal's own Tailwind styles |
-| Personal content | `kavvi-flooring.html` (home-renovation research, not a ScaleYukti work product) was deliberately excluded from the migration — it stays a standalone static file, not a `Document` row in a business tool's database |
+| Personal content | `kavvi-flooring.html` (home-renovation research, not a ScaleYukti work product) moved to `marketing/` with the rest of the static files but was excluded from the `Document` migration — it stays a standalone static file, not a row in a business tool's database |
 | Deploy target | Vercel (later); local dev runs against a native Postgres install, no Docker |
 
 ## Data model
@@ -50,10 +50,19 @@ rather than leaking a 404 to a logged-out visitor.
 
 ## Migrating the existing documents
 
-`prisma/seed.ts` reads the 17 migrated source files from the repo root (one
-level up from this Next.js project) and upserts them as `Document` rows,
-keyed by `slug`. Re-running the seed is safe — it updates existing rows
-rather than duplicating them. It also creates one seeded `ADMIN` account.
+`prisma/seed.ts` reads the 17 migrated source files from `marketing/` (one
+level up from this Next.js project — the original static HTML files, kept
+there as public-facing pages) and upserts them as `Document` rows, keyed by
+`slug`. Re-running the seed is safe — it updates existing rows rather than
+duplicating them. It also creates one seeded `ADMIN` account.
+
+Note: the internal-only documents (pricing/margin analysis, strategy,
+competitive audits) are duplicated on purpose — they exist both as public
+static files in `marketing/` (per an explicit decision to keep the whole
+original file set there) and as gated `Document` rows in the portal. The
+portal's access control does not remove public access to those files at
+their `marketing/` URL; it only adds a second, authenticated way to reach
+the same content.
 
 ## Brand
 
