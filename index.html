@@ -4,210 +4,463 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ScaleYukti — Documents</title>
+<meta name="description" content="ScaleYukti document library: client deliverables, internal strategy, leads, and reports.">
 <style>
+  :root {
+    --navy: #1b2a38;
+    --navy-deep: #0f1c27;
+    --navy-raised: #223345;
+    --orange: #f37021;
+    --border: #2d3f52;
+    --border-strong: #3a4e63;
+    --ink: #f8fafc;
+    --muted: #9fb0c3;
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #1B2A38; color: #F8FAFC; min-height: 100vh; }
-  .topbar { background: #0f1c27; border-bottom: 2px solid #F37021; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-  .topbar-brand { font-size: 1.1rem; font-weight: 800; color: #F37021; }
-  .topbar-meta { font-size: 0.75rem; color: #4A5568; }
-  .hero { text-align: center; padding: 3rem 1.5rem 2rem; }
-  .logo { font-size: 2.2rem; font-weight: 900; color: #F37021; margin-bottom: 0.25rem; }
-  .tagline { color: #94A3B8; font-size: 0.92rem; margin-bottom: 2.5rem; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 3rem; }
-  .card { background: #243447; border: 1px solid #2d3f52; border-radius: 12px; padding: 1.5rem; text-decoration: none; color: inherit; transition: transform 0.18s, border-color 0.18s; display: flex; flex-direction: column; gap: 0.5rem; }
-  .card:hover { transform: translateY(-3px); border-color: #F37021; }
-  .card.green:hover { border-color: #1D8A17; }
-  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
-  .card-icon { font-size: 1.6rem; flex-shrink: 0; }
-  .card-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.2rem 0.55rem; border-radius: 4px; flex-shrink: 0; }
-  .card-badge.orange { background: rgba(243,112,33,0.15); color: #F37021; border: 1px solid rgba(243,112,33,0.3); }
-  .card-badge.green { background: rgba(29,138,23,0.15); color: #4ade80; border: 1px solid rgba(29,138,23,0.3); }
-  .card-badge.blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
-  .card-badge.purple { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
-  .card h3 { font-size: 1rem; font-weight: 700; }
-  .card-desc { color: #94A3B8; font-size: 0.82rem; line-height: 1.55; flex: 1; }
-  .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #2d3f52; }
-  .card-date { font-size: 0.72rem; color: #718096; }
-  .card-arrow { color: #F37021; font-size: 0.85rem; font-weight: 700; }
-  .card.green .card-arrow { color: #4ade80; }
-  footer { text-align: center; padding: 1.5rem; font-size: 0.75rem; color: #718096; border-top: 1px solid #2d3f52; }
+  html { color-scheme: dark; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif;
+    background: var(--navy);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+  ::selection { background: var(--orange); color: var(--navy-deep); }
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 2px;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(15, 28, 39, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar-brand { font-size: 1rem; font-weight: 800; color: var(--orange); letter-spacing: -0.01em; }
+  .topbar-meta { font-size: 0.75rem; color: var(--muted); }
+
+  .hero { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 1.75rem; }
+  .hero h1 { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .hero p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+
+  .search-wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem 2.5rem; }
+  .search-input {
+    width: 100%;
+    background: var(--navy-deep);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    color: var(--ink);
+    font-size: 0.95rem;
+    font-family: inherit;
+    padding: 0.7rem 0.9rem;
+  }
+  .search-input::placeholder { color: var(--muted); }
+  .search-input:focus-visible { border-color: var(--orange); }
+  .search-count { color: var(--muted); font-size: 0.78rem; margin-top: 0.5rem; }
+
+  main { max-width: 720px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+  .group { margin-bottom: 2.25rem; }
+  .group-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .doc-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+  }
+  .doc-row:last-child { border-bottom: none; }
+  .doc-row[hidden] { display: none; }
+  .doc-row:hover .doc-title,
+  .doc-row:focus-visible .doc-title { color: var(--orange); }
+  .doc-row:hover .doc-arrow,
+  .doc-row:focus-visible .doc-arrow { transform: translateX(3px); }
+
+  .doc-main { flex: 1; min-width: 0; }
+  .doc-title {
+    font-size: 0.98rem;
+    font-weight: 600;
+    transition: color 0.15s ease-out;
+  }
+  .doc-desc {
+    color: var(--muted);
+    font-size: 0.84rem;
+    line-height: 1.5;
+    margin-top: 0.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .doc-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+  .badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .badge.orange { color: var(--orange); border: 1px solid rgba(243, 112, 33, 0.35); }
+  .badge.green { color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.35); }
+  .badge.blue { color: #93c5fd; border: 1px solid rgba(147, 197, 253, 0.35); }
+  .badge.purple { color: #c4b5fd; border: 1px solid rgba(196, 181, 253, 0.35); }
+  .badge.gray { color: var(--muted); border: 1px solid var(--border-strong); }
+  .doc-date { font-size: 0.7rem; color: var(--muted); }
+
+  .doc-arrow {
+    color: var(--orange);
+    flex-shrink: 0;
+    transition: transform 0.15s ease-out;
+  }
+
+  .empty-state {
+    display: none;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    padding: 3rem 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 560px) {
+    .doc-row { align-items: flex-start; }
+    .doc-desc { -webkit-line-clamp: 3; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .doc-title, .doc-arrow { transition: none; }
+  }
 </style>
 </head>
 <body>
 
 <div class="topbar">
-  <div class="topbar-brand">⚡ ScaleYukti</div>
+  <div class="topbar-brand">ScaleYukti</div>
   <div class="topbar-meta">AI Automation Agency · Ahmedabad, India</div>
 </div>
 
 <div class="hero">
-  <div class="logo">⚡ ScaleYukti</div>
-  <div class="tagline">Documents & Reports Library</div>
+  <h1>Documents &amp; Reports Library</h1>
+  <p>Client deliverables, internal strategy, leads, and reports — everything ScaleYukti has shipped or is working on, in one place.</p>
 </div>
 
-<div class="grid">
-
-  <a class="card" href="dishant_client_roadmap_phase1_phase2.html">
-    <div class="card-top">
-      <div class="card-icon">🗺️</div>
-      <span class="card-badge orange">Client Doc</span>
-    </div>
-    <h3>Dishant — Client Roadmap (Phase 1 & 2)</h3>
-    <p class="card-desc">Business-level product roadmap for Dishant's corporate AI agent. Covers Phase 1 (WhatsApp + Genspark + Employeewise) and proposed Phase 2 (persistent memory). Updated: 14-day compressed timeline. Shareable with client.</p>
-    <div class="card-footer">
-      <span class="card-date">📅 Updated: Apr 27, 2026</span>
-      <span class="card-arrow">→</span>
-    </div>
-  </a>
-
-  <a class="card green" href="dishant_technical_roadmap_internal.html">
-    <div class="card-top">
-      <div class="card-icon">⚙️</div>
-      <span class="card-badge green">Internal · Technical</span>
-    </div>
-    <h3>Dishant — Technical Roadmap (Dev Team)</h3>
-    <p class="card-desc">Full-stack CTO-level technical blueprint: Genspark API deep-dive, WhatsApp Cloud API spec, RAG architecture, risk register, dev task backlog, all env vars, JSON payloads, and code samples. Internal only. Updated: 14-day sprint timeline.</p>
-    <div class="card-footer">
-      <span class="card-date">📅 Updated: Apr 27, 2026</span>
-      <span class="card-arrow" style="color:#4ade80;">→</span>
-    </div>
-  </a>
-
-  <a class="card" href="dishant_pricing_client.html">
-    <div class="card-top">
-      <div class="card-icon">💰</div>
-      <span class="card-badge orange">Client Doc · Pricing</span>
-    </div>
-    <h3>Dishant — Investment Summary (Client Pricing)</h3>
-    <p class="card-desc">Client-facing pricing page for the Corporate AI Agent. Hormozi-style value justification, ROI comparison vs HR hire, full deliverables, ₹55,000 one-time + ₹8,000/month. Shareable with Dishant.</p>
-    <div class="card-footer">
-      <span class="card-date">📅 Generated: Apr 27, 2026</span>
-      <span class="card-arrow">→</span>
-    </div>
-  </a>
-
-  <a class="card green" href="dishant_pricing_internal.html">
-    <div class="card-top">
-      <div class="card-icon">🔒</div>
-      <span class="card-badge green">Internal · Finance</span>
-    </div>
-    <h3>Dishant — Internal Pricing & Margin Analysis</h3>
-    <p class="card-desc">Internal-only breakdown: original vs discounted pricing per line item, actual margin analysis, key assumptions (Dishant's own API key), monthly retainer cost breakdown, Phase 2 costing, and pricing risk flags. Do not share with client.</p>
-    <div class="card-footer">
-      <span class="card-date">📅 Generated: Apr 27, 2026</span>
-      <span class="card-arrow" style="color:#4ade80;">→</span>
-    </div>
-  </a>
-
-  <a class="card" href="scaleyukti_production_strategy.html">
-    <div class="card-top">
-      <div class="card-icon">🚀</div>
-      <span class="card-badge blue">Strategy</span>
-    </div>
-    <h3>ScaleYukti Production Strategy</h3>
-    <p class="card-desc">ScaleYukti's production rollout and growth strategy document. Covers go-to-market, operational scaling, and service delivery framework.</p>
-    <div class="card-footer">
-      <span class="card-date">📅 Generated: Apr 23, 2026</span>
-      <span class="card-arrow">→</span>
-    </div>
-  </a>
-
-  <a class="card" href="scaleyukti_series_a_pitch.html">
-    <div class="card-top">
-      <div class="card-icon">💼</div>
-      <span class="card-badge purple">Investor Deck</span>
-    </div>
-    <h3>Series A Pitch Deck</h3>
-    <p class="card-desc">Investor pitch deck for ScaleYukti's Series A fundraise. Unit economics, product vision, market opportunity, and traction highlights.</p>
-    <div class="card-footer">
-      <span class="card-date">📅 Generated: Apr 23, 2026</span>
-      <span class="card-arrow">→</span>
-    </div>
-  </a>
-
-  <a class="card" href="social-nvidia-ising-quantum-ai-models-april-2026-2026-04-21.html">
-    <div class="card-top">
-      <div class="card-icon">🧠</div>
-      <span class="card-badge orange">Social Content</span>
-    </div>
-    <h3>NVIDIA Ising Quantum AI Models — April 2026</h3>
-    <p class="card-desc">Social media content piece covering NVIDIA's Ising quantum AI model developments. Research-backed breakdown for ScaleYukti's audience.</p>
-    <div class="card-footer">
-      <span class="card-date">📅 Generated: Apr 21, 2026</span>
-      <span class="card-arrow">→</span>
-    </div>
-  </a>
-
-  <a class="card green" href="microgreens-business-blueprint-ahmedabad-2026.html">
-    <div class="card-top">
-      <div class="card-icon">🌱</div>
-      <span class="card-badge green">Business Blueprint</span>
-    </div>
-    <h3>Microgreens Business Blueprint — Ahmedabad 2026</h3>
-    <p class="card-desc">Full go-to-market plan for a microgreens startup in Ahmedabad. Market research, competitor gap analysis, brand naming, unit economics, equipment list, germination guide, B2B target list, and expansion roadmap.</p>
-    <div class="card-footer">
-      <span class="card-date">📅 Generated: Apr 24, 2026</span>
-      <span class="card-arrow" style="color:#4ade80;">→</span>
-    </div>
-  </a>
-
-  <a class="card" href="indus-university-ai-tools-engineers-5day-course-2026.html">
-    <div class="card-top">
-      <div class="card-icon">🎓</div>
-      <span class="card-badge purple">Course Curriculum</span>
-    </div>
-    <h3>AI Tools for Engineers — 5-Day Certificate Course</h3>
-    <p class="card-desc">Complete curriculum blueprint for Indus University Ahmedabad. Day-by-day schedule, branch-specific applications (EC/CSE/Mechanical/Civil/IT), tool list, hackathon brief, ethics module, and certificate criteria.</p>
-    <div class="card-footer">
-      <span class="card-date">📅 Generated: Apr 24, 2026</span>
-      <span class="card-arrow">→</span>
-    </div>
-  </a>
-
-  <a class="card" href="ca-smartdoc-roadmap-2026.html">
-    <div class="card-top">
-      <div class="card-icon">📊</div>
-      <span class="card-badge orange">Strategy · Internal</span>
-    </div>
-    <h3>CA SmartDoc — Complete Roadmap 2026</h3>
-    <p class="card-desc">Full product + GTM roadmap for an OCR + RAG + AI Agent document system for Indian CA firms. Pain validation (9/10), solution architecture, 5 Ahmedabad CA leads, VPS pricing, 3-tier subscription model, and margin analysis.</p>
-    <div class="card-footer">
-      <span class="card-date">📅 Generated: Apr 24, 2026</span>
-      <span class="card-arrow">→</span>
-    </div>
-  </a>
-
-  <a class="card green" href="ca-leads-pitch-deck-ahmedabad-2026.html">
-    <div class="card-top">
-      <div class="card-icon">🤝</div>
-      <span class="card-badge green">Leads · Pitch Decks</span>
-    </div>
-    <h3>CA SmartDoc — Leads & Pitch Decks Ahmedabad</h3>
-    <p class="card-desc">Deep research on 5 Ahmedabad CA leads with full contact profiles. Per-lead A/B pitch variants for email, phone, and LinkedIn — written in plain language for Indian finance market. Ready to send.</p>
-    <div class="card-footer">
-      <span class="card-date">📅 Generated: Apr 24, 2026</span>
-      <span class="card-arrow" style="color:#4ade80;">→</span>
-    </div>
-  </a>
-
-  <a class="card" href="ca-smartdoc-landing-page-2026.html">
-    <div class="card-top">
-      <div class="card-icon">🚀</div>
-      <span class="card-badge blue">Landing Page</span>
-    </div>
-    <h3>CA SmartDoc — Early Access Landing Page</h3>
-    <p class="card-desc">Finance-grade one-page waitlist site for CA SmartDoc. Early access CTA, trust signals, pain-point framing, and lead capture form. No pricing shown. Built for Indian CA firm decision-makers.</p>
-    <div class="card-footer">
-      <span class="card-date">📅 Generated: Apr 24, 2026</span>
-      <span class="card-arrow">→</span>
-    </div>
-  </a>
-
+<div class="search-wrap">
+  <input type="search" class="search-input" id="doc-search" placeholder="Search documents…" aria-label="Search documents">
+  <div class="search-count" id="doc-count"></div>
 </div>
+
+<main id="doc-list">
+
+  <section class="group" data-group>
+    <div class="group-label">Client &amp; Public-Facing</div>
+
+    <a class="doc-row" href="dishant_client_roadmap_phase1_phase2.html" data-search="dishant client roadmap phase 1 2 whatsapp genspark employeewise persistent memory">
+      <div class="doc-main">
+        <div class="doc-title">Dishant — Client Roadmap (Phase 1 &amp; 2)</div>
+        <p class="doc-desc">Business-level product roadmap for Dishant's corporate AI agent. Covers Phase 1 (WhatsApp + Genspark + Employeewise) and proposed Phase 2 (persistent memory). Shareable with client.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge orange">Client Doc</span>
+        <span class="doc-date">Apr 27, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="dishant_pricing_client.html" data-search="dishant pricing client investment summary roi">
+      <div class="doc-main">
+        <div class="doc-title">Dishant — Investment Summary (Client Pricing)</div>
+        <p class="doc-desc">Client-facing pricing page for the Corporate AI Agent. Value justification, ROI comparison vs HR hire, full deliverables, ₹55,000 one-time + ₹8,000/month.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge orange">Client Doc · Pricing</span>
+        <span class="doc-date">Apr 27, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="ca-smartdoc-landing-page-2026.html" data-search="ca smartdoc early access landing page waitlist findocai">
+      <div class="doc-main">
+        <div class="doc-title">CA SmartDoc — Early Access Landing Page</div>
+        <p class="doc-desc">Finance-grade one-page waitlist site for CA SmartDoc. Early access CTA, trust signals, pain-point framing, lead capture form. No pricing shown.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge orange">Landing Page</span>
+        <span class="doc-date">Apr 24, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="social-nvidia-ising-quantum-ai-models-april-2026-2026-04-21.html" data-search="nvidia ising quantum ai models social content">
+      <div class="doc-main">
+        <div class="doc-title">NVIDIA Ising Quantum AI Models — April 2026</div>
+        <p class="doc-desc">Social media content piece covering NVIDIA's Ising quantum AI model developments. Research-backed breakdown for ScaleYukti's audience.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge orange">Social Content</span>
+        <span class="doc-date">Apr 21, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="indus-university-ai-tools-engineers-5day-course-2026.html" data-search="indus university ai tools engineers 5 day course curriculum certificate">
+      <div class="doc-main">
+        <div class="doc-title">AI Tools for Engineers — 5-Day Certificate Course</div>
+        <p class="doc-desc">Curriculum blueprint for Indus University Ahmedabad. Day-by-day schedule, branch-specific applications (EC/CSE/Mechanical/Civil/IT), hackathon brief, ethics module, certificate criteria.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge orange">Course Curriculum</span>
+        <span class="doc-date">Apr 24, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </section>
+
+  <section class="group" data-group>
+    <div class="group-label">Internal &amp; Strategy</div>
+
+    <a class="doc-row" href="dishant_technical_roadmap_internal.html" data-search="dishant technical roadmap internal genspark whatsapp rag dev">
+      <div class="doc-main">
+        <div class="doc-title">Dishant — Technical Roadmap (Dev Team)</div>
+        <p class="doc-desc">CTO-level technical blueprint: Genspark API deep-dive, WhatsApp Cloud API spec, RAG architecture, risk register, dev task backlog, env vars, JSON payloads.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge green">Internal · Technical</span>
+        <span class="doc-date">Apr 27, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="dishant_pricing_internal.html" data-search="dishant internal pricing margin analysis finance">
+      <div class="doc-main">
+        <div class="doc-title">Dishant — Internal Pricing &amp; Margin Analysis</div>
+        <p class="doc-desc">Internal-only breakdown: original vs discounted pricing per line item, margin analysis, monthly retainer costing, pricing risk flags. Do not share with client.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge green">Internal · Finance</span>
+        <span class="doc-date">Apr 27, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="scaleyukti_production_strategy.html" data-search="scaleyukti production strategy go to market operational scaling">
+      <div class="doc-main">
+        <div class="doc-title">ScaleYukti Production Strategy</div>
+        <p class="doc-desc">Production rollout and growth strategy document. Go-to-market, operational scaling, and service delivery framework.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge blue">Strategy</span>
+        <span class="doc-date">Apr 23, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="scaleyukti_series_a_pitch.html" data-search="scaleyukti series a pitch deck investor fundraise">
+      <div class="doc-main">
+        <div class="doc-title">Series A Pitch Deck</div>
+        <p class="doc-desc">Investor pitch deck for ScaleYukti's Series A fundraise. Unit economics, product vision, market opportunity, traction highlights.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge purple">Investor Deck</span>
+        <span class="doc-date">Apr 23, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="ca-smartdoc-roadmap-2026.html" data-search="ca smartdoc roadmap ocr rag ai agent ahmedabad leads vps subscription margin">
+      <div class="doc-main">
+        <div class="doc-title">CA SmartDoc — Complete Roadmap 2026</div>
+        <p class="doc-desc">Product + GTM roadmap for an OCR + RAG + AI Agent system for Indian CA firms. Pain validation, solution architecture, VPS pricing, subscription model, margin analysis.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge green">Strategy · Internal</span>
+        <span class="doc-date">Apr 24, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="ca-vps-comparison-2026.html" data-search="ca vps comparison infrastructure smartdoc server selection">
+      <div class="doc-main">
+        <div class="doc-title">VPS Selection Guide — CA SmartDoc Infrastructure</div>
+        <p class="doc-desc">Server selection and hosting cost comparison for the CA SmartDoc launch. Provider shortlist, spec sizing, and pricing tradeoffs.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge green">Internal · Infra</span>
+        <span class="doc-date">Apr 25, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="ai-ready-portfolio-guide.html" data-search="aeo geo seo master strategy personal brand growth">
+      <div class="doc-main">
+        <div class="doc-title">AEO / GEO / SEO Master Strategy</div>
+        <p class="doc-desc">Growth strategy for AI-answer-engine and search visibility across the personal brand and ScaleYukti's public content.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge blue">Strategy · Growth</span>
+        <span class="doc-date">May 4, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="wacrm-vs-aisensy-audit.html" data-search="wacrm vs aisensy competitive audit whatsapp crm">
+      <div class="doc-main">
+        <div class="doc-title">WACRM vs AISensy — Competitive Audit</div>
+        <p class="doc-desc">Feature-by-feature competitive audit of two WhatsApp CRM platforms, with pricing and positioning gaps.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge purple">Competitive Audit</span>
+        <span class="doc-date">May 21, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="wacrm-vs-aisensy-vs-easysocial-audit.html" data-search="wacrm vs aisensy vs easysocial 3 platform competitive audit whatsapp crm">
+      <div class="doc-main">
+        <div class="doc-title">WACRM vs AISensy vs EasySocial — 3-Platform Audit</div>
+        <p class="doc-desc">Extended competitive audit adding a third WhatsApp CRM platform to the comparison, with pricing and positioning gaps.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge purple">Competitive Audit</span>
+        <span class="doc-date">May 21, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="microgreens-business-blueprint-ahmedabad-2026.html" data-search="microgreens business blueprint ahmedabad startup">
+      <div class="doc-main">
+        <div class="doc-title">Microgreens Business Blueprint — Ahmedabad</div>
+        <p class="doc-desc">Go-to-market plan for a microgreens startup: market research, competitor gaps, brand naming, unit economics, equipment list, B2B target list.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge green">Business Blueprint</span>
+        <span class="doc-date">Apr 24, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </section>
+
+  <section class="group" data-group>
+    <div class="group-label">Leads &amp; Outreach</div>
+
+    <a class="doc-row" href="ca-leads-pitch-deck-ahmedabad-2026.html" data-search="ca leads pitch decks ahmedabad contacts outreach">
+      <div class="doc-main">
+        <div class="doc-title">CA SmartDoc — Leads &amp; Pitch Decks (Ahmedabad)</div>
+        <p class="doc-desc">Research on Ahmedabad CA leads with full contact profiles. Per-lead pitch variants for email, phone, and LinkedIn. Ready to send.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge green">Leads · Pitch Decks</span>
+        <span class="doc-date">Apr 24, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="doc-row" href="scalesync/tech-college-leads-2026.html" data-search="scalesync tech college leads 60 verified engineering contacts">
+      <div class="doc-main">
+        <div class="doc-title">ScaleSync — Tech College Leads</div>
+        <p class="doc-desc">60 verified engineering-college contacts across 6 cities, sourced for ScaleSync outreach.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge green">Leads · Contacts</span>
+        <span class="doc-date">Apr 28, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </section>
+
+  <section class="group" data-group>
+    <div class="group-label">Personal</div>
+
+    <a class="doc-row" href="kavvi-flooring.html" data-search="kaavi oxide flooring new home ahmedabad natural chemical free">
+      <div class="doc-main">
+        <div class="doc-title">Kaavi (Oxide) Flooring — New Home</div>
+        <p class="doc-desc">Research notes on natural oxide flooring for a new 550 sq ft flat in Ahmedabad. Not a ScaleYukti work product.</p>
+      </div>
+      <div class="doc-meta">
+        <span class="badge gray">Personal</span>
+        <span class="doc-date">May 5, 2026</span>
+      </div>
+      <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </section>
+
+  <p class="empty-state" id="empty-state">No documents match “<span id="empty-query"></span>”.</p>
+
+</main>
 
 <footer>
-  ⚡ ScaleYukti AI Automation Agency · scaleyukti.ai · Ahmedabad, Gujarat, India
+  ScaleYukti AI Automation Agency · scaleyukti.ai · Ahmedabad, Gujarat, India
 </footer>
+
+<script>
+(function () {
+  var input = document.getElementById('doc-search');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.doc-row'));
+  var groups = Array.prototype.slice.call(document.querySelectorAll('[data-group]'));
+  var count = document.getElementById('doc-count');
+  var empty = document.getElementById('empty-state');
+  var emptyQuery = document.getElementById('empty-query');
+  var total = rows.length;
+
+  function render() {
+    var query = input.value.trim().toLowerCase();
+    var visible = 0;
+
+    rows.forEach(function (row) {
+      var haystack = (row.dataset.search + ' ' + row.textContent).toLowerCase();
+      var match = query === '' || haystack.indexOf(query) !== -1;
+      row.hidden = !match;
+      if (match) visible += 1;
+    });
+
+    groups.forEach(function (group) {
+      var hasVisible = Array.prototype.slice.call(group.querySelectorAll('.doc-row')).some(function (row) {
+        return !row.hidden;
+      });
+      group.hidden = !hasVisible;
+    });
+
+    count.textContent = query === '' ? total + ' documents' : visible + ' of ' + total + ' documents';
+    empty.style.display = visible === 0 ? 'block' : 'none';
+    emptyQuery.textContent = input.value.trim();
+  }
+
+  input.addEventListener('input', render);
+  render();
+})();
+</script>
 
 </body>
 </html>
